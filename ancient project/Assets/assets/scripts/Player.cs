@@ -8,10 +8,15 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     GameObject Manager;
-
     Controls controls;
     manager managerVariables;
+
+    [SerializeField]
+    Camera mainCamera;
+    MousePosition3D mousePosition3D;
   
+
+
     float PlayerSpeed;
 
 
@@ -19,6 +24,8 @@ public class Player : MonoBehaviour
     void Start()
     {
         CHC = GetComponent<CharacterController>();
+        mousePosition3D = mainCamera.GetComponent<MousePosition3D>();
+        
 
         //Manager GameObject
         controls = Manager.GetComponent<Controls>();
@@ -35,22 +42,21 @@ public class Player : MonoBehaviour
         float MoveZ = 0;
         //Input.GetKeyDown(MoveUp)
         if (Input.GetKey(controls.MoveUp)) 
-        {
-            MoveZ++;
-        }
+        {MoveZ++;}
         else if (Input.GetKey(controls.MoveDown))
-        {
-            MoveZ--;
-        }
+        {MoveZ--;}
         if (Input.GetKey(controls.MoveRight))
-        {
-            MoveX++;
-        }
+        {MoveX++;}
         else if (Input.GetKey(controls.MoveLeft))
-        {
-            MoveX--;
-        }
+        {MoveX--;}
 
         CHC.Move(new Vector3(MoveX,0, MoveZ)*PlayerSpeed);
+
+        mousePosition3D.MousePosition.y = transform.position.y;
+        transform.LookAt(mousePosition3D.MousePosition);
+        
+        
+        
+        
     }
 }
