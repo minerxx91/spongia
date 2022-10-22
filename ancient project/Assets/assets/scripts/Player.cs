@@ -52,6 +52,8 @@ public class Player : MonoBehaviour
 
         CHC.Move(new Vector3(MoveX,0, MoveZ)*PlayerSpeed);
 
+
+
         mousePosition3D.MousePosition.y = transform.position.y;
         transform.LookAt(mousePosition3D.MousePosition);
         
