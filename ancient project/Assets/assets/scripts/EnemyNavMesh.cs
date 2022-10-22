@@ -11,6 +11,9 @@ public class EnemyNavMesh : MonoBehaviour
 
     public Transform player;
 
+    [SerializeField] GameObject manager;
+    manager managerVariables;
+
     public Material[] material;
 
     Renderer rend;
@@ -38,7 +41,8 @@ public class EnemyNavMesh : MonoBehaviour
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         rend = GetComponent<Renderer>();
-        
+        managerVariables = manager.GetComponent<manager>();
+
     }
 
     void Update()
@@ -100,7 +104,15 @@ public class EnemyNavMesh : MonoBehaviour
 
         if (!alreadyAttacked)
         {
-            //Attack
+            
+            if(managerVariables.Player.Health > 20)
+            {
+                managerVariables.Player.Health -= 20;
+            }
+            else
+            {
+                managerVariables.Player.Health = 0;
+            }
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);

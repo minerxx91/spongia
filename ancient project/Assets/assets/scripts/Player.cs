@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
         managerVariables = Manager.GetComponent<manager>();
         //---------
 
-        PlayerSpeed = managerVariables.Speed / 1000 * Time.deltaTime;
+        
     }
 
     // Update is called once per frame
@@ -50,6 +50,10 @@ public class Player : MonoBehaviour
         else if (Input.GetKey(controls.MoveLeft))
         {MoveX--;}
 
+
+        PlayerSpeed = managerVariables.Player.Speed * Time.deltaTime;
+        print(managerVariables.Player.Health);
+
         Vector3 Velocity = new Vector3(MoveX, 0, MoveZ) * PlayerSpeed;
         //Velocity.Normalize();
         CHC.Move(Velocity);
@@ -58,8 +62,15 @@ public class Player : MonoBehaviour
         
         mousePosition3D.MousePosition.y = transform.position.y;
         transform.LookAt(mousePosition3D.MousePosition);
-        
-        
+
+        if (managerVariables.Player.Health + managerVariables.Player.HealthRegen < managerVariables.Player.MaxHealth)
+        {
+            managerVariables.Player.Health += managerVariables.Player.HealthRegen * Time.deltaTime;
+        }
+        else
+        {
+            managerVariables.Player.Health = managerVariables.Player.MaxHealth;
+        }
         
         
     }
