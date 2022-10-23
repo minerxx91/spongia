@@ -9,10 +9,20 @@ public class LevelLoader : MonoBehaviour
     public Animator transition;
 
     public float transitionTime = 1f;
+    manager managerVariables;
 
-    public static manager instance;
+    public static GameObject instance;
 
+    private void Start()
+    {
 
+        managerVariables = GameObject.Find("Manager").GetComponent<manager>();
+        
+        
+        
+
+        
+    }
 
     void Update()
     {
@@ -35,18 +45,18 @@ public class LevelLoader : MonoBehaviour
 
         yield return new WaitForSeconds(transitionTime);
 
-        SceneManager.LoadScene(levelIndex);
-        DontDestroyOnLoad(GameObject.Find("Manager"));
-        
-        if (instance == null)
-        {
-            instance = GameObject.Find("Manager").GetComponent<manager>();
-        }
-        else
-        {
-            Destroy(GameObject.Find("Manager"));
-            
 
-        }
+
+        managerVariables.SwapScene();
+
+
+
+
+
+
+
+        //SceneManager.LoadScene(levelIndex);
+
+
     }
 }

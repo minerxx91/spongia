@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class manager : MonoBehaviour
 {
     [SerializeField] float PlayerSpeed = 5;
     [SerializeField] float PlayerHealth = 100;
+
+    public static manager manager_d;
 
     public class PlayerStats
     {
@@ -19,16 +22,30 @@ public class manager : MonoBehaviour
         public float MaxStamina = 100;
         public float StaminaRegen = 5;
 
-        public float DashSpeed = 3;
-        public float DashTime = 0.25f;
+        public float JumpSpeed = 2;
+        public float JumpTime = 0.25f;
+        public float JumpCooldown = 1f;
+        public float JumpCost = 20;
     }
     public PlayerStats Player = new PlayerStats();
 
 
     private void Start()
     {
+        
         Player.Speed = PlayerSpeed;
         Player.Health = PlayerHealth;
+
+        if (manager_d != null)
+        {
+            Destroy(manager_d.gameObject);
+        }
+        else
+        {
+            manager_d = this;
+        }
+
+        DontDestroyOnLoad(gameObject);
     }
     public void DamagePlayer(float damage)
     {
@@ -40,6 +57,20 @@ public class manager : MonoBehaviour
         {
             Player.Health = 0;
         }
+    }
+    public void SwapScene()
+    {
+        
+        
+            if(GameObject.Find("Player").scene.name == "SampleScene")
+            {
+                SceneManager.LoadScene("Lobby");
+            }
+            else
+            {
+                SceneManager.LoadScene("SampleScene");
+            }
+        
     }
 
 

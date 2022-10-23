@@ -15,9 +15,10 @@ public class Player : MonoBehaviour
     Camera mainCamera;
     MousePosition3D mousePosition3D;
 
-    bool JumpAvaiable = true;
+    bool SpaceAvaiable = true;
 
     float PlayerSpeed;
+    float JumpCooldown = 0;
     
     public Vector3 DashVelocity;
 
@@ -41,6 +42,14 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //cooldowns
+        if (JumpCooldown <= managerVariables.Player.JumpCooldown)
+            JumpCooldown += Time.deltaTime;
+        else
+            JumpCooldown = managerVariables.Player.JumpCooldown;
+
+
+        //---------
         float MoveX = 0;
         float MoveZ = 0;
         //Input.GetKeyDown(MoveUp)
@@ -76,27 +85,37 @@ public class Player : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space))
         {
-           if (JumpAvaiable)
+           if (SpaceAvaiable)
            {
-                JumpAvaiable = false;
-                DashVelocity = new Vector3(MoveX, 0, MoveZ) * managerVariables.Player.Speed;
-                //jump
-                StartCoroutine(Dash());
+                if (JumpCooldown == managerVariables.Player.JumpCooldown)
+                {
+                    if (managerVariables.Player.Stamina >= managerVariables.Player.JumpCost)
+                    {
+                        managerVariables.Player.Stamina -= managerVariables.Player.JumpCost;
+                        JumpCooldown = 0;
+                        SpaceAvaiable = false;
+                        DashVelocity = new Vector3(MoveX, 0, MoveZ) * managerVariables.Player.Speed;
+                        //jump
+                        StartCoroutine(Dash());
 
-                if (managerVariables.Player.Stamina > 10)
-                {
-                    managerVariables.Player.Stamina -= 10;
+                        if (managerVariables.Player.Stamina > 10)
+                        {
+                            managerVariables.Player.Stamina -= 10;
+                        }
+                        else
+                        {
+                            managerVariables.Player.Stamina = 0;
+                        }
+                    }
+                    
                 }
-                else
-                {
-                    managerVariables.Player.Stamina = 0;
-                }
+                
            }
             
         }
         else
         {
-            JumpAvaiable = true;
+            SpaceAvaiable = true;
         }
 
         // stamina regen
@@ -115,12 +134,12 @@ public class Player : MonoBehaviour
     IEnumerator Dash()
     {
         float startTime = Time.time;
-        while (Time.time < startTime + managerVariables.Player.DashTime)
+        while (Time.time < startTime + managerVariables.Player.JumpTime)
         {
             
             
             this.GetComponent<Renderer>().material.color = new Color(1,0.2f,.02f,1);
-            CHC.Move(DashVelocity * managerVariables.Player.DashSpeed * Time.deltaTime);
+            CHC.Move(DashVelocity * managerVariables.Player.JumpSpeed * Time.deltaTime);
             
             yield return null;
         }
