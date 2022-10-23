@@ -104,15 +104,8 @@ public class EnemyNavMesh : MonoBehaviour
 
         if (!alreadyAttacked)
         {
-            
-            if(managerVariables.Player.Health > 20)
-            {
-                managerVariables.Player.Health -= 20;
-            }
-            else
-            {
-                managerVariables.Player.Health = 0;
-            }
+
+            managerVariables.DamagePlayer(20);
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);

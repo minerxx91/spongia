@@ -71,7 +71,28 @@ public class Player : MonoBehaviour
         {
             managerVariables.Player.Health = managerVariables.Player.MaxHealth;
         }
-        
-        
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            if (managerVariables.Player.Stamina > 10)
+            {
+                managerVariables.Player.Stamina -= 10;
+            }
+            else
+            {
+                managerVariables.Player.Stamina = 0;
+            }
+        }
+        if (managerVariables.Player.Stamina + managerVariables.Player.StaminaRegen < managerVariables.Player.MaxStamina)
+        {
+            managerVariables.Player.Stamina += managerVariables.Player.StaminaRegen * Time.deltaTime;
+        }
+        else
+        {
+            managerVariables.Player.Stamina = managerVariables.Player.MaxStamina;
+        }
+
+
+
     }
 }

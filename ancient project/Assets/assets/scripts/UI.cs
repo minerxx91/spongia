@@ -9,13 +9,17 @@ public class UI : MonoBehaviour
 
 
     [SerializeField] GameObject HealthMask;
+    [SerializeField] GameObject StaminaMask;
     private void Start()
     {
         managerVariables = manager.GetComponent<manager>();
     }
     private void Update()
     {
-        float dielik = 165 / managerVariables.Player.MaxHealth;
-        HealthMask.transform.position = new Vector2(HealthMask.transform.position.x, (managerVariables.Player.Health * dielik)-35);
+        float dielikH = 165 / managerVariables.Player.MaxHealth;
+        HealthMask.transform.position = new Vector2(HealthMask.transform.position.x, (managerVariables.Player.Health * dielikH)-35);
+
+        float dielikS = 165 / managerVariables.Player.MaxStamina;
+        StaminaMask.transform.position = new Vector2(StaminaMask.transform.position.x, (managerVariables.Player.Stamina * dielikS) - 35);
     }
 }
