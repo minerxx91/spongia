@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,6 +9,9 @@ public class LevelLoader : MonoBehaviour
     public Animator transition;
 
     public float transitionTime = 1f;
+
+    public static manager instance;
+
 
 
     void Update()
@@ -32,14 +36,17 @@ public class LevelLoader : MonoBehaviour
         yield return new WaitForSeconds(transitionTime);
 
         SceneManager.LoadScene(levelIndex);
+        DontDestroyOnLoad(GameObject.Find("Manager"));
+        
+        if (instance == null)
+        {
+            instance = GameObject.Find("Manager").GetComponent<manager>();
+        }
+        else
+        {
+            Destroy(GameObject.Find("Manager"));
+            
+
+        }
     }
-
-
-
-
-
-
-
-
-
 }

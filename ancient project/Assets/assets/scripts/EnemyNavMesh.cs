@@ -11,7 +11,7 @@ public class EnemyNavMesh : MonoBehaviour
 
     public Transform player;
 
-    [SerializeField] GameObject manager;
+    GameObject Manager;
     manager managerVariables;
 
     public Material[] material;
@@ -38,10 +38,11 @@ public class EnemyNavMesh : MonoBehaviour
 
     void Awake()
     {
+        Manager = GameObject.Find("Manager");
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         rend = GetComponent<Renderer>();
-        managerVariables = manager.GetComponent<manager>();
+        managerVariables = Manager.GetComponent<manager>();
 
     }
 

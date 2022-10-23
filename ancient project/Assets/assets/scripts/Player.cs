@@ -6,12 +6,12 @@ public class Player : MonoBehaviour
 {
     CharacterController CHC;
 
-    [SerializeField]
+
     GameObject Manager;
     Controls controls;
     manager managerVariables;
 
-    [SerializeField]
+    
     Camera mainCamera;
     MousePosition3D mousePosition3D;
 
@@ -25,10 +25,12 @@ public class Player : MonoBehaviour
     void Start()
     {
         CHC = GetComponent<CharacterController>();
+        mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         mousePosition3D = mainCamera.GetComponent<MousePosition3D>();
-        
+
 
         //Manager GameObject
+        Manager = GameObject.Find("Manager");
         controls = Manager.GetComponent<Controls>();
         managerVariables = Manager.GetComponent<manager>();
         //---------

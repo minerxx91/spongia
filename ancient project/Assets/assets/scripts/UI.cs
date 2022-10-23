@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UI : MonoBehaviour
 {
-    [SerializeField] GameObject manager;
+    GameObject Manager;
     manager managerVariables;
 
 
@@ -12,7 +12,8 @@ public class UI : MonoBehaviour
     [SerializeField] GameObject StaminaMask;
     private void Start()
     {
-        managerVariables = manager.GetComponent<manager>();
+        Manager = GameObject.Find("Manager");
+        managerVariables = Manager.GetComponent<manager>();
     }
     private void Update()
     {

@@ -3,9 +3,14 @@ using UnityEngine;
 
 public class cameraFollow : MonoBehaviour
 {
-    [SerializeField] Transform target;
+    Transform target;
     [SerializeField] float smoothSpeed = 0.125f;
     [SerializeField] Vector3 offset;
+
+    private void Start()
+    {
+        target = GameObject.Find("Player").GetComponent<Transform>();
+    }
     private void LateUpdate()
     {
 
