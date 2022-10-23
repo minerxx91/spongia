@@ -18,6 +18,9 @@ public class manager : MonoBehaviour
         public float Stamina = 100;
         public float MaxStamina = 100;
         public float StaminaRegen = 5;
+
+        public float DashSpeed = 3;
+        public float DashTime = 0.25f;
     }
     public PlayerStats Player = new PlayerStats();
 
