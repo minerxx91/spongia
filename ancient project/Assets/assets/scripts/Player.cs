@@ -11,7 +11,9 @@ public class Player : MonoBehaviour
     Controls controls;
     manager managerVariables;
 
-    
+    LevelLoader lvlloader;
+    GameObject helpCanvas;
+
     Camera mainCamera;
     MousePosition3D mousePosition3D;
 
@@ -36,7 +38,9 @@ public class Player : MonoBehaviour
         managerVariables = Manager.GetComponent<manager>();
         //---------
 
-        
+        lvlloader = GameObject.Find("LevelLoader").GetComponent<LevelLoader>();
+        helpCanvas = GameObject.Find("Help");
+        helpCanvas.SetActive(false);
     }
 
     // Update is called once per frame
@@ -47,7 +51,11 @@ public class Player : MonoBehaviour
             JumpCooldown += Time.deltaTime;
         else
             JumpCooldown = managerVariables.Player.JumpCooldown;
+       
 
+
+
+        
 
         //---------
         float MoveX = 0;
@@ -145,4 +153,38 @@ public class Player : MonoBehaviour
         }
         this.GetComponent<Renderer>().material.color = new Color(1, 1, 1, 1);
     }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.name == "Portal")
+        {
+            
+            
+            if (Input.GetKey(KeyCode.E))
+            {
+                lvlloader.SwitchScene();
+            }
+        }
+
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name == "Portal")
+        {
+            helpCanvas.SetActive(true);
+
+
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.name == "Portal")
+        {
+            helpCanvas.SetActive(false);
+
+
+        }
+
+        
+    }
+
 }

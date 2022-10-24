@@ -62,13 +62,13 @@ public class manager : MonoBehaviour
     {
         
         
-            if(GameObject.Find("Player").scene.name == "SampleScene")
+            if(GameObject.Find("Player").scene.name == "LVL1")
             {
                 SceneManager.LoadScene("Lobby");
             }
             else
             {
-                SceneManager.LoadScene("SampleScene");
+                SceneManager.LoadScene("LVL1");
             }
         
     }

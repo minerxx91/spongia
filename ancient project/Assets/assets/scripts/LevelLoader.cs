@@ -24,13 +24,10 @@ public class LevelLoader : MonoBehaviour
         
     }
 
-    void Update()
+    
+    public void SwitchScene()
     {
-
-        if (Input.GetKey(KeyCode.E))
-        {
-            LoadNextLevel();
-        }
+        LoadNextLevel();
     }
 
     public void LoadNextLevel()
@@ -39,7 +36,7 @@ public class LevelLoader : MonoBehaviour
         else StartCoroutine(LoadLevel(1));
     }
 
-    IEnumerator LoadLevel(int levelIndex)
+    IEnumerator  LoadLevel(int levelIndex)
     {
         transition.SetTrigger("Start");
 
