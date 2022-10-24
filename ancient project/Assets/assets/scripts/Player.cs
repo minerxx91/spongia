@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static System.TimeZoneInfo;
 
 public class Player : MonoBehaviour
 {
@@ -25,6 +26,8 @@ public class Player : MonoBehaviour
     
     public Vector3 JumpVelocity;
 
+    private Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +45,8 @@ public class Player : MonoBehaviour
         lvlloader = GameObject.Find("LevelLoader").GetComponent<LevelLoader>();
         helpCanvas = GameObject.Find("Help");
         helpCanvas.SetActive(false);
+
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -78,6 +83,8 @@ public class Player : MonoBehaviour
         //Velocity.Normalize();
         CHC.Move(Velocity);
 
+        if (Velocity == Vector3.zero) anim.SetBool("isRunning", false);
+        else anim.SetBool("isRunning", true);
 
         if (Velocity != Vector3.zero)
         {
@@ -116,7 +123,7 @@ public class Player : MonoBehaviour
                         JumpVelocity = new Vector3(MoveX, 0, MoveZ) * managerVariables.Player.Speed;
                         //jump
                         StartCoroutine(Dash());
-
+                        anim.SetTrigger("isRolling");
                         if (managerVariables.Player.Stamina > 10)
                         {
                             managerVariables.Player.Stamina -= 10;
@@ -137,6 +144,8 @@ public class Player : MonoBehaviour
             SpaceAvaiable = true;
         }
 
+        if(Input.GetKey(KeyCode.Mouse0)) anim.SetTrigger("isAttacking");
+
         // stamina regen
         if (managerVariables.Player.Stamina + managerVariables.Player.StaminaRegen < managerVariables.Player.MaxStamina)
         {
@@ -152,6 +161,7 @@ public class Player : MonoBehaviour
     }
     IEnumerator Dash()
     {
+        yield return new WaitForSeconds(.1f);
         float startTime = Time.time;
         while (Time.time < startTime + managerVariables.Player.JumpTime)
         {

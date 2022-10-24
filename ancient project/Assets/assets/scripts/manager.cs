@@ -22,8 +22,8 @@ public class manager : MonoBehaviour
         public float MaxStamina = 100;
         public float StaminaRegen = 5;
 
-        public float JumpSpeed = 2;
-        public float JumpTime = 0.25f;
+        public float JumpSpeed = 1f;
+        public float JumpTime = .8f;
         public float JumpCooldown = 1f;
         public float JumpCost = 20;
     }
