@@ -20,9 +20,10 @@ public class Player : MonoBehaviour
     bool SpaceAvaiable = true;
 
     float PlayerSpeed;
+    float RotationSpeed = 300;
     float JumpCooldown = 0;
     
-    public Vector3 DashVelocity;
+    public Vector3 JumpVelocity;
 
     // Start is called before the first frame update
     void Start()
@@ -78,9 +79,19 @@ public class Player : MonoBehaviour
         CHC.Move(Velocity);
 
 
+        if (Velocity != Vector3.zero)
+        {
+            float angle = Mathf.Atan2(Velocity[0], Velocity[2]) * Mathf.Rad2Deg;
+            
+
+
+            Quaternion toRotation = Quaternion.Euler(new Vector3(0, angle, 0));
+
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, RotationSpeed * Time.deltaTime);
+        }
         
-        mousePosition3D.MousePosition.y = transform.position.y;
-        transform.LookAt(mousePosition3D.MousePosition);
+
+
         // healtzh regen
         if (managerVariables.Player.Health + managerVariables.Player.HealthRegen < managerVariables.Player.MaxHealth)
         {
@@ -102,7 +113,7 @@ public class Player : MonoBehaviour
                         managerVariables.Player.Stamina -= managerVariables.Player.JumpCost;
                         JumpCooldown = 0;
                         SpaceAvaiable = false;
-                        DashVelocity = new Vector3(MoveX, 0, MoveZ) * managerVariables.Player.Speed;
+                        JumpVelocity = new Vector3(MoveX, 0, MoveZ) * managerVariables.Player.Speed;
                         //jump
                         StartCoroutine(Dash());
 
@@ -146,12 +157,10 @@ public class Player : MonoBehaviour
         {
             
             
-            this.GetComponent<Renderer>().material.color = new Color(1,0.2f,.02f,1);
-            CHC.Move(DashVelocity * managerVariables.Player.JumpSpeed * Time.deltaTime);
+            CHC.Move(JumpVelocity * managerVariables.Player.JumpSpeed * Time.deltaTime);
             
             yield return null;
         }
-        this.GetComponent<Renderer>().material.color = new Color(1, 1, 1, 1);
     }
     private void OnTriggerStay(Collider other)
     {

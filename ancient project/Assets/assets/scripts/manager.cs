@@ -8,7 +8,7 @@ public class manager : MonoBehaviour
     [SerializeField] float PlayerSpeed = 5;
     [SerializeField] float PlayerHealth = 100;
 
-    public static manager manager_d;
+    public static GameObject manager_d;
 
     public class PlayerStats
     {
@@ -36,13 +36,14 @@ public class manager : MonoBehaviour
         Player.Speed = PlayerSpeed;
         Player.Health = PlayerHealth;
 
+        
         if (manager_d != null)
         {
-            Destroy(manager_d.gameObject);
+            Destroy(this.gameObject);
         }
         else
         {
-            manager_d = this;
+            manager_d = this.gameObject;
         }
 
         DontDestroyOnLoad(gameObject);
