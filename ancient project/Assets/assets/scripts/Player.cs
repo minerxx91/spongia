@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
 
     float PlayerSpeed;
     float RotationSpeed = 300;
-    float JumpCooldown = 0;
+    public float JumpCooldown = 0;
     
     public Vector3 JumpVelocity;
 
@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         //cooldowns
-        if (JumpCooldown <= managerVariables.Player.JumpCooldown)
+        if (JumpCooldown < managerVariables.Player.JumpCooldown)
             JumpCooldown += Time.deltaTime;
         else
             JumpCooldown = managerVariables.Player.JumpCooldown;
