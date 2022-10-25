@@ -10,6 +10,9 @@ public class manager : MonoBehaviour
 
     public static GameObject manager_d;
 
+
+    int levelIndex = 1;
+
     public class PlayerStats
     {
         public float Speed;
@@ -61,16 +64,19 @@ public class manager : MonoBehaviour
     }
     public void SwapScene()
     {
+
+
         
+        if (levelIndex < 6)
+        {
+            SceneManager.LoadScene(levelIndex);
+            levelIndex++;
+        }
+        else
+        {
+            levelIndex = 0;
+        }
         
-            if(GameObject.Find("Player").scene.name == "LVL1")
-            {
-                SceneManager.LoadScene("Lobby");
-            }
-            else
-            {
-                SceneManager.LoadScene("LVL1");
-            }
         
     }
 
