@@ -83,14 +83,13 @@ public class Player : MonoBehaviour
         //Input.GetKeyDown(MoveUp)
         if (Input.GetKey(controls.MoveUp)) 
         {MoveZ++;}
-        else if (Input.GetKey(controls.MoveDown))
+        if (Input.GetKey(controls.MoveDown))
         {MoveZ--;}
         if (Input.GetKey(controls.MoveRight))
         {MoveX++;}
-        else if (Input.GetKey(controls.MoveLeft))
+        if (Input.GetKey(controls.MoveLeft))
         {MoveX--;}
-
-
+        
         PlayerSpeed = managerVariables.Player.Speed * Time.deltaTime;
 
         if (!managerVariables.Player.Jumping)
@@ -117,7 +116,6 @@ public class Player : MonoBehaviour
         else
         {
             anim.SetBool("isRunning", true);
-            print("asdasd");
             
         }
 

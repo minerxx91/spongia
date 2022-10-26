@@ -5,19 +5,23 @@ using UnityEngine.SceneManagement;
 
 public class manager : MonoBehaviour
 {
-    [SerializeField] float PlayerSpeed = 5;
-    [SerializeField] float PlayerHealth = 100;
+   
 
     public static GameObject manager_d;
-        
 
-    int levelIndex = 1;
+    [SerializeField] GameObject playerPrefab;
+
+    
+
+    public int levelIndex = 0;
 
     public float GravityForce = 1f;
 
+
+
     public class PlayerStats
     {
-        public float Speed;
+        public float Speed = 5;
 
         public float MaxHealth = 100;
         public float Health = 100;
@@ -34,17 +38,24 @@ public class manager : MonoBehaviour
         public bool Jumping = false;
 
         public float gravityIncrease = 0;
+
+
+
+
+        public Vector3 LobbySpawn = new Vector3(4, 2, 2);
+        public Vector3 LVL1Spawn = new Vector3(3, 2, 2);
+        public Vector3 LVL2Spawn = new Vector3(6, 2, 2);
+        public Vector3 LVL3Spawn = new Vector3(3,2, 2);
+        public Vector3 LVL4Spawn = new Vector3(3, 2, 2);
+        public Vector3 LVL5Spawn = new Vector3(3, 2, 2);
+
     }
     public PlayerStats Player = new PlayerStats();
 
 
     private void Start()
     {
-        
-        Player.Speed = PlayerSpeed;
-        Player.Health = PlayerHealth;
 
-        
         if (manager_d != null)
         {
             Destroy(this.gameObject);
@@ -70,20 +81,28 @@ public class manager : MonoBehaviour
     public void SwapScene()
     {
 
-
         
-        if (levelIndex < 6)
+        
+        if (levelIndex < 5)
         {
-            SceneManager.LoadScene(levelIndex);
             levelIndex++;
+            SceneManager.LoadScene(levelIndex);
+
+           
+
+            
+           
+            
         }
         else
         {
             levelIndex = 0;
+            SceneManager.LoadScene(levelIndex);
         }
         
         
     }
+    
 
 
 }
