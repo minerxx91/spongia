@@ -55,6 +55,8 @@ public class EnemyNavMesh : MonoBehaviour
         if (playerInSightRange && !playerInAttackRange) Chasing();
         if (playerInAttackRange && playerInSightRange) Attacking();
         materialDelay += Time.deltaTime;
+
+        transform.rotation = Quaternion.Euler(0,0,0);
     }
 
 

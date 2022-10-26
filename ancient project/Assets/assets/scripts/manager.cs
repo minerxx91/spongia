@@ -31,6 +31,9 @@ public class manager : MonoBehaviour
         public float MaxStamina = 100;
         public float StaminaRegen = 10;
 
+        public float Damage = 20;
+        public float DamageIncrease = 0;
+
         public float JumpSpeed = 1f;
         public float JumpTime = 0.8f;
         public float JumpCooldown = 1f;
