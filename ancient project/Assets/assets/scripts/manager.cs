@@ -9,9 +9,11 @@ public class manager : MonoBehaviour
     [SerializeField] float PlayerHealth = 100;
 
     public static GameObject manager_d;
-
+        
 
     int levelIndex = 1;
+
+    public float GravityForce = 1f;
 
     public class PlayerStats
     {
@@ -26,9 +28,12 @@ public class manager : MonoBehaviour
         public float StaminaRegen = 10;
 
         public float JumpSpeed = 1f;
-        public float JumpTime = .8f;
+        public float JumpTime = 0.8f;
         public float JumpCooldown = 1f;
         public float JumpCost = 20;
+        public bool Jumping = false;
+
+        public float gravityIncrease = 0;
     }
     public PlayerStats Player = new PlayerStats();
 

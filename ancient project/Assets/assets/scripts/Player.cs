@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     public float JumpCooldown = 0;
     
     public Vector3 JumpVelocity;
-
+    Vector3 Velocity;
     private Animator anim;
 
     // Start is called before the first frame update
@@ -57,11 +57,21 @@ public class Player : MonoBehaviour
             JumpCooldown += Time.deltaTime;
         else
             JumpCooldown = managerVariables.Player.JumpCooldown;
-       
 
-
-
+        //gravity
         
+        if (!CHC.isGrounded)
+        {
+            managerVariables.Player.gravityIncrease += managerVariables.GravityForce* Time.deltaTime;
+            
+        }
+        else
+        {
+            managerVariables.Player.gravityIncrease = 0;
+        }
+
+
+
 
         //---------
         float MoveX = 0;
@@ -79,22 +89,34 @@ public class Player : MonoBehaviour
 
         PlayerSpeed = managerVariables.Player.Speed * Time.deltaTime;
 
-        Vector3 Velocity = new Vector3(MoveX, 0, MoveZ) * PlayerSpeed;
+        if (!managerVariables.Player.Jumping)
+        {
+            Velocity = new Vector3(MoveX * PlayerSpeed, -managerVariables.Player.gravityIncrease, MoveZ * PlayerSpeed);
+        }
+        else
+        {
+            Velocity = new Vector3(0, -managerVariables.Player.gravityIncrease,0);
+
+        }
         //Velocity.Normalize();
         CHC.Move(Velocity);
 
-        if (Velocity == Vector3.zero) anim.SetBool("isRunning", false);
+        if (Velocity[0] == 0 && Velocity[2] ==0) anim.SetBool("isRunning", false);
         else anim.SetBool("isRunning", true);
 
-        if (Velocity != Vector3.zero)
+        if (Velocity[0] != 0 || Velocity[2] != 0)
         {
-            float angle = Mathf.Atan2(Velocity[0], Velocity[2]) * Mathf.Rad2Deg;
+            if(!managerVariables.Player.Jumping)
+            {
+                float angle = Mathf.Atan2(Velocity[0], Velocity[2]) * Mathf.Rad2Deg;
+
+
+
+                Quaternion toRotation = Quaternion.Euler(new Vector3(0, angle, 0));
+
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, RotationSpeed * Time.deltaTime);
+            }
             
-
-
-            Quaternion toRotation = Quaternion.Euler(new Vector3(0, angle, 0));
-
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, RotationSpeed * Time.deltaTime);
         }
         
 
@@ -157,20 +179,23 @@ public class Player : MonoBehaviour
         }
 
 
-
     }
     IEnumerator Dash()
     {
         yield return new WaitForSeconds(.1f);
+
+        float angle = Mathf.Atan2(JumpVelocity[0], JumpVelocity[2]) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(new Vector3(0, angle, 0));
+
         float startTime = Time.time;
         while (Time.time < startTime + managerVariables.Player.JumpTime)
         {
-            
-            
+            managerVariables.Player.Jumping = true;            
             CHC.Move(JumpVelocity * managerVariables.Player.JumpSpeed * Time.deltaTime);
             
             yield return null;
         }
+        managerVariables.Player.Jumping = false;
     }
     private void OnTriggerStay(Collider other)
     {
