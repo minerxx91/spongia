@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     Controls controls;
     manager managerVariables;
 
+    AudioManager audioManager;
+
     LevelLoader lvlloader;
     GameObject helpCanvas;
 
@@ -42,6 +44,8 @@ public class Player : MonoBehaviour
         managerVariables = Manager.GetComponent<manager>();
         //---------
 
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+
         lvlloader = GameObject.Find("LevelLoader").GetComponent<LevelLoader>();
         helpCanvas = GameObject.Find("Help");
         helpCanvas.SetActive(false);
@@ -70,7 +74,7 @@ public class Player : MonoBehaviour
             managerVariables.Player.gravityIncrease = 0;
         }
 
-
+        
 
 
         //---------
@@ -101,8 +105,21 @@ public class Player : MonoBehaviour
         //Velocity.Normalize();
         CHC.Move(Velocity);
 
-        if (Velocity[0] == 0 && Velocity[2] ==0) anim.SetBool("isRunning", false);
-        else anim.SetBool("isRunning", true);
+        if (Velocity[0] == 0 && Velocity[2] == 0)
+        {
+            anim.SetBool("isRunning", false);
+            if (CHC.isGrounded)
+            {
+                
+
+            }
+        }
+        else
+        {
+            anim.SetBool("isRunning", true);
+            print("asdasd");
+            
+        }
 
         if (Velocity[0] != 0 || Velocity[2] != 0)
         {
