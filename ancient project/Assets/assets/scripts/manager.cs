@@ -49,7 +49,7 @@ public class manager : MonoBehaviour
         public Vector3 LVL1Spawn = new Vector3(3, 2, 2);
         public Vector3 LVL2Spawn = new Vector3(6, 2, 2);
         public Vector3 LVL3Spawn = new Vector3(3,2, 2);
-        public Vector3 LVL4Spawn = new Vector3(3, 2, 2);
+        public Vector3 LVL4Spawn = new  Vector3(376, 50, 275);
         public Vector3 LVL5Spawn = new Vector3(3, 2, 2);
 
     }
