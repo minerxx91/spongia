@@ -40,6 +40,7 @@ public class EnemyNavMesh : MonoBehaviour
 
     public float Health = 100;
     TextMeshPro healthbar;
+    ParticleSystem selectAura;
 
 
     void Awake()
@@ -58,6 +59,7 @@ public class EnemyNavMesh : MonoBehaviour
     private void Start()
     {
         healthbar = transform.Find("Health").GetComponent<TextMeshPro>();
+        selectAura = transform.Find("Aura").GetComponent<ParticleSystem>();
     }
 
     void Update()
@@ -73,6 +75,14 @@ public class EnemyNavMesh : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, 0);
         healthbar.text = Health.ToString();
 
+        if (managerVariables.Player.target == this.gameObject)
+        {
+            selectAura.Play();
+        }
+        else
+        {
+            selectAura.Stop();
+        }
     }
 
 

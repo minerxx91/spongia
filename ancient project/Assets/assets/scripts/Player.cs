@@ -57,11 +57,7 @@ public class Player : MonoBehaviour
     void Update()
     {
 
-        if (managerVariables.Player.target != null)
-        {
-            print(managerVariables.Player.target.gameObject.name);
-
-        }
+    
         //cooldowns
         if (JumpCooldown < managerVariables.Player.JumpCooldown)
             JumpCooldown += Time.deltaTime;
@@ -127,16 +123,24 @@ public class Player : MonoBehaviour
 
         if (Velocity[0] != 0 || Velocity[2] != 0)
         {
-            if(!managerVariables.Player.Jumping)
+            if(managerVariables.Player.target == null)
             {
-                float angle = Mathf.Atan2(Velocity[0], Velocity[2]) * Mathf.Rad2Deg;
+                if (!managerVariables.Player.Jumping)
+                {
+                    float angle = Mathf.Atan2(Velocity[0], Velocity[2]) * Mathf.Rad2Deg;
 
 
 
-                Quaternion toRotation = Quaternion.Euler(new Vector3(0, angle, 0));
+                    Quaternion toRotation = Quaternion.Euler(new Vector3(0, angle, 0));
 
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, RotationSpeed * Time.deltaTime);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, RotationSpeed * Time.deltaTime);
+                }
             }
+            else
+            {
+                transform.LookAt(managerVariables.Player.target.transform);
+            }
+            
             
         }
         
