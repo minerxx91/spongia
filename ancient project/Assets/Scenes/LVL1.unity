@@ -2100,7 +2100,7 @@ MonoBehaviour:
   MousePosition: {x: 0, y: 0, z: 0}
   layerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 384
 --- !u!1 &1008026882
 GameObject:
   m_ObjectHideFlags: 0

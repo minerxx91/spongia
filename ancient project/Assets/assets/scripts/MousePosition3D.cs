@@ -24,8 +24,13 @@
                 if (Input.GetKey(KeyCode.Mouse1))
                 {
                 MousePosition = raycastHit.point;
+
                 managerVariables.Player.target = raycastHit.collider.gameObject;
-            }
+                if(raycastHit.collider.gameObject.name == "zem")
+                {
+                    managerVariables.Player.target = null;
+                }
+                }
                 
 
 
