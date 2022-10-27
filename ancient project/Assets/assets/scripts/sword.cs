@@ -5,12 +5,25 @@ using UnityEngine;
 public class sword : MonoBehaviour
 {
 
+    manager managerVariables;
+    private void Start()
+    {
+        managerVariables = GameObject.Find("Manager").GetComponent<manager>();
+    }
     private void OnTriggerEnter(Collider other)
     {
-        print(other.gameObject.name);
         if (other.gameObject.tag == "Enemy")
         {
-            print("ano");
+            if (other.GetComponent<EnemyNavMesh>().Health > managerVariables.Player.Damage + managerVariables.Player.DamageIncrease)
+            {
+                other.GetComponent<EnemyNavMesh>().Health -= managerVariables.Player.Damage + managerVariables.Player.DamageIncrease;
+
+            }
+            else
+            {
+                other.GetComponent<EnemyNavMesh>().Health = 0;
+                Destroy(other.gameObject);
+            }
         }
     }
 }

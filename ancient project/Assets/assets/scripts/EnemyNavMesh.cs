@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using TMPro;
 
 public class EnemyNavMesh : MonoBehaviour
 {
@@ -36,6 +37,11 @@ public class EnemyNavMesh : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
+
+    public float Health = 100;
+    TextMeshPro healthbar;
+
+
     void Awake()
     {
         Manager = GameObject.Find("Manager");
@@ -44,6 +50,14 @@ public class EnemyNavMesh : MonoBehaviour
         rend = GetComponent<Renderer>();
         managerVariables = Manager.GetComponent<manager>();
 
+        
+       
+
+
+    }
+    private void Start()
+    {
+        healthbar = transform.Find("Health").GetComponent<TextMeshPro>();
     }
 
     void Update()
@@ -56,7 +70,9 @@ public class EnemyNavMesh : MonoBehaviour
         if (playerInAttackRange && playerInSightRange) Attacking();
         materialDelay += Time.deltaTime;
 
-        transform.rotation = Quaternion.Euler(0,0,0);
+        transform.rotation = Quaternion.Euler(0, 0, 0);
+        healthbar.text = Health.ToString();
+
     }
 
 

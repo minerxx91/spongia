@@ -56,6 +56,12 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (managerVariables.Player.target != null)
+        {
+            print(managerVariables.Player.target.gameObject.name);
+
+        }
         //cooldowns
         if (JumpCooldown < managerVariables.Player.JumpCooldown)
             JumpCooldown += Time.deltaTime;

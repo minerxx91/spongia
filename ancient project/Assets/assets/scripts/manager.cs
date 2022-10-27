@@ -41,6 +41,7 @@ public class manager : MonoBehaviour
         public bool Jumping = false;
 
         public float gravityIncrease = 0;
+        public GameObject target;
 
 
 
