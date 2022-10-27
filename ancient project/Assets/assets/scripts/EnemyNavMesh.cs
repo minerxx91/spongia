@@ -34,8 +34,8 @@ public class EnemyNavMesh : MonoBehaviour
     public GameObject projectile;
 
     //States
-    public float sightRange, attackRange;
-    public bool playerInSightRange, playerInAttackRange;
+    public float sightRange, MeleeAttackRange, RangerAttackRange;
+    public bool playerInSightRange, playerInMeleeAttackRange, playerInRangerAttackRange;
 
 
     public float Health = 100;
@@ -43,15 +43,14 @@ public class EnemyNavMesh : MonoBehaviour
     ParticleSystem selectAura;
 
 
+
     void Awake()
     {
-        Manager = GameObject.Find("Manager");
-        player = GameObject.Find("Player").transform;
+        
         agent = GetComponent<NavMeshAgent>();
         rend = GetComponent<Renderer>();
-        managerVariables = Manager.GetComponent<manager>();
-
         
+
        
 
 
@@ -60,19 +59,48 @@ public class EnemyNavMesh : MonoBehaviour
     {
         healthbar = transform.Find("Health").GetComponent<TextMeshPro>();
         selectAura = transform.Find("Aura").GetComponent<ParticleSystem>();
+        Manager = GameObject.Find("Manager");
+        managerVariables = Manager.GetComponent<manager>();
+        player = GameObject.Find("Player").transform;
     }
 
     void Update()
     {
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
-
-        if (!playerInSightRange && !playerInAttackRange) Patroling();
-        if (playerInSightRange && !playerInAttackRange) Chasing();
-        if (playerInAttackRange && playerInSightRange) Attacking();
+        playerInMeleeAttackRange = Physics.CheckSphere(transform.position, MeleeAttackRange, whatIsPlayer);
+        playerInRangerAttackRange = Physics.CheckSphere(transform.position, RangerAttackRange, whatIsPlayer);
+        transform.LookAt(player);
+        transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.eulerAngles.y, 0)); 
+        if (this.gameObject.name == "Poseidon")
+        {
+            if (!playerInSightRange && !playerInMeleeAttackRange) Patroling();
+            if (playerInSightRange && !playerInMeleeAttackRange) Chasing();
+            if (playerInSightRange && (playerInMeleeAttackRange || playerInRangerAttackRange))
+            {
+                if (playerInMeleeAttackRange)
+                {
+                    MeleeAttacking();
+                }
+                else
+                {
+                    RangedAttacking();
+                }
+            }
+                
+            
+            
+            
+        }
+        else
+        {
+            if (!playerInSightRange && !playerInMeleeAttackRange) Patroling();
+            if (playerInSightRange && !playerInMeleeAttackRange) Chasing();
+            if (playerInRangerAttackRange && playerInSightRange) RangedAttacking();
+            if (playerInMeleeAttackRange && playerInSightRange) MeleeAttacking();
+        }
+        
         materialDelay += Time.deltaTime;
 
-        transform.rotation = Quaternion.Euler(0, 0, 0);
         healthbar.text = Health.ToString();
 
         if (managerVariables.Player.target == this.gameObject)
@@ -123,18 +151,18 @@ public class EnemyNavMesh : MonoBehaviour
         {
             rend.sharedMaterial = material[1];
             materialDelay = 0f;
+            
         }
     }
 
-    private void Attacking()
+    private void MeleeAttacking()
     {
         agent.SetDestination(transform.position);
-        transform.LookAt(player);
 
         if (!alreadyAttacked)
         {
-
-            managerVariables.DamagePlayer(20);
+            
+            
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
@@ -146,6 +174,24 @@ public class EnemyNavMesh : MonoBehaviour
         }
         
     }
+    void RangedAttacking()
+    {
+
+        if (!alreadyAttacked)
+        {
+            print(gameObject.transform.rotation.y);
+            Instantiate(projectile, transform.position, Quaternion.Euler(new Vector3(90, transform.rotation.eulerAngles.y, 0)));
+
+
+            alreadyAttacked = true;
+            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+        }
+        if (materialDelay > .5f)
+        {
+            rend.sharedMaterial = material[2];
+            materialDelay = 0f;
+        }
+    }
 
     private void ResetAttack()
     {
@@ -156,8 +202,10 @@ public class EnemyNavMesh : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
+        Gizmos.DrawWireSphere(transform.position, MeleeAttackRange);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, sightRange);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, RangerAttackRange);
     }
 }
