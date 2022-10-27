@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 using static System.TimeZoneInfo;
 
 public class Player : MonoBehaviour
@@ -29,6 +30,7 @@ public class Player : MonoBehaviour
     public Vector3 JumpVelocity;
     Vector3 Velocity;
     private Animator anim;
+ 
 
     // Start is called before the first frame update
     void Start()
@@ -53,11 +55,55 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
+    void animationSelect(string select)
+    {
+        if (select == "forward")
+        {
+            anim.SetBool("forward", true);
+            anim.SetBool("left", false);
+            anim.SetBool("right", false);
+            anim.SetBool("back", false);
+        }
+        else if (select == "back")
+        {
+            anim.SetBool("forward", false);
+            anim.SetBool("left", false);
+            anim.SetBool("right", false);
+            anim.SetBool("back", true);
+        }
+        else if (select == "left")
+        {
+            anim.SetBool("forward", false);
+            anim.SetBool("left", true);
+            anim.SetBool("right", false);
+            anim.SetBool("back", false);
+        }
+        else if (select == "right")
+        {
+            anim.SetBool("forward", false);
+            anim.SetBool("left", false);
+            anim.SetBool("right", true);
+            anim.SetBool("back", false);
+        }
+        else
+        {
+            anim.SetBool("forward", false);
+            anim.SetBool("left", false);
+            anim.SetBool("right", false);
+            anim.SetBool("back", false);
+        }
+    }
+
+    void ResetAttack()
+    {
+        managerVariables.Player.AttackReady = true;
+        print("true");
+    }
     // Update is called once per frame
     void Update()
     {
 
-    
+
         //cooldowns
         if (JumpCooldown < managerVariables.Player.JumpCooldown)
             JumpCooldown += Time.deltaTime;
@@ -65,33 +111,33 @@ public class Player : MonoBehaviour
             JumpCooldown = managerVariables.Player.JumpCooldown;
 
         //gravity
-        
+
         if (!CHC.isGrounded)
         {
-            managerVariables.Player.gravityIncrease += managerVariables.GravityForce* Time.deltaTime;
-            
+            managerVariables.Player.gravityIncrease += managerVariables.GravityForce * Time.deltaTime;
+
         }
         else
         {
             managerVariables.Player.gravityIncrease = 0;
         }
 
-        
+
 
 
         //---------
         float MoveX = 0;
         float MoveZ = 0;
         //Input.GetKeyDown(MoveUp)
-        if (Input.GetKey(controls.MoveUp)) 
-        {MoveZ++;}
+        if (Input.GetKey(controls.MoveUp))
+        { MoveZ++; }
         if (Input.GetKey(controls.MoveDown))
-        {MoveZ--;}
+        { MoveZ--; }
         if (Input.GetKey(controls.MoveRight))
-        {MoveX++;}
+        { MoveX++; }
         if (Input.GetKey(controls.MoveLeft))
-        {MoveX--;}
-        
+        { MoveX--; }
+
         PlayerSpeed = managerVariables.Player.Speed * Time.deltaTime;
 
         if (!managerVariables.Player.Jumping)
@@ -100,25 +146,89 @@ public class Player : MonoBehaviour
         }
         else
         {
-            Velocity = new Vector3(0, -managerVariables.Player.gravityIncrease,0);
+            Velocity = new Vector3(0, -managerVariables.Player.gravityIncrease, 0);
 
         }
         //Velocity.Normalize();
         CHC.Move(Velocity);
-
-        if (Velocity[0] == 0 && Velocity[2] == 0)
+        if (managerVariables.Player.target == null)
         {
-            anim.SetBool("isRunning", false);
-            if (CHC.isGrounded)
+            animationSelect(" ");
+            if (Velocity[0] == 0 && Velocity[2] == 0)
             {
-                
+                anim.SetBool("isRunning", false);
+                if (CHC.isGrounded)
+                {
+
+
+                }
+            }
+            else
+            {
+                anim.SetBool("isRunning", true);
 
             }
         }
         else
         {
-            anim.SetBool("isRunning", true);
-            
+            anim.SetBool("isRunning", false);
+            if (Velocity[0] == 0 && Velocity[2] == 0)
+            {
+                anim.SetBool("forward", false);
+                anim.SetBool("left", false);
+                anim.SetBool("right", false);
+                anim.SetBool("back", false);
+            }
+            else
+            {
+ 
+                if (gameObject.transform.rotation.eulerAngles.y < 45)
+                {
+                    print(1);
+                    if (Velocity[2] < 0) animationSelect("back");
+                    else if (Velocity[2] > 0) animationSelect("forward");
+                    else if (Velocity[0] > 0) animationSelect("right");
+                    else if (Velocity[0] < 0) animationSelect("left");
+                    
+
+                }
+                else if (gameObject.transform.rotation.eulerAngles.y > 315)
+                {
+                    if (Velocity[2] < 0) animationSelect("back");
+                    else if (Velocity[2] > 0) animationSelect("forward");
+                    else if (Velocity[0] > 0) animationSelect("right");
+                    else if (Velocity[0] < 0) animationSelect("left");
+                    
+
+                }
+                else if (gameObject.transform.rotation.eulerAngles.y > 45 && gameObject.transform.rotation.eulerAngles.y < 135)
+                {
+                    if (Velocity[0] < 0) animationSelect("back");
+                    else if (Velocity[0] > 0) animationSelect("forward");
+                    else if (Velocity[2] < 0) animationSelect("right");
+                    else if (Velocity[2] > 0) animationSelect("left");
+                    
+
+                }
+                else if (gameObject.transform.rotation.eulerAngles.y > 135 && gameObject.transform.rotation.eulerAngles.y < 225)
+                {
+                    if (Velocity[2] > 0) animationSelect("back");
+                    else if (Velocity[2] < 0) animationSelect("forward");
+                    else if (Velocity[0] < 0) animationSelect("right");
+                    else if (Velocity[0] > 0) animationSelect("left");
+                    
+
+                }
+                else if (gameObject.transform.rotation.eulerAngles.y > 225 && gameObject.transform.rotation.eulerAngles.y < 315)
+                {
+                    if (Velocity[0] > 0) animationSelect("back");
+                    else if (Velocity[0] < 0) animationSelect("forward");
+                    else if (Velocity[2] > 0) animationSelect("right");
+                    else if (Velocity[2] < 0) animationSelect("left");
+                    
+
+                }
+            }
         }
 
         if (Velocity[0] != 0 || Velocity[2] != 0)
@@ -139,6 +249,7 @@ public class Player : MonoBehaviour
             else
             {
                 transform.LookAt(managerVariables.Player.target.transform);
+                transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.eulerAngles.y, 0));
             }
             
             
@@ -191,8 +302,14 @@ public class Player : MonoBehaviour
             SpaceAvaiable = true;
         }
 
-        if(Input.GetKey(KeyCode.Mouse0)) anim.SetTrigger("isAttacking");
-
+        if (Input.GetKey(KeyCode.Mouse0) && managerVariables.Player.AttackReady)
+        {
+            print("false");
+            anim.SetTrigger("isAttacking");
+            managerVariables.Player.AttackReady = false;
+            Invoke(nameof(ResetAttack), managerVariables.Player.AttackCooldown);
+            
+        }
         // stamina regen
         if (managerVariables.Player.Stamina + managerVariables.Player.StaminaRegen < managerVariables.Player.MaxStamina)
         {

@@ -33,10 +33,12 @@ public class manager : MonoBehaviour
 
         public float Damage = 20;
         public float DamageIncrease = 0;
+        public float AttackCooldown = 1.5f;
+        public bool AttackReady = true;
 
         public float JumpSpeed = 1f;
         public float JumpTime = 0.8f;
-        public float JumpCooldown = 1f;
+        public float JumpCooldown = 1.5f;
         public float JumpCost = 20;
         public bool Jumping = false;
 
