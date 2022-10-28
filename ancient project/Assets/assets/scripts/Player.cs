@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
     float PlayerSpeed;
     float RotationSpeed = 300;
     public float JumpCooldown = 0;
+    float attackprocess = 0;
     
     public Vector3 JumpVelocity;
     Vector3 Velocity;
@@ -98,7 +99,6 @@ public class Player : MonoBehaviour
     void ResetAttack()
     {
         managerVariables.Player.AttackReady = true;
-        print("true");
     }
     // Update is called once per frame
     void Update()
@@ -111,6 +111,17 @@ public class Player : MonoBehaviour
         else
             JumpCooldown = managerVariables.Player.JumpCooldown;
 
+        if(managerVariables.Player.AttackInProcess)
+        {
+            attackprocess += Time.deltaTime;
+            if (attackprocess >= 0.5f)
+            {
+                managerVariables.Player.AttackInProcess = false;
+                attackprocess = 0;
+            }
+        }
+
+        print(managerVariables.Player.AttackInProcess);
         //gravity
 
         if (!CHC.isGrounded)
@@ -185,7 +196,6 @@ public class Player : MonoBehaviour
  
                 if (gameObject.transform.rotation.eulerAngles.y < 45)
                 {
-                    print(1);
                     if (Velocity[2] < 0) animationSelect("back");
                     else if (Velocity[2] > 0) animationSelect("forward");
                     else if (Velocity[0] > 0) animationSelect("right");
@@ -313,11 +323,10 @@ public class Player : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Mouse0) && managerVariables.Player.AttackReady)
         {
-            print("false");
             anim.SetTrigger("isAttacking");
             managerVariables.Player.AttackReady = false;
             Invoke(nameof(ResetAttack), managerVariables.Player.AttackCooldown);
-            
+            managerVariables.Player.AttackInProcess = true;
         }
         // stamina regen
         if (managerVariables.Player.Stamina + managerVariables.Player.StaminaRegen < managerVariables.Player.MaxStamina)

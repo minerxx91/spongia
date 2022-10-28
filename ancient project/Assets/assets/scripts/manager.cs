@@ -34,6 +34,7 @@ public class manager : MonoBehaviour
         public float Damage = 20;
         public float DamageIncrease = 0;
         public float AttackCooldown = 1.5f;
+        public bool AttackInProcess = false;
         public bool AttackReady = true;
 
         public float JumpSpeed = 1.5f;
