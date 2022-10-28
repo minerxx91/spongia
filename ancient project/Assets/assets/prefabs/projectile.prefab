@@ -132,7 +132,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
   looping: 1
-  prewarm: 1
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -189,7 +189,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -306,7 +306,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.022917405, g: 0.7388126, b: 0.9716981, a: 1}
+      maxColor: {r: 0.4532307, g: 0.8887831, b: 0.990566, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -1389,7 +1389,7 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 0.5613208, g: 0.79568356, b: 1, a: 0.6392157}
-        key1: {r: 0.06314526, g: 0.16999228, b: 0.31132078, a: 1}
+        key1: {r: 0.09500711, g: 0.30092052, b: 0.5754717, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 0.7254902}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -3896,7 +3896,7 @@ ParticleSystem:
       emitProbability: 1
   LightsModule:
     enabled: 1
-    ratio: 1
+    ratio: 0.55
     light: {fileID: 4440070487459570027, guid: 524399f1fcb7e104ca7648688b76789b, type: 3}
     randomDistribution: 1
     color: 1
@@ -3905,7 +3905,7 @@ ParticleSystem:
     rangeCurve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 2.52
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -3958,7 +3958,7 @@ ParticleSystem:
     intensityCurve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.56
       minScalar: 1
       maxCurve:
         serializedVersion: 2

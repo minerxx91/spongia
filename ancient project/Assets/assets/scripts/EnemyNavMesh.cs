@@ -135,11 +135,7 @@ public class EnemyNavMesh : MonoBehaviour
         Vector3 distanceToWalk = transform.position - walkPoint;
         if (distanceToWalk.magnitude < 1f) walkPointSet = false;
 
-        if (materialDelay > .5f)
-        {
-            rend.sharedMaterial = material[0];
-            materialDelay = 0f;
-        }
+        
     }
 
     private void SearchWalkPoint()
@@ -180,7 +176,7 @@ public class EnemyNavMesh : MonoBehaviour
         if (!alreadyAttacked)
         {
             print(gameObject.transform.rotation.y);
-            Instantiate(projectile, transform.position, Quaternion.Euler(new Vector3(90, transform.rotation.eulerAngles.y, 0)));
+            Instantiate(projectile, transform.Find("trident").transform.position, Quaternion.Euler(new Vector3(90, transform.rotation.eulerAngles.y, 0)));
 
 
             alreadyAttacked = true;
