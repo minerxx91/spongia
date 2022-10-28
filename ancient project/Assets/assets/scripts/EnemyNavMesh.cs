@@ -41,6 +41,7 @@ public class EnemyNavMesh : MonoBehaviour
     public float Health = 100;
     TextMeshPro healthbar;
     ParticleSystem selectAura;
+    Light orangeLight;
 
 
 
@@ -59,13 +60,17 @@ public class EnemyNavMesh : MonoBehaviour
     {
         healthbar = transform.Find("Health").GetComponent<TextMeshPro>();
         selectAura = transform.Find("Aura").GetComponent<ParticleSystem>();
+        orangeLight = transform.Find("Orange").GetComponent<Light>();
+        orangeLight.gameObject.SetActive(false);
         Manager = GameObject.Find("Manager");
         managerVariables = Manager.GetComponent<manager>();
         player = GameObject.Find("Player").transform;
+        
     }
 
     void Update()
     {
+        
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInMeleeAttackRange = Physics.CheckSphere(transform.position, MeleeAttackRange, whatIsPlayer);
         playerInRangerAttackRange = Physics.CheckSphere(transform.position, RangerAttackRange, whatIsPlayer);
@@ -106,10 +111,14 @@ public class EnemyNavMesh : MonoBehaviour
         if (managerVariables.Player.target == this.gameObject)
         {
             selectAura.Play();
+            orangeLight.gameObject.SetActive(true);
+
         }
         else
         {
             selectAura.Stop();
+            orangeLight.gameObject.SetActive(false);
+
         }
     }
 
@@ -147,12 +156,7 @@ public class EnemyNavMesh : MonoBehaviour
         agent.SetDestination(player.position);
         agent.speed = chasingSpeed;
 
-        if (materialDelay > .5f)
-        {
-            rend.sharedMaterial = material[1];
-            materialDelay = 0f;
-            
-        }
+        
     }
 
     private void MeleeAttacking()
@@ -167,11 +171,7 @@ public class EnemyNavMesh : MonoBehaviour
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
-        if(materialDelay > .5f)
-        {
-            rend.sharedMaterial = material[2];
-            materialDelay = 0f;
-        }
+        
         
     }
     void RangedAttacking()
@@ -186,11 +186,7 @@ public class EnemyNavMesh : MonoBehaviour
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
-        if (materialDelay > .5f)
-        {
-            rend.sharedMaterial = material[2];
-            materialDelay = 0f;
-        }
+        
     }
 
     private void ResetAttack()

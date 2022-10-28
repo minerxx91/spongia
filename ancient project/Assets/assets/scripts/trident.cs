@@ -12,7 +12,7 @@ public class trident : MonoBehaviour
 
     void Update()
     {
-        transform.position += transform.up * Time.deltaTime * 10;
+        transform.position += transform.up * Time.deltaTime * 18;
 
 
         time += Time.deltaTime;
