@@ -32,6 +32,7 @@ public class EnemyNavMesh : MonoBehaviour
     public float timeBetweenAttacks;
     bool alreadyAttacked;
     public GameObject projectile;
+    public GameObject trident;
 
     //States
     public float sightRange, MeleeAttackRange, RangerAttackRange;
@@ -176,7 +177,7 @@ public class EnemyNavMesh : MonoBehaviour
         if (!alreadyAttacked)
         {
             print(gameObject.transform.rotation.y);
-            Instantiate(projectile, transform.Find("trident").transform.position, Quaternion.Euler(new Vector3(90, transform.rotation.eulerAngles.y, 0)));
+            Instantiate(projectile, trident.transform.position, Quaternion.Euler(new Vector3(90, transform.rotation.eulerAngles.y, 0)));
 
 
             alreadyAttacked = true;
