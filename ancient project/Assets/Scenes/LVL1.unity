@@ -12052,8 +12052,9 @@ MonoBehaviour:
   walkPointRange: 20
   timeBetweenAttacks: 1
   projectile: {fileID: 0}
+  trident: {fileID: 0}
   sightRange: 10
-  MeleeAttackRange: 1
+  MeleeAttackRange: 0.5
   RangerAttackRange: 0
   playerInSightRange: 0
   playerInMeleeAttackRange: 0
@@ -13144,8 +13145,9 @@ MonoBehaviour:
   walkPointRange: 20
   timeBetweenAttacks: 1
   projectile: {fileID: 0}
+  trident: {fileID: 0}
   sightRange: 10
-  MeleeAttackRange: 1
+  MeleeAttackRange: 0.5
   RangerAttackRange: 0
   playerInSightRange: 0
   playerInMeleeAttackRange: 0
