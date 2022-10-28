@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using static System.TimeZoneInfo;
+using static UnityEngine.GraphicsBuffer;
 
 public class Player : MonoBehaviour
 {
@@ -248,7 +249,12 @@ public class Player : MonoBehaviour
             }
             else
             {
-                transform.LookAt(managerVariables.Player.target.transform);
+                Vector3 targetDirection = managerVariables.Player.target.transform.position - transform.position;
+                float singleStep = 6f * Time.deltaTime;
+
+                Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
+                transform.rotation = Quaternion.LookRotation(newDirection);
+                //transform.LookAt(managerVariables.Player.target.transform);
                 transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.eulerAngles.y, 0));
             }
             
@@ -280,8 +286,11 @@ public class Player : MonoBehaviour
                         SpaceAvaiable = false;
                         JumpVelocity = new Vector3(MoveX, 0, MoveZ) * managerVariables.Player.Speed;
                         //jump
-                        StartCoroutine(Dash());
+                        anim.SetBool("rolling", true);
+                        animationSelect(" ");
                         anim.SetTrigger("isRolling");
+                        StartCoroutine(Dash());
+                        
                         if (managerVariables.Player.Stamina > 10)
                         {
                             managerVariables.Player.Stamina -= 10;
@@ -325,7 +334,7 @@ public class Player : MonoBehaviour
     IEnumerator Dash()
     {
         yield return new WaitForSeconds(.1f);
-
+        anim.SetBool("rolling", false);
         float angle = Mathf.Atan2(JumpVelocity[0], JumpVelocity[2]) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, angle, 0));
 
