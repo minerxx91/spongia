@@ -10,7 +10,7 @@ public class playerSpawner : MonoBehaviour
     {
         managerVariables = GameObject.Find("Manager").GetComponent<manager>();
 
-        switch (managerVariables.levelIndex)
+        switch (this.gameObject.scene.buildIndex)
             {
                 case 0:
                     Instantiate(player, managerVariables.Player.LobbySpawn, Quaternion.identity).transform.name = "Player";

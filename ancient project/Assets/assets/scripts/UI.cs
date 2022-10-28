@@ -15,6 +15,7 @@ public class UI : MonoBehaviour
     [SerializeField] GameObject HealthMask;
     [SerializeField] GameObject StaminaMask;
     [SerializeField] GameObject JumpColor;
+    [SerializeField] GameObject AttackColor;
     private void Start()
     {
         Manager = GameObject.Find("Manager");
@@ -32,5 +33,8 @@ public class UI : MonoBehaviour
 
         float dielikJ = BasicInventorySlot / managerVariables.Player.JumpCooldown;
         JumpColor.transform.position = new Vector2(JumpColor.transform.position.x, (player.JumpCooldown * dielikJ)- 12.5f);
+
+        float dielikA = BasicInventorySlot / managerVariables.Player.AttackCooldown;
+        AttackColor.transform.position = new Vector2(AttackColor.transform.position.x, (player.AttackCooldown * dielikA) - 12.5f);
     }
 }

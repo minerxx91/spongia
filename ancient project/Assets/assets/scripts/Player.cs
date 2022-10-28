@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
     float PlayerSpeed;
     float RotationSpeed = 300;
     public float JumpCooldown = 0;
+    public float AttackCooldown = 0;
     float attackprocess = 0;
     
     public Vector3 JumpVelocity;
@@ -104,7 +105,7 @@ public class Player : MonoBehaviour
     void Update()
     {
 
-
+        print(AttackCooldown);
         //cooldowns
         if (JumpCooldown < managerVariables.Player.JumpCooldown)
             JumpCooldown += Time.deltaTime;
@@ -121,8 +122,11 @@ public class Player : MonoBehaviour
                 attackprocess = 0;
             }
         }
-      
 
+        if (AttackCooldown < managerVariables.Player.AttackCooldown)
+            AttackCooldown += Time.deltaTime;
+        else
+            AttackCooldown = managerVariables.Player.AttackCooldown;
         //gravity
 
         if (!CHC.isGrounded)
@@ -329,6 +333,7 @@ public class Player : MonoBehaviour
             managerVariables.Player.AttackReady = false;
             Invoke(nameof(ResetAttack), managerVariables.Player.AttackCooldown);
             managerVariables.Player.AttackInProcess = true;
+            AttackCooldown = 0;
         }
         // stamina regen
         if (managerVariables.Player.Stamina + managerVariables.Player.StaminaRegen < managerVariables.Player.MaxStamina)
