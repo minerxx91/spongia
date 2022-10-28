@@ -284,7 +284,7 @@ public class Player : MonoBehaviour
             managerVariables.Player.Health = managerVariables.Player.MaxHealth;
         }
 
-        if (Input.GetKey(KeyCode.Space) && !(Velocity[0] == 0 && Velocity[2] == 0))
+        if (Input.GetKey(KeyCode.Space) && !(Velocity[0] == 0 && Velocity[2] == 0) && !anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
            if (SpaceAvaiable)
            {
