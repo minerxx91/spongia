@@ -32,8 +32,8 @@ public class Player : MonoBehaviour
     public Vector3 JumpVelocity;
     Vector3 Velocity;
     private Animator anim;
- 
 
+    [SerializeField] ParticleSystem swing;
     // Start is called before the first frame update
     void Start()
     {
@@ -113,6 +113,7 @@ public class Player : MonoBehaviour
 
         if(managerVariables.Player.AttackInProcess)
         {
+            
             attackprocess += Time.deltaTime;
             if (attackprocess >= 0.5f)
             {
@@ -120,8 +121,8 @@ public class Player : MonoBehaviour
                 attackprocess = 0;
             }
         }
+      
 
-        print(managerVariables.Player.AttackInProcess);
         //gravity
 
         if (!CHC.isGrounded)
@@ -324,6 +325,7 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.Mouse0) && managerVariables.Player.AttackReady)
         {
             anim.SetTrigger("isAttacking");
+            swing.Play();
             managerVariables.Player.AttackReady = false;
             Invoke(nameof(ResetAttack), managerVariables.Player.AttackCooldown);
             managerVariables.Player.AttackInProcess = true;

@@ -43,6 +43,7 @@ public class EnemyNavMesh : MonoBehaviour
     TextMeshPro healthbar;
     ParticleSystem selectAura;
     Light orangeLight;
+    [SerializeField] ParticleSystem swing;
 
     private Animator anim;
 
@@ -167,7 +168,7 @@ public class EnemyNavMesh : MonoBehaviour
         if (!alreadyAttacked)
         {
             anim.SetTrigger("melee1");
-            
+            swing.Play();
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
