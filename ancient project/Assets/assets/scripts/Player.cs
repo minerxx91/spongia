@@ -283,7 +283,7 @@ public class Player : MonoBehaviour
             managerVariables.Player.Health = managerVariables.Player.MaxHealth;
         }
 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) && !(Velocity[0] == 0 && Velocity[2] == 0))
         {
            if (SpaceAvaiable)
            {

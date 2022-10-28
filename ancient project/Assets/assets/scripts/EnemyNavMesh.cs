@@ -44,6 +44,7 @@ public class EnemyNavMesh : MonoBehaviour
     ParticleSystem selectAura;
     Light orangeLight;
 
+    private Animator anim;
 
 
     void Awake()
@@ -52,7 +53,7 @@ public class EnemyNavMesh : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         rend = GetComponent<Renderer>();
         
-
+        anim = GetComponent<Animator>();
        
 
 
@@ -121,13 +122,14 @@ public class EnemyNavMesh : MonoBehaviour
             orangeLight.gameObject.SetActive(false);
 
         }
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("walk")) agent.SetDestination(transform.position);
     }
 
 
 
     private void Patroling()
     {
-        
+        anim.SetBool("walk", true);
         if (!walkPointSet) SearchWalkPoint();
 
         agent.SetDestination(walkPoint);
@@ -150,6 +152,7 @@ public class EnemyNavMesh : MonoBehaviour
 
     private void Chasing()
     {
+        anim.SetBool("walk", true);
         agent.SetDestination(player.position);
         agent.speed = chasingSpeed;
 
@@ -158,11 +161,12 @@ public class EnemyNavMesh : MonoBehaviour
 
     private void MeleeAttacking()
     {
+        anim.SetBool("walk", false);
         agent.SetDestination(transform.position);
 
         if (!alreadyAttacked)
         {
-            
+            anim.SetTrigger("melee1");
             
 
             alreadyAttacked = true;
@@ -173,9 +177,10 @@ public class EnemyNavMesh : MonoBehaviour
     }
     void RangedAttacking()
     {
-
+        anim.SetBool("walk", true);
         if (!alreadyAttacked)
         {
+            anim.SetTrigger("range");
             print(gameObject.transform.rotation.y);
             Instantiate(projectile, trident.transform.position, Quaternion.Euler(new Vector3(90, transform.rotation.eulerAngles.y, 0)));
 
