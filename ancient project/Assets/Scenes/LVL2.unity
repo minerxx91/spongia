@@ -294,7 +294,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1745080880}
+  - {fileID: 1653571453}
   m_Father: {fileID: 1785907697}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -983,9 +985,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1745080880}
-  - {fileID: 1653571453}
+  m_Children: []
   m_Father: {fileID: 1785907697}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7015,12 +7015,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1653571452}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 795154255}
+  m_Father: {fileID: 463979381}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -7368,12 +7368,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1745080877}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 795154255}
+  m_Father: {fileID: 463979381}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -7471,7 +7471,7 @@ GameObject:
   - component: {fileID: 1785907694}
   - component: {fileID: 1785907693}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7728,7 +7728,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3edc54431dfd8b845b3e0a9a30205d97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smoothSpeed: 2
+  smoothSpeed: 0.25
   offset: {x: 0, y: 6, z: -7}
 --- !u!81 &1960813765
 AudioListener:
@@ -7993,7 +7993,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1504942490, guid: 075090befeb229143baf3243a86711f4, type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 0.31
+      value: 0.34
       objectReference: {fileID: 0}
     - target: {fileID: 1504942490, guid: 075090befeb229143baf3243a86711f4, type: 3}
       propertyPath: LightsModule.rangeCurve.scalar
@@ -8024,16 +8024,24 @@ PrefabInstance:
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1504942490, guid: 075090befeb229143baf3243a86711f4, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.atime1
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 1504942490, guid: 075090befeb229143baf3243a86711f4, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.a
+      value: 0.92941177
+      objectReference: {fileID: 0}
+    - target: {fileID: 1504942490, guid: 075090befeb229143baf3243a86711f4, type: 3}
       propertyPath: ColorModule.gradient.maxGradient.key2.b
-      value: 0.9811321
+      value: 0.46226418
       objectReference: {fileID: 0}
     - target: {fileID: 1504942490, guid: 075090befeb229143baf3243a86711f4, type: 3}
       propertyPath: ColorModule.gradient.maxGradient.key2.g
-      value: 0.9811321
+      value: 0.3041211
       objectReference: {fileID: 0}
     - target: {fileID: 1504942490, guid: 075090befeb229143baf3243a86711f4, type: 3}
       propertyPath: ColorModule.gradient.maxGradient.key2.r
-      value: 0.9811321
+      value: 0.115566045
       objectReference: {fileID: 0}
     - target: {fileID: 1504942490, guid: 075090befeb229143baf3243a86711f4, type: 3}
       propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].value
