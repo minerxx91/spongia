@@ -41,7 +41,7 @@ public class EnemyNavMesh : MonoBehaviour
 
     float gravityIncrease = 0;
     public float sightRange, MeleeAttackRange, MidAttackRange, RangerAttackRange;
-    public bool playerInSightRange, playerInMeleeAttackRange, playerInMidAttackRange, playerInMidAttackRange2, playerInRangerAttackRange;
+    public bool playerInSightRange, playerInMeleeAttackRange, playerInMidAttackRange, playerInMidAttackRange2, playerInRangerAttackRange, playerInRangerAttackRange2;
 
 
 
@@ -59,6 +59,8 @@ public class EnemyNavMesh : MonoBehaviour
     private Vector3 EndAnim;
     private Animator anim;
 
+    public GameObject AttackMelee1;
+
 
     void Awake()
     {
@@ -68,7 +70,7 @@ public class EnemyNavMesh : MonoBehaviour
 
         anim = GetComponent<Animator>();
 
-
+        AttackMelee1.SetActive(false);
 
     }
     private void Start()
@@ -80,6 +82,17 @@ public class EnemyNavMesh : MonoBehaviour
         managerVariables = Manager.GetComponent<manager>();
         player = GameObject.Find("Player").transform;
 
+    }
+
+    void DoAttackMelee1()
+    {
+        AttackMelee1.SetActive(true);
+        Invoke(nameof(ResetAttackMelee1), .1f);
+    }
+
+    void ResetAttackMelee1()
+    {
+        AttackMelee1.SetActive(false);
     }
 
     void Update()
@@ -102,7 +115,7 @@ public class EnemyNavMesh : MonoBehaviour
         playerInMidAttackRange = Physics.CheckSphere(transform.position, MidAttackRange, whatIsPlayer);
         playerInMidAttackRange2 = Physics.CheckSphere(transform.position, MidAttackRange - 3, whatIsPlayer);
         playerInRangerAttackRange = Physics.CheckSphere(transform.position, RangerAttackRange, whatIsPlayer);
-        transform.LookAt(player);
+        playerInRangerAttackRange2 = Physics.CheckSphere(transform.position, 8, whatIsPlayer);
         transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.eulerAngles.y, 0));
         if (!Animating)
         {
@@ -120,7 +133,7 @@ public class EnemyNavMesh : MonoBehaviour
                     {
                         MidAttacking();
                     }
-                    else if (playerInRangerAttackRange && !playerInMidAttackRange)
+                    else if (playerInRangerAttackRange && !playerInRangerAttackRange2)
                     {
                         RangedAttacking();
                     }
@@ -172,6 +185,7 @@ public class EnemyNavMesh : MonoBehaviour
 
     private void Patroling()
     {
+        transform.LookAt(player);
         anim.SetBool("walk", true);
         if (!walkPointSet) SearchWalkPoint();
 
@@ -195,6 +209,7 @@ public class EnemyNavMesh : MonoBehaviour
 
     private void Chasing()
     {
+        transform.LookAt(player);
         anim.SetBool("walk", true);
         agent.SetDestination(player.position);
         agent.speed = chasingSpeed;
@@ -206,10 +221,12 @@ public class EnemyNavMesh : MonoBehaviour
     {
         anim.SetBool("walk", false);
         agent.SetDestination(transform.position);
-
+        
         if (!alreadyAttacked)
         {
+            transform.LookAt(player);
             anim.SetTrigger("melee1");
+            Invoke(nameof(DoAttackMelee1), 1f);
             swing.Play();
 
             alreadyAttacked = true;
