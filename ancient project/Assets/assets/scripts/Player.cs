@@ -38,7 +38,8 @@ public class Player : MonoBehaviour
     GameObject attackHorizontal;
     GameObject attackVertical;
 
-    [SerializeField] ParticleSystem swing;
+    ParticleSystem attackParticle;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -65,6 +66,7 @@ public class Player : MonoBehaviour
         attackVertical = GameObject.Find("attackVertical");
         attackHorizontal.SetActive(false);
         attackVertical.SetActive(false);
+        attackParticle = GameObject.Find("SwordSwing").GetComponent<ParticleSystem>();
     }
 
     void animationSelect(string select)
@@ -310,36 +312,31 @@ public class Player : MonoBehaviour
             managerVariables.Player.Health = managerVariables.Player.MaxHealth;
         }
 
-        if (Input.GetKey(KeyCode.Space) && !(Velocity[0] == 0 && Velocity[2] == 0) && !anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        if (Input.GetKey(KeyCode.Space) && !(Velocity[0] == 0 && Velocity[2] == 0) && SpaceAvaiable)
         {
-           if (SpaceAvaiable)
-           {
-                if (JumpCooldown == managerVariables.Player.JumpCooldown)
+            if (JumpCooldown == managerVariables.Player.JumpCooldown)
+            {
+                if (managerVariables.Player.Stamina >= managerVariables.Player.JumpCost)
                 {
-                    if (managerVariables.Player.Stamina >= managerVariables.Player.JumpCost)
-                    {
-                        managerVariables.Player.Stamina -= managerVariables.Player.JumpCost;
-                        JumpCooldown = 0;
-                        SpaceAvaiable = false;
-                        JumpVelocity = new Vector3(MoveX, 0, MoveZ) * managerVariables.Player.Speed;
-                        //jump
-                        anim.SetBool("rolling", true);
-                        animationSelect(" ");
-                        anim.SetTrigger("isRolling");
-                        StartCoroutine(Dash());
+                    anim.SetBool("rolling", true);
+                    animationSelect(" ");
+                    anim.SetTrigger("isRolling");
+                    StartCoroutine(Dash());
+                    managerVariables.Player.Stamina -= managerVariables.Player.JumpCost;
+                    JumpCooldown = 0;
+                    SpaceAvaiable = false;
+                    JumpVelocity = new Vector3(MoveX, 0, MoveZ) * managerVariables.Player.Speed;
+                    //jump
                         
-                        if (managerVariables.Player.Stamina > 10)
-                        {
-                            managerVariables.Player.Stamina -= 10;
-                        }
-                        else
-                        {
-                            managerVariables.Player.Stamina = 0;
-                        }
+                    if (managerVariables.Player.Stamina > 10)
+                    {
+                        managerVariables.Player.Stamina -= 10;
                     }
-                    
-                }
-                
+                    else
+                    {
+                        managerVariables.Player.Stamina = 0;
+                    }
+                } 
            }
             
         }
@@ -355,17 +352,19 @@ public class Player : MonoBehaviour
             else if(anim.GetCurrentAnimatorStateInfo(0).IsName("Attack1")) anim.SetTrigger("attack2");
             else anim.SetTrigger("attack1");
 
-            swing.Play();
             managerVariables.Player.AttackReady = false;
             if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack2"))
             {
+                attackParticle.Play();
+                managerVariables.Player.DamageIncrease = managerVariables.Player.Damage * 2;
                 Invoke(nameof(ResetAttack), managerVariables.Player.AttackCooldown);
                 Invoke(nameof(ResetAttackVertical), .1f);
                 attackVertical.SetActive(true);
-                
             }
             else
             {
+                attackParticle.Play();
+                managerVariables.Player.DamageIncrease = 0;
                 Invoke(nameof(ResetAttack), managerVariables.Player.BetweenAttackCooldown);
                 Invoke(nameof(ResetAttackHorizontal), .1f);
                 attackHorizontal.SetActive(true);
