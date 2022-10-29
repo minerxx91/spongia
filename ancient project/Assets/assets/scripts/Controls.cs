@@ -9,6 +9,12 @@ public class Controls : MonoBehaviour
     public KeyCode MoveRight = KeyCode.D;
     public KeyCode MoveLeft = KeyCode.A;
 
+    public KeyCode Attack = KeyCode.Mouse0;
+    public KeyCode LockTarget = KeyCode.Mouse1;
+
+    public KeyCode Jump = KeyCode.Space;
+
+    public KeyCode Interact = KeyCode.E;
    
 
 }

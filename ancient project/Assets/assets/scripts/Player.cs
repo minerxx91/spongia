@@ -312,7 +312,7 @@ public class Player : MonoBehaviour
             managerVariables.Player.Health = managerVariables.Player.MaxHealth;
         }
 
-        if (Input.GetKey(KeyCode.Space) && !(Velocity[0] == 0 && Velocity[2] == 0) && SpaceAvaiable)
+        if (Input.GetKey(controls.Jump) && !(Velocity[0] == 0 && Velocity[2] == 0) && SpaceAvaiable)
         {
             if (JumpCooldown == managerVariables.Player.JumpCooldown)
             {
@@ -345,7 +345,7 @@ public class Player : MonoBehaviour
             SpaceAvaiable = true;
         }
 
-        if (Input.GetKey(KeyCode.Mouse0) && managerVariables.Player.AttackReady && Mouse0Avaiable)
+        if (Input.GetKey(controls.Attack) && managerVariables.Player.AttackReady && Mouse0Avaiable)
         {
             Mouse0Avaiable = false;
             if(anim.GetCurrentAnimatorStateInfo(0).IsName("Attack2")) anim.SetTrigger("attack3");
@@ -355,6 +355,7 @@ public class Player : MonoBehaviour
             managerVariables.Player.AttackReady = false;
             if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack2"))
             {
+                attackParticle.startColor = new Color(1, 0.2f, 0, 1);
                 attackParticle.Play();
                 managerVariables.Player.DamageIncrease = managerVariables.Player.Damage * 2;
                 Invoke(nameof(ResetAttack), managerVariables.Player.AttackCooldown);
@@ -363,6 +364,7 @@ public class Player : MonoBehaviour
             }
             else
             {
+                attackParticle.startColor = new Color(1, 1, 1, 1);
                 attackParticle.Play();
                 managerVariables.Player.DamageIncrease = 0;
                 Invoke(nameof(ResetAttack), managerVariables.Player.BetweenAttackCooldown);
@@ -372,7 +374,7 @@ public class Player : MonoBehaviour
             managerVariables.Player.AttackInProcess = true;
             AttackCooldown = 0;
         }
-        if(!Input.GetKey(KeyCode.Mouse0)) Mouse0Avaiable = true;
+        if(!Input.GetKey(controls.Attack)) Mouse0Avaiable = true;
         // stamina regen
         if (managerVariables.Player.Stamina + managerVariables.Player.StaminaRegen < managerVariables.Player.MaxStamina)
         {
@@ -409,7 +411,7 @@ public class Player : MonoBehaviour
         {
             
             
-            if (Input.GetKey(KeyCode.E))
+            if (Input.GetKey(controls.Interact))
             {
                 lvlloader.SwitchScene();
             }

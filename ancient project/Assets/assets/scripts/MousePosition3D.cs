@@ -9,11 +9,12 @@
         [SerializeField] LayerMask layerMask;
 
         manager managerVariables;
-
+        Controls controls;
 
         private void Start()
         {
             managerVariables = GameObject.Find("Manager").GetComponent<manager>();
+            controls = GameObject.Find("Manager").GetComponent<Controls>();
         }
         private void Update()
         {
@@ -21,7 +22,7 @@
             Ray ray = GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
             if(Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, layerMask))
             {
-                if (Input.GetKey(KeyCode.Mouse1))
+                if (Input.GetKey(controls.LockTarget))
                 {
                 MousePosition = raycastHit.point;
 

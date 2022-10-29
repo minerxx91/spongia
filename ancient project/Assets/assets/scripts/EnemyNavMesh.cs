@@ -37,7 +37,7 @@ public class EnemyNavMesh : MonoBehaviour
     //States
     public float sightRange, MeleeAttackRange, RangerAttackRange;
     public bool playerInSightRange, playerInMeleeAttackRange, playerInRangerAttackRange;
-
+    float gravityIncrease = 0;
 
     public float Health = 100;
     TextMeshPro healthbar;
@@ -124,6 +124,16 @@ public class EnemyNavMesh : MonoBehaviour
 
         }
         if (!anim.GetCurrentAnimatorStateInfo(0).IsName("walk")) agent.SetDestination(transform.position);
+
+        if (!gameObject.GetComponent<CharacterController>().isGrounded)
+        {
+            gravityIncrease += managerVariables.GravityForce * Time.deltaTime;
+
+        }
+        else
+        {
+            gravityIncrease = 0;
+        }
     }
 
 

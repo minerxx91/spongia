@@ -12,7 +12,7 @@ public class sword : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "Boss")
         {
             if (other.GetComponent<EnemyNavMesh>().Health > managerVariables.Player.Damage + managerVariables.Player.DamageIncrease)
             {
