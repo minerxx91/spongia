@@ -22,7 +22,7 @@
             Ray ray = GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
             if(Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, layerMask))
             {
-                if (Input.GetKey(controls.LockTarget))
+                if (Input.GetKey(controls.LockTarget) && (raycastHit.collider.gameObject.tag == "Boss" || raycastHit.collider.gameObject.tag == "Enemy"))
                 {
                 MousePosition = raycastHit.point;
 
@@ -32,7 +32,7 @@
                     managerVariables.Player.target = null;
                 }
                 }
-                
+            print(managerVariables.Player.target);
 
 
             }
