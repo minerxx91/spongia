@@ -14,21 +14,21 @@ public class sword : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-           
-            if ( managerVariables.Player.AttackInProcess)
+            if (other.GetComponent<EnemyNavMesh>().Health > managerVariables.Player.Damage + managerVariables.Player.DamageIncrease)
+            {
+                other.GetComponent<EnemyNavMesh>().Health -= managerVariables.Player.Damage + managerVariables.Player.DamageIncrease;
+
+            }
+            else
+            {
+                other.GetComponent<EnemyNavMesh>().Health = 0;
+                Destroy(other.gameObject);
+            }
+            /*if ( managerVariables.Player.AttackInProcess)
             {
                 
-                if (other.GetComponent<EnemyNavMesh>().Health > managerVariables.Player.Damage + managerVariables.Player.DamageIncrease)
-                {
-                    other.GetComponent<EnemyNavMesh>().Health -= managerVariables.Player.Damage + managerVariables.Player.DamageIncrease;
-
-                }
-                else
-                {
-                    other.GetComponent<EnemyNavMesh>().Health = 0;
-                    Destroy(other.gameObject);
-                }
-            }
+                
+            }*/
             
         }
     }

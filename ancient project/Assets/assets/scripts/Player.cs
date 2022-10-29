@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 using static System.TimeZoneInfo;
@@ -8,7 +9,6 @@ using static UnityEngine.GraphicsBuffer;
 public class Player : MonoBehaviour
 {
     CharacterController CHC;
-
 
     GameObject Manager;
     Controls controls;
@@ -35,6 +35,9 @@ public class Player : MonoBehaviour
     Vector3 Velocity;
     private Animator anim;
 
+    GameObject attackHorizontal;
+    GameObject attackVertical;
+
     [SerializeField] ParticleSystem swing;
     // Start is called before the first frame update
     void Start()
@@ -57,6 +60,11 @@ public class Player : MonoBehaviour
         helpCanvas.SetActive(false);
 
         anim = GetComponent<Animator>();
+
+        attackHorizontal = GameObject.Find("attackHorizontal");
+        attackVertical = GameObject.Find("attackVertical");
+        attackHorizontal.SetActive(false);
+        attackVertical.SetActive(false);
     }
 
     void animationSelect(string select)
@@ -102,10 +110,19 @@ public class Player : MonoBehaviour
     {
         managerVariables.Player.AttackReady = true;
     }
-    // Update is called once per frame
+
+    void ResetAttackHorizontal()
+    {
+        attackHorizontal.SetActive(false);
+    }
+
+    void ResetAttackVertical()
+    {
+        attackVertical.SetActive(false);
+    }
+
     void Update()
     {
-
         
         //cooldowns
         if (JumpCooldown < managerVariables.Player.JumpCooldown)
@@ -337,12 +354,22 @@ public class Player : MonoBehaviour
             if(anim.GetCurrentAnimatorStateInfo(0).IsName("Attack2")) anim.SetTrigger("attack3");
             else if(anim.GetCurrentAnimatorStateInfo(0).IsName("Attack1")) anim.SetTrigger("attack2");
             else anim.SetTrigger("attack1");
-            print(anim.GetCurrentAnimatorStateInfo(0).IsName("Attack1"));
+
             swing.Play();
             managerVariables.Player.AttackReady = false;
-            if(anim.GetCurrentAnimatorStateInfo(0).IsName("Attack2")) Invoke(nameof(ResetAttack), managerVariables.Player.AttackCooldown);
-            else Invoke(nameof(ResetAttack), managerVariables.Player.BetweenAttackCooldown);
-
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack2"))
+            {
+                Invoke(nameof(ResetAttack), managerVariables.Player.AttackCooldown);
+                Invoke(nameof(ResetAttackVertical), .1f);
+                attackVertical.SetActive(true);
+                
+            }
+            else
+            {
+                Invoke(nameof(ResetAttack), managerVariables.Player.BetweenAttackCooldown);
+                Invoke(nameof(ResetAttackHorizontal), .1f);
+                attackHorizontal.SetActive(true);
+            }
             managerVariables.Player.AttackInProcess = true;
             AttackCooldown = 0;
         }
