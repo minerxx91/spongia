@@ -360,6 +360,7 @@ MonoBehaviour:
   playerInMeleeAttackRange: 0
   playerInRangerAttackRange: 0
   Health: 1000
+  maxHealth: 1000
   swing: {fileID: 273822975}
 --- !u!208 &221832003
 NavMeshObstacle:

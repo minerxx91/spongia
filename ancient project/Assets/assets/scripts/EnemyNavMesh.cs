@@ -40,6 +40,7 @@ public class EnemyNavMesh : MonoBehaviour
     float gravityIncrease = 0;
 
     public float Health = 100;
+    public float maxHealth = 100;
     TextMeshPro healthbar;
     ParticleSystem selectAura;
     Light orangeLight;
