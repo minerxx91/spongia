@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using TMPro;
+using UnityEngine.UIElements;
+using Unity.VisualScripting;
 
 public class EnemyNavMesh : MonoBehaviour
 {
@@ -35,9 +37,13 @@ public class EnemyNavMesh : MonoBehaviour
     public GameObject trident;
 
     //States
-    public float sightRange, MeleeAttackRange, RangerAttackRange;
-    public bool playerInSightRange, playerInMeleeAttackRange, playerInRangerAttackRange;
+
+
     float gravityIncrease = 0;
+    public float sightRange, MeleeAttackRange, MidAttackRange, RangerAttackRange;
+    public bool playerInSightRange, playerInMeleeAttackRange, playerInMidAttackRange, playerInMidAttackRange2, playerInRangerAttackRange;
+
+
 
     public float Health = 100;
     public float maxHealth = 100;
@@ -45,18 +51,22 @@ public class EnemyNavMesh : MonoBehaviour
     ParticleSystem selectAura;
     Light orangeLight;
     [SerializeField] ParticleSystem swing;
+    public GameObject animBone;
 
+    private bool Animating;
+    private Vector3 StartAnim;
+    private Vector3 EndAnim;
     private Animator anim;
 
 
     void Awake()
     {
-        
+
         agent = GetComponent<NavMeshAgent>();
         rend = GetComponent<Renderer>();
-        
+
         anim = GetComponent<Animator>();
-       
+
 
 
     }
@@ -69,45 +79,67 @@ public class EnemyNavMesh : MonoBehaviour
         Manager = GameObject.Find("Manager");
         managerVariables = Manager.GetComponent<manager>();
         player = GameObject.Find("Player").transform;
-        
+
     }
 
     void Update()
     {
-        
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("melee2"))
+        {
+            if (Animating)
+            {
+                transform.position += animBone.transform.position - StartAnim;
+                print(transform.position);
+                print(animBone.transform.position);
+                print(StartAnim);
+                print(transform.position);
+            }
+            Animating = false;
+        }
+
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInMeleeAttackRange = Physics.CheckSphere(transform.position, MeleeAttackRange, whatIsPlayer);
+        playerInMidAttackRange = Physics.CheckSphere(transform.position, MidAttackRange, whatIsPlayer);
+        playerInMidAttackRange2 = Physics.CheckSphere(transform.position, MidAttackRange - 3, whatIsPlayer);
         playerInRangerAttackRange = Physics.CheckSphere(transform.position, RangerAttackRange, whatIsPlayer);
         transform.LookAt(player);
-        transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.eulerAngles.y, 0)); 
-        if (this.gameObject.name == "Poseidon")
+        transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.eulerAngles.y, 0));
+        if (!Animating)
         {
-            if (!playerInSightRange && !playerInMeleeAttackRange) Patroling();
-            if (playerInSightRange && !playerInMeleeAttackRange) Chasing();
-            if (playerInSightRange && (playerInMeleeAttackRange || playerInRangerAttackRange))
+            if (this.gameObject.name == "Poseidon")
             {
-                if (playerInMeleeAttackRange)
+                if (!playerInSightRange && !playerInMeleeAttackRange) Patroling();
+                if (playerInSightRange && !playerInMeleeAttackRange) Chasing();
+                if (playerInSightRange && (playerInMeleeAttackRange || playerInRangerAttackRange))
                 {
-                    MeleeAttacking();
+                    if (playerInMeleeAttackRange)
+                    {
+                        MeleeAttacking();
+                    }
+                    else if (playerInMidAttackRange && !playerInMidAttackRange2)
+                    {
+                        MidAttacking();
+                    }
+                    else if (playerInRangerAttackRange && !playerInMidAttackRange)
+                    {
+                        RangedAttacking();
+                    }
                 }
-                else
-                {
-                    RangedAttacking();
-                }
+
+
+
+
             }
-                
-            
-            
-            
+            else
+            {
+                if (!playerInSightRange && !playerInMeleeAttackRange) Patroling();
+                if (playerInSightRange && !playerInMeleeAttackRange) Chasing();
+                if (playerInRangerAttackRange && playerInSightRange) RangedAttacking();
+                if (playerInMeleeAttackRange && playerInSightRange) MeleeAttacking();
+            }
         }
-        else
-        {
-            if (!playerInSightRange && !playerInMeleeAttackRange) Patroling();
-            if (playerInSightRange && !playerInMeleeAttackRange) Chasing();
-            if (playerInRangerAttackRange && playerInSightRange) RangedAttacking();
-            if (playerInMeleeAttackRange && playerInSightRange) MeleeAttacking();
-        }
-        
+
+
         materialDelay += Time.deltaTime;
 
         healthbar.text = Health.ToString();
@@ -150,7 +182,7 @@ public class EnemyNavMesh : MonoBehaviour
         Vector3 distanceToWalk = transform.position - walkPoint;
         if (distanceToWalk.magnitude < 1f) walkPointSet = false;
 
-        
+
     }
 
     private void SearchWalkPoint()
@@ -168,7 +200,7 @@ public class EnemyNavMesh : MonoBehaviour
         agent.SetDestination(player.position);
         agent.speed = chasingSpeed;
 
-        
+
     }
 
     private void MeleeAttacking()
@@ -184,8 +216,37 @@ public class EnemyNavMesh : MonoBehaviour
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
-        
-        
+
+
+    }
+
+    void swingParticel()
+    {
+        swing.Play();
+    }
+
+    private void MidAttacking()
+    {
+        anim.SetBool("walk", false);
+        if (!alreadyAttacked)
+        {
+
+            StartAnim = animBone.transform.position;
+            Animating = true;
+            anim.SetTrigger("melee2");
+            Invoke(nameof(swingParticel), 2f);
+
+
+            alreadyAttacked = true;
+            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+        }
+
+
+    }
+
+    void throwTrident()
+    {
+        Instantiate(projectile, trident.transform.position, Quaternion.Euler(new Vector3(90, transform.rotation.eulerAngles.y, 0)));
     }
     void RangedAttacking()
     {
@@ -194,13 +255,14 @@ public class EnemyNavMesh : MonoBehaviour
         {
             anim.SetTrigger("range");
             print(gameObject.transform.rotation.y);
-            Instantiate(projectile, trident.transform.position, Quaternion.Euler(new Vector3(90, transform.rotation.eulerAngles.y, 0)));
+            Invoke(nameof(throwTrident), .5f);
+
 
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
-        
+
     }
 
     private void ResetAttack()
@@ -215,6 +277,9 @@ public class EnemyNavMesh : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, MeleeAttackRange);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, sightRange);
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, MidAttackRange);
+        Gizmos.DrawWireSphere(transform.position, MidAttackRange - 3);
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, RangerAttackRange);
     }
