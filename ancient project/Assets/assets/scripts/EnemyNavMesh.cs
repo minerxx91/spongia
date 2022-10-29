@@ -185,7 +185,6 @@ public class EnemyNavMesh : MonoBehaviour
 
     private void Patroling()
     {
-        transform.LookAt(player);
         anim.SetBool("walk", true);
         if (!walkPointSet) SearchWalkPoint();
 
@@ -209,7 +208,6 @@ public class EnemyNavMesh : MonoBehaviour
 
     private void Chasing()
     {
-        transform.LookAt(player);
         anim.SetBool("walk", true);
         agent.SetDestination(player.position);
         agent.speed = chasingSpeed;
@@ -224,7 +222,6 @@ public class EnemyNavMesh : MonoBehaviour
         
         if (!alreadyAttacked)
         {
-            transform.LookAt(player);
             anim.SetTrigger("melee1");
             Invoke(nameof(DoAttackMelee1), 1f);
             swing.Play();
@@ -268,6 +265,7 @@ public class EnemyNavMesh : MonoBehaviour
 
     void throwTrident()
     {
+        transform.LookAt(player);
         Instantiate(projectile, trident.transform.position, Quaternion.Euler(new Vector3(90, transform.rotation.eulerAngles.y, 0)));
     }
     void RangedAttacking()
