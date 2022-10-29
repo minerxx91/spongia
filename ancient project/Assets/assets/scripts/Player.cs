@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     MousePosition3D mousePosition3D;
 
     bool SpaceAvaiable = true;
+    bool Mouse0Avaiable = true;
 
     float PlayerSpeed;
     float RotationSpeed = 300;
@@ -105,7 +106,7 @@ public class Player : MonoBehaviour
     void Update()
     {
 
-        print(AttackCooldown);
+        
         //cooldowns
         if (JumpCooldown < managerVariables.Player.JumpCooldown)
             JumpCooldown += Time.deltaTime;
@@ -146,14 +147,18 @@ public class Player : MonoBehaviour
         float MoveX = 0;
         float MoveZ = 0;
         //Input.GetKeyDown(MoveUp)
-        if (Input.GetKey(controls.MoveUp))
-        { MoveZ++; }
-        if (Input.GetKey(controls.MoveDown))
-        { MoveZ--; }
-        if (Input.GetKey(controls.MoveRight))
-        { MoveX++; }
-        if (Input.GetKey(controls.MoveLeft))
-        { MoveX--; }
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack1") && !anim.GetCurrentAnimatorStateInfo(0).IsName("Attack2") && !anim.GetCurrentAnimatorStateInfo(0).IsName("Attack3"))
+        {
+            if (Input.GetKey(controls.MoveUp))
+            { MoveZ++; }
+            if (Input.GetKey(controls.MoveDown))
+            { MoveZ--; }
+            if (Input.GetKey(controls.MoveRight))
+            { MoveX++; }
+            if (Input.GetKey(controls.MoveLeft))
+            { MoveX--; }
+        }
+            
 
         PlayerSpeed = managerVariables.Player.Speed * Time.deltaTime;
 
@@ -326,15 +331,22 @@ public class Player : MonoBehaviour
             SpaceAvaiable = true;
         }
 
-        if (Input.GetKey(KeyCode.Mouse0) && managerVariables.Player.AttackReady)
+        if (Input.GetKey(KeyCode.Mouse0) && managerVariables.Player.AttackReady && Mouse0Avaiable)
         {
-            anim.SetTrigger("isAttacking");
+            Mouse0Avaiable = false;
+            if(anim.GetCurrentAnimatorStateInfo(0).IsName("Attack2")) anim.SetTrigger("attack3");
+            else if(anim.GetCurrentAnimatorStateInfo(0).IsName("Attack1")) anim.SetTrigger("attack2");
+            else anim.SetTrigger("attack1");
+            print(anim.GetCurrentAnimatorStateInfo(0).IsName("Attack1"));
             swing.Play();
             managerVariables.Player.AttackReady = false;
-            Invoke(nameof(ResetAttack), managerVariables.Player.AttackCooldown);
+            if(anim.GetCurrentAnimatorStateInfo(0).IsName("Attack2")) Invoke(nameof(ResetAttack), managerVariables.Player.AttackCooldown);
+            else Invoke(nameof(ResetAttack), managerVariables.Player.BetweenAttackCooldown);
+
             managerVariables.Player.AttackInProcess = true;
             AttackCooldown = 0;
         }
+        if(!Input.GetKey(KeyCode.Mouse0)) Mouse0Avaiable = true;
         // stamina regen
         if (managerVariables.Player.Stamina + managerVariables.Player.StaminaRegen < managerVariables.Player.MaxStamina)
         {
@@ -347,6 +359,7 @@ public class Player : MonoBehaviour
 
 
     }
+
     IEnumerator Dash()
     {
         yield return new WaitForSeconds(.1f);
