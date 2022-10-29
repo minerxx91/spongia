@@ -56,10 +56,11 @@ private void Update()
 
         float bossHealth = GameObject.FindGameObjectsWithTag("Boss")[0].GetComponent<EnemyNavMesh>().Health;
         float dielikBoss = 1800 / GameObject.FindGameObjectsWithTag("Boss")[0].GetComponent<EnemyNavMesh>().maxHealth;
-        print("bossdielik" + bossHealth * dielikBoss);
-        BossBar.transform.localScale = new Vector2( 1 -(1800/(bossHealth * dielikBoss)), BossBar.transform.localScale.y);
+        
+        BossBar.transform.localScale = new Vector2( 2 -(1800/(bossHealth * dielikBoss)), BossBar.transform.localScale.y);
+        float bosspercenta = 100 / dielikBoss; 
+        
 
-
-
+       
     }
 }

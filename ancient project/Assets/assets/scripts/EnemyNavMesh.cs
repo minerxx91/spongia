@@ -72,7 +72,6 @@ public class EnemyNavMesh : MonoBehaviour
     }
     private void Start()
     {
-        healthbar = transform.Find("Health").GetComponent<TextMeshPro>();
         selectAura = transform.Find("Aura").GetComponent<ParticleSystem>();
         orangeLight = transform.Find("Orange").GetComponent<Light>();
         orangeLight.gameObject.SetActive(false);
@@ -142,7 +141,6 @@ public class EnemyNavMesh : MonoBehaviour
 
         materialDelay += Time.deltaTime;
 
-        healthbar.text = Health.ToString();
 
         if (managerVariables.Player.target == this.gameObject)
         {
