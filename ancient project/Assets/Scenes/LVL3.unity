@@ -8690,8 +8690,8 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Color: {r: 0.12941177, g: 0.14901961, b: 0.43529412, a: 1}
+  m_Intensity: 0.69
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -8882,7 +8882,7 @@ MonoBehaviour:
   MousePosition: {x: 0, y: 0, z: 0}
   layerMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 384
 --- !u!114 &1931831001
 MonoBehaviour:
   m_ObjectHideFlags: 0

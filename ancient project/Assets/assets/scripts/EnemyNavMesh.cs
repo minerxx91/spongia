@@ -51,6 +51,7 @@ public class EnemyNavMesh : MonoBehaviour
     ParticleSystem selectAura;
     Light orangeLight;
     [SerializeField] ParticleSystem swing;
+    [SerializeField] ParticleSystem GroundBlast;
     public GameObject animBone;
 
     private bool Animating;
@@ -223,6 +224,11 @@ public class EnemyNavMesh : MonoBehaviour
         swing.Play();
     }
 
+    void GroundBlastParticel()
+    {
+        GroundBlast.Play();
+    }
+
     private void MidAttacking()
     {
         anim.SetBool("walk", false);
@@ -233,6 +239,7 @@ public class EnemyNavMesh : MonoBehaviour
             Animating = true;
             anim.SetTrigger("melee2");
             Invoke(nameof(swingParticel), 2f);
+            Invoke(nameof(GroundBlastParticel), 2.5f);
 
 
             alreadyAttacked = true;
