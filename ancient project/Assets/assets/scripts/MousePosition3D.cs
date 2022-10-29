@@ -34,7 +34,6 @@
 
                     
                 }
-                print(managerVariables.Player.target);
 
 
             }
