@@ -9,7 +9,9 @@ using Unity.VisualScripting;
 public class Scenario : MonoBehaviour
 {
     [SerializeField]
-    public TextMeshProUGUI subtitles;
+    public TextMeshProUGUI playerText;
+    public TextMeshProUGUI othersText;
+    public TextMeshProUGUI lobbyText;
     [SerializeField]
     GameObject subtitlesCanvas;
     [SerializeField]
@@ -77,9 +79,9 @@ public class Scenario : MonoBehaviour
     IEnumerator LobbySequence()
     {
         yield return new WaitForSeconds(5);
-        subtitles.text = "Vitaj, dúfame že si našu hru užiješ!";
+        lobbyText.text = "Vitaj, dúfame že si našu hru užiješ!";
         yield return new WaitForSeconds(5);
-        subtitles.text = "";
+        lobbyText.text = "";
         subtitlesCanvas.SetActive(false);
 
 
@@ -87,19 +89,19 @@ public class Scenario : MonoBehaviour
     IEnumerator Lvl1Sequence()
     {
         yield return new WaitForSeconds(1);
-        subtitles.text = "Pravý hrdina, doneste mu jedlo a dobré víno a odpracte tú medúzu odtiaľto.";
+        othersText.text = "Pravý hrdina, doneste mu jedlo a dobré víno a odpracte tú medúzu odtiaľto.";
         yield return new WaitForSeconds(2);
-        subtitles.text = "";
+        othersText.text = "";
         yield return new WaitForSeconds(2);
-        subtitles.text = "To je tvoja práca?";
+        othersText.text = "To je tvoja práca?";
         yield return new WaitForSeconds(2);
-        subtitles.text = "Áno, myslím že áno";
+        playerText.text = "Áno, myslím že áno";
         yield return new WaitForSeconds(2);
-        subtitles.text = "Odvaha ti nechýba, ale to neznamená že nie si hlupák, presne niekoho takého potrebujem";
+        othersText.text = "Odvaha ti nechýba, ale to neznamená že nie si hlupák, presne niekoho takého potrebujem";
         yield return new WaitForSeconds(2);
-        subtitles.text = "Smiem aspoň vedieť kto si a na čo by si ma potreboval než  to odkývam?";
+        playerText.text = "Smiem aspoň vedieť kto si a na čo by si ma potreboval než  to odkývam?";
         yield return new WaitForSeconds(2);
-        subtitles.text = "Som Zeus, vládca gréckych bohov a teba som si vybral aby si zabil Minotaura, tá obluda už mi ide dlho na nervy, na tvoju odpoveď nie je čas, priprav sa na labyrint a veľa šťastia, budeš ho potrebovať ale veľa času ti nedávam a budeš lízať podlahu.";
+       othersText.text = "Som Zeus, vládca gréckych bohov a teba som si vybral aby si zabil Minotaura, tá obluda už mi ide dlho na nervy, na tvoju odpoveď nie je čas, priprav sa na labyrint a veľa šťastia, budeš ho potrebovať ale veľa času ti nedávam a budeš lízať podlahu.";
         yield return new WaitForSeconds(2);
         subtitlesCanvas.SetActive(false);
 
@@ -109,11 +111,11 @@ public class Scenario : MonoBehaviour
     IEnumerator Lvl2Sequence()
     {
         yield return new WaitForSeconds(1);
-        subtitles.text = "Asi som ťa podcenil, všetka česť.";
+        othersText.text = "Asi som ťa podcenil, všetka česť.";
         yield return new WaitForSeconds(2);
-        subtitles.text = "Prečo si sa o to nepostaral sám, si predsa najsilnejší z celého Olympu?";
+        playerText.text = "Prečo si sa o to nepostaral sám, si predsa najsilnejší z celého Olympu?";
         yield return new WaitForSeconds(2);
-        subtitles.text = "Nemám čas sa zahadzovať s takýmito maličkosťami, na to mám takých hlupáčikov ako ty, ale to ako sa ti podarilo prežiť je naozaj obdivuhodné. Nejakým spôsobom sa ti podarilo použiť medúzinu schopnosť. Musíš byť poloboh s veľkým darom. Poseidon v poslednej dobe začal robiť problémy, mal by si sa o neho v mojom mene postarať kým si to niekto odskáče. Nie je čas navyše, priprav sa. Ó a inak skoro som zabudol, tu máš nejaké vybavenie nech po tebe nezostane len mastný fľak.";
+        othersText.text = "Nemám čas sa zahadzovať s takýmito maličkosťami, na to mám takých hlupáčikov ako ty, ale to ako sa ti podarilo prežiť je naozaj obdivuhodné. Nejakým spôsobom sa ti podarilo použiť medúzinu schopnosť. Musíš byť poloboh s veľkým darom. Poseidon v poslednej dobe začal robiť problémy, mal by si sa o neho v mojom mene postarať kým si to niekto odskáče. Nie je čas navyše, priprav sa. Ó a inak skoro som zabudol, tu máš nejaké vybavenie nech po tebe nezostane len mastný fľak.";
         yield return new WaitForSeconds(2);
         subtitlesCanvas.SetActive(false);
     }
@@ -121,7 +123,7 @@ public class Scenario : MonoBehaviour
     IEnumerator Lvl3Sequence()
     {
         yield return new WaitForSeconds(1);
-        subtitles.text = "Zatiaľ si ma nesklamal, to sa ti musí nechať, ale táto úloha nebude taká ľahká. Hádesovi sa toto páčiť nebude, možno vypukne vojna, treba vykonať potrebné kroky skôr ako ich podnikne on. Musíš sa ho zbaviť. Spolieham na teba.";
+        othersText.text = "Zatiaľ si ma nesklamal, to sa ti musí nechať, ale táto úloha nebude taká ľahká. Hádesovi sa toto páčiť nebude, možno vypukne vojna, treba vykonať potrebné kroky skôr ako ich podnikne on. Musíš sa ho zbaviť. Spolieham na teba.";
         yield return new WaitForSeconds(2);
         subtitlesCanvas.SetActive(false);
     }
@@ -129,7 +131,7 @@ public class Scenario : MonoBehaviour
     IEnumerator Lvl4Sequence()
     {
         yield return new WaitForSeconds(1);
-        subtitles.text = "To si bol ty? To ty si porazil Poseidona? Nebuď smiešny, poď bližšie nech to s tebou rýchlo skoncujem.";
+        othersText.text = "To si bol ty? To ty si porazil Poseidona? Nebuď smiešny, poď bližšie nech to s tebou rýchlo skoncujem.";
         yield return new WaitForSeconds(2);
         subtitlesCanvas.SetActive(false);
     }
@@ -137,11 +139,11 @@ public class Scenario : MonoBehaviour
     IEnumerator Lvl5Sequence()
     {
         yield return new WaitForSeconds(1);
-        subtitles.text = "Väčšieho mongola som ešte nevidel, urobil si všetku prácu za mňa, Zeus a Poseidon si naozaj mysleli že sa uspokojím s ríšou mŕtvych, tak to boli na omyle a vďaka tebe teraz môžem vládnuť celému svetu. Bež kým si to rozmyslím, nechám ťa žiť ale tvoje vybavenie si beriem späť.";
+        othersText.text = "Väčšieho mongola som ešte nevidel, urobil si všetku prácu za mňa, Zeus a Poseidon si naozaj mysleli že sa uspokojím s ríšou mŕtvych, tak to boli na omyle a vďaka tebe teraz môžem vládnuť celému svetu. Bež kým si to rozmyslím, nechám ťa žiť ale tvoje vybavenie si beriem späť.";
         yield return new WaitForSeconds(2);
-        subtitles.text = "Celú dobu si ma klamal, toto celé ti nemôžem nechať len tak prejsť.";
+        playerText.text = "Celú dobu si ma klamal, toto celé ti nemôžem nechať len tak prejsť.";
         yield return new WaitForSeconds(2);
-        subtitles.text = "Staviaš sa proti mne? No poť ty opica, nech to mám za sebou  a môžem vládnuť svojmu novému svetu.";
+        othersText.text = "Staviaš sa proti mne? No poť ty opica, nech to mám za sebou  a môžem vládnuť svojmu novému svetu.";
         yield return new WaitForSeconds(2);
         subtitlesCanvas.SetActive(false);
     }
