@@ -425,23 +425,30 @@ public class Player : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "Portal")
+        for (int i = 1; i < 6; i++)
         {
-            helpCanvas.SetActive(true);
+            if (other.gameObject.name == "Portal"+i)
+            {
+                helpCanvas.SetActive(true);
 
 
+            }
         }
+            
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.name == "Portal")
+        for (int i = 1; i < 6; i++)
         {
-            helpCanvas.SetActive(false);
+            if (other.gameObject.name == "Portal" + i)
+            {
+                helpCanvas.SetActive(false);
 
 
+            }
         }
 
-        
+
     }
 
 }
