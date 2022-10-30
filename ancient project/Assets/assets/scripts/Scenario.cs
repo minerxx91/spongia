@@ -17,7 +17,7 @@ public class Scenario : MonoBehaviour
     [SerializeField]
     GameObject boss;
 
-    private bool captions = true;
+    private bool captions = false;
     private bool callOnce = false;
 
 
