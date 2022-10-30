@@ -282,7 +282,7 @@ public class Poseidon : MonoBehaviour
         if (!alreadyAttacked)
         {
             MidAttackLook = true;
-            managerVariables.Poseidon.DamageIncrease = 30;
+            managerVariables.Poseidon.DamageIncrease = 60;
             
             anim.SetTrigger("melee2");
 
