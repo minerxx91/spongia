@@ -2,34 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class sword : MonoBehaviour
+public class PoseidonAttack : MonoBehaviour
 {
-
     manager managerVariables;
     private void Start()
     {
         managerVariables = GameObject.Find("Manager").GetComponent<manager>();
     }
+
+    
+    void Update()
+    {
+        
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "Boss")
+        if (other.gameObject.tag == "Player")
         {
-            if (other.GetComponent<Poseidon>().Health > managerVariables.Player.Damage + managerVariables.Player.DamageIncrease)
+            if (managerVariables.Player.Health > managerVariables.Poseidon.Damage + managerVariables.Poseidon.DamageIncrease)
             {
-                other.GetComponent<Poseidon>().Health -= managerVariables.Player.Damage + managerVariables.Player.DamageIncrease;
+                managerVariables.Player.Health -= managerVariables.Poseidon.Damage + managerVariables.Poseidon.DamageIncrease;
 
             }
             else
             {
-                other.GetComponent<Poseidon>().Health = 0;
-                Destroy(other.gameObject);
+                managerVariables.Player.Health = 0;
             }
             /*if ( managerVariables.Player.AttackInProcess)
             {
                 
                 
             }*/
-            
+
         }
     }
 }

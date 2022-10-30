@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
 
     ParticleSystem attackParticle;
 
-    EnemyNavMesh enemyNavMesh = new EnemyNavMesh();
+    Poseidon enemyNavMesh = new Poseidon();
 
     // Start is called before the first frame update
     void Start()

@@ -65,6 +65,8 @@ public class manager : MonoBehaviour
 
     public class PoseidonStats
     {
+        public float Health = 1000;
+        public float maxHealth = 1000;
         public float Damage = 20;
         public float DamageIncrease = 0;
     }

@@ -78,8 +78,8 @@ private void Update()
 
         if (GameObject.FindGameObjectsWithTag("Boss").Length != 0)
         {
-            float bossHealth = GameObject.FindGameObjectsWithTag("Boss")[0].GetComponent<EnemyNavMesh>().Health;
-            float dielikBoss = 1800 / GameObject.FindGameObjectsWithTag("Boss")[0].GetComponent<EnemyNavMesh>().maxHealth;
+            float bossHealth = GameObject.FindGameObjectsWithTag("Boss")[0].GetComponent<Poseidon>().Health;
+            float dielikBoss = 1800 / GameObject.FindGameObjectsWithTag("Boss")[0].GetComponent<Poseidon>().maxHealth;
 
             BossBar.transform.localScale = new Vector2((bossHealth * dielikBoss) /1800, BossBar.transform.localScale.y);
             
