@@ -418,7 +418,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35d5b50bb6e22a84a88d23873d306363, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerAttack: {fileID: 8300000, guid: 3b440fa33b91ec14e87cf7acce36ded8, type: 3}
+  PlayerAttack1: {fileID: 8300000, guid: 200b0c9d15cbc2c45a2feecc04d6fb55, type: 3}
+  PlayerAttack2: {fileID: 8300000, guid: 0a5022789d1cde146af4d132f4fad1d9, type: 3}
+  PlayerAttack3: {fileID: 8300000, guid: 9e22e034fb258c34aa8e5d3097376b04, type: 3}
+  PlayerRoll: {fileID: 8300000, guid: 54363e6264848844eb4c2ca428862ff6, type: 3}
+  PortalEnter: {fileID: 8300000, guid: c58e703a869c00c4d93778e81b6ed179, type: 3}
 --- !u!82 &137437529
 AudioSource:
   m_ObjectHideFlags: 0
@@ -431,7 +435,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2a7bfa859ebe8164fb0e976cc8c5edf7, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.15
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
