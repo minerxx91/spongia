@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    
+    [SerializeField] AudioClip PlayerAttack;
 
-    public AudioSource run;
+     AudioSource run;
 
 
     AudioSource[] AS;
@@ -18,7 +18,19 @@ public class AudioManager : MonoBehaviour
     }   
     public void PlayRun()
     {
-        AS[1].Play();
+        if(!run.isPlaying)
+        {
+            run.Play();
+        }
+        
+    }
+    public void StopRun()
+    {
+        run.Stop();
+    }
+    public void PlayPlayerAttack()
+    {
+        AS[0].PlayOneShot(PlayerAttack);
     }
 
 }

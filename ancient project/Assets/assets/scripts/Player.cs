@@ -183,10 +183,12 @@ public class Player : MonoBehaviour
 
         if (!managerVariables.Player.Jumping)
         {
+           
             Velocity = new Vector3(MoveX * PlayerSpeed, -managerVariables.Player.gravityIncrease, MoveZ * PlayerSpeed);
         }
         else
         {
+            
             Velocity = new Vector3(0, -managerVariables.Player.gravityIncrease, 0);
 
         }
@@ -203,9 +205,11 @@ public class Player : MonoBehaviour
 
 
                 }
+                audioManager.StopRun();
             }
             else
             {
+                audioManager.PlayRun();
                 anim.SetBool("isRunning", true);
 
             }
@@ -353,6 +357,7 @@ public class Player : MonoBehaviour
             else anim.SetTrigger("attack1");
 
             managerVariables.Player.AttackReady = false;
+            
             if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack2"))
             {
                 attackParticle.startColor = new Color(1, 0.2f, 0, 1);
@@ -371,6 +376,7 @@ public class Player : MonoBehaviour
                 Invoke(nameof(ResetAttackHorizontal), .1f);
                 attackHorizontal.SetActive(true);
             }
+            audioManager.PlayPlayerAttack();
             managerVariables.Player.AttackInProcess = true;
             AttackCooldown = 0;
         }
