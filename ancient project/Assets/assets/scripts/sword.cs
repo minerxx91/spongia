@@ -17,22 +17,38 @@ public class sword : MonoBehaviour
         if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "Boss")
         {
             audioManager.PlayEnemyDamageIncome();
-            if (other.GetComponent<Poseidon>().Health > managerVariables.Player.Damage + managerVariables.Player.DamageIncrease)
+            if (other.gameObject.name == "Poseidon")
             {
-                other.GetComponent<Poseidon>().Health -= managerVariables.Player.Damage + managerVariables.Player.DamageIncrease;
+                if (other.GetComponent<Poseidon>().Health > managerVariables.Player.Damage + managerVariables.Player.DamageIncrease)
+                {
+                    other.GetComponent<Poseidon>().Health -= managerVariables.Player.Damage + managerVariables.Player.DamageIncrease;
 
+                }
+                else
+                {
+                    other.GetComponent<Poseidon>().Health = 0;
+                    Destroy(other.gameObject);
+                }
             }
-            else
+            else if (other.gameObject.name == "Minotaur")
             {
-                other.GetComponent<Poseidon>().Health = 0;
-                Destroy(other.gameObject);
+                if (other.GetComponent<Minotaur>().Health > managerVariables.Player.Damage + managerVariables.Player.DamageIncrease)
+                {
+                    other.GetComponent<Minotaur>().Health -= managerVariables.Player.Damage + managerVariables.Player.DamageIncrease;
+
+                }
+                else
+                {
+                    other.GetComponent<Minotaur>().Health = 0;
+                    Destroy(other.gameObject);
+                }
             }
             /*if ( managerVariables.Player.AttackInProcess)
             {
                 
                 
             }*/
-            
+
         }
     }
 }
