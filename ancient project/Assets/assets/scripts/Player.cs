@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
 
     ParticleSystem attackParticle;
 
-    EnemyNavMesh enemyNavMesh = new EnemyNavMesh();
+    Poseidon enemyNavMesh = new Poseidon();
 
     // Start is called before the first frame update
     void Start()
@@ -191,7 +191,7 @@ public class Player : MonoBehaviour
 
         PlayerSpeed = managerVariables.Player.Speed * Time.deltaTime;
 
-        if (!managerVariables.Player.Jumping)
+        if (!managerVariables.Player.Jumping && !Input.GetKey(controls.Block))
         {
            
             Velocity = new Vector3(MoveX * PlayerSpeed, -managerVariables.Player.gravityIncrease, MoveZ * PlayerSpeed);
@@ -358,8 +358,17 @@ public class Player : MonoBehaviour
         {
             SpaceAvaiable = true;
         }
-
-        if (Input.GetKey(controls.Attack) && managerVariables.Player.AttackReady && Mouse0Avaiable)
+        if (Input.GetKey(controls.Block) && !anim.GetCurrentAnimatorStateInfo(0).IsName("rolling"))
+        {
+            anim.SetBool("block", true);
+            managerVariables.Player.Resistence = 80;
+        }
+        else
+        {
+            anim.SetBool("block", false);
+            managerVariables.Player.Resistence = 0;
+        }
+        if (Input.GetKey(controls.Attack) && managerVariables.Player.AttackReady && Mouse0Avaiable && !Input.GetKey(controls.Block))
         {
             Mouse0Avaiable = false;
             if(anim.GetCurrentAnimatorStateInfo(0).IsName("Attack2")) anim.SetTrigger("attack3");

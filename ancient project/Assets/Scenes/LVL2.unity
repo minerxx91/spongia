@@ -200,11 +200,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 121909743}
   m_CullTransparentMesh: 1
---- !u!1 &187947080 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3082657619306483310, guid: 075090befeb229143baf3243a86711f4, type: 3}
-  m_PrefabInstance: {fileID: 722616639}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &199675722
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,7 +288,6 @@ GameObject:
   - component: {fileID: 221832006}
   - component: {fileID: 221832005}
   - component: {fileID: 221832004}
-  - component: {fileID: 221832003}
   - component: {fileID: 221832002}
   - component: {fileID: 221832001}
   m_Layer: 8
@@ -337,11 +331,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 952fb2ef05f29e140b77da9706a27b59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 0}
+  agent: {fileID: 221832001}
   patrolingSpeed: 3
-  chasingSpeed: 2
+  chasingSpeed: 4
   player: {fileID: 0}
-  material: []
   whatIsGround:
     serializedVersion: 2
     m_Bits: 128
@@ -349,10 +342,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 20
+  walkPointRange: 5
   timeBetweenAttacks: 6
   projectile: {fileID: 3382990444819746559, guid: 4a06c091bf01faf478a63fa82b0eaa7d, type: 3}
-  trident: {fileID: 187947080}
+  trident: {fileID: 3082657619306483310, guid: 075090befeb229143baf3243a86711f4, type: 3}
   sightRange: 30
   MeleeAttackRange: 3
   MidAttackRange: 16
@@ -368,25 +361,8 @@ MonoBehaviour:
   swing: {fileID: 273822975}
   GroundBlast: {fileID: 266532368}
   MeleeBlast: {fileID: 1483380861}
-  animBone: {fileID: 1896296003}
   AttackMelee1: {fileID: 1523488692}
   AttackMelee2: {fileID: 1541347052}
---- !u!208 &221832003
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 221832000}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 3.365, y: 8.905, z: 1.925}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 10.58, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!136 &221832004
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -23184,11 +23160,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1738097880}
   m_CullTransparentMesh: 1
---- !u!1 &1896296003 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -751476226918971245, guid: 97e9f9ccf34943b4e991725c7a1ba421, type: 3}
-  m_PrefabInstance: {fileID: 1257959848}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1960813762
 GameObject:
   m_ObjectHideFlags: 0
