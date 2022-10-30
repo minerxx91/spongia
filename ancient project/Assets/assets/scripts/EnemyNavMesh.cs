@@ -17,6 +17,8 @@ public class EnemyNavMesh : MonoBehaviour
     GameObject Manager;
     manager managerVariables;
 
+    AudioManager audioManager;
+
     public Material[] material;
 
     Renderer rend;
@@ -84,6 +86,7 @@ public class EnemyNavMesh : MonoBehaviour
         Manager = GameObject.Find("Manager");
         managerVariables = Manager.GetComponent<manager>();
         player = GameObject.Find("Player").transform;
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 
     }
 
