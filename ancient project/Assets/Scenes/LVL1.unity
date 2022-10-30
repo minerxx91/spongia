@@ -157,7 +157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   subtitles: {fileID: 858753498}
   subtitlesCanvas: {fileID: 64194153}
-  captions: 0
+  boss: {fileID: 0}
 --- !u!114 &64194155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1931,8 +1931,10 @@ MonoBehaviour:
   maxHealth: 1000
   swing: {fileID: 1059326388}
   GroundBlast: {fileID: 1470171816}
+  MeleeBlast: {fileID: 0}
   animBone: {fileID: 614190780}
   AttackMelee1: {fileID: 766900156}
+  AttackMelee2: {fileID: 0}
 --- !u!208 &843258329
 NavMeshObstacle:
   m_ObjectHideFlags: 0
