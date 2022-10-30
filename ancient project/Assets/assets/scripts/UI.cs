@@ -75,7 +75,7 @@ private void Update()
 
         }
 
-
+        /*
         if (GameObject.FindGameObjectsWithTag("Boss").Length != 0)
         {
             float bossHealth = GameObject.FindGameObjectsWithTag("Boss")[0].GetComponent<Poseidon>().Health;
@@ -83,7 +83,7 @@ private void Update()
 
             BossBar.transform.localScale = new Vector2((bossHealth * dielikBoss) /1800, BossBar.transform.localScale.y);
             
-        }
+        }*/
 
 
 
