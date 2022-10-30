@@ -52,6 +52,7 @@ public class EnemyNavMesh : MonoBehaviour
     Light orangeLight;
     [SerializeField] ParticleSystem swing;
     [SerializeField] ParticleSystem GroundBlast;
+    [SerializeField] ParticleSystem MeleeBlast;
     public GameObject animBone;
 
     private bool Animating;
@@ -240,6 +241,7 @@ public class EnemyNavMesh : MonoBehaviour
         {
             managerVariables.Poseidon.DamageIncrease = 0;
             anim.SetTrigger("melee1");
+            //Invoke(nameof(MeleeBlastParticel), 1f);
             Invoke(nameof(DoAttackMelee1), 1f);
             swing.Play();
 
@@ -253,6 +255,11 @@ public class EnemyNavMesh : MonoBehaviour
     void swingParticel()
     {
         swing.Play();
+    }
+
+    void MeleeBlastParticel()
+    {
+        MeleeBlast.Play();
     }
     void swingTP()
     {
