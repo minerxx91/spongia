@@ -520,6 +520,10 @@ MonoBehaviour:
   MoveDown: 115
   MoveRight: 100
   MoveLeft: 97
+  Attack: 323
+  LockTarget: 324
+  Jump: 32
+  Interact: 101
 --- !u!114 &280459568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1422,7 +1426,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smoothSpeed: 0.5
-  offset: {x: 0, y: 6, z: -7}
+  offset: {x: 0, y: 2.65, z: -5.59}
 --- !u!81 &670897299
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2726,10 +2730,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2636c07bd1b5e7d49b3c2b1bc9dcb844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Help: {fileID: 0}
   HealthMask: {fileID: 1083723370}
   StaminaMask: {fileID: 633162962}
   JumpColor: {fileID: 1966311852}
   AttackColor: {fileID: 931676690}
+  BossBar: {fileID: 0}
 --- !u!114 &1966519970
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -101,11 +101,10 @@ public class EnemyNavMesh : MonoBehaviour
         {
             if (Animating)
             {
-                transform.position += animBone.transform.position - StartAnim;
-                print(transform.position);
-                print(animBone.transform.position);
-                print(StartAnim);
-                print(transform.position);
+
+
+                transform.position += transform.forward * 10;
+
             }
             Animating = false;
         }
@@ -237,6 +236,10 @@ public class EnemyNavMesh : MonoBehaviour
     {
         swing.Play();
     }
+    void swingTP()
+    {
+
+    }
 
     void GroundBlastParticel()
     {
@@ -274,7 +277,6 @@ public class EnemyNavMesh : MonoBehaviour
         if (!alreadyAttacked)
         {
             anim.SetTrigger("range");
-            print(gameObject.transform.rotation.y);
             Invoke(nameof(throwTrident), .5f);
 
 
