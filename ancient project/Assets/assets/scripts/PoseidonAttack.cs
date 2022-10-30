@@ -29,7 +29,7 @@ public class PoseidonAttack : MonoBehaviour
                 if(managerVariables.Player.Resistence > 0)
                 {
                     audioManager.PlayPlayerShield();
-                    print("sild");
+                    GameObject.Find("Player").GetComponent<Player>().ShieldCooldown = 0;
                 }
             }
             else

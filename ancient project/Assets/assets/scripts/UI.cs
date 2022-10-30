@@ -21,6 +21,7 @@ public class UI : MonoBehaviour
     [SerializeField] GameObject StaminaMask;
     [SerializeField] GameObject JumpColor;
     [SerializeField] GameObject AttackColor;
+    [SerializeField] GameObject ShieldColor;
 
     [SerializeField] GameObject BossBar;
     private void Start()
@@ -53,7 +54,12 @@ private void Update()
 
         float dielikJ = BasicInventorySlot / managerVariables.Player.JumpCooldown;
         JumpColor.transform.position = new Vector2(JumpColor.transform.position.x, (player.JumpCooldown * dielikJ)- 12.5f);
-        if(managerVariables.Player.JumpCooldown == player.JumpCooldown)
+
+        
+
+
+
+        if (managerVariables.Player.JumpCooldown == player.JumpCooldown)
         {
             JumpColor.GetComponent<Image>().color = new Color32(255, 180, 0, 100);
         }
@@ -74,8 +80,19 @@ private void Update()
             AttackColor.GetComponent<Image>().color = new Color32(178, 128, 45, 100);
 
         }
+        float dielikShield = BasicInventorySlot / managerVariables.Player.ShieldCooldown;
+        ShieldColor.transform.position = new Vector2(ShieldColor.transform.position.x, (player.ShieldCooldown * dielikShield) - 12.5f);
+        if (managerVariables.Player.ShieldCooldown == player.ShieldCooldown)
+        {
+            ShieldColor.GetComponent<Image>().color = new Color32(255, 180, 0, 100);
+        }
+        else
+        {
+            ShieldColor.GetComponent<Image>().color = new Color32(178, 128, 45, 100);
 
-        
+        }
+
+
         if (GameObject.FindGameObjectsWithTag("Boss").Length != 0)
         {
             if (GameObject.FindGameObjectsWithTag("Boss")[0].gameObject.name == "Poseidon")

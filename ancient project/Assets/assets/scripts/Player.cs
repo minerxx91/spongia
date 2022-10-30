@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     float RotationSpeed = 300;
     public float JumpCooldown = 0;
     public float AttackCooldown = 0;
+    public float ShieldCooldown = 0;
     public float StunCooldown = 0;
     float attackprocess = 0;
     
@@ -72,59 +73,7 @@ public class Player : MonoBehaviour
         attackParticle = GameObject.Find("SwordSwing").GetComponent<ParticleSystem>();
     }
 
-    void animationSelect(string select)
-    {
-        if (select == "forward")
-        {
-            anim.SetBool("forward", true);
-            anim.SetBool("left", false);
-            anim.SetBool("right", false);
-            anim.SetBool("back", false);
-        }
-        else if (select == "back")
-        {
-            anim.SetBool("forward", false);
-            anim.SetBool("left", false);
-            anim.SetBool("right", false);
-            anim.SetBool("back", true);
-        }
-        else if (select == "left")
-        {
-            anim.SetBool("forward", false);
-            anim.SetBool("left", true);
-            anim.SetBool("right", false);
-            anim.SetBool("back", false);
-        }
-        else if (select == "right")
-        {
-            anim.SetBool("forward", false);
-            anim.SetBool("left", false);
-            anim.SetBool("right", true);
-            anim.SetBool("back", false);
-        }
-        else
-        {
-            anim.SetBool("forward", false);
-            anim.SetBool("left", false);
-            anim.SetBool("right", false);
-            anim.SetBool("back", false);
-        }
-    }
-
-    void ResetAttack()
-    {
-        managerVariables.Player.AttackReady = true;
-    }
-
-    void ResetAttackHorizontal()
-    {
-        attackHorizontal.SetActive(false);
-    }
-
-    void ResetAttackVertical()
-    {
-        attackVertical.SetActive(false);
-    }
+  
 
     void Update()
     {
@@ -135,7 +84,13 @@ public class Player : MonoBehaviour
         else
             JumpCooldown = managerVariables.Player.JumpCooldown;
 
-        if(managerVariables.Player.AttackInProcess)
+
+        if (ShieldCooldown < managerVariables.Player.ShieldCooldown)
+            ShieldCooldown += Time.deltaTime;
+        else
+            ShieldCooldown = managerVariables.Player.ShieldCooldown;
+
+        if (managerVariables.Player.AttackInProcess)
         {
             
             attackprocess += Time.deltaTime;
@@ -360,8 +315,12 @@ public class Player : MonoBehaviour
         }
         if (Input.GetKey(controls.Block) && !anim.GetCurrentAnimatorStateInfo(0).IsName("rolling"))
         {
-            anim.SetBool("block", true);
-            managerVariables.Player.Resistence = 80;
+            if(ShieldCooldown >= managerVariables.Player.ShieldCooldown)
+            {
+                anim.SetBool("block", true);
+                managerVariables.Player.Resistence = 80;
+            }
+            
         }
         else
         {
@@ -502,5 +461,58 @@ public class Player : MonoBehaviour
         }
 
 
+    }
+    void animationSelect(string select)
+    {
+        if (select == "forward")
+        {
+            anim.SetBool("forward", true);
+            anim.SetBool("left", false);
+            anim.SetBool("right", false);
+            anim.SetBool("back", false);
+        }
+        else if (select == "back")
+        {
+            anim.SetBool("forward", false);
+            anim.SetBool("left", false);
+            anim.SetBool("right", false);
+            anim.SetBool("back", true);
+        }
+        else if (select == "left")
+        {
+            anim.SetBool("forward", false);
+            anim.SetBool("left", true);
+            anim.SetBool("right", false);
+            anim.SetBool("back", false);
+        }
+        else if (select == "right")
+        {
+            anim.SetBool("forward", false);
+            anim.SetBool("left", false);
+            anim.SetBool("right", true);
+            anim.SetBool("back", false);
+        }
+        else
+        {
+            anim.SetBool("forward", false);
+            anim.SetBool("left", false);
+            anim.SetBool("right", false);
+            anim.SetBool("back", false);
+        }
+    }
+
+    void ResetAttack()
+    {
+        managerVariables.Player.AttackReady = true;
+    }
+
+    void ResetAttackHorizontal()
+    {
+        attackHorizontal.SetActive(false);
+    }
+
+    void ResetAttackVertical()
+    {
+        attackVertical.SetActive(false);
     }
 }
