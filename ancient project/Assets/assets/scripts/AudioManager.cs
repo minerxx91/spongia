@@ -19,6 +19,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip EnemyDamageIncome2;
     [SerializeField] AudioClip EnemyDamageIncome3;
 
+    [SerializeField] AudioClip PoseidonMelee;
+
     AudioSource run;
 
 
@@ -103,6 +105,13 @@ public class AudioManager : MonoBehaviour
             AS[0].PlayOneShot(EnemyDamageIncome3);
         }
         
+
+
+    }
+    public void PLayPoseidonMelee()
+    {
+
+        AS[0].PlayOneShot(PoseidonMelee);
 
 
     }

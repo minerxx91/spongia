@@ -6455,6 +6455,7 @@ MonoBehaviour:
   EnemyDamageIncome1: {fileID: 8300000, guid: 781d5b4fc6b0c6548a78c21388e546b7, type: 3}
   EnemyDamageIncome2: {fileID: 8300000, guid: e84f122f06199da46b92d9145d04e878, type: 3}
   EnemyDamageIncome3: {fileID: 8300000, guid: 2817a1c526bf0fa469866d981a3025c0, type: 3}
+  PoseidonMelee: {fileID: 8300000, guid: ac1638a698323604fbe6b316cb6a4d71, type: 3}
 --- !u!82 &757195129
 AudioSource:
   m_ObjectHideFlags: 0
