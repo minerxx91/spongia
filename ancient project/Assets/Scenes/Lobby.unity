@@ -8214,8 +8214,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 58c91f77d192c894e9fe2c88462756f3, type: 2}
+  m_sharedMaterial: {fileID: 21545756276826052, guid: 58c91f77d192c894e9fe2c88462756f3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -9373,6 +9373,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3735276129880483234, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 58c91f77d192c894e9fe2c88462756f3, type: 2}
+    - target: {fileID: 3735276129880483234, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 21545756276826052, guid: 58c91f77d192c894e9fe2c88462756f3, type: 2}
     - target: {fileID: 4040500495425039491, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
       propertyPath: m_Name
       value: ScenarioCanvas
@@ -9473,6 +9481,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7201055278145273322, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 58c91f77d192c894e9fe2c88462756f3, type: 2}
+    - target: {fileID: 7201055278145273322, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 21545756276826052, guid: 58c91f77d192c894e9fe2c88462756f3, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
 --- !u!114 &1861264355 stripped

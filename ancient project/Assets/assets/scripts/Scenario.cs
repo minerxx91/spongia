@@ -78,7 +78,7 @@ public class Scenario : MonoBehaviour
 
     IEnumerator LobbySequence()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(2);
         lobbyText.text = "Vitaj, dúfame že si našu hru užiješ!";
         yield return new WaitForSeconds(5);
         lobbyText.text = "";
