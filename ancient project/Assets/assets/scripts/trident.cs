@@ -7,13 +7,13 @@ public class trident : MonoBehaviour
     float time =0;
     private void Start()
     {
-        transform.LookAt(GameObject.Find("Player").transform.position + new Vector3(0,0,0));
+        transform.LookAt(GameObject.Find("Player").transform.position + new Vector3(0,.5f,0));
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x + 90, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
     }
 
     void Update()
     {
-        transform.position += transform.up * Time.deltaTime * 18;
+        transform.position += transform.up * Time.deltaTime * 36;
 
 
         time += Time.deltaTime;

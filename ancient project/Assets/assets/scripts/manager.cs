@@ -60,6 +60,13 @@ public class manager : MonoBehaviour
     }
     public PlayerStats Player = new PlayerStats();
 
+    public class PoseidonStats
+    {
+        public float Damage = 20;
+        public float DamageIncrease = 0;
+    }
+
+    public PoseidonStats Poseidon = new PoseidonStats();
 
     private void Start()
     {

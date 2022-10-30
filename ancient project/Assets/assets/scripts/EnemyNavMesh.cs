@@ -58,8 +58,10 @@ public class EnemyNavMesh : MonoBehaviour
     private Vector3 StartAnim;
     private Vector3 EndAnim;
     private Animator anim;
+    private Vector3 Targetposition;
 
     public GameObject AttackMelee1;
+    public GameObject AttackMelee2;
 
 
     void Awake()
@@ -71,7 +73,7 @@ public class EnemyNavMesh : MonoBehaviour
         anim = GetComponent<Animator>();
 
         AttackMelee1.SetActive(false);
-
+        AttackMelee2.SetActive(false);
     }
     private void Start()
     {
@@ -95,8 +97,20 @@ public class EnemyNavMesh : MonoBehaviour
         AttackMelee1.SetActive(false);
     }
 
+    void DoAttackMelee2()
+    {
+        AttackMelee2.SetActive(true);
+        Invoke(nameof(ResetAttackMelee2), .1f);
+    }
+
+    void ResetAttackMelee2()
+    {
+        AttackMelee2.SetActive(false);
+    }
+
     void Update()
     {
+        Targetposition = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
         if (!anim.GetCurrentAnimatorStateInfo(0).IsName("melee2"))
         {
             if (Animating)
@@ -207,6 +221,7 @@ public class EnemyNavMesh : MonoBehaviour
 
     private void Chasing()
     {
+        transform.LookAt(Targetposition);
         anim.SetBool("walk", true);
         agent.SetDestination(player.position);
         agent.speed = chasingSpeed;
@@ -216,11 +231,14 @@ public class EnemyNavMesh : MonoBehaviour
 
     private void MeleeAttacking()
     {
+        
+        transform.LookAt(Targetposition);
         anim.SetBool("walk", false);
         agent.SetDestination(transform.position);
         
         if (!alreadyAttacked)
         {
+            managerVariables.Poseidon.DamageIncrease = 0;
             anim.SetTrigger("melee1");
             Invoke(nameof(DoAttackMelee1), 1f);
             swing.Play();
@@ -251,10 +269,11 @@ public class EnemyNavMesh : MonoBehaviour
         anim.SetBool("walk", false);
         if (!alreadyAttacked)
         {
-
+            managerVariables.Poseidon.DamageIncrease = 30;
             StartAnim = animBone.transform.position;
             Animating = true;
             anim.SetTrigger("melee2");
+            Invoke(nameof(DoAttackMelee2), 2.5f);
             Invoke(nameof(swingParticel), 2f);
             Invoke(nameof(GroundBlastParticel), 2.5f);
 
@@ -268,14 +287,15 @@ public class EnemyNavMesh : MonoBehaviour
 
     void throwTrident()
     {
-        transform.LookAt(player);
         Instantiate(projectile, trident.transform.position, Quaternion.Euler(new Vector3(90, transform.rotation.eulerAngles.y, 0)));
     }
     void RangedAttacking()
     {
+        transform.LookAt(Targetposition);
         anim.SetBool("walk", true);
         if (!alreadyAttacked)
         {
+            managerVariables.Poseidon.DamageIncrease = 10;
             anim.SetTrigger("range");
             Invoke(nameof(throwTrident), .5f);
 

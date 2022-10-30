@@ -4906,6 +4906,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1858870017177229331}
   - component: {fileID: 9038246743056178847}
+  - component: {fileID: -6965216646681305183}
+  - component: {fileID: 2251743887608819207}
   m_Layer: 0
   m_Name: projectile
   m_TagString: Untagged
@@ -4943,6 +4945,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 810f89dc7534cec4dbb4d84f6f541beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-6965216646681305183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3382990444819746559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3af7f1bea8380f349958c6a4df512800, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &2251743887608819207
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3382990444819746559}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1893146493694813135
 PrefabInstance:
   m_ObjectHideFlags: 0
