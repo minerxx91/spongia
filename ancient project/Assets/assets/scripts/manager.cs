@@ -25,7 +25,7 @@ public class manager : MonoBehaviour
 
         public float MaxHealth = 100;
         public float Health = 100;
-        public float HealthRegen = 5;
+        public float HealthRegen = .5f;
 
         public float Stamina = 100;
         public float MaxStamina = 100;
