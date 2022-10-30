@@ -90,23 +90,15 @@ public class manager : MonoBehaviour
     {
 
         
+      
+            SceneManager.LoadScene(levelIndex);
+
+           
+
+            
+           
+            
         
-        if (levelIndex < 5)
-        {
-            levelIndex++;
-            SceneManager.LoadScene(levelIndex);
-
-           
-
-            
-           
-            
-        }
-        else
-        {
-            levelIndex = 0;
-            SceneManager.LoadScene(levelIndex);
-        }
         
         
     }

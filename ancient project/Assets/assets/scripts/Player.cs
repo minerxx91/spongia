@@ -407,15 +407,20 @@ public class Player : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.name == "Portal")
+        for (int i =1; i<6; i++)
         {
-            
-            
-            if (Input.GetKey(controls.Interact))
+            if (other.gameObject.name == "Portal"+i)
             {
-                lvlloader.SwitchScene();
+
+
+                if (Input.GetKey(controls.Interact))
+                {
+                    managerVariables.levelIndex = i;
+                    lvlloader.SwitchScene();
+                }
             }
         }
+       
 
     }
     private void OnTriggerEnter(Collider other)
