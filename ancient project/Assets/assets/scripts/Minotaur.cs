@@ -16,13 +16,9 @@ public class Minotaur : MonoBehaviour
 
     GameObject Manager;
     manager managerVariables;
-
     AudioManager audioManager;
-
     Renderer rend;
-
     float materialDelay;
-
     public LayerMask whatIsGround, whatIsPlayer;
 
     //Patroling
@@ -35,20 +31,22 @@ public class Minotaur : MonoBehaviour
     bool alreadyAttacked;
 
     //States
-
-
     float gravityIncrease = 0;
     public float sightRange, MeleeAttackRange, MidAttackRange, RangerAttackRange;
     public bool playerInSightRange, playerInMeleeAttackRange, playerInMidAttackRange, playerInMidAttackRange2, playerInRangerAttackRange, playerInRangerAttackRange2;
 
 
-
+    //Health
     public float Health = 100;
     public float maxHealth = 100;
     TextMeshPro healthbar;
+
+
+    //Particles
     ParticleSystem selectAura;
     Light orangeLight;
-    [SerializeField] ParticleSystem swing;
+    [SerializeField] ParticleSystem SwingRight;
+    [SerializeField] ParticleSystem SwingLeft;
     [SerializeField] ParticleSystem GroundBlast;
     [SerializeField] ParticleSystem MeleeBlast;
 
@@ -56,7 +54,7 @@ public class Minotaur : MonoBehaviour
     private Animator anim;
     private Vector3 Targetposition;
 
-    //public GameObject AttackMelee1;
+    public GameObject AttackMelee1;
     //public GameObject AttackMelee2;
 
 
@@ -70,7 +68,7 @@ public class Minotaur : MonoBehaviour
 
         anim = GetComponent<Animator>();
 
-        //AttackMelee1.SetActive(false);
+        AttackMelee1.SetActive(false);
         //AttackMelee2.SetActive(false);
     }
     private void Start()
@@ -87,13 +85,13 @@ public class Minotaur : MonoBehaviour
 
     void DoAttackMelee1()
     {
-        //AttackMelee1.SetActive(true);
+        AttackMelee1.SetActive(true);
         Invoke(nameof(ResetAttackMelee1), .1f);
     }
 
     void ResetAttackMelee1()
     {
-        //AttackMelee1.SetActive(false);
+        AttackMelee1.SetActive(false);
     }
 
     void DoAttackMelee2()
@@ -242,7 +240,7 @@ public class Minotaur : MonoBehaviour
             anim.SetTrigger("melee1");
             //Invoke(nameof(MeleeBlastParticel), 1f);
             Invoke(nameof(DoAttackMelee1), 1f);
-            swing.Play();
+            SwingRight.Play();
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
@@ -253,7 +251,7 @@ public class Minotaur : MonoBehaviour
 
     void swingParticel()
     {
-        swing.Play();
+        SwingRight.Play();
         MidAttackLook = false;
         Animating = true;
     }
