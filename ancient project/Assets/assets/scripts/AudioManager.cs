@@ -15,6 +15,10 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] AudioClip PortalEnter;
 
+    [SerializeField] AudioClip EnemyDamageIncome1;
+    [SerializeField] AudioClip EnemyDamageIncome2;
+    [SerializeField] AudioClip EnemyDamageIncome3;
+
     AudioSource run;
 
 
@@ -80,6 +84,25 @@ public class AudioManager : MonoBehaviour
     {
 
         AS[0].PlayOneShot(PortalEnter);
+
+
+    }
+    public void PlayEnemyDamageIncome()
+    {
+        int random = Random.Range(1, 3);
+        if (random == 1)
+        {
+            AS[0].PlayOneShot(EnemyDamageIncome1);
+        }
+        if (random == 2)
+        {
+            AS[0].PlayOneShot(EnemyDamageIncome2);
+        }
+        if (random == 3)
+        {
+            AS[0].PlayOneShot(EnemyDamageIncome3);
+        }
+        
 
 
     }

@@ -6,14 +6,17 @@ public class sword : MonoBehaviour
 {
 
     manager managerVariables;
+    AudioManager audioManager;
     private void Start()
     {
         managerVariables = GameObject.Find("Manager").GetComponent<manager>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "Boss")
         {
+            audioManager.PlayEnemyDamageIncome();
             if (other.GetComponent<Poseidon>().Health > managerVariables.Player.Damage + managerVariables.Player.DamageIncrease)
             {
                 other.GetComponent<Poseidon>().Health -= managerVariables.Player.Damage + managerVariables.Player.DamageIncrease;
