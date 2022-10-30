@@ -44,6 +44,9 @@ public class manager : MonoBehaviour
         public float JumpCost = 20;
         public bool Jumping = false;
 
+        public float StunCooldown = 10f;
+        public float StunDuration = 5f;
+
         public float gravityIncrease = 0;
         public GameObject target;
 

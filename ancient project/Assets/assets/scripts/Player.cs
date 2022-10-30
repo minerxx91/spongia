@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     float RotationSpeed = 300;
     public float JumpCooldown = 0;
     public float AttackCooldown = 0;
+    public float StunCooldown = 0;
     float attackprocess = 0;
     
     public Vector3 JumpVelocity;
@@ -39,6 +40,8 @@ public class Player : MonoBehaviour
     GameObject attackVertical;
 
     ParticleSystem attackParticle;
+
+    EnemyNavMesh enemyNavMesh = new EnemyNavMesh();
 
     // Start is called before the first frame update
     void Start()
@@ -147,6 +150,13 @@ public class Player : MonoBehaviour
             AttackCooldown += Time.deltaTime;
         else
             AttackCooldown = managerVariables.Player.AttackCooldown;
+
+        if (StunCooldown < managerVariables.Player.JumpCooldown)
+        {
+            StunCooldown += Time.deltaTime;
+        }
+        else StunCooldown = managerVariables.Player.StunCooldown;
+
         //gravity
 
         if (!CHC.isGrounded)
@@ -385,6 +395,10 @@ public class Player : MonoBehaviour
             managerVariables.Player.Stamina = managerVariables.Player.MaxStamina;
         }
 
+        if (Input.GetKeyDown(controls.Attack))
+        {
+            StartCoroutine(Stun());
+        }
 
     }
 
@@ -405,6 +419,26 @@ public class Player : MonoBehaviour
         }
         managerVariables.Player.Jumping = false;
     }
+
+    IEnumerator Stun()
+    {
+        yield return new WaitForSeconds(.1f);
+
+        float startTime = Time.time;
+        RaycastHit hit;
+        if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y+2, transform.position.z), transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
+        {
+            if (hit.collider.tag == "Boss")
+            {
+                while (Time.time < managerVariables.Player.StunDuration + startTime)
+                {
+                    enemyNavMesh.walkPoint = hit.collider.transform.position;
+                    yield return null;
+                }
+            }
+        }
+    }
+
     private void OnTriggerStay(Collider other)
     {
         for (int i =1; i<6; i++)
@@ -450,5 +484,4 @@ public class Player : MonoBehaviour
 
 
     }
-
 }
