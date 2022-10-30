@@ -8027,6 +8027,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: basic_minotaur
       objectReference: {fileID: 0}
+    - target: {fileID: 3871818083078945595, guid: df60f1711b1a94d4cac7ac0001d337cf, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -6478536213147159724, guid: df60f1711b1a94d4cac7ac0001d337cf, type: 3}
+    - target: {fileID: 8490948694751543706, guid: df60f1711b1a94d4cac7ac0001d337cf, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -3846018093981099296, guid: df60f1711b1a94d4cac7ac0001d337cf, type: 3}
+    - target: {fileID: 9018766063561771433, guid: df60f1711b1a94d4cac7ac0001d337cf, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f1e5c8e10bc30c34684ea4172b1a1aa8, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df60f1711b1a94d4cac7ac0001d337cf, type: 3}
 --- !u!4 &1807863483 stripped
