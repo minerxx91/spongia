@@ -16,50 +16,62 @@ public class Scenario : MonoBehaviour
     GameObject boss;
 
     private bool captions = true;
+    private bool callOnce = false;
 
 
 
     private void Start()
     {
-        
-        //subtitlesCanvas.SetActive(false);
-        Scene currentScene = SceneManager.GetActiveScene();
-        string sceneName = currentScene.name;
+
+    }
+
+    private void Update()
+    {
+
+    }
+
+    private void FixedUpdate()
+    {
         if (captions)
         {
-            
-            //subtitlesCanvas.SetActive(true);
-            if (sceneName == "Lobby")
+            Scene currentScene = SceneManager.GetActiveScene();
+            string sceneName = currentScene.name;
+            if (sceneName == "Lobby" && callOnce == false)
             {
                 StartCoroutine(LobbySequence());
+                callOnce = true;
             }
-            else if (sceneName == "LVL1")
+            else if (sceneName == "LVL1" && callOnce == false)
             {
                 StartCoroutine(Lvl1Sequence());
+                callOnce= true;
             }
-            else if(sceneName == "LVL2")
+            else if (sceneName == "LVL2" && boss.IsDestroyed() && callOnce == false)
             {
+                Debug.Log(boss.IsDestroyed());
                 StartCoroutine(Lvl2Sequence());
+                callOnce = true;
             }
-            else if( sceneName == "LVL3")
+            else if (sceneName == "LVL3" && callOnce == false)
             {
                 StartCoroutine(Lvl3Sequence());
+                callOnce = true;
             }
-            else if (sceneName == "LVL4")
+            else if (sceneName == "LVL4" && callOnce == false)
             {
                 StartCoroutine(Lvl4Sequence());
+                callOnce = true;
             }
-            else if (sceneName == "LVL5")
+            else if (sceneName == "LVL5" && callOnce == false)
             {
                 StartCoroutine(Lvl5Sequence());
+                callOnce = true;
             }
             else
             {
-                Debug.Log("WTF");
+
             }
         }
-
-
     }
 
     IEnumerator LobbySequence()
@@ -68,6 +80,8 @@ public class Scenario : MonoBehaviour
         subtitles.text = "Vitaj, dúfame že si našu hru užiješ!";
         yield return new WaitForSeconds(5);
         subtitles.text = "";
+        subtitlesCanvas.SetActive(false);
+
 
     }
     IEnumerator Lvl1Sequence()
@@ -87,7 +101,7 @@ public class Scenario : MonoBehaviour
         yield return new WaitForSeconds(2);
         subtitles.text = "Som Zeus, vládca gréckych bohov a teba som si vybral aby si zabil Minotaura, tá obluda už mi ide dlho na nervy, na tvoju odpoveď nie je čas, priprav sa na labyrint a veľa šťastia, budeš ho potrebovať ale veľa času ti nedávam a budeš lízať podlahu.";
         yield return new WaitForSeconds(2);
-        subtitles.text = "";
+        subtitlesCanvas.SetActive(false);
 
 
     }
@@ -101,7 +115,7 @@ public class Scenario : MonoBehaviour
         yield return new WaitForSeconds(2);
         subtitles.text = "Nemám čas sa zahadzovať s takýmito maličkosťami, na to mám takých hlupáčikov ako ty, ale to ako sa ti podarilo prežiť je naozaj obdivuhodné. Nejakým spôsobom sa ti podarilo použiť medúzinu schopnosť. Musíš byť poloboh s veľkým darom. Poseidon v poslednej dobe začal robiť problémy, mal by si sa o neho v mojom mene postarať kým si to niekto odskáče. Nie je čas navyše, priprav sa. Ó a inak skoro som zabudol, tu máš nejaké vybavenie nech po tebe nezostane len mastný fľak.";
         yield return new WaitForSeconds(2);
-        subtitles.text = "";
+        subtitlesCanvas.SetActive(false);
     }
 
     IEnumerator Lvl3Sequence()
@@ -109,7 +123,7 @@ public class Scenario : MonoBehaviour
         yield return new WaitForSeconds(1);
         subtitles.text = "Zatiaľ si ma nesklamal, to sa ti musí nechať, ale táto úloha nebude taká ľahká. Hádesovi sa toto páčiť nebude, možno vypukne vojna, treba vykonať potrebné kroky skôr ako ich podnikne on. Musíš sa ho zbaviť. Spolieham na teba.";
         yield return new WaitForSeconds(2);
-        subtitles.text = "";
+        subtitlesCanvas.SetActive(false);
     }
 
     IEnumerator Lvl4Sequence()
@@ -117,7 +131,7 @@ public class Scenario : MonoBehaviour
         yield return new WaitForSeconds(1);
         subtitles.text = "To si bol ty? To ty si porazil Poseidona? Nebuď smiešny, poď bližšie nech to s tebou rýchlo skoncujem.";
         yield return new WaitForSeconds(2);
-        subtitles.text = "";
+        subtitlesCanvas.SetActive(false);
     }
 
     IEnumerator Lvl5Sequence()
@@ -129,7 +143,7 @@ public class Scenario : MonoBehaviour
         yield return new WaitForSeconds(2);
         subtitles.text = "Staviaš sa proti mne? No poť ty opica, nech to mám za sebou  a môžem vládnuť svojmu novému svetu.";
         yield return new WaitForSeconds(2);
-        subtitles.text = "";
+        subtitlesCanvas.SetActive(false);
     }
 
 

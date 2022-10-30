@@ -6355,7 +6355,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   subtitles: {fileID: 890777973}
   subtitlesCanvas: {fileID: 809948358}
-  boss: {fileID: 0}
+  boss: {fileID: 221832000}
 --- !u!1 &856012823
 GameObject:
   m_ObjectHideFlags: 0
