@@ -324,7 +324,7 @@ public class Player : MonoBehaviour
         else
         {
             managerVariables.Player.Health = managerVariables.Player.MaxHealth;
-        }
+        }   
 
         if (Input.GetKey(controls.Jump) && !(Velocity[0] == 0 && Velocity[2] == 0) && SpaceAvaiable)
         {

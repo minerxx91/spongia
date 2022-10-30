@@ -139,6 +139,7 @@ public class Scenario : MonoBehaviour
     IEnumerator Lvl5Sequence()
     {
         yield return new WaitForSeconds(1);
+        
         othersText.text = "Väčšieho mongola som ešte nevidel, urobil si všetku prácu za mňa, Zeus a Poseidon si naozaj mysleli že sa uspokojím s ríšou mŕtvych, tak to boli na omyle a vďaka tebe teraz môžem vládnuť celému svetu. Bež kým si to rozmyslím, nechám ťa žiť ale tvoje vybavenie si beriem späť.";
         yield return new WaitForSeconds(2);
         playerText.text = "Celú dobu si ma klamal, toto celé ti nemôžem nechať len tak prejsť.";

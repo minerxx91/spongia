@@ -36,7 +36,7 @@ public class UI : MonoBehaviour
 
 
 
-        Help.GetComponent<TextMeshProUGUI>().text = "Zmackni  -" + controls.Interact.ToString() + "-  pre pokracovanie";
+        Help.GetComponent<TextMeshProUGUI>().text = "Zmačkni  „" + controls.Interact.ToString() + "“  pre pokračovanie";
 
 
        
