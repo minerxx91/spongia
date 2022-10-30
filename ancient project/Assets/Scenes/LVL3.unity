@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 516e44f0c9cf3e34d9ecd62d6542d08b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 3884727775698485952, guid: f891d6219b852944db4eb482522e51ac, type: 3}
+  player: {fileID: 8932282751747069662, guid: 94c2503e9655f294e8ba133238de9f13, type: 3}
 --- !u!4 &52497975
 Transform:
   m_ObjectHideFlags: 0
@@ -6580,7 +6580,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35d5b50bb6e22a84a88d23873d306363, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerAttack: {fileID: 0}
+  PlayerAttack1: {fileID: 0}
+  PlayerAttack2: {fileID: 0}
+  PlayerAttack3: {fileID: 0}
+  PlayerRoll: {fileID: 0}
+  PortalEnter: {fileID: 0}
 --- !u!82 &652226112
 AudioSource:
   m_ObjectHideFlags: 0
