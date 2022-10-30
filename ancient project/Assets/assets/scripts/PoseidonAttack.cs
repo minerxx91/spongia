@@ -22,8 +22,7 @@ public class PoseidonAttack : MonoBehaviour
         {
             if (managerVariables.Player.Health > managerVariables.Poseidon.Damage + managerVariables.Poseidon.DamageIncrease)
             {
-                managerVariables.Player.Health -= managerVariables.Poseidon.Damage + managerVariables.Poseidon.DamageIncrease;
-
+                managerVariables.Player.Health -= (managerVariables.Poseidon.Damage + managerVariables.Poseidon.DamageIncrease)*(100- managerVariables.Player.Resistence) /100;
             }
             else
             {
