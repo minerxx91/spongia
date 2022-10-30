@@ -146,7 +146,7 @@ public class Player : MonoBehaviour
 
         PlayerSpeed = managerVariables.Player.Speed * Time.deltaTime;
 
-        if (!managerVariables.Player.Jumping && !Input.GetKey(controls.Block))
+        if (!managerVariables.Player.Jumping && !Input.GetKey(controls.Block)|| managerVariables.Player.ShieldCooldown != ShieldCooldown)
         {
            
             Velocity = new Vector3(MoveX * PlayerSpeed, -managerVariables.Player.gravityIncrease, MoveZ * PlayerSpeed);

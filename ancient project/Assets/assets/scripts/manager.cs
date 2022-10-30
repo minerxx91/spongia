@@ -45,7 +45,7 @@ public class manager : MonoBehaviour
         public float JumpCost = 20;
         public bool Jumping = false;
 
-        public float ShieldCooldown = 5;
+        public float ShieldCooldown = 8;
 
         public float StunCooldown = 10f;
         public float StunDuration = 5f;
