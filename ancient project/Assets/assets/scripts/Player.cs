@@ -193,10 +193,12 @@ public class Player : MonoBehaviour
 
         if (!managerVariables.Player.Jumping)
         {
+           
             Velocity = new Vector3(MoveX * PlayerSpeed, -managerVariables.Player.gravityIncrease, MoveZ * PlayerSpeed);
         }
         else
         {
+            
             Velocity = new Vector3(0, -managerVariables.Player.gravityIncrease, 0);
 
         }
@@ -213,9 +215,11 @@ public class Player : MonoBehaviour
 
 
                 }
+                audioManager.StopRun();
             }
             else
             {
+                audioManager.PlayRun();
                 anim.SetBool("isRunning", true);
 
             }
@@ -363,6 +367,7 @@ public class Player : MonoBehaviour
             else anim.SetTrigger("attack1");
 
             managerVariables.Player.AttackReady = false;
+            
             if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack2"))
             {
                 attackParticle.startColor = new Color(1, 0.2f, 0, 1);
@@ -371,9 +376,11 @@ public class Player : MonoBehaviour
                 Invoke(nameof(ResetAttack), managerVariables.Player.AttackCooldown);
                 Invoke(nameof(ResetAttackVertical), .1f);
                 attackVertical.SetActive(true);
+                audioManager.PlayPlayerAttackS();
             }
             else
             {
+                audioManager.PlayPlayerAttack();
                 attackParticle.startColor = new Color(1, 1, 1, 1);
                 attackParticle.Play();
                 managerVariables.Player.DamageIncrease = 0;
@@ -381,6 +388,7 @@ public class Player : MonoBehaviour
                 Invoke(nameof(ResetAttackHorizontal), .1f);
                 attackHorizontal.SetActive(true);
             }
+            
             managerVariables.Player.AttackInProcess = true;
             AttackCooldown = 0;
         }
@@ -408,6 +416,7 @@ public class Player : MonoBehaviour
         anim.SetBool("rolling", false);
         float angle = Mathf.Atan2(JumpVelocity[0], JumpVelocity[2]) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, angle, 0));
+        audioManager.PlayPlayerRoll();
 
         float startTime = Time.time;
         while (Time.time < startTime + managerVariables.Player.JumpTime)
@@ -449,6 +458,7 @@ public class Player : MonoBehaviour
 
                 if (Input.GetKey(controls.Interact))
                 {
+                    audioManager.PlayPortalEnter();
                     managerVariables.levelIndex = i;
                     lvlloader.SwitchScene();
                 }

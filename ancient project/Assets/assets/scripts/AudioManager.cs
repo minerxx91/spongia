@@ -4,9 +4,18 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    
 
-    public AudioSource run;
+    public static GameObject Audiomanager_d;
+
+    [SerializeField] AudioClip PlayerAttack1;
+    [SerializeField] AudioClip PlayerAttack2;
+    [SerializeField] AudioClip PlayerAttack3;
+
+    [SerializeField] AudioClip PlayerRoll;
+
+    [SerializeField] AudioClip PortalEnter;
+
+    AudioSource run;
 
 
     AudioSource[] AS;
@@ -15,10 +24,63 @@ public class AudioManager : MonoBehaviour
         AS = GetComponents<AudioSource>();
 
         run = AS[1];
+
+        if (Audiomanager_d != null)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            Audiomanager_d = this.gameObject;
+        }
+
+        DontDestroyOnLoad(gameObject);
     }   
     public void PlayRun()
     {
-        AS[1].Play();
+        if(!run.isPlaying)
+        {
+            run.Play();
+        }
+        
     }
+    public void StopRun()
+    {
+        run.Stop();
+    }
+    public void PlayPlayerAttack()
+    {
+        int random = Random.Range(1, 2);
+        if(random == 1)
+        {
+            AS[0].PlayOneShot(PlayerAttack2);
+        }
+        if(random == 2)
+        {
+            AS[0].PlayOneShot(PlayerAttack3);
+        }
+     
 
+    }
+    public void PlayPlayerAttackS()
+    {
+        
+            AS[0].PlayOneShot(PlayerAttack1);
+        
+
+    }
+    public void PlayPlayerRoll()
+    {
+
+        AS[0].PlayOneShot(PlayerRoll);
+
+
+    }
+    public void PlayPortalEnter()
+    {
+
+        AS[0].PlayOneShot(PortalEnter);
+
+
+    }
 }
