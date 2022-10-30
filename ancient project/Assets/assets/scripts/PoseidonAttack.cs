@@ -5,12 +5,15 @@ using UnityEngine;
 public class PoseidonAttack : MonoBehaviour
 {
     manager managerVariables;
+    AudioManager audioManager;
     private void Start()
     {
         managerVariables = GameObject.Find("Manager").GetComponent<manager>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+
     }
 
-    
+
     void Update()
     {
         
@@ -23,6 +26,11 @@ public class PoseidonAttack : MonoBehaviour
             if (managerVariables.Player.Health > managerVariables.Poseidon.Damage + managerVariables.Poseidon.DamageIncrease)
             {
                 managerVariables.Player.Health -= (managerVariables.Poseidon.Damage + managerVariables.Poseidon.DamageIncrease)*(100- managerVariables.Player.Resistence) /100;
+                if(managerVariables.Player.Resistence > 0)
+                {
+                    audioManager.PlayPlayerShield();
+                    print("sild");
+                }
             }
             else
             {

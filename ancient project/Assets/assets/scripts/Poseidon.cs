@@ -245,7 +245,7 @@ public class Poseidon : MonoBehaviour
             //Invoke(nameof(MeleeBlastParticel), 1f);
             Invoke(nameof(DoAttackMelee1), 1f);
             swing.Play();
-            audioManager.PLayPoseidonMelee();
+            audioManager.PlayPoseidonMelee();
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }

@@ -6450,6 +6450,7 @@ MonoBehaviour:
   PlayerAttack1: {fileID: 8300000, guid: 200b0c9d15cbc2c45a2feecc04d6fb55, type: 3}
   PlayerAttack2: {fileID: 8300000, guid: 0a5022789d1cde146af4d132f4fad1d9, type: 3}
   PlayerAttack3: {fileID: 8300000, guid: 9e22e034fb258c34aa8e5d3097376b04, type: 3}
+  PlayerShield: {fileID: 8300000, guid: ac88935d1f697af4684648ea1ce869c4, type: 3}
   PlayerRoll: {fileID: 8300000, guid: 54363e6264848844eb4c2ca428862ff6, type: 3}
   PortalEnter: {fileID: 8300000, guid: c58e703a869c00c4d93778e81b6ed179, type: 3}
   EnemyDamageIncome1: {fileID: 8300000, guid: 781d5b4fc6b0c6548a78c21388e546b7, type: 3}

@@ -10,6 +10,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip PlayerAttack1;
     [SerializeField] AudioClip PlayerAttack2;
     [SerializeField] AudioClip PlayerAttack3;
+    [SerializeField] AudioClip PlayerShield;
 
     [SerializeField] AudioClip PlayerRoll;
 
@@ -108,11 +109,15 @@ public class AudioManager : MonoBehaviour
 
 
     }
-    public void PLayPoseidonMelee()
+    public void PlayPoseidonMelee()
     {
 
         AS[0].PlayOneShot(PoseidonMelee);
 
 
+    }
+    public void PlayPlayerShield()
+    {
+        AS[0].PlayOneShot(PlayerShield);
     }
 }
