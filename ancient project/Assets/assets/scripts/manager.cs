@@ -34,8 +34,8 @@ public class manager : MonoBehaviour
         public float Damage = 20 / 2;//   / 2 lebo pri attacku sa to jebne 2 krat
         public float DamageIncrease = 0;
         public float Resistence = 0;
-        public float BetweenAttackCooldown = .4f;
-        public float AttackCooldown = 1f;
+        public float BetweenAttackCooldown = .6f;
+        public float AttackCooldown = 1.5f;
         public bool AttackInProcess = false;
         public bool AttackReady = true;
 
