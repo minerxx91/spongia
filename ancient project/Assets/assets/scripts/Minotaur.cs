@@ -102,7 +102,7 @@ public class Minotaur : MonoBehaviour
 
     void Update()
     {
-        print(chasingSpeed);
+        //print(chasingSpeed);
         if(abilityChasingTime < 2)
         {
             abilityChasingTime += Time.deltaTime;
@@ -234,34 +234,31 @@ public class Minotaur : MonoBehaviour
         
         if (!alreadyAttacked)
         {
+            alreadyAttacked = true;
             managerVariables.Minotaur.DamageIncrease = 0;
             if (meleeAnim == 0)
             {
                 anim.SetTrigger("melee1");
                 meleeAnim = 1;
-                //SwingRight.Play();
+                SwingRight.Play();
                 //attack melee 1
                 print("attack rightarm");
+
+                Invoke(nameof(ResetAttack), shorttimebetweenAttacks);
             }
             else
             {
                 anim.SetTrigger("melee2");
                 meleeAnim = 0;
-                //SwingLeft.Play();
+                SwingLeft.Play();
                 //attack melee 2
                 print("attack leftarm");
+
+                Invoke(nameof(ResetAttack), timeBetweenAttacks);
             }
             
             //Invoke(nameof(MeleeBlastParticel), 1f);
             Invoke(nameof(DoAttackMelee1), 1f);
-            
-
-            alreadyAttacked = true;
-            if(meleeAnim == 1)
-                Invoke(nameof(ResetAttack), shorttimebetweenAttacks);
-            else
-                Invoke(nameof(ResetAttack), timeBetweenAttacks);
-
         }
 
 
