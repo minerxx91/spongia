@@ -6424,6 +6424,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: helmet_final
       objectReference: {fileID: 0}
+    - target: {fileID: 8843841459950393060, guid: 0baceba5cf9577743b4e8a1239c7dfb7, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f91cdc240fa70a24fa3b4a135daf4c01, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0baceba5cf9577743b4e8a1239c7dfb7, type: 3}
 --- !u!4 &543450651950775670 stripped
@@ -6460,11 +6464,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7c96c4042f2a8144a8e34d0512cbe7fc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.122
+      value: 0.154
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7c96c4042f2a8144a8e34d0512cbe7fc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.059
+      value: -0.054
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7c96c4042f2a8144a8e34d0512cbe7fc, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6494,6 +6498,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 7c96c4042f2a8144a8e34d0512cbe7fc, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f91cdc240fa70a24fa3b4a135daf4c01, type: 2}
     - target: {fileID: 919132149155446097, guid: 7c96c4042f2a8144a8e34d0512cbe7fc, type: 3}
       propertyPath: m_Name
       value: shield
@@ -6564,6 +6572,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -187.608
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 08830feb179d4414e97b21a9c138382d, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: f91cdc240fa70a24fa3b4a135daf4c01, type: 2}
     - target: {fileID: 919132149155446097, guid: 08830feb179d4414e97b21a9c138382d, type: 3}
       propertyPath: m_Name
       value: sword
