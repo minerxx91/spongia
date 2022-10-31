@@ -22,21 +22,26 @@ public class Scenario : MonoBehaviour
     [SerializeField]
     GameObject panel;
   
-    string[] Lvl3 = { "Asi som ťa podcenil, všetka česť.", "Prečo si sa o to nepostaral sám, si predsa najsilnejší z celého Olympu?",
-    "Nemám čas sa zahadzovať s takýmito maličkosťami, na to mám takých hlupáčikov ako ty, ale to ako sa ti podarilo prežiť je naozaj obdivuhodné. Nejakým spôsobom sa ti podarilo použiť medúzinu schopnosť. Musíš byť poloboh s veľkým darom. Poseidon v poslednej dobe začal robiť problémy, mal by si sa o neho v mojom mene postarať kým si to niekto odskáče. Nie je čas navyše, priprav sa. Ó a inak skoro som zabudol, tu máš nejaké vybavenie nech po tebe nezostane len mastný fľak."};
-    int[] Lvl3Field = { 1, 0, 1};
-
-    string[] Lvl1 = { };
+    string[] Lvl1 = { "Pravý hrdina, presne niekoho ako ty potrebujem.","???", "Keďže si preukázal silu a odvahu ako málokto, postaráš sa o problém " +
+        "ktorý ma trápi už roky.","???", "Zabiješ pre mňa Minotaura, ak to dokážeš získaš bohatstvo na celý život, ak nie zomrieš so cťou. " +
+        "Odmietnuť samozrejme nemôžeš, hah." };
     string[] Lvl2 = {"a","b","a","b" };
+    string[] Lvl3 = { "Asi som ťa podcenil, všetka česť.", "Prečo si sa o to nepostaral sám, si predsa najsilnejší z celého Olympu?",
+        "Nemám čas sa zahadzovať s takýmito maličkosťami, na to mám takých hlupáčikov ako ty, ale to ako sa ti podarilo prežiť je naozaj obdivuhodné. " +
+        "Nejakým spôsobom sa ti podarilo použiť medúzinu schopnosť. Musíš byť poloboh s veľkým darom. Poseidon v poslednej dobe začal robiť problémy, " +
+        "mal by si sa o neho v mojom mene postarať kým si to niekto odskáče. Nie je čas navyše, priprav sa. Ó a inak skoro som zabudol, " +
+        "tu máš nejaké vybavenie nech po tebe nezostane len mastný fľak."};
     string[] Lvl4 = { };
     string[] Lvl5 = { };
 
-    int[] Lvl1Field = {};
+    int[] Lvl1Field = {1,0,1,0,1};
     int[] Lvl2Field = {0,1,0,1};
+    int[] Lvl3Field = { 1, 0, 1 };
     int[] Lvl4Field = {};
     int[] Lvl5Field = {};
 
     int index = 0;
+    int sceneNumber = 0;
 
     private void Start()
     {       
@@ -57,8 +62,9 @@ public class Scenario : MonoBehaviour
                 LobbyScenario();
             }
 
-            if (sceneName == "LVL1")
+            if (sceneName == "LVL1" && boss.IsDestroyed())
             {
+                sceneNumber = 1;
                 Lvl1Scenario();
             }
 
@@ -101,27 +107,29 @@ public class Scenario : MonoBehaviour
     {
         playerText.text = "";
         othersText.text = "";
-        //panel.SetActive(true);
-        //image.SetActive(false);
+        panel.SetActive(true);
+        image.SetActive(false);
+        imageOther.SetActive(false);
 
         if (index <= Lvl1.Length - 1)
         {
             if (Lvl1Field[index] == 0)
             {
                 playerText.text = Lvl1[index];
-                //image.SetActive(true);
+                image.SetActive(true);
                 index++;
             }
             else
             {
                 othersText.text = Lvl1[index];
+                imageOther.SetActive(true);
                 index++;
             }
         }
         else
         {
             Debug.Log("konec");
-            othersText.text = "";
+            panel.SetActive(false);
         }
     }
 
