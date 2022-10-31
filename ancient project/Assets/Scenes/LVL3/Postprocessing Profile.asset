@@ -13,23 +13,18 @@ MonoBehaviour:
   m_Name: Vignette
   m_EditorClassIdentifier: 
   active: 1
-  <displayName>k__BackingField: 
   color:
     m_OverrideState: 1
-    m_Value:
-      r: 0
-      g: 0
-      b: 0
-      a: 1
+    m_Value: {r: 0, g: 0, b: 0, a: 1}
   center:
     m_OverrideState: 1
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.441
+    m_Value: 0.434
   smoothness:
     m_OverrideState: 1
-    m_Value: 0.459
+    m_Value: 0.433
   rounded:
     m_OverrideState: 1
     m_Value: 0
@@ -46,26 +41,21 @@ MonoBehaviour:
   m_Name: ColorAdjustments
   m_EditorClassIdentifier: 
   active: 1
-  <displayName>k__BackingField: 
   postExposure:
     m_OverrideState: 1
-    m_Value: 0.81
+    m_Value: 0.4
   contrast:
     m_OverrideState: 1
-    m_Value: 7
+    m_Value: 43
   colorFilter:
     m_OverrideState: 1
-    m_Value:
-      r: 1
-      g: 1
-      b: 1
-      a: 1
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
   hueShift:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 1
   saturation:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 29
 --- !u!114 &-2650749079759351608
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -79,32 +69,27 @@ MonoBehaviour:
   m_Name: Bloom
   m_EditorClassIdentifier: 
   active: 1
-  <displayName>k__BackingField: 
   threshold:
     m_OverrideState: 1
-    m_Value: 0.59
+    m_Value: 1.64
   intensity:
     m_OverrideState: 1
-    m_Value: 1.31
+    m_Value: 0.76
   scatter:
     m_OverrideState: 1
-    m_Value: 0.626
+    m_Value: 0.52
   clamp:
     m_OverrideState: 1
-    m_Value: 65472
+    m_Value: 65471.65
   tint:
     m_OverrideState: 1
-    m_Value:
-      r: 1
-      g: 1
-      b: 1
-      a: 1
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
   highQualityFiltering:
     m_OverrideState: 1
     m_Value: 0
   skipIterations:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 4
   dirtTexture:
     m_OverrideState: 1
     m_Value: {fileID: 0}
@@ -128,3 +113,50 @@ MonoBehaviour:
   - {fileID: -6321032867331226547}
   - {fileID: -2650749079759351608}
   - {fileID: -5518546428284591412}
+  - {fileID: 4965128016927942045}
+--- !u!114 &4965128016927942045
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c01700fd266d6914ababb731e09af2eb, type: 3}
+  m_Name: DepthOfField
+  m_EditorClassIdentifier: 
+  active: 1
+  mode:
+    m_OverrideState: 1
+    m_Value: 1
+  gaussianStart:
+    m_OverrideState: 1
+    m_Value: 10
+  gaussianEnd:
+    m_OverrideState: 1
+    m_Value: 20
+  gaussianMaxRadius:
+    m_OverrideState: 1
+    m_Value: 1.022
+  highQualitySampling:
+    m_OverrideState: 0
+    m_Value: 0
+  focusDistance:
+    m_OverrideState: 0
+    m_Value: 10
+  aperture:
+    m_OverrideState: 0
+    m_Value: 5.6
+  focalLength:
+    m_OverrideState: 0
+    m_Value: 50
+  bladeCount:
+    m_OverrideState: 0
+    m_Value: 5
+  bladeCurvature:
+    m_OverrideState: 0
+    m_Value: 1
+  bladeRotation:
+    m_OverrideState: 0
+    m_Value: 0
