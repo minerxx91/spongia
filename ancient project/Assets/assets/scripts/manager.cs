@@ -67,7 +67,8 @@ public class manager : MonoBehaviour
         public Vector3 LVL3Spawn = new Vector3(265, 215, 140);
         public Vector3 LVL4Spawn = new  Vector3(50, 5, 50);
         public Vector3 LVL5Spawn = new Vector3(212, 403, 180);
-        
+        public Vector3 LVL6Spawn = new Vector3(212, 403, 180);
+
     }
     public PlayerStats Player = new PlayerStats();
 
@@ -102,6 +103,7 @@ public class manager : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
+        DynamicGI.UpdateEnvironment();
     }
     public void DamagePlayer(float damage)
     {
@@ -117,18 +119,18 @@ public class manager : MonoBehaviour
     public void SwapScene()
     {
 
-        
-      
-            SceneManager.LoadScene(levelIndex);
 
-           
 
-            
-           
-            
-        
-        
-        
+        SceneManager.LoadScene(levelIndex);
+
+
+
+
+
+
+
+
+
     }
     
 
