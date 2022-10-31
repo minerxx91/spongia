@@ -59,8 +59,7 @@ public class Scenario : MonoBehaviour
 
     private void Start()
     {
-        Scene currentScene = SceneManager.GetActiveScene();
-        string sceneName = currentScene.name;
+
 
         
         
@@ -168,6 +167,7 @@ public class Scenario : MonoBehaviour
         othersText.text = "";
         panel.SetActive(true);
         image.SetActive(false);
+        imageOther.SetActive(false);
 
         if (index <= Lvl2.Length - 1)
         {
@@ -180,6 +180,7 @@ public class Scenario : MonoBehaviour
             else
             {
                 othersText.text = Lvl2[index];
+                imageOther.SetActive(true);
                 index++;
             }
         }
