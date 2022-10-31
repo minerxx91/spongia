@@ -470,14 +470,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3103058703921043209}
-  m_LocalRotation: {x: 0.55922174, y: 0.27869752, z: 0.626768, w: -0.46557564}
-  m_LocalPosition: {x: -0.005147275, y: -0.02827375, z: 0.42236868}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0.324}
   m_LocalScale: {x: 0.13612688, y: 0.09734682, z: 0.12425395}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6590234265580551470}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -12.4, y: -36.6, z: 99.2}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!198 &3103058703921043210
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -1193,7 +1193,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 1
+      value: 2.82
       mode: 0
       spread: 0
       speed:
@@ -6342,6 +6342,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   JumpCooldown: 0
   AttackCooldown: 0
+  ShieldCooldown: 0
   StunCooldown: 0
   JumpVelocity: {x: 0, y: 0, z: 0}
 --- !u!1001 &1757911709
@@ -6569,6 +6570,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08830feb179d4414e97b21a9c138382d, type: 3}
+--- !u!1 &5782313549203859348 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 08830feb179d4414e97b21a9c138382d, type: 3}
+  m_PrefabInstance: {fileID: 6701231281779530437}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8223587772517021523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5782313549203859348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faa60cd32dcdbd84886060d235d69cde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6590234265580551470 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 08830feb179d4414e97b21a9c138382d, type: 3}

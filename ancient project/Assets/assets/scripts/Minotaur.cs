@@ -32,8 +32,8 @@ public class Minotaur : MonoBehaviour
 
     //States
     float gravityIncrease = 0;
-    public float sightRange, MeleeAttackRange, MidAttackRange, RangerAttackRange;
-    public bool playerInSightRange, playerInMeleeAttackRange, playerInMidAttackRange, playerInMidAttackRange2, playerInRangerAttackRange, playerInRangerAttackRange2;
+    public float sightRange, MeleeAttackRange,  RangerAttackRange;
+    public bool playerInSightRange, playerInMeleeAttackRange, playerInRangerAttackRange;
 
 
     //Health
@@ -123,10 +123,7 @@ public class Minotaur : MonoBehaviour
 
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInMeleeAttackRange = Physics.CheckSphere(transform.position, MeleeAttackRange, whatIsPlayer);
-        playerInMidAttackRange = Physics.CheckSphere(transform.position, MidAttackRange, whatIsPlayer);
-        playerInMidAttackRange2 = Physics.CheckSphere(transform.position, MidAttackRange - 3, whatIsPlayer);
         playerInRangerAttackRange = Physics.CheckSphere(transform.position, RangerAttackRange, whatIsPlayer);
-        playerInRangerAttackRange2 = Physics.CheckSphere(transform.position, 8, whatIsPlayer);
         transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.eulerAngles.y, 0));
         if (!Animating)
         {
@@ -140,11 +137,8 @@ public class Minotaur : MonoBehaviour
                     {
                         MeleeAttacking();
                     }
-                    else if (playerInMidAttackRange && !playerInMidAttackRange2)
-                    {
-                        MidAttacking();
-                    }
-                    else if (playerInRangerAttackRange && !playerInRangerAttackRange2)
+                    
+                    else
                     {
                         RangedAttacking();
                     }
@@ -329,9 +323,7 @@ public class Minotaur : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, sightRange);
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, MidAttackRange);
-        Gizmos.DrawWireSphere(transform.position, MidAttackRange - 3);
-        Gizmos.color = Color.blue;
+        
         Gizmos.DrawWireSphere(transform.position, RangerAttackRange);
     }
 }
