@@ -21,14 +21,7 @@ public class Scenario : MonoBehaviour
     GameObject imageOther;
     [SerializeField]
     GameObject panel;
-
-
-
-
-
-    
-
-    
+  
     string[] Lvl3 = { "Asi som ťa podcenil, všetka česť.", "Prečo si sa o to nepostaral sám, si predsa najsilnejší z celého Olympu?",
     "Nemám čas sa zahadzovať s takýmito maličkosťami, na to mám takých hlupáčikov ako ty, ale to ako sa ti podarilo prežiť je naozaj obdivuhodné. Nejakým spôsobom sa ti podarilo použiť medúzinu schopnosť. Musíš byť poloboh s veľkým darom. Poseidon v poslednej dobe začal robiť problémy, mal by si sa o neho v mojom mene postarať kým si to niekto odskáče. Nie je čas navyše, priprav sa. Ó a inak skoro som zabudol, tu máš nejaké vybavenie nech po tebe nezostane len mastný fľak."};
     int[] Lvl3Field = { 1, 0, 1};
@@ -43,81 +36,53 @@ public class Scenario : MonoBehaviour
     int[] Lvl4Field = {};
     int[] Lvl5Field = {};
 
-
-
-
-
-
     int index = 0;
 
-
-
-
-
-
-
-
     private void Start()
-    {
-
-
-        
-        
+    {       
         image.SetActive(false);
         imageOther.SetActive(false);
-        panel.SetActive(false);
-        
+        panel.SetActive(false);        
     }
 
     private void Update()
     {   
-            Scene currentScene = SceneManager.GetActiveScene();
-            string sceneName = currentScene.name;
+        Scene currentScene = SceneManager.GetActiveScene();
+        string sceneName = currentScene.name;
 
-            if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (sceneName == "Lobby")
             {
-                if (sceneName == "Lobby")
-                {
-                    LobbyScenario();
-                }
+                LobbyScenario();
+            }
 
-                if (sceneName == "LVL1")
-                {
-                    Lvl1Scenario();
-                }
+            if (sceneName == "LVL1")
+            {
+                Lvl1Scenario();
+            }
 
-                if (sceneName == "LVL2" && boss.IsDestroyed())
-                {
-                    Lvl2Scenario();
-                }
+            if (sceneName == "LVL2" && boss.IsDestroyed())
+            {
+                Lvl2Scenario();
+            }
 
-                if (sceneName == "LVL3" && boss.IsDestroyed())
-                {
-                    Lvl3Scenario();
-                }
+            if (sceneName == "LVL3" && boss.IsDestroyed())
+            {
+                Lvl3Scenario();
+            }
 
-                if (sceneName == "LVL4")
-                {
-                    Lvl4Scenario();
-                }
+            if (sceneName == "LVL4")
+            {
+                Lvl4Scenario();
+            }
 
-                if (sceneName == "LVL5")
-                {
-                    Lvl5Scenario();
-                }
-            }       
+            if (sceneName == "LVL5")
+            {
+                Lvl5Scenario();
+            }
+        }       
     }
-
-
-
-    private void FixedUpdate()
-    {
-
-    }
-
-
-
-
 
     private void LobbyScenario()
     {
@@ -131,7 +96,6 @@ public class Scenario : MonoBehaviour
             lobbyText.text = "";
         }
     }
-
 
     private void Lvl1Scenario()
     {
@@ -195,27 +159,29 @@ public class Scenario : MonoBehaviour
     {
         playerText.text = "";
         othersText.text = "";
-        //panel.SetActive(true);
-        //image.SetActive(false);
+        panel.SetActive(true);
+        image.SetActive(false);
+        imageOther.SetActive(false);
 
         if (index <= Lvl3.Length - 1)
         {
             if (Lvl3Field[index] == 0)
             {
                 playerText.text = Lvl3[index];
-                //image.SetActive(true);
+                image.SetActive(true);
                 index++;
             }
             else
             {
                 othersText.text = Lvl3[index];
+                imageOther.SetActive(true);
                 index++;
             }
         }
         else
         {
             Debug.Log("konec");
-            othersText.text = "";
+            panel.SetActive(false);
         }
     }
 
