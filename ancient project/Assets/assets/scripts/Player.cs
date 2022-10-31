@@ -306,7 +306,7 @@ public class Player : MonoBehaviour
                         managerVariables.Player.Stamina = 0;
                     }
                 } 
-           }
+            }
             
         }
         else

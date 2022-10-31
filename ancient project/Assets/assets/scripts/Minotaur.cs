@@ -5,6 +5,7 @@ using UnityEngine.AI;
 using TMPro;
 using UnityEngine.UIElements;
 using Unity.VisualScripting;
+using UnityEngine.UIElements.Experimental;
 
 public class Minotaur : MonoBehaviour
 {
@@ -33,7 +34,7 @@ public class Minotaur : MonoBehaviour
     //States
     float gravityIncrease = 0;
     public float sightRange, MeleeAttackRange,  RangerAttackRange;
-    public bool playerInSightRange, playerInMeleeAttackRange, playerInRangerAttackRange;
+    public bool playerInSightRange, playerInMeleeAttackRange, playerInRangerAttackRange, playerInRangerAttackRange2;
 
 
     //Health
@@ -61,6 +62,7 @@ public class Minotaur : MonoBehaviour
     private bool MidAttackLook = false;
     float abilityChasingTime = 0;
     Vector3 runRotation;
+    private bool Charging;
 
     void Awake()
     {
@@ -128,8 +130,9 @@ public class Minotaur : MonoBehaviour
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInMeleeAttackRange = Physics.CheckSphere(transform.position, MeleeAttackRange, whatIsPlayer);
         playerInRangerAttackRange = Physics.CheckSphere(transform.position, RangerAttackRange, whatIsPlayer);
+        playerInRangerAttackRange2 = Physics.CheckSphere(transform.position, RangerAttackRange-8, whatIsPlayer);
         transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.eulerAngles.y, 0));
-        if (!Animating)
+        if (!Charging)
         {
             if (this.gameObject.name == "Minotaur")
             {
@@ -141,16 +144,12 @@ public class Minotaur : MonoBehaviour
                     {
                         MeleeAttacking();
                     }
-                    
-                    else
+
+                    else if (!alreadyAttacked && !playerInRangerAttackRange2)
                     {
                         RangedAttacking();
                     }
                 }
-
-
-
-
             }
             else
             {
@@ -160,7 +159,10 @@ public class Minotaur : MonoBehaviour
                 if (playerInMeleeAttackRange && playerInSightRange) MeleeAttacking();
             }
         }
-
+        else
+        {
+            transform.position += transform.forward * 16 * Time.deltaTime;
+        }
 
         materialDelay += Time.deltaTime;
 
@@ -273,20 +275,22 @@ public class Minotaur : MonoBehaviour
 
  
 
-    void runreset()
+    void EndCharge()
     {
-        chasingSpeed = chasingSpeed / 3;
+        Charging = false;
+        anim.SetBool("charge", false);
     }
 
 
     
 
-    void Run()
+    void Charge()
     {
-        chasingSpeed = chasingSpeed * 3;
-        Invoke(nameof(runreset), 2);
-        runRotation = transform.rotation.eulerAngles;
-        abilityChasingTime = 0;
+        anim.SetBool("charge", true);
+        Charging = true;
+        Invoke(nameof(EndCharge), 1);
+        //runRotation = transform.rotation.eulerAngles;
+        //abilityChasingTime = 0;
 
 
 
@@ -294,13 +298,13 @@ public class Minotaur : MonoBehaviour
     }
     void RangedAttacking()
     {
-        transform.LookAt(Targetposition);
-        anim.SetBool("walk", true);
-        if (!alreadyAttacked)
+        //transform.LookAt(Targetposition);
+        //anim.SetBool("walk", true);
+        if (!Charging)
         {
             managerVariables.Minotaur.DamageIncrease = 10;
-            //anim.SetTrigger("range");
-            Invoke(nameof(Run), .5f);
+            
+            Invoke(nameof(Charge), .5f);
             //run attack
 
 
@@ -325,5 +329,6 @@ public class Minotaur : MonoBehaviour
         Gizmos.color = Color.green;
         
         Gizmos.DrawWireSphere(transform.position, RangerAttackRange);
+        Gizmos.DrawWireSphere(transform.position, RangerAttackRange - 8);
     }
 }
