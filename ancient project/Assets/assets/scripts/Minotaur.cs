@@ -59,6 +59,8 @@ public class Minotaur : MonoBehaviour
 
     int meleeAnim =0;
     private bool MidAttackLook = false;
+    float abilityChasingTime = 0;
+    Vector3 runRotation;
 
     void Awake()
     {
@@ -100,7 +102,16 @@ public class Minotaur : MonoBehaviour
 
     void Update()
     {
-        if (MidAttackLook == true) transform.LookAt(Targetposition);
+        print(chasingSpeed);
+        if(abilityChasingTime < 2)
+        {
+            abilityChasingTime += Time.deltaTime;
+            this.gameObject.transform.rotation = Quaternion.Euler(runRotation);
+
+        }
+
+
+
         Targetposition = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
         if (!anim.GetCurrentAnimatorStateInfo(0).IsName("melee2"))
         {
@@ -265,14 +276,24 @@ public class Minotaur : MonoBehaviour
 
  
 
-
+    void runreset()
+    {
+        chasingSpeed = chasingSpeed / 3;
+    }
 
 
     
 
     void Run()
     {
-        //Instantiate(projectile, trident.transform.position, Quaternion.Euler(new Vector3(90, transform.rotation.eulerAngles.y, 0)));
+        chasingSpeed = chasingSpeed * 3;
+        Invoke(nameof(runreset), 2);
+        runRotation = transform.rotation.eulerAngles;
+        abilityChasingTime = 0;
+
+
+
+
     }
     void RangedAttacking()
     {
@@ -281,9 +302,9 @@ public class Minotaur : MonoBehaviour
         if (!alreadyAttacked)
         {
             managerVariables.Minotaur.DamageIncrease = 10;
-            anim.SetTrigger("range");
+            //anim.SetTrigger("range");
             Invoke(nameof(Run), .5f);
-
+            //run attack
 
 
             alreadyAttacked = true;
