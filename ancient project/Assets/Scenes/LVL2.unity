@@ -45061,7 +45061,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3846018093981099296, guid: df60f1711b1a94d4cac7ac0001d337cf, type: 3}
+  - {fileID: 2100000, guid: 2992e5b234f519342bc01c53381d3d6e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -47219,6 +47219,7 @@ MonoBehaviour:
   walkPointRange: 20
   timeBetweenAttacks: 4
   shorttimebetweenAttacks: 1
+  timeToRage: 10
   sightRange: 40
   MeleeAttackRange: 2.5
   RangerAttackRange: 15
@@ -47230,8 +47231,7 @@ MonoBehaviour:
   maxHealth: 500
   SwingRight: {fileID: 634127353}
   SwingLeft: {fileID: 1814310603}
-  GroundBlast: {fileID: 0}
-  MeleeBlast: {fileID: 0}
+  telo: {fileID: 2100000, guid: 2992e5b234f519342bc01c53381d3d6e, type: 2}
   AttackMelee1: {fileID: 845282872}
 --- !u!136 &8957922643260632540
 CapsuleCollider:

@@ -28,8 +28,14 @@ public class Minotaur : MonoBehaviour
     public float walkPointRange;
 
     //Attacking
-    public float timeBetweenAttacks, shorttimebetweenAttacks;
+    public float timeBetweenAttacks, shorttimebetweenAttacks , timeToRage;
     bool alreadyAttacked;
+    float RageTime = 5;
+    float RagedTime = 0;
+    float timeToRageTick = 0;
+    bool Raged = false;
+    Vector3 Bigsize = new Vector3(0.25f, 0.25f, 0.25f);
+    Vector3 size = new Vector3(0.15f, 0.15f, 0.15f);
 
     //States
     float gravityIncrease = 0;
@@ -48,8 +54,9 @@ public class Minotaur : MonoBehaviour
     Light orangeLight;
     [SerializeField] ParticleSystem SwingRight;
     [SerializeField] ParticleSystem SwingLeft;
-    [SerializeField] ParticleSystem GroundBlast;
-    [SerializeField] ParticleSystem MeleeBlast;
+
+    //materials
+    [SerializeField] Material telo;
 
     private bool Animating;
     private Animator anim;
@@ -104,8 +111,33 @@ public class Minotaur : MonoBehaviour
 
     void Update()
     {
+        timeToRageTick += Time.deltaTime;
+        if (timeToRageTick >= timeToRage)
+        {
+            Raged = true;
+            telo.color = new Color32(150, 89, 69, 255);
+            if (this.gameObject.transform.localScale != Bigsize)
+                this.gameObject.transform.localScale += new Vector3(0.01f, 0.01f, 0.01f);
+            print("raged");
+            if(timeToRageTick > timeToRage + RageTime)
+            {
+                timeToRageTick = 0;
+                Raged = false;
+                telo.color = new Color32(115, 89, 69, 255);
+
+            }
+        }
+        if (!Raged)
+        {
+            if (this.gameObject.transform.localScale != size)
+                this.gameObject.transform.localScale -= new Vector3(0.01f, 0.01f, 0.01f);
+        }
+        
+
+
+
         //print(chasingSpeed);
-        if(abilityChasingTime < 2)
+        if (abilityChasingTime < 2)
         {
             abilityChasingTime += Time.deltaTime;
             this.gameObject.transform.rotation = Quaternion.Euler(runRotation);
