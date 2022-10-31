@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UIElements;
 using static System.TimeZoneInfo;
 using static UnityEngine.GraphicsBuffer;
@@ -15,6 +17,8 @@ public class Player : MonoBehaviour
     manager managerVariables;
 
     AudioManager audioManager;
+    Volume postprocesing;
+    ColorParameter vignetterColor;
 
     LevelLoader lvlloader;
     GameObject helpCanvas;
@@ -71,6 +75,9 @@ public class Player : MonoBehaviour
         attackHorizontal.SetActive(false);
         attackVertical.SetActive(false);
         attackParticle = GameObject.Find("SwordSwing").GetComponent<ParticleSystem>();
+
+
+        postprocesing = GameObject.Find("Postprocessing").GetComponent<Volume>();
     }
 
   
@@ -375,6 +382,9 @@ public class Player : MonoBehaviour
         {
             StartCoroutine(Stun());
         }
+        /*
+        postprocesing.profile.GetComponent<Vignette>().color = new ColorParameter(new Color(1, 0, 0, 1), true);
+        */
 
     }
 
