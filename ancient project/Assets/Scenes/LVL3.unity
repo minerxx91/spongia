@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1828128519}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1540,6 +1540,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 911780351062913451, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 911780351062913451, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.999962
+      objectReference: {fileID: 0}
+    - target: {fileID: 911780351062913451, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.008726558
+      objectReference: {fileID: 0}
+    - target: {fileID: 911780351062913451, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3735276129880483234, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -1551,6 +1567,18 @@ PrefabInstance:
     - target: {fileID: 4040500495425039491, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
       propertyPath: m_Name
       value: ScenarioCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040500495425039502, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
+      propertyPath: boss
+      value: 
+      objectReference: {fileID: 8033433138654768389}
+    - target: {fileID: 4040500495425039502, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
+      propertyPath: image
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040500495425039502, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
+      propertyPath: panel
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4040500495425039502, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
       propertyPath: othersText
@@ -1652,6 +1680,22 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 8726026229206070623, guid: 1ea0dcb5fb4968146839d72bc99b75d1, type: 2}
+    - target: {fileID: 7201055278145273324, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7201055278145273324, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.999962
+      objectReference: {fileID: 0}
+    - target: {fileID: 7201055278145273324, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.008726558
+      objectReference: {fileID: 0}
+    - target: {fileID: 7201055278145273324, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
 --- !u!114 &977527477 stripped
