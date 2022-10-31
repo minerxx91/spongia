@@ -61,8 +61,8 @@ public class manager : MonoBehaviour
         public Vector3 LVL2Spawn = new Vector3(6, 2, 2);
         public Vector3 LVL3Spawn = new Vector3(51, 6, 65);
         public Vector3 LVL4Spawn = new  Vector3(50, 5, 50);
-        public Vector3 LVL5Spawn = new Vector3(3, 2, 2);
-
+        public Vector3 LVL5Spawn = new Vector3(212, 400, 180);
+        
     }
     public PlayerStats Player = new PlayerStats();
 
