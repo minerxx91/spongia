@@ -37,6 +37,7 @@ public class Player : MonoBehaviour
     public float StunCooldown = 0;
     float attackprocess = 0;
     private int combo = 0;
+    private float comboTimer = 0;
     
     public Vector3 JumpVelocity;
     Vector3 Velocity;
@@ -321,7 +322,8 @@ public class Player : MonoBehaviour
         {
             SpaceAvaiable = true;
         }
-        if (Input.GetKey(controls.Block) && !anim.GetCurrentAnimatorStateInfo(0).IsName("rolling"))
+      
+        if (Input.GetKey(controls.Block) && !anim.GetCurrentAnimatorStateInfo(0).IsName("rolling") && combo == 0)
         {
             if(ShieldCooldown >= managerVariables.Player.ShieldCooldown)
             {
@@ -335,8 +337,11 @@ public class Player : MonoBehaviour
             anim.SetBool("block", false);
             managerVariables.Player.Resistence = 0;
         }
+
+        comboTimer -= Time.deltaTime;
         if (Input.GetKey(controls.Attack) && managerVariables.Player.AttackReady && Mouse0Avaiable && !Input.GetKey(controls.Block))
         {
+            comboTimer = 1f;
             Mouse0Avaiable = false;
             if (combo == 0)
             {
@@ -358,7 +363,7 @@ public class Player : MonoBehaviour
 
 
             managerVariables.Player.AttackReady = false;
-            
+
             if (combo == 3)
             {
                 attackParticle.startColor = new Color(1, 0.2f, 0, 1);
@@ -380,10 +385,12 @@ public class Player : MonoBehaviour
                 Invoke(nameof(ResetAttackHorizontal), .1f);
                 attackHorizontal.SetActive(true);
             }
-            
+
             managerVariables.Player.AttackInProcess = true;
             AttackCooldown = 0;
         }
+        else if (combo != 0 && comboTimer < 0) combo = 0;
+
         if(!Input.GetKey(controls.Attack)) Mouse0Avaiable = true;
         // stamina regen
         if (managerVariables.Player.Stamina + managerVariables.Player.StaminaRegen < managerVariables.Player.MaxStamina)
