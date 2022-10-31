@@ -87,12 +87,12 @@ public class Scenario : MonoBehaviour
                     Lvl1Scenario();
                 }
 
-                if (sceneName == "LVL2")
+                if (sceneName == "LVL2" && boss.IsDestroyed())
                 {
                     Lvl2Scenario();
                 }
 
-                if (sceneName == "LVL3" /*&& boss.IsDestroyed()*/)
+                if (sceneName == "LVL3" && boss.IsDestroyed())
                 {
                     Lvl3Scenario();
                 }
