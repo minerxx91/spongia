@@ -53,10 +53,10 @@ public class manager : MonoBehaviour
         public float gravityIncrease = 0;
         public GameObject target;
 
-        public bool MeduzaUnlocked = false;
-        public bool MinotaurUnlocked = false;
-        public bool PoseidonUnlocked = false;
-        public bool ZeusUnlocked = false;
+        public bool MeduzaUnlocked = true;
+        public bool MinotaurUnlocked = true;
+        public bool PoseidonUnlocked = true;
+        public bool ZeusUnlocked = true;
 
 
 

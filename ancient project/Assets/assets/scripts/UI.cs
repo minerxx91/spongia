@@ -23,7 +23,19 @@ public class UI : MonoBehaviour
     [SerializeField] GameObject AttackColor;
     [SerializeField] GameObject ShieldColor;
 
+    [SerializeField] GameObject MedusaColor;
+    [SerializeField] GameObject MedusaQ;
+    [SerializeField] GameObject MinotaurColor;
+    [SerializeField] GameObject MinotaurQ;
+    [SerializeField] GameObject PoseidonColor;
+    [SerializeField] GameObject PoseidonQ;
+    [SerializeField] GameObject ZeusColor;
+    [SerializeField] GameObject ZeusQ;
+
+
+
     [SerializeField] GameObject BossBar;
+    
     private void Start()
     {
         Manager = GameObject.Find("Manager");
@@ -111,13 +123,57 @@ private void Update()
 
 
         }
+        if(managerVariables.Player.MeduzaUnlocked)
+        {
+            MedusaColor.GetComponent<Image>().color = new Color32(188, 171, 39, 155);
+            MedusaQ.SetActive(false);
+        }
+        else
+        {
+            MedusaColor.GetComponent<Image>().color = new Color32(0, 0, 0, 155);
+            MedusaQ.SetActive(true);
+
+        }
+        if (managerVariables.Player.MinotaurUnlocked)
+        {
+            MinotaurColor.GetComponent<Image>().color = new Color32(188, 171, 39, 155);
+            MinotaurQ.SetActive(false);
+        }
+        else
+        {
+            MinotaurColor.GetComponent<Image>().color = new Color32(0, 0, 0, 155);
+            MinotaurQ.SetActive(true);
+
+        }
+        if (managerVariables.Player.PoseidonUnlocked)
+        {
+            PoseidonColor.GetComponent<Image>().color = new Color32(188, 171, 39, 155);
+            PoseidonQ.SetActive(false);
+        }
+        else
+        {
+            PoseidonColor.GetComponent<Image>().color = new Color32(0, 0, 0, 155);
+            PoseidonQ.SetActive(true);
+
+        }
+        if (managerVariables.Player.ZeusUnlocked)
+        {
+            ZeusColor.GetComponent<Image>().color = new Color32(188, 171, 39, 155);
+            ZeusQ.SetActive(false);
+        }
+        else
+        {
+            ZeusColor.GetComponent<Image>().color = new Color32(0, 0, 0, 155);
+            ZeusQ.SetActive(true);
+
+        }
 
 
 
-        
-        
 
-       
+
+
+
     }
  
 
