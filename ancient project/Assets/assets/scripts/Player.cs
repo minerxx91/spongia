@@ -36,6 +36,8 @@ public class Player : MonoBehaviour
     public float ShieldCooldown = 0;
     public float StunCooldown = 0;
     float attackprocess = 0;
+    private int combo = 0;
+    private float comboTimer = 0;
     
     public Vector3 JumpVelocity;
     Vector3 Velocity;
@@ -320,7 +322,8 @@ public class Player : MonoBehaviour
         {
             SpaceAvaiable = true;
         }
-        if (Input.GetKey(controls.Block) && !anim.GetCurrentAnimatorStateInfo(0).IsName("rolling"))
+      
+        if (Input.GetKey(controls.Block) && !anim.GetCurrentAnimatorStateInfo(0).IsName("rolling") && combo == 0)
         {
             if(ShieldCooldown >= managerVariables.Player.ShieldCooldown)
             {
@@ -334,16 +337,34 @@ public class Player : MonoBehaviour
             anim.SetBool("block", false);
             managerVariables.Player.Resistence = 0;
         }
+
+        comboTimer -= Time.deltaTime;
         if (Input.GetKey(controls.Attack) && managerVariables.Player.AttackReady && Mouse0Avaiable && !Input.GetKey(controls.Block))
         {
+            comboTimer = 1f;
             Mouse0Avaiable = false;
-            if(anim.GetCurrentAnimatorStateInfo(0).IsName("Attack2")) anim.SetTrigger("attack3");
-            else if(anim.GetCurrentAnimatorStateInfo(0).IsName("Attack1")) anim.SetTrigger("attack2");
-            else anim.SetTrigger("attack1");
+            if (combo == 0)
+            {
+                anim.SetTrigger("attack1");
+                combo++;
+            }
+            else if (combo == 1)
+            {
+                anim.SetTrigger("attack2");
+                combo++;
+
+            }
+            else if (combo == 2)
+            {
+                anim.SetTrigger("attack3");
+                combo++;
+            }
+
+
 
             managerVariables.Player.AttackReady = false;
-            
-            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack2"))
+
+            if (combo == 3)
             {
                 attackParticle.startColor = new Color(1, 0.2f, 0, 1);
                 attackParticle.Play();
@@ -352,6 +373,7 @@ public class Player : MonoBehaviour
                 Invoke(nameof(ResetAttackVertical), .1f);
                 attackVertical.SetActive(true);
                 audioManager.PlayPlayerAttackS();
+                combo = 0;
             }
             else
             {
@@ -363,10 +385,12 @@ public class Player : MonoBehaviour
                 Invoke(nameof(ResetAttackHorizontal), .1f);
                 attackHorizontal.SetActive(true);
             }
-            
+
             managerVariables.Player.AttackInProcess = true;
             AttackCooldown = 0;
         }
+        else if (combo != 0 && comboTimer < 0) combo = 0;
+
         if(!Input.GetKey(controls.Attack)) Mouse0Avaiable = true;
         // stamina regen
         if (managerVariables.Player.Stamina + managerVariables.Player.StaminaRegen < managerVariables.Player.MaxStamina)
