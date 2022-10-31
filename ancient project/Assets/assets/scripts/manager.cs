@@ -62,9 +62,9 @@ public class manager : MonoBehaviour
 
 
         public Vector3 LobbySpawn = new Vector3(245, 83, 80);
-        public Vector3 LVL1Spawn = new Vector3(2.5999999f, 2, -24.1000004f);
+        public Vector3 LVL1Spawn = new Vector3(-18.1394997f, -1.90734863e-06f, 3.03419876f);
         public Vector3 LVL2Spawn = new Vector3(2.5999999f, 2, -24.1000004f);
-        public Vector3 LVL3Spawn = new Vector3(51, 6, 65);
+        public Vector3 LVL3Spawn = new Vector3(265, 215, 140);
         public Vector3 LVL4Spawn = new  Vector3(50, 5, 50);
         public Vector3 LVL5Spawn = new Vector3(212, 403, 180);
         

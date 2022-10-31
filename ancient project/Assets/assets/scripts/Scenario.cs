@@ -8,7 +8,6 @@ using Unity.VisualScripting;
 
 public class Scenario : MonoBehaviour
 {
-    [SerializeField]
     public TextMeshProUGUI playerText;
     public TextMeshProUGUI othersText;
     public TextMeshProUGUI lobbyText;
@@ -16,138 +15,272 @@ public class Scenario : MonoBehaviour
     GameObject subtitlesCanvas;
     [SerializeField]
     GameObject boss;
+    [SerializeField]
+    GameObject image;
+    [SerializeField]
+    GameObject imageOther;
+    [SerializeField]
+    GameObject panel;
 
-    private bool captions = false;
-    private bool callOnce = false;
+
+
+
+
+    
+
+    
+    string[] Lvl3 = { "Asi som ťa podcenil, všetka česť.", "Prečo si sa o to nepostaral sám, si predsa najsilnejší z celého Olympu?",
+    "Nemám čas sa zahadzovať s takýmito maličkosťami, na to mám takých hlupáčikov ako ty, ale to ako sa ti podarilo prežiť je naozaj obdivuhodné. Nejakým spôsobom sa ti podarilo použiť medúzinu schopnosť. Musíš byť poloboh s veľkým darom. Poseidon v poslednej dobe začal robiť problémy, mal by si sa o neho v mojom mene postarať kým si to niekto odskáče. Nie je čas navyše, priprav sa. Ó a inak skoro som zabudol, tu máš nejaké vybavenie nech po tebe nezostane len mastný fľak."};
+    int[] Lvl3Field = { 1, 0, 1};
+
+    string[] Lvl1 = { };
+    string[] Lvl2 = {"a","b","a","b" };
+    string[] Lvl4 = { };
+    string[] Lvl5 = { };
+
+    int[] Lvl1Field = {};
+    int[] Lvl2Field = {0,1,0,1};
+    int[] Lvl4Field = {};
+    int[] Lvl5Field = {};
+
+
+
+
+
+
+    int index = 0;
+
+
+
+
+
 
 
 
     private void Start()
     {
+        Scene currentScene = SceneManager.GetActiveScene();
+        string sceneName = currentScene.name;
 
+        
+        
+        image.SetActive(false);
+        imageOther.SetActive(false);
+        panel.SetActive(false);
+        
     }
 
     private void Update()
-    {
+    {   
+            Scene currentScene = SceneManager.GetActiveScene();
+            string sceneName = currentScene.name;
 
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (sceneName == "Lobby")
+                {
+                    LobbyScenario();
+                }
+
+                if (sceneName == "LVL1")
+                {
+                    Lvl1Scenario();
+                }
+
+                if (sceneName == "LVL2" && boss.IsDestroyed())
+                {
+                    Lvl2Scenario();
+                }
+
+                if (sceneName == "LVL3" && boss.IsDestroyed())
+                {
+                    Lvl3Scenario();
+                }
+
+                if (sceneName == "LVL4")
+                {
+                    Lvl4Scenario();
+                }
+
+                if (sceneName == "LVL5")
+                {
+                    Lvl5Scenario();
+                }
+            }       
     }
+
+
 
     private void FixedUpdate()
     {
-        if (captions)
-        {
-            Scene currentScene = SceneManager.GetActiveScene();
-            string sceneName = currentScene.name;
-            if (sceneName == "Lobby" && callOnce == false)
-            {
-                StartCoroutine(LobbySequence());
-                callOnce = true;
-            }
-            else if (sceneName == "LVL1" && callOnce == false)
-            {
-                StartCoroutine(Lvl1Sequence());
-                callOnce= true;
-            }
-            else if (sceneName == "LVL2" && boss.IsDestroyed() && callOnce == false)
-            {
-                Debug.Log(boss.IsDestroyed());
-                StartCoroutine(Lvl2Sequence());
-                callOnce = true;
-            }
-            else if (sceneName == "LVL3" && callOnce == false)
-            {
-                StartCoroutine(Lvl3Sequence());
-                callOnce = true;
-            }
-            else if (sceneName == "LVL4" && callOnce == false)
-            {
-                StartCoroutine(Lvl4Sequence());
-                callOnce = true;
-            }
-            else if (sceneName == "LVL5" && callOnce == false)
-            {
-                StartCoroutine(Lvl5Sequence());
-                callOnce = true;
-            }
-            else
-            {
 
-            }
+    }
+
+
+
+
+
+    private void LobbyScenario()
+    {
+        if (index == 0)
+        {
+            lobbyText.text = "Vitaj, dúfame že si našu hru užiješ!";
+            index++;
+        }           
+        else
+        {
+            lobbyText.text = "";
         }
     }
 
-    IEnumerator LobbySequence()
-    {
-        yield return new WaitForSeconds(2);
-        lobbyText.text = "Vitaj, dúfame že si našu hru užiješ!";
-        yield return new WaitForSeconds(5);
-        lobbyText.text = "";
-        subtitlesCanvas.SetActive(false);
 
-
-    }
-    IEnumerator Lvl1Sequence()
+    private void Lvl1Scenario()
     {
-        yield return new WaitForSeconds(1);
-        othersText.text = "Pravý hrdina, doneste mu jedlo a dobré víno a odpracte tú medúzu odtiaľto.";
-        yield return new WaitForSeconds(2);
+        playerText.text = "";
         othersText.text = "";
-        yield return new WaitForSeconds(2);
-        othersText.text = "To je tvoja práca?";
-        yield return new WaitForSeconds(2);
-        playerText.text = "Áno, myslím že áno";
-        yield return new WaitForSeconds(2);
-        othersText.text = "Odvaha ti nechýba, ale to neznamená že nie si hlupák, presne niekoho takého potrebujem";
-        yield return new WaitForSeconds(2);
-        playerText.text = "Smiem aspoň vedieť kto si a na čo by si ma potreboval než  to odkývam?";
-        yield return new WaitForSeconds(2);
-       othersText.text = "Som Zeus, vládca gréckych bohov a teba som si vybral aby si zabil Minotaura, tá obluda už mi ide dlho na nervy, na tvoju odpoveď nie je čas, priprav sa na labyrint a veľa šťastia, budeš ho potrebovať ale veľa času ti nedávam a budeš lízať podlahu.";
-        yield return new WaitForSeconds(2);
-        subtitlesCanvas.SetActive(false);
+        //panel.SetActive(true);
+        //image.SetActive(false);
 
-
+        if (index <= Lvl1.Length - 1)
+        {
+            if (Lvl1Field[index] == 0)
+            {
+                playerText.text = Lvl1[index];
+                //image.SetActive(true);
+                index++;
+            }
+            else
+            {
+                othersText.text = Lvl1[index];
+                index++;
+            }
+        }
+        else
+        {
+            Debug.Log("konec");
+            othersText.text = "";
+        }
     }
 
-    IEnumerator Lvl2Sequence()
+    private void Lvl2Scenario()
     {
-        yield return new WaitForSeconds(1);
-        othersText.text = "Asi som ťa podcenil, všetka česť.";
-        yield return new WaitForSeconds(2);
-        playerText.text = "Prečo si sa o to nepostaral sám, si predsa najsilnejší z celého Olympu?";
-        yield return new WaitForSeconds(2);
-        othersText.text = "Nemám čas sa zahadzovať s takýmito maličkosťami, na to mám takých hlupáčikov ako ty, ale to ako sa ti podarilo prežiť je naozaj obdivuhodné. Nejakým spôsobom sa ti podarilo použiť medúzinu schopnosť. Musíš byť poloboh s veľkým darom. Poseidon v poslednej dobe začal robiť problémy, mal by si sa o neho v mojom mene postarať kým si to niekto odskáče. Nie je čas navyše, priprav sa. Ó a inak skoro som zabudol, tu máš nejaké vybavenie nech po tebe nezostane len mastný fľak.";
-        yield return new WaitForSeconds(2);
-        subtitlesCanvas.SetActive(false);
+        playerText.text = "";
+        othersText.text = "";
+        panel.SetActive(true);
+        image.SetActive(false);
+
+        if (index <= Lvl2.Length - 1)
+        {
+            if (Lvl2Field[index] == 0)
+            {
+                playerText.text = Lvl2[index];
+                image.SetActive(true);
+                index++;
+            }
+            else
+            {
+                othersText.text = Lvl2[index];
+                index++;
+            }
+        }
+        else
+        {
+            Debug.Log("konec");
+            panel.SetActive(false);
+        }
     }
 
-    IEnumerator Lvl3Sequence()
+    private void Lvl3Scenario()
     {
-        yield return new WaitForSeconds(1);
-        othersText.text = "Zatiaľ si ma nesklamal, to sa ti musí nechať, ale táto úloha nebude taká ľahká. Hádesovi sa toto páčiť nebude, možno vypukne vojna, treba vykonať potrebné kroky skôr ako ich podnikne on. Musíš sa ho zbaviť. Spolieham na teba.";
-        yield return new WaitForSeconds(2);
-        subtitlesCanvas.SetActive(false);
+        playerText.text = "";
+        othersText.text = "";
+        //panel.SetActive(true);
+        //image.SetActive(false);
+
+        if (index <= Lvl3.Length - 1)
+        {
+            if (Lvl3Field[index] == 0)
+            {
+                playerText.text = Lvl3[index];
+                //image.SetActive(true);
+                index++;
+            }
+            else
+            {
+                othersText.text = Lvl3[index];
+                index++;
+            }
+        }
+        else
+        {
+            Debug.Log("konec");
+            othersText.text = "";
+        }
     }
 
-    IEnumerator Lvl4Sequence()
+    private void Lvl4Scenario()
     {
-        yield return new WaitForSeconds(1);
-        othersText.text = "To si bol ty? To ty si porazil Poseidona? Nebuď smiešny, poď bližšie nech to s tebou rýchlo skoncujem.";
-        yield return new WaitForSeconds(2);
-        subtitlesCanvas.SetActive(false);
+        playerText.text = "";
+        othersText.text = "";
+        //panel.SetActive(true);
+        //image.SetActive(false);
+
+        if (index <= Lvl4.Length - 1)
+        {
+            if (Lvl4Field[index] == 0)
+            {
+                playerText.text = Lvl4[index];
+                //image.SetActive(true);
+                index++;
+            }
+            else
+            {
+                othersText.text = Lvl4[index];
+                index++;
+            }
+        }
+        else
+        {
+            Debug.Log("konec");
+            othersText.text = "";
+        }
     }
 
-    IEnumerator Lvl5Sequence()
+    private void Lvl5Scenario()
     {
-        yield return new WaitForSeconds(1);
-        
-        othersText.text = "Väčšieho mongola som ešte nevidel, urobil si všetku prácu za mňa, Zeus a Poseidon si naozaj mysleli že sa uspokojím s ríšou mŕtvych, tak to boli na omyle a vďaka tebe teraz môžem vládnuť celému svetu. Bež kým si to rozmyslím, nechám ťa žiť ale tvoje vybavenie si beriem späť.";
-        yield return new WaitForSeconds(2);
-        playerText.text = "Celú dobu si ma klamal, toto celé ti nemôžem nechať len tak prejsť.";
-        yield return new WaitForSeconds(2);
-        othersText.text = "Staviaš sa proti mne? No poť ty opica, nech to mám za sebou  a môžem vládnuť svojmu novému svetu.";
-        yield return new WaitForSeconds(2);
-        subtitlesCanvas.SetActive(false);
+        playerText.text = "";
+        othersText.text = "";
+        //panel.SetActive(true);
+        //image.SetActive(false);
+
+        if (index <= Lvl5.Length - 1)
+        {
+            if (Lvl5Field[index] == 0)
+            {
+                playerText.text = Lvl5[index];
+                //image.SetActive(true);
+                index++;
+            }
+            else
+            {
+                othersText.text = Lvl5[index];
+                index++;
+            }
+        }
+        else
+        {
+            Debug.Log("konec");
+            othersText.text = "";
+        }
     }
+
+
+
+
+
+
+
+
 
 
 
