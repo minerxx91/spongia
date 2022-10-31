@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18291424, g: 0.22860949, b: 0.30689174, a: 1}
+  m_IndirectSpecularColor: {r: 0.18291447, g: 0.22860979, b: 0.3068927, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10695,6 +10695,11 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &735322620 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8577470177303739963, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
+  m_PrefabInstance: {fileID: 916196783}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &740127326 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2004205611837399877, guid: c606b4c2e63f33045a4399caa0ff4459, type: 3}
@@ -16081,6 +16086,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 708603605096916157, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1177851336310162197, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2223a97c719b4eb4e9a6ff55d0282504, type: 3}
     - target: {fileID: 3735276129880483234, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -16097,6 +16110,18 @@ PrefabInstance:
       propertyPath: boss
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4040500495425039502, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
+      propertyPath: image
+      value: 
+      objectReference: {fileID: 1628401493}
+    - target: {fileID: 4040500495425039502, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
+      propertyPath: panel
+      value: 
+      objectReference: {fileID: 735322620}
+    - target: {fileID: 4040500495425039502, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
+      propertyPath: imageOther
+      value: 
+      objectReference: {fileID: 2006277735}
     - target: {fileID: 4040500495425039502, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
       propertyPath: othersText
       value: 
@@ -16189,6 +16214,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4315831539058510630, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4315831539058510630, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4315831539058510630, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4376899947556890104, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2223a97c719b4eb4e9a6ff55d0282504, type: 3}
     - target: {fileID: 7201055278145273322, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -22450,6 +22491,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 125, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1628401493 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8839053744341740961, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
+  m_PrefabInstance: {fileID: 916196783}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1643069648
 GameObject:
   m_ObjectHideFlags: 0
@@ -42226,6 +42272,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1895329803}
   m_CullTransparentMesh: 1
+--- !u!1 &2006277735 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5831594698036384686, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
+  m_PrefabInstance: {fileID: 916196783}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2102032040
 GameObject:
   m_ObjectHideFlags: 0

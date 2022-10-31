@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &74866237 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8577470177303739963, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
+  m_PrefabInstance: {fileID: 1861264354}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &87187846
 GameObject:
   m_ObjectHideFlags: 0
@@ -976,6 +981,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 588984753}
   m_CullTransparentMesh: 1
+--- !u!1 &640165646 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8839053744341740961, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
+  m_PrefabInstance: {fileID: 1861264354}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &669298165
 GameObject:
   m_ObjectHideFlags: 0
@@ -7902,7 +7912,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 157503315}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -9083,9 +9093,21 @@ PrefabInstance:
       value: ScenarioCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 4040500495425039502, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
+      propertyPath: image
+      value: 
+      objectReference: {fileID: 640165646}
+    - target: {fileID: 4040500495425039502, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
+      propertyPath: panel
+      value: 
+      objectReference: {fileID: 74866237}
+    - target: {fileID: 4040500495425039502, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
       propertyPath: lobbyText
       value: 
       objectReference: {fileID: 1454874805}
+    - target: {fileID: 4040500495425039502, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
+      propertyPath: imageOther
+      value: 
+      objectReference: {fileID: 1927791571}
     - target: {fileID: 4040500495425039502, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
       propertyPath: othersText
       value: 
@@ -9210,6 +9232,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1927791571 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5831594698036384686, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
+  m_PrefabInstance: {fileID: 1861264354}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2092238925
 GameObject:
   m_ObjectHideFlags: 0
