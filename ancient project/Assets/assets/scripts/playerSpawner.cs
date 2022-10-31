@@ -36,7 +36,11 @@ public class playerSpawner : MonoBehaviour
                 case 5:
                     Instantiate(player, managerVariables.Player.LVL5Spawn, Quaternion.identity).transform.name = "Player";
                 print("5");
-                    return;
-            }
+                return;
+                case 6:
+                Instantiate(player, managerVariables.Player.LVL6Spawn, Quaternion.identity).transform.name = "Player";
+                print("6");
+                return;
+        }
     }
 }
