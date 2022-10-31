@@ -75,7 +75,15 @@ public class manager : MonoBehaviour
     }
 
     public PoseidonStats Poseidon = new PoseidonStats();
+    public class MinotaurStats
+    {
+        public float Health = 750;
+        public float maxHealth = 750;
+        public float Damage = 15;
+        public float DamageIncrease = 0;
+    }
 
+    public MinotaurStats Minotaur = new MinotaurStats();
     private void Start()
     {
 

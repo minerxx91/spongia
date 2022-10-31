@@ -27,7 +27,7 @@ public class Minotaur : MonoBehaviour
     public float walkPointRange;
 
     //Attacking
-    public float timeBetweenAttacks;
+    public float timeBetweenAttacks, shorttimebetweenAttacks;
     bool alreadyAttacked;
 
     //States
@@ -57,7 +57,7 @@ public class Minotaur : MonoBehaviour
     public GameObject AttackMelee1;
     //public GameObject AttackMelee2;
 
-
+    int meleeAnim =0;
     private bool MidAttackLook = false;
 
     void Awake()
@@ -94,16 +94,9 @@ public class Minotaur : MonoBehaviour
         AttackMelee1.SetActive(false);
     }
 
-    void DoAttackMelee2()
-    {
-        //AttackMelee2.SetActive(true);
-        Invoke(nameof(ResetAttackMelee2), .1f);
-    }
 
-    void ResetAttackMelee2()
-    {
-        //AttackMelee2.SetActive(false);
-    }
+
+
 
     void Update()
     {
@@ -127,7 +120,7 @@ public class Minotaur : MonoBehaviour
         transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.eulerAngles.y, 0));
         if (!Animating)
         {
-            if (this.gameObject.name == "Poseidon")
+            if (this.gameObject.name == "Minotaur")
             {
                 if (!playerInSightRange && !playerInMeleeAttackRange) Patroling();
                 if (playerInSightRange && !playerInMeleeAttackRange) Chasing();
@@ -230,14 +223,34 @@ public class Minotaur : MonoBehaviour
         
         if (!alreadyAttacked)
         {
-            managerVariables.Poseidon.DamageIncrease = 0;
-            anim.SetTrigger("melee1");
+            managerVariables.Minotaur.DamageIncrease = 0;
+            if (meleeAnim == 0)
+            {
+                anim.SetTrigger("melee1");
+                meleeAnim = 1;
+                //SwingRight.Play();
+                //attack melee 1
+                print("attack rightarm");
+            }
+            else
+            {
+                anim.SetTrigger("melee2");
+                meleeAnim = 0;
+                //SwingLeft.Play();
+                //attack melee 2
+                print("attack leftarm");
+            }
+            
             //Invoke(nameof(MeleeBlastParticel), 1f);
             Invoke(nameof(DoAttackMelee1), 1f);
-            SwingRight.Play();
+            
 
             alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            if(meleeAnim == 1)
+                Invoke(nameof(ResetAttack), shorttimebetweenAttacks);
+            else
+                Invoke(nameof(ResetAttack), timeBetweenAttacks);
+
         }
 
 
@@ -250,45 +263,14 @@ public class Minotaur : MonoBehaviour
         Animating = true;
     }
 
-    void MeleeBlastParticel()
-    {
-        MeleeBlast.Play();
-    }
-    void swingTP()
-    {
-
-    }
-
-    void GroundBlastParticel()
-    {
-        GroundBlast.Play();
-    }
-
-    private void MidAttacking()
-    {
-        anim.SetBool("walk", false);
-        
-
-        if (!alreadyAttacked)
-        {
-            MidAttackLook = true;
-            managerVariables.Poseidon.DamageIncrease = 60;
-            
-            anim.SetTrigger("melee2");
-
-            Invoke(nameof(DoAttackMelee2), 2.5f);
-            Invoke(nameof(swingParticel), 2f);
-            Invoke(nameof(GroundBlastParticel), 2.5f);
+ 
 
 
-            alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
-        }
 
 
-    }
+    
 
-    void throwTrident()
+    void Run()
     {
         //Instantiate(projectile, trident.transform.position, Quaternion.Euler(new Vector3(90, transform.rotation.eulerAngles.y, 0)));
     }
@@ -298,9 +280,9 @@ public class Minotaur : MonoBehaviour
         anim.SetBool("walk", true);
         if (!alreadyAttacked)
         {
-            managerVariables.Poseidon.DamageIncrease = 10;
+            managerVariables.Minotaur.DamageIncrease = 10;
             anim.SetTrigger("range");
-            Invoke(nameof(throwTrident), .5f);
+            Invoke(nameof(Run), .5f);
 
 
 
