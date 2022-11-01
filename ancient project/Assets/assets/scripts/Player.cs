@@ -323,12 +323,17 @@ public class Player : MonoBehaviour
             SpaceAvaiable = true;
         }
       
-        if (Input.GetKey(controls.Block) && !anim.GetCurrentAnimatorStateInfo(0).IsName("rolling") && combo == 0)
+        if (Input.GetKey(controls.Block) && !anim.GetCurrentAnimatorStateInfo(0).IsName("Roll") && combo == 0)
         {
             if(ShieldCooldown >= managerVariables.Player.ShieldCooldown)
             {
                 anim.SetBool("block", true);
                 managerVariables.Player.Resistence = 80;
+            }
+            else
+            {
+                anim.SetBool("block", false);
+                managerVariables.Player.Resistence = 0;
             }
             
         }
@@ -339,24 +344,31 @@ public class Player : MonoBehaviour
         }
 
         comboTimer -= Time.deltaTime;
-        if (Input.GetKey(controls.Attack) && managerVariables.Player.AttackReady && Mouse0Avaiable && !Input.GetKey(controls.Block))
+        if (Input.GetKey(controls.Attack) && managerVariables.Player.AttackReady && Mouse0Avaiable && !Input.GetKey(controls.Block) && managerVariables.Player.Stamina >= managerVariables.Player.AttackCost)
         {
+            managerVariables.Player.Stamina -= managerVariables.Player.AttackCost;
             comboTimer = 1f;
             Mouse0Avaiable = false;
             if (combo == 0)
             {
                 anim.SetTrigger("attack1");
+                anim.SetBool("isRunning", false);
+                animationSelect(" ");
                 combo++;
             }
             else if (combo == 1)
             {
                 anim.SetTrigger("attack2");
+                anim.SetBool("isRunning", false);
+                animationSelect(" ");
                 combo++;
 
             }
             else if (combo == 2)
             {
                 anim.SetTrigger("attack3");
+                anim.SetBool("isRunning", false);
+                animationSelect(" ");
                 combo++;
             }
 
