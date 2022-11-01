@@ -97,6 +97,7 @@ public class Minotaur : MonoBehaviour
         MainCamera = GameObject.Find("Main Camera").gameObject;
         CameraShake = MainCamera.GetComponent<Shake>();
         CamShaker = CameraShake.GetComponent<CameraShaker>();
+
     }
 
     void DoAttackMelee1()
@@ -124,7 +125,6 @@ public class Minotaur : MonoBehaviour
             telo.color = new Color32(150, 89, 69, 255);
             if (this.gameObject.transform.localScale != Bigsize)
                 this.gameObject.transform.localScale += new Vector3(0.01f, 0.01f, 0.01f);
-            print("raged");
             if (timeToRageTick > timeToRage + RageTime)
             {
                 timeToRageTick = 0;
@@ -143,7 +143,6 @@ public class Minotaur : MonoBehaviour
 
 
 
-        //print(chasingSpeed);
         if (abilityChasingTime < 0.5f)
         {
             abilityChasingTime += Time.deltaTime;
@@ -169,7 +168,6 @@ public class Minotaur : MonoBehaviour
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInMeleeAttackRange = Physics.CheckSphere(transform.position, MeleeAttackRange, whatIsPlayer);
         playerInRangerAttackRange = Physics.CheckSphere(transform.position, RangerAttackRange, whatIsPlayer);
-        playerInRangerAttackRange2 = Physics.CheckSphere(transform.position, RangerAttackRange - 8, whatIsPlayer);
         transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.eulerAngles.y, 0));
         if (!Charging)
         {
@@ -184,7 +182,7 @@ public class Minotaur : MonoBehaviour
                         MeleeAttacking();
                     }
 
-                    else if (!alreadyAttacked && !playerInRangerAttackRange2)
+                    else if (!alreadyAttacked && !playerInRangerAttackRange)
                     {
                         RangedAttacking();
                     }
@@ -275,7 +273,7 @@ public class Minotaur : MonoBehaviour
 
         if (!alreadyAttacked)
         {
-            print("attacking");
+            print(Time.time);
             alreadyAttacked = true;
             managerVariables.Minotaur.DamageIncrease = 0;
             if (meleeAnim == 0)
@@ -284,7 +282,6 @@ public class Minotaur : MonoBehaviour
                 meleeAnim = 1;
                 SwingRight.Play();
                 //attack melee 1
-                print("attack rightarm");
 
                 Invoke(nameof(ResetAttack), shorttimebetweenAttacks);
             }
@@ -294,7 +291,6 @@ public class Minotaur : MonoBehaviour
                 meleeAnim = 0;
                 SwingLeft.Play();
                 //attack melee 2
-                print("attack leftarm");
 
                 Invoke(nameof(ResetAttack), timeBetweenAttacks);
             }
