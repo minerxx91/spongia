@@ -14,32 +14,25 @@ public class playerSpawner : MonoBehaviour
             {
                 case 0:
                     Instantiate(player, managerVariables.Player.LobbySpawn, Quaternion.identity).transform.name = "Player";
-                print("lobby");
 
                 return;
                 case 1:
                     Instantiate(player, managerVariables.Player.LVL1Spawn, Quaternion.identity).transform.name = "Player";
-                print("1");
                 return;
                 case 2:
                     Instantiate(player, managerVariables.Player.LVL2Spawn, Quaternion.identity).transform.name = "Player";
-                print("2");
                 return;
                 case 3:
                     Instantiate(player, managerVariables.Player.LVL3Spawn, Quaternion.identity).transform.name = "Player";
-                print("3");
                 return;
                 case 4:
                     Instantiate(player, managerVariables.Player.LVL4Spawn, Quaternion.identity).transform.name = "Player";
-                print("4");
                 return;
                 case 5:
                     Instantiate(player, managerVariables.Player.LVL5Spawn, Quaternion.identity).transform.name = "Player";
-                print("5");
                 return;
                 case 6:
                 Instantiate(player, managerVariables.Player.LVL6Spawn, Quaternion.identity).transform.name = "Player";
-                print("6");
                 return;
         }
     }

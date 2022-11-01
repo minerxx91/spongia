@@ -29,8 +29,8 @@ public class Minotaur : MonoBehaviour
     public float walkPointRange;
 
     //Attacking
-    public float timeBetweenAttacks, timebetweenRangedAttacks, shorttimebetweenAttacks , timeToRage;
-    bool alreadyAttacked = false;
+    public float timeBetweenAttacks, timebetweenRangedAttacks, shorttimebetweenAttacks, timeToRage;
+    bool alreadyAttacked;
     public float RageTime = 5;
     float RagedTime = 0;
     float timeToRageTick = 0;
@@ -40,7 +40,7 @@ public class Minotaur : MonoBehaviour
 
     //States
     float gravityIncrease = 0;
-    public float sightRange, MeleeAttackRange,  RangerAttackRange;
+    public float sightRange, MeleeAttackRange, RangerAttackRange;
     public bool playerInSightRange, playerInMeleeAttackRange, playerInRangerAttackRange, playerInRangerAttackRange2;
 
 
@@ -63,7 +63,7 @@ public class Minotaur : MonoBehaviour
     public GameObject AttackMelee1;
     //public GameObject AttackMelee2;
 
-    int meleeAnim =0;
+    int meleeAnim = 0;
     private bool MidAttackLook = false;
     float abilityChasingTime = 0;
     Vector3 runRotation;
@@ -81,7 +81,6 @@ public class Minotaur : MonoBehaviour
 
         anim = GetComponent<Animator>();
 
-        AttackMelee1.SetActive(false);
         //AttackMelee2.SetActive(false);
     }
     private void Start()
@@ -93,6 +92,7 @@ public class Minotaur : MonoBehaviour
         managerVariables = Manager.GetComponent<manager>();
         player = GameObject.Find("Player").transform;
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+
 
         MainCamera = GameObject.Find("Main Camera").gameObject;
         CameraShake = MainCamera.GetComponent<Shake>();
@@ -125,7 +125,7 @@ public class Minotaur : MonoBehaviour
             if (this.gameObject.transform.localScale != Bigsize)
                 this.gameObject.transform.localScale += new Vector3(0.01f, 0.01f, 0.01f);
             print("raged");
-            if(timeToRageTick > timeToRage + RageTime)
+            if (timeToRageTick > timeToRage + RageTime)
             {
                 timeToRageTick = 0;
                 Raged = false;
@@ -139,7 +139,7 @@ public class Minotaur : MonoBehaviour
                 this.gameObject.transform.localScale -= new Vector3(0.01f, 0.01f, 0.01f);
             telo.color = new Color32(115, 89, 69, 255);
         }
-        
+
 
 
 
@@ -169,7 +169,7 @@ public class Minotaur : MonoBehaviour
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInMeleeAttackRange = Physics.CheckSphere(transform.position, MeleeAttackRange, whatIsPlayer);
         playerInRangerAttackRange = Physics.CheckSphere(transform.position, RangerAttackRange, whatIsPlayer);
-        playerInRangerAttackRange2 = Physics.CheckSphere(transform.position, RangerAttackRange-8, whatIsPlayer);
+        playerInRangerAttackRange2 = Physics.CheckSphere(transform.position, RangerAttackRange - 8, whatIsPlayer);
         transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.eulerAngles.y, 0));
         if (!Charging)
         {
@@ -268,13 +268,14 @@ public class Minotaur : MonoBehaviour
 
     private void MeleeAttacking()
     {
-        
+
         transform.LookAt(Targetposition);
         anim.SetBool("walk", false);
         agent.SetDestination(transform.position);
-        
+
         if (!alreadyAttacked)
         {
+            print("attacking");
             alreadyAttacked = true;
             managerVariables.Minotaur.DamageIncrease = 0;
             if (meleeAnim == 0)
@@ -298,7 +299,7 @@ public class Minotaur : MonoBehaviour
                 Invoke(nameof(ResetAttack), timeBetweenAttacks);
             }
 
-            
+
 
             //Invoke(nameof(MeleeBlastParticel), 1f);
             Invoke(nameof(DoAttackMelee1), .72f);
@@ -314,7 +315,7 @@ public class Minotaur : MonoBehaviour
         Animating = true;
     }
 
- 
+
 
     void EndCharge()
     {
@@ -323,7 +324,7 @@ public class Minotaur : MonoBehaviour
     }
 
 
-    
+
 
     void Charge()
     {
@@ -344,7 +345,7 @@ public class Minotaur : MonoBehaviour
         if (!Charging)
         {
             managerVariables.Minotaur.DamageIncrease = 10;
-            
+
             Invoke(nameof(Charge), .5f);
             //run attack
 
@@ -368,7 +369,7 @@ public class Minotaur : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, sightRange);
         Gizmos.color = Color.green;
-        
+
         Gizmos.DrawWireSphere(transform.position, RangerAttackRange);
         Gizmos.DrawWireSphere(transform.position, RangerAttackRange - 8);
     }
