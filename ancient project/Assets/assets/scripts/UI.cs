@@ -118,8 +118,8 @@ private void Update()
             else if (GameObject.FindGameObjectsWithTag("Boss")[0].gameObject.name == "Minotaur")
             {
                 float bossHealth = managerVariables.Minotaur.Health;
-                float dielikBoss = 1800 / managerVariables.Poseidon.maxHealth;
-                BossBar.transform.localScale = new Vector2((bossHealth * dielikBoss) / 1800, BossBar.transform.localScale.y);
+                float dielikBoss = 900 / managerVariables.Minotaur.maxHealth;
+                BossBar.transform.localScale = new Vector2((bossHealth * dielikBoss) / 900, BossBar.transform.localScale.y);
                 BossName.text = "Minotaur";
             }
 

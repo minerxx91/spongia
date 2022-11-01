@@ -35,7 +35,6 @@ public class sword : MonoBehaviour
                     else
                     {
                         managerVariables.Poseidon.Health = 0;
-                        Destroy(other.gameObject);
                     }
                 }
                 
@@ -50,7 +49,6 @@ public class sword : MonoBehaviour
                 else
                 {
                     managerVariables.Minotaur.Health = 0;
-                    Destroy(other.gameObject);
                 }
             }
             /*if ( managerVariables.Player.AttackInProcess)

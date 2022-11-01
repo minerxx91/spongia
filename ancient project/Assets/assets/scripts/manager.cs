@@ -55,8 +55,8 @@ public class manager : MonoBehaviour
         public GameObject target;
 
         public bool MeduzaUnlocked = true;
-        public bool MinotaurUnlocked = true;
-        public bool PoseidonUnlocked = true;
+        public bool MinotaurUnlocked = false;
+        public bool PoseidonUnlocked = false;
         public bool ZeusUnlocked = true;
 
 
@@ -140,11 +140,25 @@ public class manager : MonoBehaviour
     {
         if (GameObject.FindGameObjectsWithTag("Boss").Length != 0)
         {
+            
             if (GameObject.FindGameObjectsWithTag("Boss")[0].name == "Minotaur")
             {
                 if (Minotaur.Health == 0)
                 {
                     print("endgame");
+                    Destroy(GameObject.FindGameObjectsWithTag("Boss")[0].gameObject);
+                    Player.MinotaurUnlocked = true;
+                    
+                }
+            }
+            if (GameObject.FindGameObjectsWithTag("Boss")[0].name == "Poseidon")
+            {
+                if (Poseidon.Health == 0)
+                {
+                    print("endgame");
+                    Destroy(GameObject.FindGameObjectsWithTag("Boss")[0].gameObject);
+                    Player.PoseidonUnlocked = true;
+
                 }
             }
         }

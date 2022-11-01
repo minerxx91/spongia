@@ -273,7 +273,6 @@ public class Minotaur : MonoBehaviour
 
         if (!alreadyAttacked)
         {
-            print(Time.time);
             alreadyAttacked = true;
             managerVariables.Minotaur.DamageIncrease = 0;
             if (meleeAnim == 0)
