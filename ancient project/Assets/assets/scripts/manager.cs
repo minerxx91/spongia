@@ -75,6 +75,8 @@ public class manager : MonoBehaviour
         public float shake2 = 5f;
         public float shake3 = .1f;
         public float shake4 = 2f;
+
+        public bool absorb = false;
     }
     public PlayerStats Player = new PlayerStats();
 

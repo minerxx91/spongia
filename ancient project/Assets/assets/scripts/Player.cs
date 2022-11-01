@@ -428,7 +428,11 @@ public class Player : MonoBehaviour
         /*
         postprocesing.profile.GetComponent<Vignette>().color = new ColorParameter(new Color(1, 0, 0, 1), true);
         */
-
+        if (managerVariables.Player.absorb)
+        {
+            managerVariables.Player.absorb = false;
+            anim.SetTrigger("absorb");
+        }
     }
 
     IEnumerator Dash()

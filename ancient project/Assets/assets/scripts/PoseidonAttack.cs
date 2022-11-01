@@ -31,9 +31,11 @@ public class PoseidonAttack : MonoBehaviour
                     audioManager.PlayPlayerShield();
                     GameObject.Find("Player").GetComponent<Player>().ShieldCooldown = 0;
                 }
+                managerVariables.Player.absorb = true;
             }
             else
             {
+                managerVariables.Player.absorb = true;
                 managerVariables.Player.Health = 0;
             }
             /*if ( managerVariables.Player.AttackInProcess)
