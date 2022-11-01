@@ -27,16 +27,31 @@ public class Menu : MonoBehaviour
 
     }
 
-    public void options()
+    public void Options()
     {
         menu.SetActive(false);
+        grafic.SetActive(false);
+        zvuk.SetActive(false);
+        ovladanie.SetActive(false);
         settings.SetActive(true);
     }
-    public void grafika()
+    public void Grafika()
     {
         menu.SetActive(false);
         settings.SetActive(false);
         grafic.SetActive(true);
+    }
+    public void Zvuk()
+    {
+        menu.SetActive(false);
+        settings.SetActive(false);
+        zvuk.SetActive(true);
+    }
+    public void Ovladanie()
+    {
+        menu.SetActive(false);
+        settings.SetActive(false);
+        ovladanie.SetActive(true);
     }
     public void quit()
     {
