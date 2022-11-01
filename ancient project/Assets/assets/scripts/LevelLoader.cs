@@ -24,7 +24,7 @@ public class LevelLoader : MonoBehaviour
         
     }
 
-    
+
     public void SwitchScene()
     {
         LoadNextLevel();

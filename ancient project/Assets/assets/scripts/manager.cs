@@ -11,7 +11,8 @@ public class manager : MonoBehaviour
 
     [SerializeField] GameObject playerPrefab;
 
-    
+    LevelLoader lvlloader;
+
 
     public int levelIndex = 0;
 
@@ -104,9 +105,10 @@ public class manager : MonoBehaviour
         {
             manager_d = this.gameObject;
         }
-
+        
         DontDestroyOnLoad(gameObject);
         DynamicGI.UpdateEnvironment();
+        lvlloader = GameObject.Find("LevelLoader").GetComponent<LevelLoader>();
     }
     public void DamagePlayer(float damage)
     {
@@ -149,6 +151,8 @@ public class manager : MonoBehaviour
                     Destroy(GameObject.FindGameObjectsWithTag("Boss")[0].gameObject);
                     Player.MinotaurUnlocked = true;
                     
+                    SceneManager.LoadScene("Lobby");
+
                 }
             }
             if (GameObject.FindGameObjectsWithTag("Boss")[0].name == "Poseidon")
