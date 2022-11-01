@@ -1717,7 +1717,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 911780351062913451, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 500
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 911780351062913451, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -1726,7 +1726,7 @@ PrefabInstance:
     - target: {fileID: 1177851336310162197, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 2223a97c719b4eb4e9a6ff55d0282504, type: 3}
+      objectReference: {fileID: 21300000, guid: aa0f9def8768bb44f980da0fbeb86ce6, type: 3}
     - target: {fileID: 3735276129880483234, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -1742,7 +1742,7 @@ PrefabInstance:
     - target: {fileID: 4040500495425039502, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
       propertyPath: boss
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8033433138654768389}
     - target: {fileID: 4040500495425039502, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
       propertyPath: image
       value: 
@@ -1862,7 +1862,7 @@ PrefabInstance:
     - target: {fileID: 4376899947556890104, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 2223a97c719b4eb4e9a6ff55d0282504, type: 3}
+      objectReference: {fileID: 21300000, guid: 54c43f5c9b3e5c64d9783e1bca1862fa, type: 3}
     - target: {fileID: 7201055278145273322, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
       propertyPath: m_fontAsset
       value: 

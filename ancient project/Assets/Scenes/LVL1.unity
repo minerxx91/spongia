@@ -133,7 +133,7 @@ PrefabInstance:
     - target: {fileID: 1177851336310162197, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 2223a97c719b4eb4e9a6ff55d0282504, type: 3}
+      objectReference: {fileID: 21300000, guid: aa0f9def8768bb44f980da0fbeb86ce6, type: 3}
     - target: {fileID: 3735276129880483234, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -146,6 +146,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScenarioCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 4040500495425039502, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
+      propertyPath: boss
+      value: 
+      objectReference: {fileID: 1889302218}
     - target: {fileID: 4040500495425039502, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
       propertyPath: image
       value: 
@@ -265,7 +269,7 @@ PrefabInstance:
     - target: {fileID: 4376899947556890104, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 2223a97c719b4eb4e9a6ff55d0282504, type: 3}
+      objectReference: {fileID: 21300000, guid: 54c43f5c9b3e5c64d9783e1bca1862fa, type: 3}
     - target: {fileID: 7201055278145273322, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -5141,6 +5145,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf19bd08efa1b0449bee07af6f0d9c9c, type: 3}
+--- !u!1 &1889302218 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: bf19bd08efa1b0449bee07af6f0d9c9c, type: 3}
+  m_PrefabInstance: {fileID: 1889302217}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1921809130
 GameObject:
   m_ObjectHideFlags: 0

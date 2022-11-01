@@ -78,12 +78,12 @@ public class Scenario : MonoBehaviour
                 Lvl3Scenario();
             }
 
-            if (sceneName == "LVL4")
+            if (sceneName == "LVL4" && boss.IsDestroyed())
             {
                 Lvl4Scenario();
             }
 
-            if (sceneName == "LVL5")
+            if (sceneName == "LVL5" && boss.IsDestroyed())
             {
                 Lvl5Scenario();
             }
@@ -94,12 +94,15 @@ public class Scenario : MonoBehaviour
     {
         if (index == 0)
         {
-            lobbyText.text = "Vitaj, dúfame že si našu hru užiješ!";
+            panel.SetActive(true);
+            lobbyText.text = "Rok 453 pred n. l., na rozkaz kráľa Kréty Androgeosa sa kráľovská armáda vydáva na výpravu za zneškodnením mýtickej " +
+                "bytosti známej ako Medúza po sérii útokov po ktorých z napadnutých nezostalo nič viac ako kamenné sochy s vydeseným výrazom v tvári.";
             index++;
         }           
         else
         {
             lobbyText.text = "";
+            panel.SetActive(false);
         }
     }
 
