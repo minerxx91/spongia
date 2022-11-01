@@ -65,7 +65,10 @@ public class Poseidon : MonoBehaviour
     private bool MidAttackLook = false;
 
     public bool Stun = false;
-    private float prevSpeed;
+
+    public Material normalMaterial;
+    public Material stunMaterial;
+    private GameObject body;
 
     void Awake()
     {
@@ -87,6 +90,8 @@ public class Poseidon : MonoBehaviour
         managerVariables = Manager.GetComponent<manager>();
         player = GameObject.Find("Player").transform;
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+
+        body = GameObject.Find("Group1");
 
     }
 
@@ -116,6 +121,7 @@ public class Poseidon : MonoBehaviour
     {
         Stun = false;
         anim.speed = 1;
+        body.GetComponent<Renderer>().material = normalMaterial;
     }
 
     void Update()
@@ -210,8 +216,8 @@ public class Poseidon : MonoBehaviour
         {
             Invoke(nameof(ResetStun), 5f);
             agent.SetDestination(transform.position);
-            prevSpeed = anim.speed;
             anim.speed = 0;
+            body.GetComponent<Renderer>().material = stunMaterial;
         }
     }
 
