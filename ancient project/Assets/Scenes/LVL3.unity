@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1828128519}
-  m_IndirectSpecularColor: {r: 0.48396307, g: 0.57574326, b: 0.6802008, a: 1}
+  m_IndirectSpecularColor: {r: 0.48395744, g: 0.5757396, b: 0.68019843, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1742,7 +1742,7 @@ PrefabInstance:
     - target: {fileID: 4040500495425039502, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
       propertyPath: boss
       value: 
-      objectReference: {fileID: 8033433138654768389}
+      objectReference: {fileID: 0}
     - target: {fileID: 4040500495425039502, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
       propertyPath: image
       value: 
@@ -20682,8 +20682,6 @@ MonoBehaviour:
   playerInMidAttackRange2: 0
   playerInRangerAttackRange: 0
   playerInRangerAttackRange2: 0
-  Health: 1000
-  maxHealth: 1000
   swing: {fileID: 1316520751}
   GroundBlast: {fileID: 8033433138690816085}
   MeleeBlast: {fileID: 8033433137793734200}
