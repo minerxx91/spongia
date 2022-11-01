@@ -44,10 +44,7 @@ public class Minotaur : MonoBehaviour
     public bool playerInSightRange, playerInMeleeAttackRange, playerInRangerAttackRange, playerInRangerAttackRange2;
 
 
-    //Health
-    public float Health = 100;
-    public float maxHealth = 100;
-    TextMeshPro healthbar;
+
 
 
     //Particles

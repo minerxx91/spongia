@@ -47,9 +47,6 @@ public class Poseidon : MonoBehaviour
 
 
 
-    public float Health = 100;
-    public float maxHealth = 100;
-    TextMeshPro healthbar;
     ParticleSystem selectAura;
     Light orangeLight;
     [SerializeField] ParticleSystem swing;

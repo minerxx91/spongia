@@ -27,14 +27,14 @@ public class sword : MonoBehaviour
                 else
                 {
                     print("ani rit");
-                    if (other.GetComponent<Poseidon>().Health > managerVariables.Player.Damage + managerVariables.Player.DamageIncrease)
+                    if (managerVariables.Poseidon.Health > managerVariables.Player.Damage + managerVariables.Player.DamageIncrease)
                     {
-                        other.GetComponent<Poseidon>().Health -= managerVariables.Player.Damage + managerVariables.Player.DamageIncrease;
+                        managerVariables.Poseidon.Health -= managerVariables.Player.Damage + managerVariables.Player.DamageIncrease;
 
                     }
                     else
                     {
-                        other.GetComponent<Poseidon>().Health = 0;
+                        managerVariables.Poseidon.Health = 0;
                         Destroy(other.gameObject);
                     }
                 }
@@ -42,14 +42,14 @@ public class sword : MonoBehaviour
             }
             else if (other.gameObject.name == "Minotaur")
             {
-                if (other.GetComponent<Minotaur>().Health > managerVariables.Player.Damage + managerVariables.Player.DamageIncrease)
+                if (managerVariables.Minotaur.Health > managerVariables.Player.Damage + managerVariables.Player.DamageIncrease)
                 {
-                    other.GetComponent<Minotaur>().Health -= managerVariables.Player.Damage + managerVariables.Player.DamageIncrease;
+                    managerVariables.Minotaur.Health -= managerVariables.Player.Damage + managerVariables.Player.DamageIncrease;
 
                 }
                 else
                 {
-                    other.GetComponent<Minotaur>().Health = 0;
+                    managerVariables.Minotaur.Health = 0;
                     Destroy(other.gameObject);
                 }
             }
