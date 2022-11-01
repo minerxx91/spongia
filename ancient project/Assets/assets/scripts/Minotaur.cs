@@ -93,7 +93,6 @@ public class Minotaur : MonoBehaviour
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 
 
-        Invoke(nameof(ResetAttack), timebetweenRangedAttacks);
     }
 
     void DoAttackMelee1()
@@ -323,7 +322,7 @@ public class Minotaur : MonoBehaviour
     {
         anim.SetBool("charge", true);
         Charging = true;
-        Invoke(nameof(EndCharge), 1);
+        Invoke(nameof(EndCharge), 0.5f);
         //runRotation = transform.rotation.eulerAngles;
         //abilityChasingTime = 0;
 
