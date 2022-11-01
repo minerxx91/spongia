@@ -134,7 +134,21 @@ public class manager : MonoBehaviour
 
 
     }
-    
+
+    private void Update()
+    {
+        if (GameObject.FindGameObjectsWithTag("Boss").Length != 0)
+        {
+            if (GameObject.FindGameObjectsWithTag("Boss")[0].name == "Minotaur")
+            {
+                if (Minotaur.Health == 0)
+                {
+                    print("endgame");
+                }
+            }
+        }
+    }
+
 
 
 }
