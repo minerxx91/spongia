@@ -29,7 +29,8 @@ public class PoseidonAttack : MonoBehaviour
                 if(managerVariables.Player.Resistence > 0)
                 {
                     audioManager.PlayPlayerShield();
-                    GameObject.Find("Player").GetComponent<Player>().ShieldCooldown = 0;
+                    Invoke(nameof(ShieldDown), .3f);
+                    managerVariables.Player.absorb2 = true;
                 }
                 else managerVariables.Player.absorb = true;
             }
@@ -45,5 +46,10 @@ public class PoseidonAttack : MonoBehaviour
             }*/
 
         }
+    }
+
+    private void ShieldDown()
+    {
+        GameObject.Find("Player").GetComponent<Player>().ShieldCooldown = 0;
     }
 }

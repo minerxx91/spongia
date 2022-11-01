@@ -71,6 +71,7 @@ public class manager : MonoBehaviour
         public Vector3 LVL6Spawn = new Vector3(212, 403, 180);
 
         public bool absorb = false;
+        public bool absorb2 = false;
     }
     public PlayerStats Player = new PlayerStats();
 

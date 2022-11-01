@@ -433,6 +433,11 @@ public class Player : MonoBehaviour
             managerVariables.Player.absorb = false;
             anim.SetTrigger("absorb");
         }
+        else if (managerVariables.Player.absorb2)
+        {
+            managerVariables.Player.absorb2 = false;
+            anim.SetTrigger("absorb2");
+        }
     }
 
     IEnumerator Dash()
