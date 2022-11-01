@@ -25,20 +25,25 @@ public class Scenario : MonoBehaviour
     string[] Lvl1 = { "Pravý hrdina, presne niekoho ako ty potrebujem.","???", "Keďže si preukázal silu a odvahu ako málokto, postaráš sa o problém " +
         "ktorý ma trápi už roky.","???", "Zabiješ pre mňa Minotaura, ak to dokážeš získaš bohatstvo na celý život, ak nie zomrieš so cťou. " +
         "Odmietnuť samozrejme nemôžeš, hah." };
-    string[] Lvl2 = {"a","b","a","b" };
-    string[] Lvl3 = { "Asi som ťa podcenil, všetka česť.", "Prečo si sa o to nepostaral sám, si predsa najsilnejší z celého Olympu?",
-        "Nemám čas sa zahadzovať s takýmito maličkosťami, na to mám takých hlupáčikov ako ty, ale to ako sa ti podarilo prežiť je naozaj obdivuhodné. " +
-        "Nejakým spôsobom sa ti podarilo použiť medúzinu schopnosť. Musíš byť poloboh s veľkým darom. Poseidon v poslednej dobe začal robiť problémy, " +
-        "mal by si sa o neho v mojom mene postarať kým si to niekto odskáče. Nie je čas navyše, priprav sa. Ó a inak skoro som zabudol, " +
-        "tu máš nejaké vybavenie nech po tebe nezostane len mastný fľak."};
-    string[] Lvl4 = { };
-    string[] Lvl5 = { };
+    string[] Lvl2 = { "Dokázal si to. Myslel som že nevydržíš viac ako minútu, ale dokázal si to. Po zvyšok života bude o teba dobre postarané... " +
+        "Čo to? Ako to?", "To je tvoja zásluha?", "Áno, mocný Zeus, konal som na rozkaz svojho kráľa, prosím ušetri ma.", "Normálne by som ťa" +
+        " zmietol s povrchu zemského ale potrebujem niekoho ako ty. Očividne nie si len taký človek, si poloboh, s celkom veľkou mocou." +
+        " Potrebujem niekoho ako ty, Poseidon a Hádes, moji braria sa proti mne obrátili. Chcú vládu nad svetom len pre seba a ty mi ich pomôžeš zastaviť.",
+        "Ako asi to mám urobiť, obaja ma zabijú len škaredím pohľadom.", "Nie s týmto, aj tak sú ale tvoje šance na úspech mizivé ale nemáme veľa času," +
+        " dostanem ťa k poseidonovy a zvyšok je na tebe. Nemárni čas slovami, budú čakať niekoho ako ty a budú sa ťa zabiť čo najskôr.", "Ale..." };
+    string[] Lvl3 = { "Zatiaľ si ma nesklamal, to sa ti musí nechať, ale táto úloha nebude taká ľahká. Hádesovi sa toto páčiť nebude, musíš sa ho zbaviť." +
+        " Hľadal som ho v jeho časti sveta, podsvetí a nenašiel som nič, určite už obsadil Olymp, musíš sa ho zbaviť. Svet sa na teba spolieha." };
+    string[] Lvl4 = { "Takže si to dokázal, porazil si Zeusa, dúfal som že ho oslabíš ale toto som nečakal.",
+        "Oklamal si ma? Kvôli tebe som zabil Poseidona a Zeusa.", "Ja sám by som to nedokázal, to musím uznať ale tvojich päť minút slávy sa práve skončilo." +
+        " Môj miláčik Kerberos sa o teba postará."};
+    string[] Lvl5 = { "Ako to? Čo si urobil s Kerberosom? Už si mal byť dávno mrtvy.", "Prišiel som pretože nemôžem nechať niekoho ako ty aby vládol" +
+        " celému svetu.", "Staviaš sa proti mne? Bez brnenie ktoré som ti dal nemáš proti mne šancu.", "Risknem to." };
 
     int[] Lvl1Field = {1,0,1,0,1};
-    int[] Lvl2Field = {0,1,0,1};
-    int[] Lvl3Field = { 1, 0, 1 };
-    int[] Lvl4Field = {};
-    int[] Lvl5Field = {};
+    int[] Lvl2Field = {1,1,0,1,0,1,0};
+    int[] Lvl3Field = { 1};
+    int[] Lvl4Field = {1,0,1};
+    int[] Lvl5Field = {1, 0, 1, 0};
 
     int index = 0;
     int sceneNumber = 0;
@@ -200,27 +205,29 @@ public class Scenario : MonoBehaviour
     {
         playerText.text = "";
         othersText.text = "";
-        //panel.SetActive(true);
-        //image.SetActive(false);
+        panel.SetActive(true);
+        image.SetActive(false);
+        imageOther.SetActive(false);
 
         if (index <= Lvl4.Length - 1)
         {
             if (Lvl4Field[index] == 0)
             {
                 playerText.text = Lvl4[index];
-                //image.SetActive(true);
+                image.SetActive(true);
                 index++;
             }
             else
             {
                 othersText.text = Lvl4[index];
+                imageOther.SetActive(true);
                 index++;
             }
         }
         else
         {
             Debug.Log("konec");
-            othersText.text = "";
+            panel.SetActive(false);
         }
     }
 
@@ -228,27 +235,29 @@ public class Scenario : MonoBehaviour
     {
         playerText.text = "";
         othersText.text = "";
-        //panel.SetActive(true);
-        //image.SetActive(false);
+        panel.SetActive(true);
+        image.SetActive(false);
+        imageOther.SetActive(false);
 
         if (index <= Lvl5.Length - 1)
         {
             if (Lvl5Field[index] == 0)
             {
                 playerText.text = Lvl5[index];
-                //image.SetActive(true);
+                image.SetActive(true);
                 index++;
             }
             else
             {
                 othersText.text = Lvl5[index];
+                imageOther.SetActive(true);
                 index++;
             }
         }
         else
         {
             Debug.Log("konec");
-            othersText.text = "";
+            panel.SetActive(false);
         }
     }
 
