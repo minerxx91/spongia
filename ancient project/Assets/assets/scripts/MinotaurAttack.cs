@@ -23,15 +23,15 @@ public class MinotaurAttack : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            if (managerVariables.Player.Health > managerVariables.Poseidon.Damage + managerVariables.Poseidon.DamageIncrease)
+            if (managerVariables.Player.Health > managerVariables.Minotaur.Damage + managerVariables.Minotaur.DamageIncrease)
             {
-                managerVariables.Player.Health -= (managerVariables.Poseidon.Damage + managerVariables.Poseidon.DamageIncrease)*(100- managerVariables.Player.Resistence) /100;
+                managerVariables.Player.Health -= (managerVariables.Minotaur.Damage + managerVariables.Minotaur.DamageIncrease)*(100- managerVariables.Player.Resistence) /100;
                 if(managerVariables.Player.Resistence > 0)
                 {
                     audioManager.PlayPlayerShield();
                     GameObject.Find("Player").GetComponent<Player>().ShieldCooldown = 0;
                 }
-                managerVariables.Player.absorb = true;
+                else managerVariables.Player.absorb = true;
             }
             else
             {

@@ -294,7 +294,7 @@ public class Minotaur : MonoBehaviour
             }
             
             //Invoke(nameof(MeleeBlastParticel), 1f);
-            Invoke(nameof(DoAttackMelee1), 1f);
+            Invoke(nameof(DoAttackMelee1), .72f);
         }
 
 
