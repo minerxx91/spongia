@@ -20,10 +20,6 @@ public class Shake : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (managerVariables.Player.shake)
-        {
-            managerVariables.Player.shake = false;
-            CamShaker.ShakeOnce(managerVariables.Player.shake1, managerVariables.Player.shake2, managerVariables.Player.shake3, managerVariables.Player.shake4);
-        }
+
     }
 }

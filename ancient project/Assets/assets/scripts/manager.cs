@@ -70,12 +70,6 @@ public class manager : MonoBehaviour
         public Vector3 LVL5Spawn = new Vector3(212, 403, 180);
         public Vector3 LVL6Spawn = new Vector3(212, 403, 180);
 
-        public bool shake = false;
-        public float shake1 = 3f;
-        public float shake2 = 5f;
-        public float shake3 = .1f;
-        public float shake4 = 2f;
-
         public bool absorb = false;
     }
     public PlayerStats Player = new PlayerStats();
