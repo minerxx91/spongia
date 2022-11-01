@@ -29,7 +29,7 @@ public class Minotaur : MonoBehaviour
 
     //Attacking
     public float timeBetweenAttacks, timebetweenRangedAttacks, shorttimebetweenAttacks , timeToRage;
-    bool alreadyAttacked;
+    bool alreadyAttacked = false;
     public float RageTime = 5;
     float RagedTime = 0;
     float timeToRageTick = 0;
@@ -92,6 +92,8 @@ public class Minotaur : MonoBehaviour
         player = GameObject.Find("Player").transform;
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 
+
+        Invoke(nameof(ResetAttack), timebetweenRangedAttacks);
     }
 
     void DoAttackMelee1()
@@ -138,7 +140,7 @@ public class Minotaur : MonoBehaviour
 
 
         //print(chasingSpeed);
-        if (abilityChasingTime < 1)
+        if (abilityChasingTime < 0.5f)
         {
             abilityChasingTime += Time.deltaTime;
             this.gameObject.transform.rotation = Quaternion.Euler(runRotation);
@@ -289,7 +291,7 @@ public class Minotaur : MonoBehaviour
                 //attack melee 2
                 print("attack leftarm");
 
-                Invoke(nameof(ResetAttack), timebetweenRangedAttacks);
+                Invoke(nameof(ResetAttack), timeBetweenAttacks);
             }
             
             //Invoke(nameof(MeleeBlastParticel), 1f);
@@ -342,7 +344,7 @@ public class Minotaur : MonoBehaviour
 
 
             alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            Invoke(nameof(ResetAttack), timebetweenRangedAttacks);
         }
 
     }

@@ -23210,7 +23210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smoothSpeed: 0.5
-  offset: {x: 0, y: 4.84, z: -6.51}
+  offset: {x: 0, y: 4, z: -6.51}
   yOffset: 1.14
 --- !u!81 &1405848698
 AudioListener:
