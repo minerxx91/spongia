@@ -26,10 +26,11 @@ public class MinotaurAttack : MonoBehaviour
             if (managerVariables.Player.Health > managerVariables.Minotaur.Damage + managerVariables.Minotaur.DamageIncrease)
             {
                 managerVariables.Player.Health -= (managerVariables.Minotaur.Damage + managerVariables.Minotaur.DamageIncrease)*(100- managerVariables.Player.Resistence) /100;
-                if(managerVariables.Player.Resistence > 0)
+                if (managerVariables.Player.Resistence > 0)
                 {
                     audioManager.PlayPlayerShield();
-                    GameObject.Find("Player").GetComponent<Player>().ShieldCooldown = 0;
+                    Invoke(nameof(ShieldDown), .3f);
+                    managerVariables.Player.absorb2 = true;
                 }
                 else managerVariables.Player.absorb = true;
             }
@@ -45,5 +46,10 @@ public class MinotaurAttack : MonoBehaviour
             }*/
 
         }
+    }
+
+    private void ShieldDown()
+    {
+        GameObject.Find("Player").GetComponent<Player>().ShieldCooldown = 0;
     }
 }

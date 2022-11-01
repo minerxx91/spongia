@@ -14,14 +14,12 @@ public class Plebs : MonoBehaviour
     public bool walkPointSet;
 
     private Animator anim;
-    // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (walkPointSet)
