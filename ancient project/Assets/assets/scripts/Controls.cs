@@ -16,6 +16,9 @@ public class Controls : MonoBehaviour
     public KeyCode Jump = KeyCode.Space;
 
     public KeyCode Interact = KeyCode.E;
-   
 
+    public KeyCode ability1 = KeyCode.Z;
+    public KeyCode ability2 = KeyCode.X;
+    public KeyCode ability3 = KeyCode.C;
+    public KeyCode ability4 = KeyCode.V;
 }

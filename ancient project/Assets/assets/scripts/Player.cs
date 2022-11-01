@@ -414,9 +414,9 @@ public class Player : MonoBehaviour
             managerVariables.Player.Stamina = managerVariables.Player.MaxStamina;
         }
 
-        if (Input.GetKeyDown(controls.Attack))
+        if (Input.GetKeyDown(controls.ability1))
         {
-            StartCoroutine(Stun());
+
         }
         /*
         postprocesing.profile.GetComponent<Vignette>().color = new ColorParameter(new Color(1, 0, 0, 1), true);
@@ -441,25 +441,6 @@ public class Player : MonoBehaviour
             yield return null;
         }
         managerVariables.Player.Jumping = false;
-    }
-
-    IEnumerator Stun()
-    {
-        yield return new WaitForSeconds(.1f);
-
-        float startTime = Time.time;
-        RaycastHit hit;
-        if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y+2, transform.position.z), transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
-        {
-            if (hit.collider.tag == "Boss")
-            {
-                while (Time.time < managerVariables.Player.StunDuration + startTime)
-                {
-                    enemyNavMesh.walkPoint = hit.collider.transform.position;
-                    yield return null;
-                }
-            }
-        }
     }
 
     private void OnTriggerStay(Collider other)
