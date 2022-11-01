@@ -72,7 +72,9 @@ public class Poseidon : MonoBehaviour
     public Material stunMaterial;
     private GameObject body;
 
-
+    GameObject MainCamera;
+    Shake CameraShake;
+    CameraShaker CamShaker;
 
     void Awake()
     {
@@ -96,16 +98,14 @@ public class Poseidon : MonoBehaviour
 
         body = GameObject.Find("Group1");
 
+        MainCamera = GameObject.Find("Main Camera").gameObject;
+        CameraShake = MainCamera.GetComponent<Shake>();
+        CamShaker = CameraShake.GetComponent<CameraShaker>();
     }
 
     void DoAttackMelee1()
     {
-        managerVariables.Player.shake1 = 2f;
-        managerVariables.Player.shake2 = 2f;
-        managerVariables.Player.shake3 = .1f;
-        managerVariables.Player.shake4 = 1.3f;
-
-        managerVariables.Player.shake = true;
+        CamShaker.ShakeOnce(2, 2, .1f, 1.3f);
 
         AttackMelee1.SetActive(true);
         Invoke(nameof(ResetAttackMelee1), .1f);
@@ -118,13 +118,7 @@ public class Poseidon : MonoBehaviour
 
     void DoAttackMelee2()
     {
-        managerVariables.Player.shake1 = 4f;
-        managerVariables.Player.shake2 = 6f;
-        managerVariables.Player.shake3 = .1f;
-        managerVariables.Player.shake4 = 2f;
-
-        managerVariables.Player.shake = true;
-
+        CamShaker.ShakeOnce(4, 6, .1f, 2);
         AttackMelee2.SetActive(true);
         Invoke(nameof(ResetAttackMelee2), .1f);
     }

@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine.UIElements;
 using Unity.VisualScripting;
 using UnityEngine.UIElements.Experimental;
+using EZCameraShake;
 
 public class Minotaur : MonoBehaviour
 {
@@ -71,6 +72,10 @@ public class Minotaur : MonoBehaviour
     Vector3 runRotation;
     private bool Charging;
 
+    GameObject MainCamera;
+    Shake CameraShake;
+    CameraShaker CamShaker;
+
     void Awake()
     {
 
@@ -92,7 +97,9 @@ public class Minotaur : MonoBehaviour
         player = GameObject.Find("Player").transform;
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 
-
+        MainCamera = GameObject.Find("Main Camera").gameObject;
+        CameraShake = MainCamera.GetComponent<Shake>();
+        CamShaker = CameraShake.GetComponent<CameraShaker>();
     }
 
     void DoAttackMelee1()
@@ -292,7 +299,9 @@ public class Minotaur : MonoBehaviour
 
                 Invoke(nameof(ResetAttack), timeBetweenAttacks);
             }
-            
+
+            CamShaker.ShakeOnce(2, 2, .1f, 1.3f);
+
             //Invoke(nameof(MeleeBlastParticel), 1f);
             Invoke(nameof(DoAttackMelee1), .72f);
         }
