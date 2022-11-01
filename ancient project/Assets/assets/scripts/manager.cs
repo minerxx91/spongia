@@ -137,7 +137,11 @@ public class manager : MonoBehaviour
 
 
     }
+    void toLobby()
+    {
+        SceneManager.LoadScene("Lobby");
 
+    }
     private void Update()
     {
         if (GameObject.FindGameObjectsWithTag("Boss").Length != 0)
@@ -150,8 +154,7 @@ public class manager : MonoBehaviour
                     print("endgame");
                     Destroy(GameObject.FindGameObjectsWithTag("Boss")[0].gameObject);
                     Player.MinotaurUnlocked = true;
-                    
-                    SceneManager.LoadScene("Lobby");
+                    Invoke(nameof(toLobby), 5);
 
                 }
             }
@@ -162,7 +165,7 @@ public class manager : MonoBehaviour
                     print("endgame");
                     Destroy(GameObject.FindGameObjectsWithTag("Boss")[0].gameObject);
                     Player.PoseidonUnlocked = true;
-
+                    Invoke(nameof(toLobby), 5);
                 }
             }
         }
