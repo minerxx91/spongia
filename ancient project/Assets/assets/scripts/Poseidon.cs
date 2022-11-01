@@ -5,6 +5,8 @@ using UnityEngine.AI;
 using TMPro;
 using UnityEngine.UIElements;
 using Unity.VisualScripting;
+using EZCameraShake;
+using System.Security.Cryptography;
 
 public class Poseidon : MonoBehaviour
 {
@@ -70,9 +72,10 @@ public class Poseidon : MonoBehaviour
     public Material stunMaterial;
     private GameObject body;
 
+
+
     void Awake()
     {
-
         agent = GetComponent<NavMeshAgent>();
         rend = GetComponent<Renderer>();
 
@@ -97,6 +100,13 @@ public class Poseidon : MonoBehaviour
 
     void DoAttackMelee1()
     {
+        managerVariables.Player.shake1 = 2f;
+        managerVariables.Player.shake2 = 2f;
+        managerVariables.Player.shake3 = .1f;
+        managerVariables.Player.shake4 = 1.3f;
+
+        managerVariables.Player.shake = true;
+
         AttackMelee1.SetActive(true);
         Invoke(nameof(ResetAttackMelee1), .1f);
     }
@@ -108,6 +118,13 @@ public class Poseidon : MonoBehaviour
 
     void DoAttackMelee2()
     {
+        managerVariables.Player.shake1 = 4f;
+        managerVariables.Player.shake2 = 6f;
+        managerVariables.Player.shake3 = .1f;
+        managerVariables.Player.shake4 = 2f;
+
+        managerVariables.Player.shake = true;
+
         AttackMelee2.SetActive(true);
         Invoke(nameof(ResetAttackMelee2), .1f);
     }
