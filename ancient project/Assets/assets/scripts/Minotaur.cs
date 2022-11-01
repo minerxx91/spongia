@@ -28,9 +28,9 @@ public class Minotaur : MonoBehaviour
     public float walkPointRange;
 
     //Attacking
-    public float timeBetweenAttacks, shorttimebetweenAttacks , timeToRage;
+    public float timeBetweenAttacks, timebetweenRangedAttacks, shorttimebetweenAttacks , timeToRage;
     bool alreadyAttacked;
-    float RageTime = 5;
+    public float RageTime = 5;
     float RagedTime = 0;
     float timeToRageTick = 0;
     bool Raged = false;
@@ -131,13 +131,14 @@ public class Minotaur : MonoBehaviour
         {
             if (this.gameObject.transform.localScale != size)
                 this.gameObject.transform.localScale -= new Vector3(0.01f, 0.01f, 0.01f);
+            telo.color = new Color32(115, 89, 69, 255);
         }
         
 
 
 
         //print(chasingSpeed);
-        if (abilityChasingTime < 2)
+        if (abilityChasingTime < 1)
         {
             abilityChasingTime += Time.deltaTime;
             this.gameObject.transform.rotation = Quaternion.Euler(runRotation);
@@ -288,7 +289,7 @@ public class Minotaur : MonoBehaviour
                 //attack melee 2
                 print("attack leftarm");
 
-                Invoke(nameof(ResetAttack), timeBetweenAttacks);
+                Invoke(nameof(ResetAttack), timebetweenRangedAttacks);
             }
             
             //Invoke(nameof(MeleeBlastParticel), 1f);
