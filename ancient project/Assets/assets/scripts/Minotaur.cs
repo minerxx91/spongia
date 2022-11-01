@@ -103,6 +103,7 @@ public class Minotaur : MonoBehaviour
     {
         AttackMelee1.SetActive(true);
         Invoke(nameof(ResetAttackMelee1), .1f);
+        CamShaker.ShakeOnce(2, 2, .1f, 1.3f);
     }
 
     void ResetAttackMelee1()
@@ -297,7 +298,7 @@ public class Minotaur : MonoBehaviour
                 Invoke(nameof(ResetAttack), timeBetweenAttacks);
             }
 
-            CamShaker.ShakeOnce(2, 2, .1f, 1.3f);
+            
 
             //Invoke(nameof(MeleeBlastParticel), 1f);
             Invoke(nameof(DoAttackMelee1), .72f);
