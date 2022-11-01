@@ -45,6 +45,7 @@ public class Player : MonoBehaviour
 
     GameObject attackHorizontal;
     GameObject attackVertical;
+    GameObject ability1;
 
     ParticleSystem attackParticle;
 
@@ -76,6 +77,11 @@ public class Player : MonoBehaviour
         attackVertical = GameObject.Find("attackVertical");
         attackHorizontal.SetActive(false);
         attackVertical.SetActive(false);
+
+        ability1 = GameObject.Find("ability1");
+        ability1.SetActive(false);
+
+
         attackParticle = GameObject.Find("SwordSwing").GetComponent<ParticleSystem>();
 
 
@@ -416,7 +422,8 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(controls.ability1))
         {
-
+            Invoke(nameof(ResetAbility1), .1f);
+            ability1.SetActive(true);
         }
         /*
         postprocesing.profile.GetComponent<Vignette>().color = new ColorParameter(new Color(1, 0, 0, 1), true);
@@ -541,5 +548,10 @@ public class Player : MonoBehaviour
     void ResetAttackVertical()
     {
         attackVertical.SetActive(false);
+    }
+
+    void ResetAbility1()
+    {
+        ability1.SetActive(false);
     }
 }

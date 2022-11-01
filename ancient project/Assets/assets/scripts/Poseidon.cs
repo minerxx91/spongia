@@ -64,6 +64,9 @@ public class Poseidon : MonoBehaviour
 
     private bool MidAttackLook = false;
 
+    public bool Stun = false;
+    private float prevSpeed;
+
     void Awake()
     {
 
@@ -109,90 +112,106 @@ public class Poseidon : MonoBehaviour
         AttackMelee2.SetActive(false);
     }
 
+    void ResetStun()
+    {
+        Stun = false;
+        anim.speed = 1;
+    }
+
     void Update()
     {
-        if (MidAttackLook == true) transform.LookAt(Targetposition);
-        Targetposition = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
-        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("melee2"))
+        if (!Stun)
         {
-            if (Animating)
+            if (MidAttackLook == true) transform.LookAt(Targetposition);
+            Targetposition = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
+            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("melee2"))
             {
-
-
-                transform.position += transform.forward * 10;
-
-            }
-            Animating = false;
-        }
-
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-        playerInMeleeAttackRange = Physics.CheckSphere(transform.position, MeleeAttackRange, whatIsPlayer);
-        playerInMidAttackRange = Physics.CheckSphere(transform.position, MidAttackRange, whatIsPlayer);
-        playerInMidAttackRange2 = Physics.CheckSphere(transform.position, MidAttackRange - 3, whatIsPlayer);
-        playerInRangerAttackRange = Physics.CheckSphere(transform.position, RangerAttackRange, whatIsPlayer);
-        playerInRangerAttackRange2 = Physics.CheckSphere(transform.position, 8, whatIsPlayer);
-        transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.eulerAngles.y, 0));
-        if (!Animating)
-        {
-            if (this.gameObject.name == "Poseidon")
-            {
-                if (!playerInSightRange && !playerInMeleeAttackRange) Patroling();
-                if (playerInSightRange && !playerInMeleeAttackRange) Chasing();
-                if (playerInSightRange && (playerInMeleeAttackRange || playerInRangerAttackRange))
+                if (Animating)
                 {
-                    if (playerInMeleeAttackRange)
-                    {
-                        MeleeAttacking();
-                    }
-                    else if (playerInMidAttackRange && !playerInMidAttackRange2)
-                    {
-                        MidAttacking();
-                    }
-                    else if (playerInRangerAttackRange && !playerInRangerAttackRange2)
-                    {
-                        RangedAttacking();
-                    }
+
+
+                    transform.position += transform.forward * 10;
+
                 }
+                Animating = false;
+            }
+
+            playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+            playerInMeleeAttackRange = Physics.CheckSphere(transform.position, MeleeAttackRange, whatIsPlayer);
+            playerInMidAttackRange = Physics.CheckSphere(transform.position, MidAttackRange, whatIsPlayer);
+            playerInMidAttackRange2 = Physics.CheckSphere(transform.position, MidAttackRange - 3, whatIsPlayer);
+            playerInRangerAttackRange = Physics.CheckSphere(transform.position, RangerAttackRange, whatIsPlayer);
+            playerInRangerAttackRange2 = Physics.CheckSphere(transform.position, 8, whatIsPlayer);
+            transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.eulerAngles.y, 0));
+            if (!Animating)
+            {
+                if (this.gameObject.name == "Poseidon")
+                {
+                    if (!playerInSightRange && !playerInMeleeAttackRange) Patroling();
+                    if (playerInSightRange && !playerInMeleeAttackRange) Chasing();
+                    if (playerInSightRange && (playerInMeleeAttackRange || playerInRangerAttackRange))
+                    {
+                        if (playerInMeleeAttackRange)
+                        {
+                            MeleeAttacking();
+                        }
+                        else if (playerInMidAttackRange && !playerInMidAttackRange2)
+                        {
+                            MidAttacking();
+                        }
+                        else if (playerInRangerAttackRange && !playerInRangerAttackRange2)
+                        {
+                            RangedAttacking();
+                        }
+                    }
 
 
 
+
+                }
+                else
+                {
+                    if (!playerInSightRange && !playerInMeleeAttackRange) Patroling();
+                    if (playerInSightRange && !playerInMeleeAttackRange) Chasing();
+                    if (playerInRangerAttackRange && playerInSightRange) RangedAttacking();
+                    if (playerInMeleeAttackRange && playerInSightRange) MeleeAttacking();
+                }
+            }
+
+
+            materialDelay += Time.deltaTime;
+
+
+            if (managerVariables.Player.target == this.gameObject)
+            {
+                selectAura.Play();
+                orangeLight.gameObject.SetActive(true);
 
             }
             else
             {
-                if (!playerInSightRange && !playerInMeleeAttackRange) Patroling();
-                if (playerInSightRange && !playerInMeleeAttackRange) Chasing();
-                if (playerInRangerAttackRange && playerInSightRange) RangedAttacking();
-                if (playerInMeleeAttackRange && playerInSightRange) MeleeAttacking();
+                selectAura.Stop();
+                orangeLight.gameObject.SetActive(false);
+
+            }
+            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("walk")) agent.SetDestination(transform.position);
+
+            if (!gameObject.GetComponent<CharacterController>().isGrounded)
+            {
+                gravityIncrease += managerVariables.GravityForce * Time.deltaTime;
+
+            }
+            else
+            {
+                gravityIncrease = 0;
             }
         }
-
-
-        materialDelay += Time.deltaTime;
-
-
-        if (managerVariables.Player.target == this.gameObject)
-        {
-            selectAura.Play();
-            orangeLight.gameObject.SetActive(true);
-
-        }
         else
         {
-            selectAura.Stop();
-            orangeLight.gameObject.SetActive(false);
-
-        }
-        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("walk")) agent.SetDestination(transform.position);
-
-        if (!gameObject.GetComponent<CharacterController>().isGrounded)
-        {
-            gravityIncrease += managerVariables.GravityForce * Time.deltaTime;
-
-        }
-        else
-        {
-            gravityIncrease = 0;
+            Invoke(nameof(ResetStun), 5f);
+            agent.SetDestination(transform.position);
+            prevSpeed = anim.speed;
+            anim.speed = 0;
         }
     }
 
