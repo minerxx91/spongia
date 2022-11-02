@@ -8,6 +8,9 @@ using Unity.VisualScripting;
 
 public class Scenario : MonoBehaviour
 {
+
+
+    manager managerVariables;
     public TextMeshProUGUI playerText;
     public TextMeshProUGUI othersText;
     public TextMeshProUGUI lobbyText;
@@ -49,7 +52,8 @@ public class Scenario : MonoBehaviour
     int sceneNumber = 0;
 
     private void Start()
-    {       
+    {
+        managerVariables = GameObject.Find("Manager").GetComponent<manager>();
         image.SetActive(false);
         imageOther.SetActive(false);
         panel.SetActive(false);        
