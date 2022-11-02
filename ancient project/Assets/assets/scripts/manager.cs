@@ -13,6 +13,8 @@ public class manager : MonoBehaviour
 
     LevelLoader lvlloader;
 
+    Controls controls = new Controls();
+
 
     public int levelIndex = 0;
 
@@ -105,6 +107,14 @@ public class manager : MonoBehaviour
     }
 
     public MinotaurStats Minotaur = new MinotaurStats();
+
+    private void Awake()
+    {
+        if (SceneManager.GetActiveScene().name == "Menu")
+        {
+            controls.loadData();
+        }
+    }
     private void Start()
     {
 
