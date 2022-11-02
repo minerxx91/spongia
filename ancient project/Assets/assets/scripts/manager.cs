@@ -59,6 +59,8 @@ public class manager : MonoBehaviour
         public float Ability2Cooldown = 10f;
         public float Ability2Duration = 5f;
         public float Ability2StaminaCost = 20;
+        public float Ability2normalSize = 1;
+        public float Ability2growSize = 1;
 
 
         public float gravityIncrease = 0;

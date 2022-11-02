@@ -466,6 +466,22 @@ public class Player : MonoBehaviour
 
             
         }
+        if (Input.GetKeyDown(controls.ability2))
+        {
+            if (Ability2Cooldown == managerVariables.Player.Ability2Cooldown)
+            {
+                if (managerVariables.Player.Ability2StaminaCost <= managerVariables.Player.Stamina)
+                {
+
+
+                    Ability2Cooldown = 0;
+                    managerVariables.Player.Stamina -= managerVariables.Player.Ability2StaminaCost;
+                }
+
+            }
+
+
+        }
         /*
         postprocesing.profile.GetComponent<Vignette>().color = new ColorParameter(new Color(1, 0, 0, 1), true);
         */
