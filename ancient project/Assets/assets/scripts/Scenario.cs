@@ -59,9 +59,7 @@ public class Scenario : MonoBehaviour
     private void Start()
     {
         managerVariables = GameObject.Find("Manager").GetComponent<manager>();
-        image.SetActive(false);
-        imageOther.SetActive(false);
-        panel.SetActive(false);
+        clear();
 
         if (managerVariables.ScenarioOrder == 0)
             LobbyScenario();
@@ -135,12 +133,8 @@ public class Scenario : MonoBehaviour
 
     private void Lvl1Scenario()
     {
-        playerText.text = "";
-        othersText.text = "";
+        clear();
         imageOther.GetComponent<Image>().sprite = King;
-        panel.SetActive(true);
-        image.SetActive(false);
-        imageOther.SetActive(false);
 
         if (index <= Lvl1.Length - 1)
         {
@@ -159,18 +153,13 @@ public class Scenario : MonoBehaviour
         }
         else
         {
-            Debug.Log("konec");
             panel.SetActive(false);
         }
     }
 
     private void Lvl2Scenario()
     {
-        playerText.text = "";
-        othersText.text = "";
-        panel.SetActive(true);
-        image.SetActive(false);
-        imageOther.SetActive(false);
+        clear();
 
         if (index == 0)
         {
@@ -207,18 +196,13 @@ public class Scenario : MonoBehaviour
         
         else
         {
-            Debug.Log("konec");
             panel.SetActive(false);
         }
     }
 
     private void Lvl3Scenario()
     {
-        playerText.text = "";
-        othersText.text = "";
-        panel.SetActive(true);
-        image.SetActive(false);
-        imageOther.SetActive(false);
+        clear();
 
         if (index <= Lvl3.Length - 1)
         {
@@ -237,18 +221,13 @@ public class Scenario : MonoBehaviour
         }
         else
         {
-            Debug.Log("konec");
             panel.SetActive(false);
         }
     }
 
     private void Lvl4Scenario()
     {
-        playerText.text = "";
-        othersText.text = "";
-        panel.SetActive(true);
-        image.SetActive(false);
-        imageOther.SetActive(false);
+        clear();
 
         if (index <= Lvl4.Length - 1)
         {
@@ -267,18 +246,13 @@ public class Scenario : MonoBehaviour
         }
         else
         {
-            Debug.Log("konec");
             panel.SetActive(false);
         }
     }
 
     private void Lvl5Scenario()
     {
-        playerText.text = "";
-        othersText.text = "";
-        panel.SetActive(true);
-        image.SetActive(false);
-        imageOther.SetActive(false);
+        clear();
 
         if (index <= Lvl5.Length - 1)
         {
@@ -297,13 +271,19 @@ public class Scenario : MonoBehaviour
         }
         else
         {
-            Debug.Log("konec");
             panel.SetActive(false);
         }
     }
 
 
-
+    private void clear()
+    {
+        playerText.text = "";
+        othersText.text = "";
+        panel.SetActive(true);
+        image.SetActive(false);
+        imageOther.SetActive(false);
+    }
 
 
 
