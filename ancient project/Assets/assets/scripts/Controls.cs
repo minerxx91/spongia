@@ -32,5 +32,23 @@ public class Controls : MonoBehaviour
     public void loadData()
     {
         SettingsData data = Save.loadSystem();
+
+        MoveUp = data.MoveUp;
+        MoveDown = data.MoveDown;
+        MoveRight = data.MoveRight;
+        MoveLeft = data.MoveLeft;
+
+        Block = data.Block;
+        Attack = data.Attack;
+        LockTarget = data.LockTarget;
+
+        Jump = data.Jump;
+
+        Interact = data.Interact;
+
+        ability1 = data.ability1;
+        ability2 = data.ability2;
+        ability3 = data.ability3;
+        ability4 = data.ability4;
     }
 }
