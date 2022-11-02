@@ -17074,10 +17074,10 @@ MonoBehaviour:
   LockTarget: 324
   Jump: 32
   Interact: 101
-  ability1: 122
-  ability2: 120
-  ability3: 99
-  ability4: 118
+  ability1: 49
+  ability2: 50
+  ability3: 51
+  ability4: 52
 --- !u!114 &992522449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17093,6 +17093,7 @@ MonoBehaviour:
   playerPrefab: {fileID: 3884727775698485952, guid: f891d6219b852944db4eb482522e51ac, type: 3}
   levelIndex: 0
   GravityForce: 0.5
+  ScenarioOrder: 0
 --- !u!4 &992522450
 Transform:
   m_ObjectHideFlags: 0

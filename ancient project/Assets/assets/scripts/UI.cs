@@ -124,7 +124,18 @@ private void Update()
             }
             else
             {
-                MedusaColor.GetComponent<Image>().color = new Color32(158, 170, 38, 100);
+                MedusaColor.GetComponent<Image>().color = new Color32(158, 150, 18, 100);
+
+            }
+            float dielikMinotaur = BasicInventorySlot / managerVariables.Player.Ability2Cooldown;
+            MinotaurColor.transform.position = new Vector2(MinotaurColor.transform.position.x, (player.Ability2Cooldown * dielikMinotaur) - 12.5f);
+            if (managerVariables.Player.Ability2Cooldown == player.Ability2Cooldown)
+            {
+                MinotaurColor.GetComponent<Image>().color = new Color32(188, 170, 38, 100);
+            }
+            else
+            {
+                MinotaurColor.GetComponent<Image>().color = new Color32(158, 150, 18, 100);
 
             }
         }
@@ -173,7 +184,19 @@ private void Update()
             }
             else
             {
-                MedusaColor.GetComponent<Image>().color = new Color32(158, 170, 38, 100);
+                MedusaColor.GetComponent<Image>().color = new Color32(158, 150, 18, 100);
+
+            }
+
+            float dielikMinotaur = BasicInventorySlot / managerVariables.Player.Ability2Cooldown;
+            MinotaurColor.transform.position = new Vector2(MinotaurColor.transform.position.x, (playerT.Ability2Cooldown * dielikMinotaur) - 12.5f);
+            if (managerVariables.Player.Ability2Cooldown == playerT.Ability2Cooldown)
+            {
+                MinotaurColor.GetComponent<Image>().color = new Color32(188, 170, 38, 100);
+            }
+            else
+            {
+                MinotaurColor.GetComponent<Image>().color = new Color32(158, 150, 18, 100);
 
             }
         }

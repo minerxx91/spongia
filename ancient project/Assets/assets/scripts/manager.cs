@@ -58,6 +58,8 @@ public class manager : MonoBehaviour
 
         public float Ability2Cooldown = 10f;
         public float Ability2Duration = 5f;
+        public float Ability2StaminaCost = 20;
+
 
         public float gravityIncrease = 0;
         public GameObject target;

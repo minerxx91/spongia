@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5425,10 +5425,10 @@ MonoBehaviour:
   LockTarget: 324
   Jump: 32
   Interact: 101
-  ability1: 122
-  ability2: 120
-  ability3: 99
-  ability4: 118
+  ability1: 49
+  ability2: 50
+  ability3: 51
+  ability4: 52
 --- !u!114 &1933577276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5444,6 +5444,7 @@ MonoBehaviour:
   playerPrefab: {fileID: 3884727775698485952, guid: f891d6219b852944db4eb482522e51ac, type: 3}
   levelIndex: 0
   GravityForce: 0.5
+  ScenarioOrder: 0
 --- !u!4 &1933577277
 Transform:
   m_ObjectHideFlags: 0
