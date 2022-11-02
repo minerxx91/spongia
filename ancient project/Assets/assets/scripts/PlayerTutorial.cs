@@ -34,11 +34,12 @@ public class PlayerTutorial : MonoBehaviour
     public float JumpCooldown = 0;
     public float AttackCooldown = 0;
     public float ShieldCooldown = 0;
-    public float StunCooldown = 0;
+    public float Ability1Cooldown = 0;
+    public float Ability2Cooldown = 0;
     float attackprocess = 0;
     private int combo = 0;
     private float comboTimer = 0;
-    
+
     public Vector3 JumpVelocity;
     Vector3 Velocity;
     private Animator anim;
@@ -86,13 +87,22 @@ public class PlayerTutorial : MonoBehaviour
 
 
         postprocesing = GameObject.Find("Postprocessing").GetComponent<Volume>();
+
+
+        // reset abilit
+        JumpCooldown = managerVariables.Player.JumpCooldown;
+        AttackCooldown = managerVariables.Player.AttackCooldown;
+        ShieldCooldown = managerVariables.Player.ShieldCooldown;
+        Ability1Cooldown = managerVariables.Player.Ability1Cooldown;
+        Ability2Cooldown = managerVariables.Player.Ability2Cooldown;
+
     }
 
-  
+
 
     void Update()
     {
-        
+
         //cooldowns
         if (JumpCooldown < managerVariables.Player.JumpCooldown)
             JumpCooldown += Time.deltaTime;
@@ -107,7 +117,7 @@ public class PlayerTutorial : MonoBehaviour
 
         if (managerVariables.Player.AttackInProcess)
         {
-            
+
             attackprocess += Time.deltaTime;
             if (attackprocess >= 0.5f)
             {
@@ -121,11 +131,20 @@ public class PlayerTutorial : MonoBehaviour
         else
             AttackCooldown = managerVariables.Player.AttackCooldown;
 
-        if (StunCooldown < managerVariables.Player.JumpCooldown)
+
+
+        if (Ability1Cooldown < managerVariables.Player.Ability1Cooldown)
         {
-            StunCooldown += Time.deltaTime;
+            Ability1Cooldown += Time.deltaTime;
         }
-        else StunCooldown = managerVariables.Player.StunCooldown;
+        else Ability1Cooldown = managerVariables.Player.Ability1Cooldown;
+
+        if (Ability2Cooldown < managerVariables.Player.Ability2Cooldown)
+        {
+            Ability2Cooldown += Time.deltaTime;
+        }
+        else Ability2Cooldown = managerVariables.Player.Ability2Cooldown;
+
 
         //gravity
 
@@ -157,18 +176,18 @@ public class PlayerTutorial : MonoBehaviour
             if (Input.GetKey(controls.MoveLeft))
             { MoveX--; }
         }
-            
+
 
         PlayerSpeed = managerVariables.Player.Speed * Time.deltaTime;
 
-        if (!managerVariables.Player.Jumping && !Input.GetKey(controls.Block)|| managerVariables.Player.ShieldCooldown != ShieldCooldown)
+        if (!managerVariables.Player.Jumping && !Input.GetKey(controls.Block) || managerVariables.Player.ShieldCooldown != ShieldCooldown)
         {
-           
+
             Velocity = new Vector3(MoveX * PlayerSpeed, -managerVariables.Player.gravityIncrease, MoveZ * PlayerSpeed);
         }
         else
         {
-            
+
             Velocity = new Vector3(0, -managerVariables.Player.gravityIncrease, 0);
 
         }
@@ -206,14 +225,14 @@ public class PlayerTutorial : MonoBehaviour
             }
             else
             {
- 
+
                 if (gameObject.transform.rotation.eulerAngles.y < 45)
                 {
                     if (Velocity[2] < 0) animationSelect("back");
                     else if (Velocity[2] > 0) animationSelect("forward");
                     else if (Velocity[0] > 0) animationSelect("right");
                     else if (Velocity[0] < 0) animationSelect("left");
-                    
+
 
                 }
                 else if (gameObject.transform.rotation.eulerAngles.y > 315)
@@ -222,7 +241,7 @@ public class PlayerTutorial : MonoBehaviour
                     else if (Velocity[2] > 0) animationSelect("forward");
                     else if (Velocity[0] > 0) animationSelect("right");
                     else if (Velocity[0] < 0) animationSelect("left");
-                    
+
 
                 }
                 else if (gameObject.transform.rotation.eulerAngles.y > 45 && gameObject.transform.rotation.eulerAngles.y < 135)
@@ -231,7 +250,7 @@ public class PlayerTutorial : MonoBehaviour
                     else if (Velocity[0] > 0) animationSelect("forward");
                     else if (Velocity[2] < 0) animationSelect("right");
                     else if (Velocity[2] > 0) animationSelect("left");
-                    
+
 
                 }
                 else if (gameObject.transform.rotation.eulerAngles.y > 135 && gameObject.transform.rotation.eulerAngles.y < 225)
@@ -240,7 +259,7 @@ public class PlayerTutorial : MonoBehaviour
                     else if (Velocity[2] < 0) animationSelect("forward");
                     else if (Velocity[0] < 0) animationSelect("right");
                     else if (Velocity[0] > 0) animationSelect("left");
-                    
+
 
                 }
                 else if (gameObject.transform.rotation.eulerAngles.y > 225 && gameObject.transform.rotation.eulerAngles.y < 315)
@@ -249,7 +268,7 @@ public class PlayerTutorial : MonoBehaviour
                     else if (Velocity[0] < 0) animationSelect("forward");
                     else if (Velocity[2] > 0) animationSelect("right");
                     else if (Velocity[2] < 0) animationSelect("left");
-                    
+
 
                 }
             }
@@ -257,7 +276,7 @@ public class PlayerTutorial : MonoBehaviour
 
         if (Velocity[0] != 0 || Velocity[2] != 0)
         {
-            if(managerVariables.Player.target == null)
+            if (managerVariables.Player.target == null)
             {
                 if (!managerVariables.Player.Jumping)
                 {
@@ -280,10 +299,10 @@ public class PlayerTutorial : MonoBehaviour
                 //transform.LookAt(managerVariables.Player.target.transform);
                 transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.eulerAngles.y, 0));
             }
-            
-            
+
+
         }
-        
+
 
 
         // healtzh regen
@@ -294,7 +313,7 @@ public class PlayerTutorial : MonoBehaviour
         else
         {
             managerVariables.Player.Health = managerVariables.Player.MaxHealth;
-        }   
+        }
 
         if (Input.GetKey(controls.Jump) && !(Velocity[0] == 0 && Velocity[2] == 0) && SpaceAvaiable)
         {
@@ -311,7 +330,7 @@ public class PlayerTutorial : MonoBehaviour
                     SpaceAvaiable = false;
                     JumpVelocity = new Vector3(MoveX, 0, MoveZ) * managerVariables.Player.Speed;
                     //jump
-                        
+
                     if (managerVariables.Player.Stamina > 10)
                     {
                         managerVariables.Player.Stamina -= 10;
@@ -320,18 +339,18 @@ public class PlayerTutorial : MonoBehaviour
                     {
                         managerVariables.Player.Stamina = 0;
                     }
-                } 
+                }
             }
-            
+
         }
         else
         {
             SpaceAvaiable = true;
         }
-      
+
         if (Input.GetKey(controls.Block) && !anim.GetCurrentAnimatorStateInfo(0).IsName("Roll") && combo == 0)
         {
-            if(ShieldCooldown >= managerVariables.Player.ShieldCooldown)
+            if (ShieldCooldown >= managerVariables.Player.ShieldCooldown)
             {
                 anim.SetBool("block", true);
                 managerVariables.Player.Resistence = 80;
@@ -341,7 +360,7 @@ public class PlayerTutorial : MonoBehaviour
                 anim.SetBool("block", false);
                 managerVariables.Player.Resistence = 0;
             }
-            
+
         }
         else
         {
@@ -384,24 +403,35 @@ public class PlayerTutorial : MonoBehaviour
 
             if (combo == 3)
             {
-                attackParticle.startColor = new Color(1, 0.2f, 0, 1);
-                attackParticle.Play();
-                managerVariables.Player.DamageIncrease = managerVariables.Player.Damage * 2;
-                Invoke(nameof(ResetAttack), managerVariables.Player.AttackCooldown);
-                Invoke(nameof(ResetAttackVertical), .1f);
-                attackVertical.SetActive(true);
-                audioManager.PlayPlayerAttackS();
-                combo = 0;
+                if (managerVariables.Player.AttackCost <= managerVariables.Player.Stamina)
+                {
+                    attackParticle.startColor = new Color(1, 0.2f, 0, 1);
+                    attackParticle.Play();
+                    managerVariables.Player.DamageIncrease = managerVariables.Player.Damage * 2;
+                    Invoke(nameof(ResetAttack), managerVariables.Player.AttackCooldown);
+                    Invoke(nameof(ResetAttackVertical), .1f);
+                    attackVertical.SetActive(true);
+                    audioManager.PlayPlayerAttackS();
+                    combo = 0;
+                    managerVariables.Player.Stamina -= managerVariables.Player.AttackCost;
+                }
+
             }
             else
             {
-                audioManager.PlayPlayerAttack();
-                attackParticle.startColor = new Color(1, 1, 1, 1);
-                attackParticle.Play();
-                managerVariables.Player.DamageIncrease = 0;
-                Invoke(nameof(ResetAttack), managerVariables.Player.BetweenAttackCooldown);
-                Invoke(nameof(ResetAttackHorizontal), .1f);
-                attackHorizontal.SetActive(true);
+                if (managerVariables.Player.AttackCost <= managerVariables.Player.Stamina)
+                {
+                    audioManager.PlayPlayerAttack();
+                    attackParticle.startColor = new Color(1, 1, 1, 1);
+                    attackParticle.Play();
+                    managerVariables.Player.DamageIncrease = 0;
+                    Invoke(nameof(ResetAttack), managerVariables.Player.BetweenAttackCooldown);
+                    Invoke(nameof(ResetAttackHorizontal), .1f);
+                    attackHorizontal.SetActive(true);
+                    managerVariables.Player.Stamina -= managerVariables.Player.AttackCost;
+                }
+
+
             }
 
             managerVariables.Player.AttackInProcess = true;
@@ -409,7 +439,7 @@ public class PlayerTutorial : MonoBehaviour
         }
         else if (combo != 0 && comboTimer < 0) combo = 0;
 
-        if(!Input.GetKey(controls.Attack)) Mouse0Avaiable = true;
+        if (!Input.GetKey(controls.Attack)) Mouse0Avaiable = true;
         // stamina regen
         if (managerVariables.Player.Stamina + managerVariables.Player.StaminaRegen < managerVariables.Player.MaxStamina)
         {
@@ -422,8 +452,19 @@ public class PlayerTutorial : MonoBehaviour
 
         if (Input.GetKeyDown(controls.ability1))
         {
-            Invoke(nameof(ResetAbility1), .1f);
-            ability1.SetActive(true);
+            if (Ability1Cooldown == managerVariables.Player.Ability1Cooldown)
+            {
+                if (managerVariables.Player.Ability1StaminaCost <= managerVariables.Player.Stamina)
+                {
+                    Invoke(nameof(ResetAbility1), .1f);
+                    ability1.SetActive(true);
+                    Ability1Cooldown = 0;
+                    managerVariables.Player.Stamina -= managerVariables.Player.Ability1StaminaCost;
+                }
+
+            }
+
+
         }
         /*
         postprocesing.profile.GetComponent<Vignette>().color = new ColorParameter(new Color(1, 0, 0, 1), true);
@@ -451,9 +492,9 @@ public class PlayerTutorial : MonoBehaviour
         float startTime = Time.time;
         while (Time.time < startTime + managerVariables.Player.JumpTime)
         {
-            managerVariables.Player.Jumping = true;            
+            managerVariables.Player.Jumping = true;
             CHC.Move(JumpVelocity * managerVariables.Player.JumpSpeed * Time.deltaTime);
-            
+
             yield return null;
         }
         managerVariables.Player.Jumping = false;
@@ -461,9 +502,9 @@ public class PlayerTutorial : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        for (int i =1; i<6; i++)
+        for (int i = 1; i < 6; i++)
         {
-            if (other.gameObject.name == "Portal"+i)
+            if (other.gameObject.name == "Portal" + i)
             {
 
 
@@ -475,21 +516,21 @@ public class PlayerTutorial : MonoBehaviour
                 }
             }
         }
-       
+
 
     }
     private void OnTriggerEnter(Collider other)
     {
         for (int i = 1; i < 6; i++)
         {
-            if (other.gameObject.name == "Portal"+i)
+            if (other.gameObject.name == "Portal" + i)
             {
                 helpCanvas.SetActive(true);
 
 
             }
         }
-            
+
     }
     private void OnTriggerExit(Collider other)
     {
