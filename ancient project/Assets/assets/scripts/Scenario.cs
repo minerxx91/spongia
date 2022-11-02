@@ -14,7 +14,6 @@ public class Scenario : MonoBehaviour
     public TextMeshProUGUI playerText;
     public TextMeshProUGUI othersText;
     public TextMeshProUGUI lobbyText;
-    public Sprite Hades;
     [SerializeField]
     GameObject subtitlesCanvas;
     [SerializeField]
@@ -123,7 +122,6 @@ public class Scenario : MonoBehaviour
     {
         playerText.text = "";
         othersText.text = "";
-        imageOther.GetComponent<Image>().sprite = Hades;
         panel.SetActive(true);
         image.SetActive(false);
         imageOther.SetActive(false);
