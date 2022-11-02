@@ -29,7 +29,8 @@ public class MinotaurAttack : MonoBehaviour
                 if (managerVariables.Player.Resistence > 0)
                 {
                     audioManager.PlayPlayerShield();
-                    Invoke(nameof(ShieldDown), .3f);
+                    if(GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerTutorial>() == null) Invoke(nameof(ShieldDown), .3f);
+                    else Invoke(nameof(ShieldDownTutorial), .3f);
                     managerVariables.Player.absorb2 = true;
                 }
                 else managerVariables.Player.absorb = true;
@@ -51,5 +52,10 @@ public class MinotaurAttack : MonoBehaviour
     private void ShieldDown()
     {
         GameObject.Find("Player").GetComponent<Player>().ShieldCooldown = 0;
+    }
+
+    private void ShieldDownTutorial()
+    {
+        GameObject.Find("Player").GetComponent<PlayerTutorial>().ShieldCooldown = 0;
     }
 }

@@ -55,7 +55,19 @@ public class sword : MonoBehaviour
                 
                 
             }*/
+            else if (other.gameObject.tag == "Enemy")
+            {
+                if (other.gameObject.GetComponent<EnemyPleb>().Health > managerVariables.Player.Damage + managerVariables.Player.DamageIncrease)
+                {
+                    other.gameObject.GetComponent<EnemyPleb>().Health -= managerVariables.Player.Damage + managerVariables.Player.DamageIncrease;
 
+                }
+                else
+                {
+                    other.gameObject.GetComponent<EnemyPleb>().Health = 0;
+                    Destroy(other.gameObject);
+                }
+            }
         }
     }
 }
