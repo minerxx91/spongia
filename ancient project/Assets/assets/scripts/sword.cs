@@ -22,7 +22,6 @@ public class sword : MonoBehaviour
                 if (this.gameObject.name == "ability1")
                 {
                     other.GetComponent<Poseidon>().Stun = true;
-                    print("stuning");
                 }
                 else
                 {

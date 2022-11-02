@@ -104,6 +104,17 @@ private void Update()
             ShieldColor.GetComponent<Image>().color = new Color32(178, 128, 45, 100);
 
         }
+        float dielikMeduza = BasicInventorySlot / managerVariables.Player.Ability1Cooldown;
+        MedusaColor.transform.position = new Vector2(MedusaColor.transform.position.x, (player.Ability1Cooldown * dielikMeduza) - 12.5f);
+        if (managerVariables.Player.Ability1Cooldown == player.Ability1Cooldown)
+        {
+            MedusaColor.GetComponent<Image>().color = new Color32(188, 170, 38, 100);
+        }
+        else
+        {
+            MedusaColor.GetComponent<Image>().color = new Color32(158, 170, 38, 100);
+
+        }
 
 
         if (GameObject.FindGameObjectsWithTag("Boss").Length != 0)

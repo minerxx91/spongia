@@ -34,7 +34,8 @@ public class Player : MonoBehaviour
     public float JumpCooldown = 0;
     public float AttackCooldown = 0;
     public float ShieldCooldown = 0;
-    public float StunCooldown = 0;
+    public float Ability1Cooldown = 0;
+    public float Ability2Cooldown = 0;
     float attackprocess = 0;
     private int combo = 0;
     private float comboTimer = 0;
@@ -121,11 +122,14 @@ public class Player : MonoBehaviour
         else
             AttackCooldown = managerVariables.Player.AttackCooldown;
 
-        if (StunCooldown < managerVariables.Player.JumpCooldown)
+
+
+        if (Ability1Cooldown < managerVariables.Player.Ability1Cooldown)
         {
-            StunCooldown += Time.deltaTime;
+            Ability1Cooldown += Time.deltaTime;
         }
-        else StunCooldown = managerVariables.Player.StunCooldown;
+        else Ability1Cooldown = managerVariables.Player.Ability1Cooldown;
+
 
         //gravity
 
@@ -384,24 +388,35 @@ public class Player : MonoBehaviour
 
             if (combo == 3)
             {
-                attackParticle.startColor = new Color(1, 0.2f, 0, 1);
-                attackParticle.Play();
-                managerVariables.Player.DamageIncrease = managerVariables.Player.Damage * 2;
-                Invoke(nameof(ResetAttack), managerVariables.Player.AttackCooldown);
-                Invoke(nameof(ResetAttackVertical), .1f);
-                attackVertical.SetActive(true);
-                audioManager.PlayPlayerAttackS();
-                combo = 0;
+                if (managerVariables.Player.AttackCost <= managerVariables.Player.Stamina)
+                {
+                    attackParticle.startColor = new Color(1, 0.2f, 0, 1);
+                    attackParticle.Play();
+                    managerVariables.Player.DamageIncrease = managerVariables.Player.Damage * 2;
+                    Invoke(nameof(ResetAttack), managerVariables.Player.AttackCooldown);
+                    Invoke(nameof(ResetAttackVertical), .1f);
+                    attackVertical.SetActive(true);
+                    audioManager.PlayPlayerAttackS();
+                    combo = 0;
+                    managerVariables.Player.Stamina -= managerVariables.Player.AttackCost;
+                }
+                
             }
             else
             {
-                audioManager.PlayPlayerAttack();
-                attackParticle.startColor = new Color(1, 1, 1, 1);
-                attackParticle.Play();
-                managerVariables.Player.DamageIncrease = 0;
-                Invoke(nameof(ResetAttack), managerVariables.Player.BetweenAttackCooldown);
-                Invoke(nameof(ResetAttackHorizontal), .1f);
-                attackHorizontal.SetActive(true);
+                if (managerVariables.Player.AttackCost <= managerVariables.Player.Stamina)
+                {
+                    audioManager.PlayPlayerAttack();
+                    attackParticle.startColor = new Color(1, 1, 1, 1);
+                    attackParticle.Play();
+                    managerVariables.Player.DamageIncrease = 0;
+                    Invoke(nameof(ResetAttack), managerVariables.Player.BetweenAttackCooldown);
+                    Invoke(nameof(ResetAttackHorizontal), .1f);
+                    attackHorizontal.SetActive(true);
+                    managerVariables.Player.Stamina -= managerVariables.Player.AttackCost;
+                }
+
+                
             }
 
             managerVariables.Player.AttackInProcess = true;
@@ -422,8 +437,19 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(controls.ability1))
         {
-            Invoke(nameof(ResetAbility1), .1f);
-            ability1.SetActive(true);
+            if (Ability1Cooldown == managerVariables.Player.Ability1Cooldown)
+            {
+                if (managerVariables.Player.Ability1StaminaCost <= managerVariables.Player.Stamina)
+                {
+                    Invoke(nameof(ResetAbility1), .1f);
+                    ability1.SetActive(true);
+                    Ability1Cooldown = 0;
+                    managerVariables.Player.Stamina -= managerVariables.Player.Ability1StaminaCost;
+                }
+                
+            }
+
+            
         }
         /*
         postprocesing.profile.GetComponent<Vignette>().color = new ColorParameter(new Color(1, 0, 0, 1), true);

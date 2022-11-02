@@ -48,16 +48,21 @@ public class manager : MonoBehaviour
         public bool Jumping = false;
 
         public float ShieldCooldown = 8;
+        public float ShieldStaminaCost = 10;
 
-        public float StunCooldown = 10f;
-        public float StunDuration = 5f;
+        public float Ability1Cooldown = 10f;
+        public float Ability1Duration = 5f;
+        public float Ability1StaminaCost = 20;
+
+        public float Ability2Cooldown = 10f;
+        public float Ability2Duration = 5f;
 
         public float gravityIncrease = 0;
         public GameObject target;
 
         public bool MeduzaUnlocked = true;
-        public bool MinotaurUnlocked = false;
-        public bool PoseidonUnlocked = false;
+        public bool MinotaurUnlocked = true;
+        public bool PoseidonUnlocked = true;
         public bool ZeusUnlocked = true;
 
 

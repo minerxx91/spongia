@@ -28,9 +28,14 @@ public class PoseidonAttack : MonoBehaviour
                 managerVariables.Player.Health -= (managerVariables.Poseidon.Damage + managerVariables.Poseidon.DamageIncrease)*(100- managerVariables.Player.Resistence) /100;
                 if(managerVariables.Player.Resistence > 0)
                 {
-                    audioManager.PlayPlayerShield();
-                    Invoke(nameof(ShieldDown), .3f);
-                    managerVariables.Player.absorb2 = true;
+                    if (managerVariables.Player.ShieldStaminaCost <= managerVariables.Player.Stamina)
+                    {
+                        audioManager.PlayPlayerShield();
+                        Invoke(nameof(ShieldDown), .3f);
+                        managerVariables.Player.absorb2 = true;
+                        managerVariables.Player.Stamina -= managerVariables.Player.ShieldStaminaCost;
+                    }
+                       
                 }
                 else managerVariables.Player.absorb = true;
             }

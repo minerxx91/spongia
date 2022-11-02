@@ -17,8 +17,8 @@ public class Controls : MonoBehaviour
 
     public KeyCode Interact = KeyCode.E;
 
-    public KeyCode ability1 = KeyCode.Z;
-    public KeyCode ability2 = KeyCode.X;
-    public KeyCode ability3 = KeyCode.C;
-    public KeyCode ability4 = KeyCode.V;
+    public KeyCode ability1 = KeyCode.Alpha1;
+    public KeyCode ability2 = KeyCode.Alpha2;
+    public KeyCode ability3 = KeyCode.Alpha3;
+    public KeyCode ability4 = KeyCode.Alpha4;
 }
