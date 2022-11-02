@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UIElements;
@@ -16,7 +15,6 @@ public class PlayerTutorial : MonoBehaviour
     GameObject Manager;
     Controls controls;
     manager managerVariables;
-    Tutorial tutorial;
 
     AudioManager audioManager;
     Volume postprocesing;
@@ -31,7 +29,6 @@ public class PlayerTutorial : MonoBehaviour
     bool SpaceAvaiable = true;
     bool Mouse0Avaiable = true;
     [SerializeField] Material telo;
-    public NavMeshAgent agent;
 
 
     float PlayerSpeed;
@@ -71,7 +68,6 @@ public class PlayerTutorial : MonoBehaviour
         Manager = GameObject.Find("Manager");
         controls = Manager.GetComponent<Controls>();
         managerVariables = Manager.GetComponent<manager>();
-        tutorial = GameObject.Find("Tutorial").GetComponent<Tutorial>();
         //---------
 
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
@@ -188,191 +184,180 @@ public class PlayerTutorial : MonoBehaviour
 
         PlayerSpeed = managerVariables.Player.Speed * Time.deltaTime;
 
-        //tutorial freeze -------------------------------------------------------------------------------------------------------------------------------//
-        if (!tutorial.showText && tutorial.startFreezed)
+        if (!managerVariables.Player.Jumping && !Input.GetKey(controls.Block) || managerVariables.Player.ShieldCooldown != ShieldCooldown)
         {
 
-            if (!managerVariables.Player.Jumping && !Input.GetKey(controls.Block) || managerVariables.Player.ShieldCooldown != ShieldCooldown)
-            {
+            Velocity = new Vector3(MoveX * PlayerSpeed, -managerVariables.Player.gravityIncrease, MoveZ * PlayerSpeed);
+        }
+        else
+        {
 
-                Velocity = new Vector3(MoveX * PlayerSpeed, -managerVariables.Player.gravityIncrease, MoveZ * PlayerSpeed);
-            }
-            else
-            {
+            Velocity = new Vector3(0, -managerVariables.Player.gravityIncrease, 0);
 
-                Velocity = new Vector3(0, -managerVariables.Player.gravityIncrease, 0);
-
-            }
-            //Velocity.Normalize();
-            CHC.Move(Velocity);
-            if (managerVariables.Player.target == null)
-            {
-                animationSelect(" ");
-                if (Velocity[0] == 0 && Velocity[2] == 0)
-                {
-                    anim.SetBool("isRunning", false);
-                    if (CHC.isGrounded)
-                    {
-
-
-                    }
-                    audioManager.StopRun();
-                }
-                else
-                {
-                    audioManager.PlayRun();
-                    anim.SetBool("isRunning", true);
-
-                }
-            }
-            else
+        }
+        //Velocity.Normalize();
+        CHC.Move(Velocity);
+        if (managerVariables.Player.target == null)
+        {
+            animationSelect(" ");
+            if (Velocity[0] == 0 && Velocity[2] == 0)
             {
                 anim.SetBool("isRunning", false);
-                if (Velocity[0] == 0 && Velocity[2] == 0)
-                {
-                    anim.SetBool("forward", false);
-                    anim.SetBool("left", false);
-                    anim.SetBool("right", false);
-                    anim.SetBool("back", false);
-                }
-                else
+                if (CHC.isGrounded)
                 {
 
-                    if (gameObject.transform.rotation.eulerAngles.y < 45)
-                    {
-                        if (Velocity[2] < 0) animationSelect("back");
-                        else if (Velocity[2] > 0) animationSelect("forward");
-                        else if (Velocity[0] > 0) animationSelect("right");
-                        else if (Velocity[0] < 0) animationSelect("left");
 
-
-                    }
-                    else if (gameObject.transform.rotation.eulerAngles.y > 315)
-                    {
-                        if (Velocity[2] < 0) animationSelect("back");
-                        else if (Velocity[2] > 0) animationSelect("forward");
-                        else if (Velocity[0] > 0) animationSelect("right");
-                        else if (Velocity[0] < 0) animationSelect("left");
-
-
-                    }
-                    else if (gameObject.transform.rotation.eulerAngles.y > 45 && gameObject.transform.rotation.eulerAngles.y < 135)
-                    {
-                        if (Velocity[0] < 0) animationSelect("back");
-                        else if (Velocity[0] > 0) animationSelect("forward");
-                        else if (Velocity[2] < 0) animationSelect("right");
-                        else if (Velocity[2] > 0) animationSelect("left");
-
-
-                    }
-                    else if (gameObject.transform.rotation.eulerAngles.y > 135 && gameObject.transform.rotation.eulerAngles.y < 225)
-                    {
-                        if (Velocity[2] > 0) animationSelect("back");
-                        else if (Velocity[2] < 0) animationSelect("forward");
-                        else if (Velocity[0] < 0) animationSelect("right");
-                        else if (Velocity[0] > 0) animationSelect("left");
-
-
-                    }
-                    else if (gameObject.transform.rotation.eulerAngles.y > 225 && gameObject.transform.rotation.eulerAngles.y < 315)
-                    {
-                        if (Velocity[0] > 0) animationSelect("back");
-                        else if (Velocity[0] < 0) animationSelect("forward");
-                        else if (Velocity[2] > 0) animationSelect("right");
-                        else if (Velocity[2] < 0) animationSelect("left");
-
-
-                    }
                 }
-            }
-
-            if (Velocity[0] != 0 || Velocity[2] != 0)
-            {
-                if (managerVariables.Player.target == null)
-                {
-                    if (!managerVariables.Player.Jumping)
-                    {
-                        float angle = Mathf.Atan2(Velocity[0], Velocity[2]) * Mathf.Rad2Deg;
-
-
-
-                        Quaternion toRotation = Quaternion.Euler(new Vector3(0, angle, 0));
-
-                        transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, RotationSpeed * Time.deltaTime);
-                    }
-                }
-                else
-                {
-                    Vector3 targetDirection = managerVariables.Player.target.transform.position - transform.position;
-                    float singleStep = 6f * Time.deltaTime;
-
-                    Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
-                    transform.rotation = Quaternion.LookRotation(newDirection);
-                    //transform.LookAt(managerVariables.Player.target.transform);
-                    transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.eulerAngles.y, 0));
-                }
-
-
-            }
-
-
-
-            // healtzh regen
-            if (managerVariables.Player.Health + managerVariables.Player.HealthRegen < managerVariables.Player.MaxHealth)
-            {
-                managerVariables.Player.Health += managerVariables.Player.HealthRegen * Time.deltaTime;
+                audioManager.StopRun();
             }
             else
             {
-                managerVariables.Player.Health = managerVariables.Player.MaxHealth;
+                audioManager.PlayRun();
+                anim.SetBool("isRunning", true);
+
             }
-
-            if (Input.GetKey(controls.Jump) && !(Velocity[0] == 0 && Velocity[2] == 0) && SpaceAvaiable)
+        }
+        else
+        {
+            anim.SetBool("isRunning", false);
+            if (Velocity[0] == 0 && Velocity[2] == 0)
             {
-                if (JumpCooldown == managerVariables.Player.JumpCooldown)
-                {
-                    if (managerVariables.Player.Stamina >= managerVariables.Player.JumpCost)
-                    {
-                        anim.SetBool("rolling", true);
-                        animationSelect(" ");
-                        anim.SetTrigger("isRolling");
-                        StartCoroutine(Dash());
-                        managerVariables.Player.Stamina -= managerVariables.Player.JumpCost;
-                        JumpCooldown = 0;
-                        SpaceAvaiable = false;
-                        JumpVelocity = new Vector3(MoveX, 0, MoveZ) * managerVariables.Player.Speed;
-                        //jump
-
-                        if (managerVariables.Player.Stamina > 10)
-                        {
-                            managerVariables.Player.Stamina -= 10;
-                        }
-                        else
-                        {
-                            managerVariables.Player.Stamina = 0;
-                        }
-                    }
-                }
-
+                anim.SetBool("forward", false);
+                anim.SetBool("left", false);
+                anim.SetBool("right", false);
+                anim.SetBool("back", false);
             }
             else
             {
-                SpaceAvaiable = true;
+
+                if (gameObject.transform.rotation.eulerAngles.y < 45)
+                {
+                    if (Velocity[2] < 0) animationSelect("back");
+                    else if (Velocity[2] > 0) animationSelect("forward");
+                    else if (Velocity[0] > 0) animationSelect("right");
+                    else if (Velocity[0] < 0) animationSelect("left");
+
+
+                }
+                else if (gameObject.transform.rotation.eulerAngles.y > 315)
+                {
+                    if (Velocity[2] < 0) animationSelect("back");
+                    else if (Velocity[2] > 0) animationSelect("forward");
+                    else if (Velocity[0] > 0) animationSelect("right");
+                    else if (Velocity[0] < 0) animationSelect("left");
+
+
+                }
+                else if (gameObject.transform.rotation.eulerAngles.y > 45 && gameObject.transform.rotation.eulerAngles.y < 135)
+                {
+                    if (Velocity[0] < 0) animationSelect("back");
+                    else if (Velocity[0] > 0) animationSelect("forward");
+                    else if (Velocity[2] < 0) animationSelect("right");
+                    else if (Velocity[2] > 0) animationSelect("left");
+
+
+                }
+                else if (gameObject.transform.rotation.eulerAngles.y > 135 && gameObject.transform.rotation.eulerAngles.y < 225)
+                {
+                    if (Velocity[2] > 0) animationSelect("back");
+                    else if (Velocity[2] < 0) animationSelect("forward");
+                    else if (Velocity[0] < 0) animationSelect("right");
+                    else if (Velocity[0] > 0) animationSelect("left");
+
+
+                }
+                else if (gameObject.transform.rotation.eulerAngles.y > 225 && gameObject.transform.rotation.eulerAngles.y < 315)
+                {
+                    if (Velocity[0] > 0) animationSelect("back");
+                    else if (Velocity[0] < 0) animationSelect("forward");
+                    else if (Velocity[2] > 0) animationSelect("right");
+                    else if (Velocity[2] < 0) animationSelect("left");
+
+
+                }
+            }
+        }
+
+        if (Velocity[0] != 0 || Velocity[2] != 0)
+        {
+            if (managerVariables.Player.target == null)
+            {
+                if (!managerVariables.Player.Jumping)
+                {
+                    float angle = Mathf.Atan2(Velocity[0], Velocity[2]) * Mathf.Rad2Deg;
+
+
+
+                    Quaternion toRotation = Quaternion.Euler(new Vector3(0, angle, 0));
+
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, RotationSpeed * Time.deltaTime);
+                }
+            }
+            else
+            {
+                Vector3 targetDirection = managerVariables.Player.target.transform.position - transform.position;
+                float singleStep = 6f * Time.deltaTime;
+
+                Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
+                transform.rotation = Quaternion.LookRotation(newDirection);
+                //transform.LookAt(managerVariables.Player.target.transform);
+                transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.eulerAngles.y, 0));
             }
 
-            if (Input.GetKey(controls.Block) && !anim.GetCurrentAnimatorStateInfo(0).IsName("Roll") && combo == 0)
-            {
-                if (ShieldCooldown >= managerVariables.Player.ShieldCooldown)
-                {
-                    anim.SetBool("block", true);
-                    managerVariables.Player.Resistence = 80;
-                }
-                else
-                {
-                    anim.SetBool("block", false);
-                    managerVariables.Player.Resistence = 0;
-                }
 
+        }
+
+
+
+        // healtzh regen
+        if (managerVariables.Player.Health + managerVariables.Player.HealthRegen < managerVariables.Player.MaxHealth)
+        {
+            managerVariables.Player.Health += managerVariables.Player.HealthRegen * Time.deltaTime;
+        }
+        else
+        {
+            managerVariables.Player.Health = managerVariables.Player.MaxHealth;
+        }
+
+        if (Input.GetKey(controls.Jump) && !(Velocity[0] == 0 && Velocity[2] == 0) && SpaceAvaiable)
+        {
+            if (JumpCooldown == managerVariables.Player.JumpCooldown)
+            {
+                if (managerVariables.Player.Stamina >= managerVariables.Player.JumpCost)
+                {
+                    anim.SetBool("rolling", true);
+                    animationSelect(" ");
+                    anim.SetTrigger("isRolling");
+                    StartCoroutine(Dash());
+                    managerVariables.Player.Stamina -= managerVariables.Player.JumpCost;
+                    JumpCooldown = 0;
+                    SpaceAvaiable = false;
+                    JumpVelocity = new Vector3(MoveX, 0, MoveZ) * managerVariables.Player.Speed;
+                    //jump
+
+                    if (managerVariables.Player.Stamina > 10)
+                    {
+                        managerVariables.Player.Stamina -= 10;
+                    }
+                    else
+                    {
+                        managerVariables.Player.Stamina = 0;
+                    }
+                }
+            }
+
+        }
+        else
+        {
+            SpaceAvaiable = true;
+        }
+
+        if (Input.GetKey(controls.Block) && !anim.GetCurrentAnimatorStateInfo(0).IsName("Roll") && combo == 0)
+        {
+            if (ShieldCooldown >= managerVariables.Player.ShieldCooldown)
+            {
+                anim.SetBool("block", true);
+                managerVariables.Player.Resistence = 80;
             }
             else
             {
@@ -380,117 +365,123 @@ public class PlayerTutorial : MonoBehaviour
                 managerVariables.Player.Resistence = 0;
             }
 
-            comboTimer -= Time.deltaTime;
-            if (Input.GetKey(controls.Attack) && managerVariables.Player.AttackReady && Mouse0Avaiable && !Input.GetKey(controls.Block) && managerVariables.Player.Stamina >= managerVariables.Player.AttackCost)
+        }
+        else
+        {
+            anim.SetBool("block", false);
+            managerVariables.Player.Resistence = 0;
+        }
+
+        comboTimer -= Time.deltaTime;
+        if (Input.GetKey(controls.Attack) && managerVariables.Player.AttackReady && Mouse0Avaiable && !Input.GetKey(controls.Block) && managerVariables.Player.Stamina >= managerVariables.Player.AttackCost)
+        {
+            managerVariables.Player.Stamina -= managerVariables.Player.AttackCost;
+            comboTimer = 1f;
+            Mouse0Avaiable = false;
+            if (combo == 0)
             {
-                managerVariables.Player.Stamina -= managerVariables.Player.AttackCost;
-                comboTimer = 1f;
-                Mouse0Avaiable = false;
-                if (combo == 0)
-                {
-                    anim.SetTrigger("attack1");
-                    anim.SetBool("isRunning", false);
-                    animationSelect(" ");
-                    combo++;
-                }
-                else if (combo == 1)
-                {
-                    anim.SetTrigger("attack2");
-                    anim.SetBool("isRunning", false);
-                    animationSelect(" ");
-                    combo++;
-
-                }
-                else if (combo == 2)
-                {
-                    anim.SetTrigger("attack3");
-                    anim.SetBool("isRunning", false);
-                    animationSelect(" ");
-                    combo++;
-                }
-
-
-
-                managerVariables.Player.AttackReady = false;
-
-                if (combo == 3)
-                {
-                    if (managerVariables.Player.AttackCost <= managerVariables.Player.Stamina)
-                    {
-                        attackParticle.startColor = new Color(1, 0.2f, 0, 1);
-                        attackParticle.Play();
-                        managerVariables.Player.DamageIncrease = managerVariables.Player.Damage * 2;
-                        Invoke(nameof(ResetAttack), managerVariables.Player.AttackCooldown);
-                        Invoke(nameof(ResetAttackVertical), .1f);
-                        attackVertical.SetActive(true);
-                        audioManager.PlayPlayerAttackS();
-                        combo = 0;
-                        managerVariables.Player.Stamina -= managerVariables.Player.AttackCost;
-                    }
-
-                }
-                else
-                {
-                    if (managerVariables.Player.AttackCost <= managerVariables.Player.Stamina)
-                    {
-                        audioManager.PlayPlayerAttack();
-                        attackParticle.startColor = new Color(1, 1, 1, 1);
-                        attackParticle.Play();
-                        managerVariables.Player.DamageIncrease = 0;
-                        Invoke(nameof(ResetAttack), managerVariables.Player.BetweenAttackCooldown);
-                        Invoke(nameof(ResetAttackHorizontal), .1f);
-                        attackHorizontal.SetActive(true);
-                        managerVariables.Player.Stamina -= managerVariables.Player.AttackCost;
-                    }
-
-
-                }
-
-                managerVariables.Player.AttackInProcess = true;
-                AttackCooldown = 0;
+                anim.SetTrigger("attack1");
+                anim.SetBool("isRunning", false);
+                animationSelect(" ");
+                combo++;
             }
-            else if (combo != 0 && comboTimer < 0) combo = 0;
-
-            if (!Input.GetKey(controls.Attack)) Mouse0Avaiable = true;
-            // stamina regen
-            if (managerVariables.Player.Stamina + managerVariables.Player.StaminaRegen < managerVariables.Player.MaxStamina)
+            else if (combo == 1)
             {
-                managerVariables.Player.Stamina += managerVariables.Player.StaminaRegen * Time.deltaTime;
+                anim.SetTrigger("attack2");
+                anim.SetBool("isRunning", false);
+                animationSelect(" ");
+                combo++;
+
+            }
+            else if (combo == 2)
+            {
+                anim.SetTrigger("attack3");
+                anim.SetBool("isRunning", false);
+                animationSelect(" ");
+                combo++;
+            }
+
+
+
+            managerVariables.Player.AttackReady = false;
+
+            if (combo == 3)
+            {
+                if (managerVariables.Player.AttackCost <= managerVariables.Player.Stamina)
+                {
+                    attackParticle.startColor = new Color(1, 0.2f, 0, 1);
+                    attackParticle.Play();
+                    managerVariables.Player.DamageIncrease = managerVariables.Player.Damage * 2;
+                    Invoke(nameof(ResetAttack), managerVariables.Player.AttackCooldown);
+                    Invoke(nameof(ResetAttackVertical), .1f);
+                    attackVertical.SetActive(true);
+                    audioManager.PlayPlayerAttackS();
+                    combo = 0;
+                    managerVariables.Player.Stamina -= managerVariables.Player.AttackCost;
+                }
+
             }
             else
             {
-                managerVariables.Player.Stamina = managerVariables.Player.MaxStamina;
-            }
-
-            if (Input.GetKeyDown(controls.ability1))
-            {
-                if (Ability1Cooldown == managerVariables.Player.Ability1Cooldown)
+                if (managerVariables.Player.AttackCost <= managerVariables.Player.Stamina)
                 {
-                    if (managerVariables.Player.Ability1StaminaCost <= managerVariables.Player.Stamina)
-                    {
-                        Invoke(nameof(ResetAbility1), .1f);
-                        ability1.SetActive(true);
-                        Ability1Cooldown = 0;
-                        managerVariables.Player.Stamina -= managerVariables.Player.Ability1StaminaCost;
-                    }
-
+                    audioManager.PlayPlayerAttack();
+                    attackParticle.startColor = new Color(1, 1, 1, 1);
+                    attackParticle.Play();
+                    managerVariables.Player.DamageIncrease = 0;
+                    Invoke(nameof(ResetAttack), managerVariables.Player.BetweenAttackCooldown);
+                    Invoke(nameof(ResetAttackHorizontal), .1f);
+                    attackHorizontal.SetActive(true);
+                    managerVariables.Player.Stamina -= managerVariables.Player.AttackCost;
                 }
 
 
             }
-            /*
-            postprocesing.profile.GetComponent<Vignette>().color = new ColorParameter(new Color(1, 0, 0, 1), true);
-            */
-            if (managerVariables.Player.absorb)
+
+            managerVariables.Player.AttackInProcess = true;
+            AttackCooldown = 0;
+        }
+        else if (combo != 0 && comboTimer < 0) combo = 0;
+
+        if (!Input.GetKey(controls.Attack)) Mouse0Avaiable = true;
+        // stamina regen
+        if (managerVariables.Player.Stamina + managerVariables.Player.StaminaRegen < managerVariables.Player.MaxStamina)
+        {
+            managerVariables.Player.Stamina += managerVariables.Player.StaminaRegen * Time.deltaTime;
+        }
+        else
+        {
+            managerVariables.Player.Stamina = managerVariables.Player.MaxStamina;
+        }
+
+        if (Input.GetKeyDown(controls.ability1))
+        {
+            if (Ability1Cooldown == managerVariables.Player.Ability1Cooldown)
             {
-                managerVariables.Player.absorb = false;
-                anim.SetTrigger("absorb");
+                if (managerVariables.Player.Ability1StaminaCost <= managerVariables.Player.Stamina)
+                {
+                    Invoke(nameof(ResetAbility1), .1f);
+                    ability1.SetActive(true);
+                    Ability1Cooldown = 0;
+                    managerVariables.Player.Stamina -= managerVariables.Player.Ability1StaminaCost;
+                }
+
             }
-            else if (managerVariables.Player.absorb2)
-            {
-                managerVariables.Player.absorb2 = false;
-                anim.SetTrigger("absorb2");
-            }
+
+
+        }
+        /*
+        postprocesing.profile.GetComponent<Vignette>().color = new ColorParameter(new Color(1, 0, 0, 1), true);
+        */
+        if (managerVariables.Player.absorb)
+        {
+            managerVariables.Player.absorb = false;
+            anim.SetTrigger("absorb");
+        }
+        else if (managerVariables.Player.absorb2)
+        {
+            managerVariables.Player.absorb2 = false;
+            anim.SetTrigger("absorb2");
         }
     }
 

@@ -73,8 +73,6 @@ public class Minotaur : MonoBehaviour
     Shake CameraShake;
     CameraShaker CamShaker;
 
-    
-
     void Awake()
     {
 
@@ -100,7 +98,6 @@ public class Minotaur : MonoBehaviour
         CameraShake = MainCamera.GetComponent<Shake>();
         CamShaker = CameraShake.GetComponent<CameraShaker>();
 
-        agent = GetComponent<NavMeshAgent>();
     }
 
     void DoAttackMelee1()
@@ -121,7 +118,6 @@ public class Minotaur : MonoBehaviour
 
     void Update()
     {
-        
         timeToRageTick += Time.deltaTime;
         if (timeToRageTick >= timeToRage)
         {
