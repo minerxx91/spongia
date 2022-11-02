@@ -66,7 +66,8 @@ public class manager : MonoBehaviour
         public bool Ability2Raged = false;
         public float Ability2timeToRageTick = 0;
 
-        
+        public float Ability3Cooldown = 1f;
+        public float Ability3StaminaCost = 20;
 
 
         public float gravityIncrease = 0;

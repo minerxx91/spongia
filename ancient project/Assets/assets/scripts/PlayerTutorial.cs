@@ -38,6 +38,8 @@ public class PlayerTutorial : MonoBehaviour
     public float ShieldCooldown = 0;
     public float Ability1Cooldown = 0;
     public float Ability2Cooldown = 0;
+    public float Ability3Cooldown = 0;
+    public float Ability4Cooldown = 0;
     float attackprocess = 0;
     private int combo = 0;
     private float comboTimer = 0;

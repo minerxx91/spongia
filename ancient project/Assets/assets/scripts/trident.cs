@@ -6,10 +6,21 @@ public class trident : MonoBehaviour
 {
     float time =0;
     float velocity = 36;
+
     private void Start()
     {
-        transform.LookAt(GameObject.Find("Player").transform.position + new Vector3(0,.5f,0));
-        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x + 90, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+
+        if(this.gameObject.name == "EnemyTrident")
+        {
+            transform.LookAt(GameObject.Find("Player").transform.position + new Vector3(0, .5f, 0));
+            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x + 90, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+        }
+        else
+        {
+            gameObject.transform.rotation =   GameObject.Find("Player").GetComponent<Transform>().rotation ;
+            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x + 90, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+        }
+        
     }
 
     void Update()

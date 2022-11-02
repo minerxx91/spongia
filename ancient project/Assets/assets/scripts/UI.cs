@@ -138,7 +138,23 @@ private void Update()
                 MinotaurColor.GetComponent<Image>().color = new Color32(158, 150, 18, 100);
 
             }
+            float dielikPoseidon = BasicInventorySlot / managerVariables.Player.Ability3Cooldown;
+            PoseidonColor.transform.position = new Vector2(PoseidonColor.transform.position.x, (player.Ability3Cooldown * dielikPoseidon) - 12.5f);
+            if (managerVariables.Player.Ability3Cooldown == player.Ability3Cooldown)
+            {
+                PoseidonColor.GetComponent<Image>().color = new Color32(188, 170, 38, 100);
+            }
+            else
+            {
+                PoseidonColor.GetComponent<Image>().color = new Color32(158, 150, 18, 100);
+
+            }
         }
+
+
+
+
+
         else
         {
             float dielikJ = BasicInventorySlot / managerVariables.Player.JumpCooldown;
@@ -197,6 +213,17 @@ private void Update()
             else
             {
                 MinotaurColor.GetComponent<Image>().color = new Color32(158, 150, 18, 100);
+
+            }
+            float dielikPoseidon = BasicInventorySlot / managerVariables.Player.Ability3Cooldown;
+            PoseidonColor.transform.position = new Vector2(PoseidonColor.transform.position.x, (playerT.Ability3Cooldown * dielikPoseidon) - 12.5f);
+            if (managerVariables.Player.Ability3Cooldown == playerT.Ability3Cooldown)
+            {
+                PoseidonColor.GetComponent<Image>().color = new Color32(188, 170, 38, 100);
+            }
+            else
+            {
+                PoseidonColor.GetComponent<Image>().color = new Color32(158, 150, 18, 100);
 
             }
         }

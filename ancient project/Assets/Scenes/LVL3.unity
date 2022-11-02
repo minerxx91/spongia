@@ -1581,7 +1581,7 @@ GameObject:
   - component: {fileID: 712772616}
   - component: {fileID: 712772618}
   - component: {fileID: 712772617}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Terrain_0_0_4c8f7df7-12ea-4692-9739-bb0b52b9d964
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2210,7 +2210,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1014229157}
   - component: {fileID: 1014229156}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TerrainGroup_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20152,7 +20152,7 @@ MonoBehaviour:
     m_Bits: 64
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
-  timeBetweenAttacks: 6
+  timeBetweenAttacks: 4
   projectile: {fileID: 3382990444819746559, guid: 4a06c091bf01faf478a63fa82b0eaa7d, type: 3}
   trident: {fileID: 1765921184}
   sightRange: 100

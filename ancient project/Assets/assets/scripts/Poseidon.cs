@@ -333,7 +333,7 @@ public class Poseidon : MonoBehaviour
 
     void throwTrident()
     {
-        Instantiate(projectile, trident.transform.position, Quaternion.Euler(new Vector3(90, transform.rotation.eulerAngles.y, 0)));
+        Instantiate(projectile, trident.transform.position, Quaternion.Euler(new Vector3(90, transform.rotation.eulerAngles.y, 0))).name = "EnemyTrident";
     }
     void RangedAttacking()
     {

@@ -36,12 +36,15 @@ public class Player : MonoBehaviour
     public float ShieldCooldown = 0;
     public float Ability1Cooldown = 0;
     public float Ability2Cooldown = 0;
+    public float Ability3Cooldown = 0;
+
     float attackprocess = 0;
     private int combo = 0;
     private float comboTimer = 0;
 
     [SerializeField] Material telo;
     [SerializeField] GameObject trident;
+    [SerializeField] GameObject Projectile;
 
     public Vector3 JumpVelocity;
     Vector3 Velocity;
@@ -98,6 +101,7 @@ public class Player : MonoBehaviour
         ShieldCooldown = managerVariables.Player.ShieldCooldown;
         Ability1Cooldown = managerVariables.Player.Ability1Cooldown;
         Ability2Cooldown = managerVariables.Player.Ability2Cooldown;
+        Ability3Cooldown = managerVariables.Player.Ability3Cooldown;
 
     }
 
@@ -147,6 +151,12 @@ public class Player : MonoBehaviour
             Ability2Cooldown += Time.deltaTime;
         }
         else Ability2Cooldown = managerVariables.Player.Ability2Cooldown;
+
+        if (Ability3Cooldown < managerVariables.Player.Ability3Cooldown)
+        {
+            Ability3Cooldown += Time.deltaTime;
+        }
+        else Ability3Cooldown = managerVariables.Player.Ability3Cooldown;
 
 
         //gravity
@@ -477,6 +487,7 @@ public class Player : MonoBehaviour
                 {
                     managerVariables.Player.Ability2Raged = true;
                     managerVariables.Player.DamageIncrease *= 2;
+                    managerVariables.Player.Resistence = 50;
 
                     Ability2Cooldown = 0;
                     managerVariables.Player.Stamina -= managerVariables.Player.Ability2StaminaCost;
@@ -497,6 +508,7 @@ public class Player : MonoBehaviour
             if (managerVariables.Player.Ability2timeToRageTick > managerVariables.Player.Ability2Duration)
             {
                 managerVariables.Player.DamageIncrease /= 2;
+                managerVariables.Player.Resistence = 0;
                 managerVariables.Player.Ability2timeToRageTick = 0;
                 managerVariables.Player.Ability2Raged = false;
                 telo.color = new Color32(144, 128, 97, 255);
@@ -508,6 +520,26 @@ public class Player : MonoBehaviour
             if (this.gameObject.transform.localScale != managerVariables.Player.Ability2normalSize)
                 this.gameObject.transform.localScale -= new Vector3(0.01f, 0.01f, 0.01f);
             telo.color = new Color32(144, 128, 97, 255);
+        }
+
+
+        if (Input.GetKeyDown(controls.ability3))
+        {
+            if (Ability3Cooldown == managerVariables.Player.Ability3Cooldown)
+            {
+                if (managerVariables.Player.Ability3StaminaCost <= managerVariables.Player.Stamina)
+                {
+
+                    Instantiate(Projectile, trident.transform.position, Quaternion.Euler(new Vector3(90, transform.rotation.eulerAngles.y, 0))).name = "PlayerTrident";
+
+
+                    Ability3Cooldown = 0;
+                    managerVariables.Player.Stamina -= managerVariables.Player.Ability3StaminaCost;
+                }
+
+            }
+
+
         }
 
 
