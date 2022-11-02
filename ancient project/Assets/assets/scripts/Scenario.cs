@@ -12,18 +12,30 @@ public class Scenario : MonoBehaviour
 
     manager managerVariables;
     public TextMeshProUGUI playerText;
+
     public TextMeshProUGUI othersText;
+
     public TextMeshProUGUI lobbyText;
+
     public Sprite Hades;
+
     public Sprite King;
+
     [SerializeField]
     GameObject subtitlesCanvas;
+
+    [SerializeField]
+    GameObject UI;
+
     [SerializeField]
     GameObject boss;
+
     [SerializeField]
     GameObject image;
+
     [SerializeField]
     GameObject imageOther;
+
     [SerializeField]
     GameObject panel;
 
@@ -128,6 +140,7 @@ public class Scenario : MonoBehaviour
         {
             lobbyText.text = "";
             panel.SetActive(false);
+            //UI.SetActive(true);
         }
     }
 
@@ -154,6 +167,7 @@ public class Scenario : MonoBehaviour
         else
         {
             panel.SetActive(false);
+            //UI.SetActive(true);
         }
     }
 
@@ -197,6 +211,7 @@ public class Scenario : MonoBehaviour
         else
         {
             panel.SetActive(false);
+            //UI.SetActive(true);
         }
     }
 
@@ -222,6 +237,7 @@ public class Scenario : MonoBehaviour
         else
         {
             panel.SetActive(false);
+            //UI.SetActive(true);
         }
     }
 
@@ -247,6 +263,7 @@ public class Scenario : MonoBehaviour
         else
         {
             panel.SetActive(false);
+            //UI.SetActive(true);
         }
     }
 
@@ -272,6 +289,7 @@ public class Scenario : MonoBehaviour
         else
         {
             panel.SetActive(false);
+            //UI.SetActive(true);
         }
     }
 
@@ -283,6 +301,7 @@ public class Scenario : MonoBehaviour
         panel.SetActive(true);
         image.SetActive(false);
         imageOther.SetActive(false);
+        //UI.SetActive(false);
     }
 
 
