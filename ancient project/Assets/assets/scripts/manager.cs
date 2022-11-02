@@ -66,6 +66,8 @@ public class manager : MonoBehaviour
         public bool Ability2Raged = false;
         public float Ability2timeToRageTick = 0;
 
+        
+
 
         public float gravityIncrease = 0;
         public GameObject target;

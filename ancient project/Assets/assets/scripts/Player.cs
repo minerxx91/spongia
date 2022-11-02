@@ -41,6 +41,7 @@ public class Player : MonoBehaviour
     private float comboTimer = 0;
 
     [SerializeField] Material telo;
+    [SerializeField] GameObject trident;
 
     public Vector3 JumpVelocity;
     Vector3 Velocity;
@@ -522,6 +523,15 @@ public class Player : MonoBehaviour
         {
             managerVariables.Player.absorb2 = false;
             anim.SetTrigger("absorb2");
+        }
+        //wearing trident
+        if (managerVariables.Player.PoseidonUnlocked)
+        {
+            trident.SetActive(true);
+        }
+        else
+        {
+            trident.SetActive(false);
         }
     }
 
