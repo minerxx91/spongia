@@ -18,6 +18,8 @@ public class manager : MonoBehaviour
 
     public float GravityForce = 1f;
 
+    public int ScenarioOrder = 0;
+
 
 
     public class PlayerStats
@@ -160,6 +162,7 @@ public class manager : MonoBehaviour
                     Destroy(GameObject.FindGameObjectsWithTag("Boss")[0].gameObject);
                     Player.MinotaurUnlocked = true;
                     Invoke(nameof(toLobby), 5);
+                    ScenarioOrder++;
 
                 }
             }
@@ -171,6 +174,7 @@ public class manager : MonoBehaviour
                     Destroy(GameObject.FindGameObjectsWithTag("Boss")[0].gameObject);
                     Player.PoseidonUnlocked = true;
                     Invoke(nameof(toLobby), 5);
+                    ScenarioOrder++;
                 }
             }
         }

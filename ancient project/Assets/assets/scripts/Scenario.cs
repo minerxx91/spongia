@@ -24,6 +24,8 @@ public class Scenario : MonoBehaviour
     GameObject imageOther;
     [SerializeField]
     GameObject panel;
+
+    
   
     string[] Lvl1 = { "Pravý hrdina, presne niekoho ako ty potrebujem.","???", "Keďže si preukázal silu a odvahu ako málokto, postaráš sa o problém " +
         "ktorý ma trápi už roky.","???", "Zabiješ pre mňa Minotaura, ak to dokážeš získaš bohatstvo na celý život, ak nie zomrieš so cťou. " +
@@ -50,13 +52,15 @@ public class Scenario : MonoBehaviour
 
     int index = 0;
     int sceneNumber = 0;
+    
 
     private void Start()
     {
         managerVariables = GameObject.Find("Manager").GetComponent<manager>();
         image.SetActive(false);
         imageOther.SetActive(false);
-        panel.SetActive(false);        
+        panel.SetActive(false);  
+        
     }
 
     private void Update()
@@ -66,33 +70,32 @@ public class Scenario : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            if (sceneName == "Lobby")
+            if (managerVariables.ScenarioOrder == 0 && sceneName == "Lobby")
             {
                 LobbyScenario();
             }
 
-            if (sceneName == "LVL1" && boss.IsDestroyed())
+            if (managerVariables.ScenarioOrder == 1 && sceneName == "Lobby")
             {
-                sceneNumber = 1;
                 Lvl1Scenario();
             }
 
-            if (sceneName == "LVL2" && boss.IsDestroyed())
+            if (managerVariables.ScenarioOrder == 2 && sceneName == "Lobby")
             {
                 Lvl2Scenario();
             }
 
-            if (sceneName == "LVL3" && boss.IsDestroyed())
+            if (managerVariables.ScenarioOrder == 3 && sceneName == "Lobby" )
             {
                 Lvl3Scenario();
             }
 
-            if (sceneName == "LVL4" && boss.IsDestroyed())
+            if (managerVariables.ScenarioOrder == 4 && sceneName == "Lobby")
             {
                 Lvl4Scenario();
             }
 
-            if (sceneName == "LVL5" && boss.IsDestroyed())
+            if (managerVariables.ScenarioOrder == 5 && sceneName == "Lobby")
             {
                 Lvl5Scenario();
             }
