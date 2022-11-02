@@ -14,6 +14,8 @@ public class Scenario : MonoBehaviour
     public TextMeshProUGUI playerText;
     public TextMeshProUGUI othersText;
     public TextMeshProUGUI lobbyText;
+    public Sprite Hades;
+    public Sprite King;
     [SerializeField]
     GameObject subtitlesCanvas;
     [SerializeField]
@@ -122,6 +124,7 @@ public class Scenario : MonoBehaviour
     {
         playerText.text = "";
         othersText.text = "";
+        imageOther.GetComponent<Image>().sprite = King;
         panel.SetActive(true);
         image.SetActive(false);
         imageOther.SetActive(false);
@@ -156,8 +159,9 @@ public class Scenario : MonoBehaviour
         image.SetActive(false);
         imageOther.SetActive(false);
 
-        if (index <= Lvl2.Length - 1)
+        if (index == 0)
         {
+            imageOther.GetComponent<Image>().sprite = King;
             if (Lvl2Field[index] == 0)
             {
                 playerText.text = Lvl2[index];
@@ -171,6 +175,23 @@ public class Scenario : MonoBehaviour
                 index++;
             }
         }
+        else if(index <= Lvl2.Length - 1)
+            {
+            imageOther.GetComponent<Image>().sprite = Hades;
+            if (Lvl2Field[index] == 0)
+            {
+                playerText.text = Lvl2[index];
+                image.SetActive(true);
+                index++;
+            }
+            else
+            {
+                othersText.text = Lvl2[index];
+                imageOther.SetActive(true);
+                index++;
+            }
+        }
+        
         else
         {
             Debug.Log("konec");
