@@ -39,7 +39,9 @@ public class Player : MonoBehaviour
     float attackprocess = 0;
     private int combo = 0;
     private float comboTimer = 0;
-    
+
+    [SerializeField] Material telo;
+
     public Vector3 JumpVelocity;
     Vector3 Velocity;
     private Animator anim;
@@ -472,7 +474,8 @@ public class Player : MonoBehaviour
             {
                 if (managerVariables.Player.Ability2StaminaCost <= managerVariables.Player.Stamina)
                 {
-
+                    managerVariables.Player.Ability2Raged = true;
+                    managerVariables.Player.DamageIncrease *= 2;
 
                     Ability2Cooldown = 0;
                     managerVariables.Player.Stamina -= managerVariables.Player.Ability2StaminaCost;
@@ -482,6 +485,31 @@ public class Player : MonoBehaviour
 
 
         }
+       
+        if (managerVariables.Player.Ability2Raged)
+        {
+            managerVariables.Player.Ability2timeToRageTick += Time.deltaTime;
+            telo.color = new Color32(150, 89, 69, 255);
+            if (this.gameObject.transform.localScale != managerVariables.Player.Ability2growSize)
+                this.gameObject.transform.localScale += new Vector3(0.01f, 0.01f, 0.01f);
+            
+            if (managerVariables.Player.Ability2timeToRageTick > managerVariables.Player.Ability2Duration)
+            {
+                managerVariables.Player.DamageIncrease /= 2;
+                managerVariables.Player.Ability2timeToRageTick = 0;
+                managerVariables.Player.Ability2Raged = false;
+                telo.color = new Color32(144, 128, 97, 255);
+
+            }
+        }
+        else
+        {
+            if (this.gameObject.transform.localScale != managerVariables.Player.Ability2normalSize)
+                this.gameObject.transform.localScale -= new Vector3(0.01f, 0.01f, 0.01f);
+            telo.color = new Color32(144, 128, 97, 255);
+        }
+
+
         /*
         postprocesing.profile.GetComponent<Vignette>().color = new ColorParameter(new Color(1, 0, 0, 1), true);
         */
