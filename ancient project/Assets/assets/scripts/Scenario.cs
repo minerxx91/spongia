@@ -53,7 +53,7 @@ public class Scenario : MonoBehaviour
     int[] Lvl5Field = {1, 0, 1, 0};
 
     int index = 0;
-    int sceneNumber = 0;
+
     
 
     private void Start()
@@ -61,7 +61,20 @@ public class Scenario : MonoBehaviour
         managerVariables = GameObject.Find("Manager").GetComponent<manager>();
         image.SetActive(false);
         imageOther.SetActive(false);
-        panel.SetActive(false);  
+        panel.SetActive(false);
+
+        if (managerVariables.ScenarioOrder == 0)
+            LobbyScenario();
+        else if (managerVariables.ScenarioOrder == 1)
+            Lvl1Scenario();
+        else if (managerVariables.ScenarioOrder == 2)
+            Lvl2Scenario();
+        else if (managerVariables.ScenarioOrder == 3)
+            Lvl3Scenario();
+        else if (managerVariables.ScenarioOrder == 4)
+            Lvl4Scenario();
+        else if (managerVariables.ScenarioOrder == 5)
+            Lvl5Scenario();
         
     }
 
