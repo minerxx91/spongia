@@ -5,6 +5,7 @@ using UnityEngine;
 public class trident : MonoBehaviour
 {
     float time =0;
+    float velocity = 36;
     private void Start()
     {
         transform.LookAt(GameObject.Find("Player").transform.position + new Vector3(0,.5f,0));
@@ -13,7 +14,7 @@ public class trident : MonoBehaviour
 
     void Update()
     {
-        transform.position += transform.up * Time.deltaTime * 36;
+        transform.position += transform.up * Time.deltaTime * velocity;
 
 
         time += Time.deltaTime;
@@ -21,5 +22,9 @@ public class trident : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        print(other.name);
     }
 }

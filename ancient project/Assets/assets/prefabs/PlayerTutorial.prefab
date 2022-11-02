@@ -6469,10 +6469,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14a157ff32d805548b178ebe630603b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  telo: {fileID: 2100000, guid: 555616d9e55fa3847804787ae1bea57e, type: 2}
   JumpCooldown: 0
   AttackCooldown: 0
   ShieldCooldown: 0
-  StunCooldown: 0
+  Ability1Cooldown: 0
+  Ability2Cooldown: 0
   JumpVelocity: {x: 0, y: 0, z: 0}
 --- !u!1001 &1757911709
 PrefabInstance:

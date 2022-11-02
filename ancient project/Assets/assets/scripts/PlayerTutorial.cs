@@ -28,6 +28,8 @@ public class PlayerTutorial : MonoBehaviour
 
     bool SpaceAvaiable = true;
     bool Mouse0Avaiable = true;
+    [SerializeField] Material telo;
+
 
     float PlayerSpeed;
     float RotationSpeed = 300;

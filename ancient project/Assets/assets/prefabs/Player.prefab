@@ -6472,7 +6472,9 @@ MonoBehaviour:
   JumpCooldown: 0
   AttackCooldown: 0
   ShieldCooldown: 0
-  StunCooldown: 0
+  Ability1Cooldown: 0
+  Ability2Cooldown: 0
+  telo: {fileID: 2100000, guid: 555616d9e55fa3847804787ae1bea57e, type: 2}
   JumpVelocity: {x: 0, y: 0, z: 0}
 --- !u!1001 &1757911709
 PrefabInstance:
@@ -6589,15 +6591,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7c96c4042f2a8144a8e34d0512cbe7fc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.044
+      value: -0.001
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7c96c4042f2a8144a8e34d0512cbe7fc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.154
+      value: 0.195
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7c96c4042f2a8144a8e34d0512cbe7fc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.054
+      value: -0.05
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7c96c4042f2a8144a8e34d0512cbe7fc, type: 3}
       propertyPath: m_LocalRotation.w

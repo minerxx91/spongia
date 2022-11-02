@@ -56,11 +56,13 @@ public class manager : MonoBehaviour
         public float Ability1Duration = 5f;
         public float Ability1StaminaCost = 20;
 
-        public float Ability2Cooldown = 10f;
-        public float Ability2Duration = 5f;
+        public float Ability2Cooldown = 30f;
+        public float Ability2Duration = 10f;
         public float Ability2StaminaCost = 20;
-        public float Ability2normalSize = 1;
-        public float Ability2growSize = 1;
+        public Vector3 Ability2normalSize = new Vector3(1,1,1);
+        public Vector3 Ability2growSize = new Vector3(1.5f, 1.5f, 1.5f);
+        public bool Ability2Raged = false;
+        public float Ability2timeToRageTick = 0;
 
 
         public float gravityIncrease = 0;
