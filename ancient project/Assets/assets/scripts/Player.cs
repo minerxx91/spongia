@@ -87,6 +87,15 @@ public class Player : MonoBehaviour
 
 
         postprocesing = GameObject.Find("Postprocessing").GetComponent<Volume>();
+
+
+        // reset abilit
+        JumpCooldown = managerVariables.Player.JumpCooldown;
+        AttackCooldown = managerVariables.Player.AttackCooldown;
+        ShieldCooldown = managerVariables.Player.ShieldCooldown;
+        Ability1Cooldown = managerVariables.Player.Ability1Cooldown;
+        Ability2Cooldown = managerVariables.Player.Ability2Cooldown;
+
     }
 
   
@@ -129,6 +138,12 @@ public class Player : MonoBehaviour
             Ability1Cooldown += Time.deltaTime;
         }
         else Ability1Cooldown = managerVariables.Player.Ability1Cooldown;
+
+        if (Ability2Cooldown < managerVariables.Player.Ability2Cooldown)
+        {
+            Ability2Cooldown += Time.deltaTime;
+        }
+        else Ability2Cooldown = managerVariables.Player.Ability2Cooldown;
 
 
         //gravity

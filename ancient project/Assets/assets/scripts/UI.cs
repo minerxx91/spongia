@@ -11,6 +11,7 @@ public class UI : MonoBehaviour
     manager managerVariables;
     Controls controls;
 
+    
     Player player;
 
     int BasicInventorySlot = 125;
