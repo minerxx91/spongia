@@ -43,8 +43,18 @@ public class Player : MonoBehaviour
     private float comboTimer = 0;
 
     [SerializeField] Material telo;
+    [SerializeField] Material ZlataZbroj;
+    [SerializeField] Material OcelovaZbroj;
+    [SerializeField] GameObject sword;
+    [SerializeField] GameObject sword2;
+    [SerializeField] GameObject shield;
+    [SerializeField] GameObject helmet;
+    [SerializeField] GameObject helmet2;
+
+
     [SerializeField] GameObject trident;
     [SerializeField] GameObject Projectile;
+
 
     public Vector3 JumpVelocity;
     Vector3 Velocity;
@@ -611,6 +621,25 @@ public class Player : MonoBehaviour
         {
             trident.SetActive(false);
         }
+
+        if (managerVariables.Player.enlightened)
+        {
+            helmet2.SetActive(true);
+            helmet.SetActive(false);
+            sword2.SetActive(true);
+            sword.SetActive(false);
+            shield.GetComponent<Renderer>().material = ZlataZbroj;
+        }
+        else
+        {
+            helmet2.SetActive(false);
+            helmet.SetActive(true);
+            sword2.SetActive(false);
+            sword.SetActive(true);
+            shield.GetComponent<Renderer>().material = OcelovaZbroj;
+        }
+
+
     }
 
     IEnumerator Dash()
