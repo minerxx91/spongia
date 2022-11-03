@@ -10312,6 +10312,10 @@ PrefabInstance:
       value: ScenarioCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 4040500495425039502, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
+      propertyPath: UI
+      value: 
+      objectReference: {fileID: 714425974}
+    - target: {fileID: 4040500495425039502, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
       propertyPath: King
       value: 
       objectReference: {fileID: 21300000, guid: f6a88940007a53f4c9306995afbb51a7, type: 3}

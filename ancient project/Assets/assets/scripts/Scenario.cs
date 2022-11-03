@@ -46,11 +46,11 @@ public class Scenario : MonoBehaviour
         "Odmietnuť samozrejme nemôžeš, hah." };
     string[] Lvl2 = { "Dokázal si to. Myslel som že nevydržíš viac ako minútu, ale dokázal si to. Po zvyšok života bude o teba dobre postarané... " +
         "Čo to? Ako to?", "To je tvoja zásluha?", "Áno, mocný Zeus, konal som na rozkaz svojho kráľa, prosím ušetri ma.", "Normálne by som ťa" +
-        " zmietol s povrchu zemského ale potrebujem niekoho ako ty. Očividne nie si len taký človek, si poloboh, s celkom veľkou mocou." +
+        " zmietol s povrchu zemského ale potrebujem niekoho ako ty.", "Očividne nie si len taký človek, si poloboh, s celkom veľkou mocou." +
         " Potrebujem niekoho ako ty, Poseidon a Hádes, moji braria sa proti mne obrátili. Chcú vládu nad svetom len pre seba a ty mi ich pomôžeš zastaviť.",
         "Ako asi to mám urobiť, obaja ma zabijú len škaredím pohľadom.", "Nie s týmto, aj tak sú ale tvoje šance na úspech mizivé ale nemáme veľa času," +
-        " dostanem ťa k poseidonovy a zvyšok je na tebe. Nemárni čas slovami, budú čakať niekoho ako ty a budú sa ťa zabiť čo najskôr.", "Ale..." };
-    string[] Lvl3 = { "Zatiaľ si ma nesklamal, to sa ti musí nechať, ale táto úloha nebude taká ľahká. Hádesovi sa toto páčiť nebude, musíš sa ho zbaviť." +
+        " dostanem ťa k poseidonovy a zvyšok je na tebe.", "Nemárni čas slovami, budú čakať niekoho ako ty a budú sa ťa zabiť čo najskôr.", "Ale..." };
+    string[] Lvl3 = { "Zatiaľ si ma nesklamal, to sa ti musí nechať, ale táto úloha nebude taká ľahká. Hádesovi sa toto páčiť nebude, musíš sa ho zbaviť.",
         " Hľadal som ho v jeho časti sveta, podsvetí a nenašiel som nič, určite už obsadil Olymp, musíš sa ho zbaviť. Svet sa na teba spolieha." };
     string[] Lvl4 = { "Takže si to dokázal, porazil si Zeusa, dúfal som že ho oslabíš ale toto som nečakal.",
         "Oklamal si ma? Kvôli tebe som zabil Poseidona a Zeusa.", "Ja sám by som to nedokázal, to musím uznať ale tvojich päť minút slávy sa práve skončilo." +
@@ -59,8 +59,8 @@ public class Scenario : MonoBehaviour
         " celému svetu.", "Staviaš sa proti mne? Bez brnenie ktoré som ti dal nemáš proti mne šancu.", "Risknem to." };
 
     int[] Lvl1Field = {1,0,1,0,1};
-    int[] Lvl2Field = {1,1,0,1,0,1,0};
-    int[] Lvl3Field = { 1};
+    int[] Lvl2Field = {1,1,0,1,1,0,1,1,0};
+    int[] Lvl3Field = { 1,1};
     int[] Lvl4Field = {1,0,1};
     int[] Lvl5Field = {1, 0, 1, 0};
 
@@ -93,7 +93,7 @@ public class Scenario : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
         string sceneName = currentScene.name;
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.Space))  //Input.GetMouseButtonDown(0))
         {
             if (managerVariables.ScenarioOrder == 0 && sceneName == "Lobby")
             {
@@ -133,7 +133,7 @@ public class Scenario : MonoBehaviour
         {
             panel.SetActive(true);
             lobbyText.text = "Rok 453 pred n. l., na rozkaz kráľa Kréty Androgeosa sa kráľovská armáda vydáva na výpravu za zneškodnením mýtickej " +
-                "bytosti známej ako Medúza po sérii útokov po ktorých z napadnutých nezostalo nič viac ako kamenné sochy s vydeseným výrazom v tvári.";
+                "bytosti známej ako Medúza po sérii útokov po ktorých z napadnutých nezostalo nič viac ako kamenné sochy s vydeseným výrazom v tvári.\n\n(Pre pokračovanie stlač medzerník)";
             index++;
         }           
         else
