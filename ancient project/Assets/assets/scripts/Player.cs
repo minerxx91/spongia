@@ -479,7 +479,7 @@ public class Player : MonoBehaviour
                     attackParticle.Play();
                     managerVariables.Player.DamageIncrease = managerVariables.Player.Damage * 2;
                     Invoke(nameof(ResetAttack), managerVariables.Player.AttackCooldown);
-                    Invoke(nameof(ResetAttackVertical), .1f);
+                    Invoke(nameof(DoAttackVertical), .55f);
                     attackVertical.SetActive(true);
                     audioManager.PlayPlayerAttackS();
                     combo = 0;
@@ -496,8 +496,7 @@ public class Player : MonoBehaviour
                     attackParticle.Play();
                     managerVariables.Player.DamageIncrease = 0;
                     Invoke(nameof(ResetAttack), managerVariables.Player.BetweenAttackCooldown);
-                    Invoke(nameof(ResetAttackHorizontal), .1f);
-                    attackHorizontal.SetActive(true);
+                    Invoke(nameof(DoAttackHorizontal), .55f);
                     managerVariables.Player.Stamina -= managerVariables.Player.AttackCost;
                 }
 
@@ -756,9 +755,21 @@ public class Player : MonoBehaviour
         managerVariables.Player.AttackReady = true;
     }
 
+    void DoAttackHorizontal()
+    {
+        attackHorizontal.SetActive(true);
+        Invoke(nameof(ResetAttackHorizontal), .1f);
+    }
+
     void ResetAttackHorizontal()
     {
         attackHorizontal.SetActive(false);
+    }
+
+    void DoAttackVertical()
+    {
+        attackVertical.SetActive(true);
+        Invoke(nameof(ResetAttackVertical), .1f);
     }
 
     void ResetAttackVertical()
