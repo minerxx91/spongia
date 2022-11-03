@@ -102,10 +102,12 @@ public class Poseidon : MonoBehaviour
 
     void DoAttackMelee1()
     {
-        CamShaker.ShakeOnce(2, 2, .1f, 1.3f);
-
-        AttackMelee1.SetActive(true);
-        Invoke(nameof(ResetAttackMelee1), .1f);
+        if (!Stun)
+        {
+            CamShaker.ShakeOnce(2, 2, .1f, 1.3f);
+            AttackMelee1.SetActive(true);
+            Invoke(nameof(ResetAttackMelee1), .1f);
+        }
     }
 
     void ResetAttackMelee1()
@@ -115,9 +117,12 @@ public class Poseidon : MonoBehaviour
 
     void DoAttackMelee2()
     {
-        CamShaker.ShakeOnce(4, 6, .1f, 2);
-        AttackMelee2.SetActive(true);
-        Invoke(nameof(ResetAttackMelee2), .1f);
+        if (!Stun)
+        {
+            CamShaker.ShakeOnce(4, 6, .1f, 2);
+            AttackMelee2.SetActive(true);
+            Invoke(nameof(ResetAttackMelee2), .1f);
+        }
     }
 
     void ResetAttackMelee2()
@@ -288,14 +293,20 @@ public class Poseidon : MonoBehaviour
 
     void swingParticel()
     {
-        swing.Play();
+        if (!Stun)
+        {
+            swing.Play();
+        }
         MidAttackLook = false;
         Animating = true;
     }
 
     void MeleeBlastParticel()
     {
-        MeleeBlast.Play();
+        if (!Stun)
+        {
+            MeleeBlast.Play();
+        }
     }
     void swingTP()
     {
@@ -304,7 +315,10 @@ public class Poseidon : MonoBehaviour
 
     void GroundBlastParticel()
     {
-        GroundBlast.Play();
+        if (!Stun)
+        {
+            GroundBlast.Play();
+        }
     }
 
     private void MidAttacking()

@@ -25,7 +25,6 @@ public class sword : MonoBehaviour
                 }
                 else
                 {
-                    print("ani rit");
                     if (managerVariables.Poseidon.Health > managerVariables.Player.Damage + managerVariables.Player.DamageIncrease)
                     {
                         managerVariables.Poseidon.Health -= managerVariables.Player.Damage + managerVariables.Player.DamageIncrease;
