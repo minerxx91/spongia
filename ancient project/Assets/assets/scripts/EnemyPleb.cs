@@ -30,6 +30,7 @@ public class EnemyPleb : MonoBehaviour
     manager managerVariables;
 
     GameObject attackHorizontal;
+    public bool DontAttack = false;
 
     public float Health;
     void Start()
@@ -47,14 +48,25 @@ public class EnemyPleb : MonoBehaviour
 
     void Update()
     {
-        Targetposition = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-        playerInMeleeAttackRange = Physics.CheckSphere(transform.position, MeleeAttackRange, whatIsPlayer);
-        if (playerInMeleeAttackRange) MeleeAttacking();
-        else if (playerInSightRange && !playerInMeleeAttackRange) Chasing();
+        if (DontAttack)
+        {
+            if (agent.remainingDistance > 2)
+            {
+                DontAttack = false;
+                agent.SetDestination(transform.position);
+            }
+        }
         else
         {
-            anim.SetBool("isRunning", false);
+            Targetposition = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
+            playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+            playerInMeleeAttackRange = Physics.CheckSphere(transform.position, MeleeAttackRange, whatIsPlayer);
+            if (playerInMeleeAttackRange) MeleeAttacking();
+            else if (playerInSightRange && !playerInMeleeAttackRange) Chasing();
+            else
+            {
+                anim.SetBool("isRunning", false);
+            }
         }
 
         if (managerVariables.Player.target == this.gameObject)

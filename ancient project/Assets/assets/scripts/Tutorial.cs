@@ -77,6 +77,7 @@ public class Tutorial : MonoBehaviour
                     postup++;
                     showText = false;
                     Time.timeScale = 1;
+                    print(postup);
                 }
             }
             else if (postup == 1)
@@ -84,6 +85,10 @@ public class Tutorial : MonoBehaviour
                 if (cube1)
                 {
                     showText = true;
+                    
+                    print(cube1);
+                    Text.text = Texts[postup];
+                    plane.gameObject.SetActive(true);
                     Time.timeScale = 0;
                 }
                 if (Input.GetKey(controls.LockTarget))
@@ -92,6 +97,7 @@ public class Tutorial : MonoBehaviour
                     postup++;
                     showText = false;
                     Time.timeScale = 1;
+                    print(postup);
                 }
             }
             else if (postup == 2)
@@ -143,16 +149,18 @@ public class Tutorial : MonoBehaviour
                     Invoke(nameof(DelayPostup), 1f);
                     showText = false;
                     Time.timeScale = 1;
+                    GameObject.Find("Enemy2").GetComponent<EnemyPleb>().walkPoint = new Vector3(-47, 0.48f, -59);
+                    GameObject.Find("Enemy2").GetComponent<EnemyPleb>().DontAttack = true;
                 }
             }
-            else if (postup == 7)
+            else if (postup == 7 && cube2)
             {
                 Time.timeScale = 0;
                 showText = true;
                 if (Input.GetKeyUp(KeyCode.Space))
                 {
                     postup++;
-                    Time.timeScale = 1;
+                    //Time.timeScale = 1;
                 }
             }
 
@@ -163,7 +171,7 @@ public class Tutorial : MonoBehaviour
                 if (Input.GetKeyUp(KeyCode.Space))
                 {
                     postup++;
-                    Time.timeScale = 1;
+                    //Time.timeScale = 1;
                 }
             }
 
