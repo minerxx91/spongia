@@ -115,11 +115,11 @@ public class Player : MonoBehaviour
 
     }
 
-  
+
 
     void Update()
     {
-        
+
         //cooldowns
         if (JumpCooldown < managerVariables.Player.JumpCooldown)
             JumpCooldown += Time.deltaTime;
@@ -134,7 +134,7 @@ public class Player : MonoBehaviour
 
         if (managerVariables.Player.AttackInProcess)
         {
-            
+
             attackprocess += Time.deltaTime;
             if (attackprocess >= 0.5f)
             {
@@ -191,7 +191,7 @@ public class Player : MonoBehaviour
         float MoveX = 0;
         float MoveZ = 0;
         //Input.GetKeyDown(MoveUp)
-        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack1") && !anim.GetCurrentAnimatorStateInfo(0).IsName("Attack2") && !anim.GetCurrentAnimatorStateInfo(0).IsName("Attack3"))
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Trident") && !anim.GetCurrentAnimatorStateInfo(0).IsName("Attack1") && !anim.GetCurrentAnimatorStateInfo(0).IsName("Attack2") && !anim.GetCurrentAnimatorStateInfo(0).IsName("Attack3"))
         {
             if (Input.GetKey(controls.MoveUp) && Input.GetKey(controls.MoveRight))
             {
@@ -224,14 +224,14 @@ public class Player : MonoBehaviour
 
 
             if (Input.GetKey(controls.MoveUp))
-            { 
+            {
                 if (MoveZ == 0)
-                MoveZ++; 
+                    MoveZ++;
             }
             if (Input.GetKey(controls.MoveDown))
             {
                 if (MoveZ == 0 || MoveZ == 1)
-                    MoveZ--; 
+                    MoveZ--;
             }
             if (Input.GetKey(controls.MoveRight))
             {
@@ -246,18 +246,18 @@ public class Player : MonoBehaviour
 
 
         }
-            
+
 
         PlayerSpeed = managerVariables.Player.Speed * Time.deltaTime;
 
-        if (!managerVariables.Player.Jumping && !Input.GetKey(controls.Block)|| managerVariables.Player.ShieldCooldown != ShieldCooldown)
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Trident") && !managerVariables.Player.Jumping && !Input.GetKey(controls.Block) || managerVariables.Player.ShieldCooldown != ShieldCooldown)
         {
-           
+
             Velocity = new Vector3(MoveX * PlayerSpeed, -managerVariables.Player.gravityIncrease, MoveZ * PlayerSpeed);
         }
         else
         {
-            
+
             Velocity = new Vector3(0, -managerVariables.Player.gravityIncrease, 0);
 
         }
@@ -295,14 +295,14 @@ public class Player : MonoBehaviour
             }
             else
             {
- 
+
                 if (gameObject.transform.rotation.eulerAngles.y < 45)
                 {
                     if (Velocity[2] < 0) animationSelect("back");
                     else if (Velocity[2] > 0) animationSelect("forward");
                     else if (Velocity[0] > 0) animationSelect("right");
                     else if (Velocity[0] < 0) animationSelect("left");
-                    
+
 
                 }
                 else if (gameObject.transform.rotation.eulerAngles.y > 315)
@@ -311,7 +311,7 @@ public class Player : MonoBehaviour
                     else if (Velocity[2] > 0) animationSelect("forward");
                     else if (Velocity[0] > 0) animationSelect("right");
                     else if (Velocity[0] < 0) animationSelect("left");
-                    
+
 
                 }
                 else if (gameObject.transform.rotation.eulerAngles.y > 45 && gameObject.transform.rotation.eulerAngles.y < 135)
@@ -320,7 +320,7 @@ public class Player : MonoBehaviour
                     else if (Velocity[0] > 0) animationSelect("forward");
                     else if (Velocity[2] < 0) animationSelect("right");
                     else if (Velocity[2] > 0) animationSelect("left");
-                    
+
 
                 }
                 else if (gameObject.transform.rotation.eulerAngles.y > 135 && gameObject.transform.rotation.eulerAngles.y < 225)
@@ -329,7 +329,7 @@ public class Player : MonoBehaviour
                     else if (Velocity[2] < 0) animationSelect("forward");
                     else if (Velocity[0] < 0) animationSelect("right");
                     else if (Velocity[0] > 0) animationSelect("left");
-                    
+
 
                 }
                 else if (gameObject.transform.rotation.eulerAngles.y > 225 && gameObject.transform.rotation.eulerAngles.y < 315)
@@ -338,7 +338,7 @@ public class Player : MonoBehaviour
                     else if (Velocity[0] < 0) animationSelect("forward");
                     else if (Velocity[2] > 0) animationSelect("right");
                     else if (Velocity[2] < 0) animationSelect("left");
-                    
+
 
                 }
             }
@@ -346,7 +346,7 @@ public class Player : MonoBehaviour
 
         if (Velocity[0] != 0 || Velocity[2] != 0)
         {
-            if(managerVariables.Player.target == null)
+            if (managerVariables.Player.target == null)
             {
                 if (!managerVariables.Player.Jumping)
                 {
@@ -369,10 +369,10 @@ public class Player : MonoBehaviour
                 //transform.LookAt(managerVariables.Player.target.transform);
                 transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.eulerAngles.y, 0));
             }
-            
-            
+
+
         }
-        
+
 
 
         // healtzh regen
@@ -383,7 +383,7 @@ public class Player : MonoBehaviour
         else
         {
             managerVariables.Player.Health = managerVariables.Player.MaxHealth;
-        }   
+        }
 
         if (Input.GetKey(controls.Jump) && !(Velocity[0] == 0 && Velocity[2] == 0) && SpaceAvaiable)
         {
@@ -400,7 +400,7 @@ public class Player : MonoBehaviour
                     SpaceAvaiable = false;
                     JumpVelocity = new Vector3(MoveX, 0, MoveZ) * managerVariables.Player.Speed;
                     //jump
-                        
+
                     if (managerVariables.Player.Stamina > 10)
                     {
                         managerVariables.Player.Stamina -= 10;
@@ -409,18 +409,18 @@ public class Player : MonoBehaviour
                     {
                         managerVariables.Player.Stamina = 0;
                     }
-                } 
+                }
             }
-            
+
         }
         else
         {
             SpaceAvaiable = true;
         }
-      
+
         if (Input.GetKey(controls.Block) && !anim.GetCurrentAnimatorStateInfo(0).IsName("Roll") && combo == 0)
         {
-            if(ShieldCooldown >= managerVariables.Player.ShieldCooldown)
+            if (ShieldCooldown >= managerVariables.Player.ShieldCooldown)
             {
                 anim.SetBool("block", true);
                 managerVariables.Player.Resistence = 80;
@@ -430,7 +430,7 @@ public class Player : MonoBehaviour
                 anim.SetBool("block", false);
                 managerVariables.Player.Resistence = 0;
             }
-            
+
         }
         else
         {
@@ -439,7 +439,7 @@ public class Player : MonoBehaviour
         }
 
         comboTimer -= Time.deltaTime;
-        if (Input.GetKey(controls.Attack) && managerVariables.Player.AttackReady && Mouse0Avaiable && !Input.GetKey(controls.Block) && managerVariables.Player.Stamina >= managerVariables.Player.AttackCost)
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Trident") && Input.GetKey(controls.Attack) && managerVariables.Player.AttackReady && Mouse0Avaiable && !Input.GetKey(controls.Block) && managerVariables.Player.Stamina >= managerVariables.Player.AttackCost)
         {
             managerVariables.Player.Stamina -= managerVariables.Player.AttackCost;
             comboTimer = 1f;
@@ -485,7 +485,7 @@ public class Player : MonoBehaviour
                     combo = 0;
                     managerVariables.Player.Stamina -= managerVariables.Player.AttackCost;
                 }
-                
+
             }
             else
             {
@@ -500,7 +500,7 @@ public class Player : MonoBehaviour
                     managerVariables.Player.Stamina -= managerVariables.Player.AttackCost;
                 }
 
-                
+
             }
 
             managerVariables.Player.AttackInProcess = true;
@@ -508,7 +508,7 @@ public class Player : MonoBehaviour
         }
         else if (combo != 0 && comboTimer < 0) combo = 0;
 
-        if(!Input.GetKey(controls.Attack)) Mouse0Avaiable = true;
+        if (!Input.GetKey(controls.Attack)) Mouse0Avaiable = true;
         // stamina regen
         if (managerVariables.Player.Stamina + managerVariables.Player.StaminaRegen < managerVariables.Player.MaxStamina)
         {
@@ -530,10 +530,10 @@ public class Player : MonoBehaviour
                     Ability1Cooldown = 0;
                     managerVariables.Player.Stamina -= managerVariables.Player.Ability1StaminaCost;
                 }
-                
+
             }
 
-            
+
         }
         if (Input.GetKeyDown(controls.ability2))
         {
@@ -553,14 +553,14 @@ public class Player : MonoBehaviour
 
 
         }
-       
+
         if (managerVariables.Player.Ability2Raged)
         {
             managerVariables.Player.Ability2timeToRageTick += Time.deltaTime;
             telo.color = new Color32(150, 89, 69, 255);
             if (this.gameObject.transform.localScale != managerVariables.Player.Ability2growSize)
                 this.gameObject.transform.localScale += new Vector3(0.01f, 0.01f, 0.01f);
-            
+
             if (managerVariables.Player.Ability2timeToRageTick > managerVariables.Player.Ability2Duration)
             {
                 managerVariables.Player.DamageIncrease /= 2;
@@ -586,7 +586,8 @@ public class Player : MonoBehaviour
                 if (managerVariables.Player.Ability3StaminaCost <= managerVariables.Player.Stamina)
                 {
                     managerVariables.Player.Ability3trident = false;
-                    Instantiate(Projectile, trident.transform.position, Quaternion.Euler(new Vector3(90, transform.rotation.eulerAngles.y, 0))).name = "PlayerTrident";
+                    anim.SetTrigger("trident");
+                    Invoke(nameof(throwTrident), .5f);
 
 
                     Ability3Cooldown = 0;
@@ -652,9 +653,9 @@ public class Player : MonoBehaviour
         float startTime = Time.time;
         while (Time.time < startTime + managerVariables.Player.JumpTime)
         {
-            managerVariables.Player.Jumping = true;            
+            managerVariables.Player.Jumping = true;
             CHC.Move(JumpVelocity * managerVariables.Player.JumpSpeed * Time.deltaTime);
-            
+
             yield return null;
         }
         managerVariables.Player.Jumping = false;
@@ -662,9 +663,9 @@ public class Player : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        for (int i =1; i<6; i++)
+        for (int i = 1; i < 6; i++)
         {
-            if (other.gameObject.name == "Portal"+i)
+            if (other.gameObject.name == "Portal" + i)
             {
 
 
@@ -676,14 +677,14 @@ public class Player : MonoBehaviour
                 }
             }
         }
-       
+
 
     }
     private void OnTriggerEnter(Collider other)
     {
         for (int i = 1; i < 6; i++)
         {
-            if (other.gameObject.name == "Portal"+i)
+            if (other.gameObject.name == "Portal" + i)
             {
                 helpCanvas.SetActive(true);
 
@@ -695,7 +696,7 @@ public class Player : MonoBehaviour
             Ability3Cooldown = managerVariables.Player.Ability3Cooldown;
             Destroy(other.gameObject);
         }
-            
+
     }
     private void OnTriggerExit(Collider other)
     {
@@ -710,6 +711,11 @@ public class Player : MonoBehaviour
         }
 
 
+    }
+
+    void throwTrident()
+    {
+        Instantiate(Projectile, trident.transform.position, Quaternion.Euler(new Vector3(90, transform.rotation.eulerAngles.y, 0))).name = "PlayerTrident";
     }
     void animationSelect(string select)
     {
