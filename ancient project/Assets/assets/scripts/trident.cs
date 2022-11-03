@@ -7,8 +7,11 @@ public class trident : MonoBehaviour
     float time =0;
     float velocity = 36;
 
+    manager managerVariables;
     private void Start()
     {
+        managerVariables = GameObject.Find("Manager").GetComponent<manager>();
+
 
         if(this.gameObject.name == "EnemyTrident")
         {
@@ -37,5 +40,21 @@ public class trident : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         print(other.name);
+        if(other.gameObject.layer == 8)
+        {
+           
+            if (other.gameObject.name == "Poseidon")
+            {
+                print("daj mu damage");
+                if (managerVariables.Poseidon.Health >= managerVariables.Player.Ability3Damage + managerVariables.Player.DamageIncrease)
+                {
+                    managerVariables.Poseidon.Health -= managerVariables.Player.Ability3Damage + managerVariables.Player.DamageIncrease;
+                }
+                else
+                {
+                    managerVariables.Poseidon.Health = 0;
+                }
+            }
+        }
     }
 }

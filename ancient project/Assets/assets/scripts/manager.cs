@@ -68,6 +68,7 @@ public class manager : MonoBehaviour
 
         public float Ability3Cooldown = 1f;
         public float Ability3StaminaCost = 20;
+        public float Ability3Damage = 40;
 
 
         public float gravityIncrease = 0;
