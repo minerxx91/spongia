@@ -662,6 +662,11 @@ public class Player : MonoBehaviour
 
             }
         }
+        if (other.gameObject.name == "tridentPickUp")
+        {
+            Ability3Cooldown = managerVariables.Player.Ability3Cooldown;
+            Destroy(other.gameObject);
+        }
             
     }
     private void OnTriggerExit(Collider other)

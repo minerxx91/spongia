@@ -24,6 +24,7 @@ public class trident : MonoBehaviour
         {
             gameObject.transform.rotation =   GameObject.Find("Player").GetComponent<Transform>().rotation ;
             transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x + 90 - 10, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z );
+            transform.localScale = new Vector3(0.05f,0.05f,0.05f);
         }
         
     }
@@ -66,11 +67,11 @@ public class trident : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        print(other.name);
+        
         if(other.gameObject.layer == 8)
         {
             grounded = true;
-
+            this.gameObject.name = "tridentPickUp";
             if (other.gameObject.name == "Poseidon")
             {
                 if (managerVariables.Poseidon.Health >= managerVariables.Player.Ability3Damage + managerVariables.Player.DamageIncrease)
@@ -80,6 +81,17 @@ public class trident : MonoBehaviour
                 else
                 {
                     managerVariables.Poseidon.Health = 0;
+                }
+            }
+            if (other.gameObject.name == "Minotaur")
+            {
+                if (managerVariables.Minotaur.Health >= managerVariables.Player.Ability3Damage + managerVariables.Player.DamageIncrease)
+                {
+                    managerVariables.Minotaur.Health -= managerVariables.Player.Ability3Damage + managerVariables.Player.DamageIncrease;
+                }
+                else
+                {
+                    managerVariables.Minotaur.Health = 0;
                 }
             }
         }
@@ -92,6 +104,7 @@ public class trident : MonoBehaviour
             print("kolizia so zemou");
             gravityFreeze = true;
             gameObject.GetComponent<Rigidbody>().useGravity = false;
+
 
 
         }
