@@ -156,8 +156,11 @@ public class Player : MonoBehaviour
         {
             Ability3Cooldown += Time.deltaTime;
         }
-        else Ability3Cooldown = managerVariables.Player.Ability3Cooldown;
-
+        else
+        {
+            Ability3Cooldown = managerVariables.Player.Ability3Cooldown;
+            managerVariables.Player.Ability3trident = true;
+        }
 
         //gravity
 
@@ -573,7 +576,7 @@ public class Player : MonoBehaviour
             {
                 if (managerVariables.Player.Ability3StaminaCost <= managerVariables.Player.Stamina)
                 {
-
+                    managerVariables.Player.Ability3trident = false;
                     Instantiate(Projectile, trident.transform.position, Quaternion.Euler(new Vector3(90, transform.rotation.eulerAngles.y, 0))).name = "PlayerTrident";
 
 
@@ -585,7 +588,6 @@ public class Player : MonoBehaviour
 
 
         }
-
 
         /*
         postprocesing.profile.GetComponent<Vignette>().color = new ColorParameter(new Color(1, 0, 0, 1), true);
@@ -601,7 +603,7 @@ public class Player : MonoBehaviour
             anim.SetTrigger("absorb2");
         }
         //wearing trident
-        if (managerVariables.Player.PoseidonUnlocked)
+        if (managerVariables.Player.PoseidonUnlocked && managerVariables.Player.Ability3trident)
         {
             trident.SetActive(true);
         }

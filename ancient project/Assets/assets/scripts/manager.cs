@@ -66,9 +66,10 @@ public class manager : MonoBehaviour
         public bool Ability2Raged = false;
         public float Ability2timeToRageTick = 0;
 
-        public float Ability3Cooldown = 1f;
+        public float Ability3Cooldown = 10f;
         public float Ability3StaminaCost = 20;
-        public float Ability3Damage = 40;
+        public float Ability3Damage = 10; //treba zmenit na  40
+        public bool Ability3trident = true;
 
 
         public float gravityIncrease = 0;

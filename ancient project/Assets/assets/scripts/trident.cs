@@ -6,8 +6,10 @@ public class trident : MonoBehaviour
 {
     float time =0;
     float velocity = 36;
-
+    public bool grounded = false;
+    Vector3 freezeRotation = Vector3.zero;
     manager managerVariables;
+    bool gravityFreeze = false;
     private void Start()
     {
         managerVariables = GameObject.Find("Manager").GetComponent<manager>();
@@ -21,31 +23,56 @@ public class trident : MonoBehaviour
         else
         {
             gameObject.transform.rotation =   GameObject.Find("Player").GetComponent<Transform>().rotation ;
-            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x + 90, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x + 90 - 10, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z );
         }
         
     }
 
     void Update()
     {
-        transform.position += transform.up * Time.deltaTime * velocity;
-
-
-        time += Time.deltaTime;
-        if(time > 5)
+        if (!grounded)
         {
-            Destroy(gameObject);
+            transform.position += transform.up * Time.deltaTime * velocity;
+            time += Time.deltaTime;
+            if (time > 5)
+            {
+
+
+                Destroy(gameObject);
+
+
+            }
+
         }
+        else
+        {
+            if (!gravityFreeze)
+            {
+                gameObject.GetComponent<BoxCollider>().isTrigger = false;
+                gameObject.GetComponent<Rigidbody>().useGravity = true;
+            }
+            else{
+                gameObject.GetComponent<BoxCollider>().isTrigger = true;
+
+            }
+
+
+
+        }
+
+
+
+
     }
     private void OnTriggerEnter(Collider other)
     {
         print(other.name);
         if(other.gameObject.layer == 8)
         {
-           
+            grounded = true;
+
             if (other.gameObject.name == "Poseidon")
             {
-                print("daj mu damage");
                 if (managerVariables.Poseidon.Health >= managerVariables.Player.Ability3Damage + managerVariables.Player.DamageIncrease)
                 {
                     managerVariables.Poseidon.Health -= managerVariables.Player.Ability3Damage + managerVariables.Player.DamageIncrease;
@@ -56,5 +83,19 @@ public class trident : MonoBehaviour
                 }
             }
         }
+
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == 7)
+        {
+            print("kolizia so zemou");
+            gravityFreeze = true;
+            gameObject.GetComponent<Rigidbody>().useGravity = false;
+
+
+        }
+    }
+
 }
+
