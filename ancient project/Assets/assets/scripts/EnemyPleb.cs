@@ -25,7 +25,13 @@ public class EnemyPleb : MonoBehaviour
     Vector3 Targetposition;
     int meleeAnim = 0;
 
+    ParticleSystem selectAura;
+    Light orangeLight;
+    manager managerVariables;
+
     GameObject attackHorizontal;
+
+    public float Health;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -33,6 +39,10 @@ public class EnemyPleb : MonoBehaviour
         player = GameObject.Find("Player").transform;
         attackHorizontal = GameObject.Find("attack1");
         attackHorizontal.SetActive(false);
+        selectAura = transform.Find("Aura").GetComponent<ParticleSystem>();
+        orangeLight = transform.Find("Orange").GetComponent<Light>();
+        orangeLight.gameObject.SetActive(false);
+        managerVariables = GameObject.Find("Manager").GetComponent<manager>();
     }
 
     void Update()
@@ -45,6 +55,18 @@ public class EnemyPleb : MonoBehaviour
         else
         {
             anim.SetBool("isRunning", false);
+        }
+
+        if (managerVariables.Player.target == this.gameObject)
+        {
+            selectAura.Play();
+            orangeLight.gameObject.SetActive(true);
+
+        }
+        else
+        {
+            selectAura.Stop();
+            orangeLight.gameObject.SetActive(false);
         }
     }
 
