@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class Controls : MonoBehaviour
@@ -50,5 +53,26 @@ public class Controls : MonoBehaviour
         ability2 = data.ability2;
         ability3 = data.ability3;
         ability4 = data.ability4;
+    }
+
+    private void waitForInput()
+    {
+        StartCoroutine(bindMoveUp());
+    }
+    IEnumerator bindMoveUp()
+    {
+        yield return new WaitForSeconds(0.1f);
+        while (true)
+        {
+            foreach (KeyCode kcode in Enum.GetValues(typeof(KeyCode)))
+            {
+                if (Input.GetKey(kcode))
+                {
+                    this.MoveUp = kcode;
+                    yield break;
+                }
+            }
+            yield return null;
+        }
     }
 }

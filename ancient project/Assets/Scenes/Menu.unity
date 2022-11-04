@@ -738,7 +738,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2292385111170973878, guid: c28e25713753cd346888e1859ff486fa, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c28e25713753cd346888e1859ff486fa, type: 3}
@@ -1851,6 +1851,7 @@ GameObject:
   - component: {fileID: 155455591}
   - component: {fileID: 155455590}
   - component: {fileID: 155455589}
+  - component: {fileID: 155455592}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -1922,7 +1923,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 155455590}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 155455592}
+        m_TargetAssemblyTypeName: Controls, Assembly-CSharp
+        m_MethodName: waitForInput
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &155455590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1961,6 +1974,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 155455587}
   m_CullTransparentMesh: 1
+--- !u!114 &155455592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 155455587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 506276f4c9a965247ad32d3fedc61e81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveUp: 119
+  MoveDown: 115
+  MoveRight: 100
+  MoveLeft: 97
+  Block: 304
+  Attack: 323
+  LockTarget: 324
+  Jump: 32
+  Interact: 101
+  ability1: 49
+  ability2: 50
+  ability3: 51
+  ability4: 52
 --- !u!1 &184209359
 GameObject:
   m_ObjectHideFlags: 0
@@ -6748,6 +6786,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1670289943}
+        m_TargetAssemblyTypeName: Controls, Assembly-CSharp
+        m_MethodName: saveData
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1670289942}
         m_TargetAssemblyTypeName: Menu, Assembly-CSharp
         m_MethodName: Options
@@ -13283,7 +13333,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1524247491
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14752,7 +14802,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1670289941
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17232,6 +17282,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1670289943}
+        m_TargetAssemblyTypeName: Controls, Assembly-CSharp
+        m_MethodName: loadData
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1670289942}
         m_TargetAssemblyTypeName: Menu, Assembly-CSharp
         m_MethodName: startGame

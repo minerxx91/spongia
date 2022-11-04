@@ -119,10 +119,7 @@ public class manager : MonoBehaviour
 
     private void Awake()
     {
-        if (SceneManager.GetActiveScene().name == "Menu")
-        {
             controls.loadData();
-        }
     }
     private void Start()
     {
@@ -176,6 +173,7 @@ public class manager : MonoBehaviour
 
     private void Update()
     {
+        print(controls.MoveUp);
         if (Player.Health <= 0 && ! skapalUz)
         {
             print("LOL skapal si");
