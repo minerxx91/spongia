@@ -1851,7 +1851,6 @@ GameObject:
   - component: {fileID: 155455591}
   - component: {fileID: 155455590}
   - component: {fileID: 155455589}
-  - component: {fileID: 155455592}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -1924,7 +1923,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 155455592}
+      - m_Target: {fileID: 586948270}
         m_TargetAssemblyTypeName: Controls, Assembly-CSharp
         m_MethodName: waitForInput
         m_Mode: 1
@@ -1974,31 +1973,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 155455587}
   m_CullTransparentMesh: 1
---- !u!114 &155455592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 155455587}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 506276f4c9a965247ad32d3fedc61e81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MoveUp: 119
-  MoveDown: 115
-  MoveRight: 100
-  MoveLeft: 97
-  Block: 304
-  Attack: 323
-  LockTarget: 324
-  Jump: 32
-  Interact: 101
-  ability1: 49
-  ability2: 50
-  ability3: 51
-  ability4: 52
 --- !u!1 &184209359
 GameObject:
   m_ObjectHideFlags: 0
@@ -6786,7 +6760,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1670289943}
+      - m_Target: {fileID: 586948270}
         m_TargetAssemblyTypeName: Controls, Assembly-CSharp
         m_MethodName: saveData
         m_Mode: 1
@@ -10326,6 +10300,13 @@ MonoBehaviour:
   EnemyDamageIncome1: {fileID: 8300000, guid: 781d5b4fc6b0c6548a78c21388e546b7, type: 3}
   EnemyDamageIncome2: {fileID: 8300000, guid: e84f122f06199da46b92d9145d04e878, type: 3}
   EnemyDamageIncome3: {fileID: 8300000, guid: 2817a1c526bf0fa469866d981a3025c0, type: 3}
+  MinotaurAttacks: []
+  MinotaurRageAttacks: []
+  MinotauRandom: []
+  Dychanie: {fileID: 0}
+  RageDychanie: {fileID: 0}
+  grow1: {fileID: 0}
+  grow2: {fileID: 0}
   PoseidonMelee: {fileID: 8300000, guid: ac1638a698323604fbe6b316cb6a4d71, type: 3}
 --- !u!82 &1180486183
 AudioSource:
@@ -13333,7 +13314,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1524247491
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14795,14 +14776,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1670289941}
   - component: {fileID: 1670289942}
-  - component: {fileID: 1670289943}
   m_Layer: 5
   m_Name: Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1670289941
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14845,31 +14825,6 @@ MonoBehaviour:
   grafic: {fileID: 510172007}
   zvuk: {fileID: 247379579}
   ovladanie: {fileID: 1524247490}
---- !u!114 &1670289943
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1670289940}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 506276f4c9a965247ad32d3fedc61e81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MoveUp: 119
-  MoveDown: 115
-  MoveRight: 100
-  MoveLeft: 97
-  Block: 304
-  Attack: 323
-  LockTarget: 324
-  Jump: 32
-  Interact: 101
-  ability1: 49
-  ability2: 50
-  ability3: 51
-  ability4: 52
 --- !u!1 &1673374407
 GameObject:
   m_ObjectHideFlags: 0
@@ -17282,7 +17237,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1670289943}
+      - m_Target: {fileID: 586948270}
         m_TargetAssemblyTypeName: Controls, Assembly-CSharp
         m_MethodName: loadData
         m_Mode: 1
@@ -17968,7 +17923,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1670289943}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Controls, Assembly-CSharp
         m_MethodName: saveData
         m_Mode: 1

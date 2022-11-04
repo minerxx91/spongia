@@ -13,9 +13,6 @@ public class manager : MonoBehaviour
 
     LevelLoader lvlloader;
 
-    Controls controls = new Controls();
-
-
     public int levelIndex = 0;
 
     public float GravityForce = 1f;
@@ -117,10 +114,6 @@ public class manager : MonoBehaviour
 
     public MinotaurStats Minotaur = new MinotaurStats();
 
-    private void Awake()
-    {
-
-    }
     private void Start()
     {
         if (manager_d != null)
