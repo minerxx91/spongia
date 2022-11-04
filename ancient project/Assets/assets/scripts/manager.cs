@@ -172,12 +172,15 @@ public class manager : MonoBehaviour
         SceneManager.LoadScene("Lobby");
 
     }
+    bool skapalUz = false;
+
     private void Update()
     {
-        if (Player.Health <= 0)
+        if (Player.Health <= 0 && ! skapalUz)
         {
             print("LOL skapal si");
-            Invoke(nameof(toLobby), 5);
+            Invoke(nameof(toLobby), 7);
+            skapalUz = true;
         }
         else if (GameObject.FindGameObjectsWithTag("Boss").Length != 0)
         {

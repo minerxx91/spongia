@@ -128,7 +128,15 @@ public class Player : MonoBehaviour
             if (diedAnim)
             {
                 diedAnim = false;
-                anim.SetTrigger("died1");
+                int r = Random.Range(1, 7);
+                if(r == 1) anim.SetTrigger("died1");
+                else if(r == 2) anim.SetTrigger("died2");
+                else if (r == 3) anim.SetTrigger("died3");
+                else if (r == 4) anim.SetTrigger("died4");
+                else if (r == 5) anim.SetTrigger("died5");
+                else if (r == 6) anim.SetTrigger("died6");
+                else if (r == 7) anim.SetTrigger("died7");
+
             }
         }
         else
