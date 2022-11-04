@@ -1,9 +1,7 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
+using System.IO;
+using System.Collections;
+using System;
 
 [System.Serializable]
 public class Controls : MonoBehaviour
@@ -29,7 +27,7 @@ public class Controls : MonoBehaviour
 
     public void saveData()
     {
-        Save.saveSystem(this);
+        Save.saveSystem(this); 
     }
 
     public void loadData()
@@ -53,9 +51,9 @@ public class Controls : MonoBehaviour
         ability2 = data.ability2;
         ability3 = data.ability3;
         ability4 = data.ability4;
+        print("loaded");
     }
-
-    private void waitForInput()
+    public void waitForInput()
     {
         StartCoroutine(bindMoveUp());
     }
@@ -68,7 +66,7 @@ public class Controls : MonoBehaviour
             {
                 if (Input.GetKey(kcode))
                 {
-                    this.MoveUp = kcode;
+                    MoveUp = kcode;
                     yield break;
                 }
             }

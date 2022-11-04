@@ -64,16 +64,4 @@ public class Menu : MonoBehaviour
         grafic.SetActive(false);
         menu.SetActive(true);
     }
-
-    void waitForInput()
-    {
-        while (true)
-        {
-            if (Input.anyKeyDown)
-            {
-                
-                break;
-            }
-        }
-    }
 }
