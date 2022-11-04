@@ -102,6 +102,7 @@ public class Poseidon : MonoBehaviour
 
     void DoAttackMelee1()
     {
+        Invoke(nameof(ResetAttack), timeBetweenAttacks-1f);
         if (!Stun)
         {
             CamShaker.ShakeOnce(2, 2, .1f, 1.3f);
@@ -117,6 +118,7 @@ public class Poseidon : MonoBehaviour
 
     void DoAttackMelee2()
     {
+        Invoke(nameof(ResetAttack), timeBetweenAttacks-2.5f);
         if (!Stun)
         {
             CamShaker.ShakeOnce(4, 6, .1f, 2);
@@ -285,7 +287,7 @@ public class Poseidon : MonoBehaviour
             swing.Play();
             audioManager.PlayPoseidonMelee();
             alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            
         }
 
 
@@ -339,7 +341,7 @@ public class Poseidon : MonoBehaviour
 
 
             alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            
         }
 
 
@@ -348,6 +350,7 @@ public class Poseidon : MonoBehaviour
     void throwTrident()
     {
         Instantiate(projectile, trident.transform.position, Quaternion.Euler(new Vector3(90, transform.rotation.eulerAngles.y, 0))).name = "EnemyTrident";
+        Invoke(nameof(ResetAttack), timeBetweenAttacks - .5f);
     }
     void RangedAttacking()
     {
@@ -362,7 +365,7 @@ public class Poseidon : MonoBehaviour
 
 
             alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            
         }
 
     }

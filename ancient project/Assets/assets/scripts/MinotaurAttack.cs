@@ -39,8 +39,9 @@ public class MinotaurAttack : MonoBehaviour
             }
             else
             {
-                managerVariables.Player.absorb = true;
+                //managerVariables.Player.absorb = true;
                 managerVariables.Player.Health = 0;
+                GameObject.Find("Player").GetComponent<Player>().died = true;
             }
             /*if ( managerVariables.Player.AttackInProcess)
             {

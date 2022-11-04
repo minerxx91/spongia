@@ -44,8 +44,9 @@ public class PoseidonAttack : MonoBehaviour
                 }
                 else
                 {
-                    managerVariables.Player.absorb = true;
+                    //managerVariables.Player.absorb = true;
                     managerVariables.Player.Health = 0;
+                    GameObject.Find("Player").GetComponent<Player>().died = true;
                 }
 
 
@@ -71,8 +72,9 @@ public class PoseidonAttack : MonoBehaviour
                 }
                 else
                 {
-                    managerVariables.Player.absorb = true;
+                    //managerVariables.Player.absorb = true;
                     managerVariables.Player.Health = 0;
+                    GameObject.Find("Player").GetComponent<Player>().died = true;
                 }
 
 

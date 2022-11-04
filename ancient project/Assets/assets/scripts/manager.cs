@@ -174,7 +174,12 @@ public class manager : MonoBehaviour
     }
     private void Update()
     {
-        if (GameObject.FindGameObjectsWithTag("Boss").Length != 0)
+        if (Player.Health <= 0)
+        {
+            print("LOL skapal si");
+            Invoke(nameof(toLobby), 5);
+        }
+        else if (GameObject.FindGameObjectsWithTag("Boss").Length != 0)
         {
             
             if (GameObject.FindGameObjectsWithTag("Boss")[0].name == "Minotaur")
@@ -201,6 +206,7 @@ public class manager : MonoBehaviour
                 }
             }
         }
+        
     }
 
 
