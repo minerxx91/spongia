@@ -68,6 +68,9 @@ public class Minotaur : MonoBehaviour
     float abilityChasingTime = 0;
     Vector3 runRotation;
     private bool Charging;
+    float randomSoundTime = 5;
+    float randomSoundTick = 0;
+
 
     GameObject MainCamera;
     Shake CameraShake;
@@ -126,8 +129,13 @@ public class Minotaur : MonoBehaviour
             if (!GetComponent<AudioSource>().isPlaying)
                 GetComponent<AudioSource>().Play();
             telo.color = new Color32(150, 89, 69, 255);
+            if (this.gameObject.transform.localScale == size)
+                audioManager.PlayMinotaurGrow1();
             if (this.gameObject.transform.localScale != Bigsize)
                 this.gameObject.transform.localScale += new Vector3(0.01f, 0.01f, 0.01f);
+
+            managerVariables.Minotaur.DamageIncrease = 15;
+
             if (timeToRageTick > timeToRage + RageTime)
             {
                 timeToRageTick = 0;
@@ -141,11 +149,25 @@ public class Minotaur : MonoBehaviour
             GetComponent<AudioSource>().clip = GameObject.Find("AudioManager").GetComponent<AudioManager>().Dychanie ;
             if (!GetComponent<AudioSource>().isPlaying)
                 GetComponent<AudioSource>().Play();
+            if (this.gameObject.transform.localScale == Bigsize)
+                audioManager.PlayMinotaurGrow2();
 
             if (this.gameObject.transform.localScale != size)
                 this.gameObject.transform.localScale -= new Vector3(0.01f, 0.01f, 0.01f);
             telo.color = new Color32(115, 89, 69, 255);
+
+            managerVariables.Minotaur.DamageIncrease = 0;
+
         }
+        randomSoundTick += Time.deltaTime;
+        if(randomSoundTick >= randomSoundTime)
+        {
+            randomSoundTick = 0;
+            randomSoundTime = Random.Range(3,7);
+            audioManager.PlayMinotaurRandom();
+        }
+
+
 
 
 

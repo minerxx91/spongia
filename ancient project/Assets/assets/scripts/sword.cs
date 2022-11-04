@@ -39,6 +39,7 @@ public class sword : MonoBehaviour
             }
             else if (other.gameObject.name == "Minotaur")
             {
+                audioManager.PlayMinotaurHit();
                 if (managerVariables.Minotaur.Health > managerVariables.Player.Damage + managerVariables.Player.DamageIncrease)
                 {
                     managerVariables.Minotaur.Health -= managerVariables.Player.Damage + managerVariables.Player.DamageIncrease;

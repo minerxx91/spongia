@@ -116,6 +116,9 @@ public class Player : MonoBehaviour
         Ability2Cooldown = managerVariables.Player.Ability2Cooldown;
         Ability3Cooldown = managerVariables.Player.Ability3Cooldown;
 
+        managerVariables.Player.Health = managerVariables.Player.MaxHealth;
+        managerVariables.Player.Stamina = managerVariables.Player.MaxStamina;
+
     }
 
 

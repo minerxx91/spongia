@@ -22,11 +22,14 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] List<AudioClip> MinotaurAttacks = new List<AudioClip>();
     [SerializeField] List<AudioClip> MinotaurRageAttacks = new List<AudioClip>();
-    [SerializeField] List<AudioClip> MinotauRandom = new List<AudioClip>();
+    [SerializeField] List<AudioClip> MinotaurRandom = new List<AudioClip>();
     public AudioClip Dychanie;
     public AudioClip RageDychanie;
     [SerializeField] AudioClip grow1;
     [SerializeField] AudioClip grow2;
+    [SerializeField] AudioClip MinotaurHit;
+    
+
 
 
 
@@ -132,7 +135,7 @@ public class AudioManager : MonoBehaviour
     }
     private void PlayMinotaurAttack()
     {
-        AS[0].PlayOneShot(MinotaurAttacks[Random.Range(1, 4)]);
+        AS[0].PlayOneShot(MinotaurAttacks[Random.Range(1, MinotaurAttacks.Count)]);
     }
     public void PlayMinotaurAttackDelay()
     {
@@ -141,26 +144,30 @@ public class AudioManager : MonoBehaviour
     }
     private void PlayMinotaurRageAttack()
     {
-        AS[0].PlayOneShot(MinotaurRageAttacks[Random.Range(1, 4)]);
+        AS[0].PlayOneShot(MinotaurRageAttacks[Random.Range(1, MinotaurRageAttacks.Count)]);
     }
     public void PlayMinotaurAttackRageDelay()
     {
 
         Invoke(nameof(PlayMinotaurRageAttack), 0.5f);
     }
-    private void PlayMinotaurRandom()
+    public void PlayMinotaurRandom()
     {
-        AS[0].PlayOneShot(MinotaurRageAttacks[Random.Range(1, 4)]);
+        AS[0].PlayOneShot(MinotaurRandom[Random.Range(1, MinotaurRandom.Count)]);
     }
-    public void PlayMinotaurRandomDelay()
+    public void PlayMinotaurHit()
     {
-
-        Invoke(nameof(PlayMinotaurRandom), 0.5f);
+        AS[0].PlayOneShot(MinotaurHit);
     }
     public void PlayMinotaurGrow1()
     {
-
+        AS[0].PlayOneShot(grow1);
     }
+    public void PlayMinotaurGrow2()
+    {
+        AS[0].PlayOneShot(grow2);
+    }
+
 
 
 }

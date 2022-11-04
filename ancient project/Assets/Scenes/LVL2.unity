@@ -11311,13 +11311,15 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4c748cd0b5b66644eb667da968a5b4f3, type: 3}
   - {fileID: 8300000, guid: 52afbaa924107ec448d44899e46e8818, type: 3}
   - {fileID: 8300000, guid: 7ec75b3a5c3c029448454ef850fc2c59, type: 3}
-  MinotauRandom:
-  - {fileID: 8300000, guid: 7ab310caba19ee84c9acea803530463d, type: 3}
-  - {fileID: 8300000, guid: 7995c5b24bb581d439a729d26efa6c1e, type: 3}
+  MinotaurRandom:
+  - {fileID: 8300000, guid: cedb5c348c71d9145befeab66d62ce3c, type: 3}
+  - {fileID: 8300000, guid: f2d12676c09de104a8ec954142f0d76f, type: 3}
+  - {fileID: 8300000, guid: 58490b542edb2e641978f48619162450, type: 3}
   Dychanie: {fileID: 8300000, guid: 0a4f6721886b06c438983c44c973d91d, type: 3}
   RageDychanie: {fileID: 8300000, guid: 87013407516953c4dafd27da382aac1d, type: 3}
   grow1: {fileID: 8300000, guid: 026db5778ddd10f418dcc95478fe2dd9, type: 3}
   grow2: {fileID: 8300000, guid: 9a884d76b58b8144ab85c13f1d049d32, type: 3}
+  MinotaurHit: {fileID: 8300000, guid: 331327bb8ed5c664897fe3e4120fb94c, type: 3}
   PoseidonMelee: {fileID: 8300000, guid: ac1638a698323604fbe6b316cb6a4d71, type: 3}
 --- !u!82 &845786513
 AudioSource:
@@ -52362,7 +52364,7 @@ MonoBehaviour:
   timeBetweenAttacks: 4
   timebetweenRangedAttacks: 10
   shorttimebetweenAttacks: 1
-  timeToRage: 20
+  timeToRage: 15
   RageTime: 5
   sightRange: 40
   MeleeAttackRange: 2
