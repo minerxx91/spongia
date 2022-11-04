@@ -11296,11 +11296,26 @@ MonoBehaviour:
   PlayerAttack2: {fileID: 8300000, guid: 0a5022789d1cde146af4d132f4fad1d9, type: 3}
   PlayerAttack3: {fileID: 8300000, guid: 9e22e034fb258c34aa8e5d3097376b04, type: 3}
   PlayerShield: {fileID: 8300000, guid: ac88935d1f697af4684648ea1ce869c4, type: 3}
-  PlayerRoll: {fileID: 8300000, guid: 54363e6264848844eb4c2ca428862ff6, type: 3}
+  PlayerRoll: {fileID: 8300000, guid: b54628f162218944fa2927dd79ca6ae3, type: 3}
   PortalEnter: {fileID: 8300000, guid: c58e703a869c00c4d93778e81b6ed179, type: 3}
   EnemyDamageIncome1: {fileID: 8300000, guid: 781d5b4fc6b0c6548a78c21388e546b7, type: 3}
   EnemyDamageIncome2: {fileID: 8300000, guid: e84f122f06199da46b92d9145d04e878, type: 3}
   EnemyDamageIncome3: {fileID: 8300000, guid: 2817a1c526bf0fa469866d981a3025c0, type: 3}
+  MinotaurAttacks:
+  - {fileID: 8300000, guid: b90e093a9b60dd4449145620bb2caaec, type: 3}
+  - {fileID: 8300000, guid: dd0c9d583280feb4d84c87ded2d21808, type: 3}
+  - {fileID: 8300000, guid: fad82f4f0583eb347b0419490206c106, type: 3}
+  - {fileID: 8300000, guid: 1b20ae8f8eca8e54db46409a6d53fb6f, type: 3}
+  MinotaurRageAttacks:
+  - {fileID: 8300000, guid: af4a1ada72d2c8f499376153511fe64e, type: 3}
+  - {fileID: 8300000, guid: 4c748cd0b5b66644eb667da968a5b4f3, type: 3}
+  - {fileID: 8300000, guid: 52afbaa924107ec448d44899e46e8818, type: 3}
+  - {fileID: 8300000, guid: 7ec75b3a5c3c029448454ef850fc2c59, type: 3}
+  MinotauRandom:
+  - {fileID: 8300000, guid: 7ab310caba19ee84c9acea803530463d, type: 3}
+  - {fileID: 8300000, guid: 7995c5b24bb581d439a729d26efa6c1e, type: 3}
+  Dychanie: {fileID: 8300000, guid: 0a4f6721886b06c438983c44c973d91d, type: 3}
+  RageDychanie: {fileID: 8300000, guid: 87013407516953c4dafd27da382aac1d, type: 3}
   PoseidonMelee: {fileID: 8300000, guid: ac1638a698323604fbe6b316cb6a4d71, type: 3}
 --- !u!82 &845786513
 AudioSource:
@@ -52248,6 +52263,7 @@ GameObject:
   - component: {fileID: 8957922643260632540}
   - component: {fileID: 8957922643260632539}
   - component: {fileID: 8957922643260632538}
+  - component: {fileID: 8957922643260632542}
   m_Layer: 8
   m_Name: Minotaur
   m_TagString: Boss
@@ -52389,6 +52405,102 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 10.65, z: 0}
+--- !u!82 &8957922643260632542
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8957922643260632535}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 0a4f6721886b06c438983c44c973d91d, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.23
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &8957922643613928934
 PrefabInstance:
   m_ObjectHideFlags: 0

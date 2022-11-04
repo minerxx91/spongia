@@ -20,6 +20,14 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip EnemyDamageIncome2;
     [SerializeField] AudioClip EnemyDamageIncome3;
 
+    [SerializeField] List<AudioClip> MinotaurAttacks = new List<AudioClip>();
+    [SerializeField] List<AudioClip> MinotaurRageAttacks = new List<AudioClip>();
+    [SerializeField] List<AudioClip> MinotauRandom = new List<AudioClip>();
+    public AudioClip Dychanie;
+    public AudioClip RageDychanie;
+
+
+
     [SerializeField] AudioClip PoseidonMelee;
 
     AudioSource run;
@@ -120,4 +128,33 @@ public class AudioManager : MonoBehaviour
     {
         AS[0].PlayOneShot(PlayerShield);
     }
+    private void PlayMinotaurAttack()
+    {
+        AS[0].PlayOneShot(MinotaurAttacks[Random.Range(1, 4)]);
+    }
+    public void PlayMinotaurAttackDelay()
+    {
+
+        Invoke(nameof(PlayMinotaurAttack), 0.5f);
+    }
+    private void PlayMinotaurRageAttack()
+    {
+        AS[0].PlayOneShot(MinotaurRageAttacks[Random.Range(1, 4)]);
+    }
+    public void PlayMinotaurAttackRageDelay()
+    {
+
+        Invoke(nameof(PlayMinotaurRageAttack), 0.5f);
+    }
+    private void PlayMinotaurRandom()
+    {
+        AS[0].PlayOneShot(MinotaurRageAttacks[Random.Range(1, 4)]);
+    }
+    public void PlayMinotaurRandomDelay()
+    {
+
+        Invoke(nameof(PlayMinotaurRandom), 0.5f);
+    }
+
+
 }

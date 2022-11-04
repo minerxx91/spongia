@@ -119,11 +119,10 @@ public class manager : MonoBehaviour
 
     private void Awake()
     {
-            controls.loadData();
+
     }
     private void Start()
     {
-
         if (manager_d != null)
         {
             Destroy(this.gameObject);
@@ -173,7 +172,6 @@ public class manager : MonoBehaviour
 
     private void Update()
     {
-        print(controls.MoveUp);
         if (Player.Health <= 0 && ! skapalUz)
         {
             print("LOL skapal si");

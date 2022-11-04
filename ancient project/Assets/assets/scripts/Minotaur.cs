@@ -122,6 +122,9 @@ public class Minotaur : MonoBehaviour
         if (timeToRageTick >= timeToRage)
         {
             Raged = true;
+            GetComponent<AudioSource>().clip = GameObject.Find("AudioManager").GetComponent<AudioManager>().RageDychanie;
+            if (!GetComponent<AudioSource>().isPlaying)
+                GetComponent<AudioSource>().Play();
             telo.color = new Color32(150, 89, 69, 255);
             if (this.gameObject.transform.localScale != Bigsize)
                 this.gameObject.transform.localScale += new Vector3(0.01f, 0.01f, 0.01f);
@@ -135,6 +138,10 @@ public class Minotaur : MonoBehaviour
         }
         if (!Raged)
         {
+            GetComponent<AudioSource>().clip = GameObject.Find("AudioManager").GetComponent<AudioManager>().Dychanie ;
+            if (!GetComponent<AudioSource>().isPlaying)
+                GetComponent<AudioSource>().Play();
+
             if (this.gameObject.transform.localScale != size)
                 this.gameObject.transform.localScale -= new Vector3(0.01f, 0.01f, 0.01f);
             telo.color = new Color32(115, 89, 69, 255);
@@ -260,6 +267,8 @@ public class Minotaur : MonoBehaviour
         anim.SetBool("walk", true);
         agent.SetDestination(player.position);
         agent.speed = chasingSpeed;
+       
+
 
 
     }
@@ -282,6 +291,16 @@ public class Minotaur : MonoBehaviour
                 SwingRight.Play();
                 //attack melee 1
 
+
+                if (!Raged)
+                {
+                    audioManager.PlayMinotaurAttackDelay();
+                }
+                else
+                {
+                    audioManager.PlayMinotaurAttackRageDelay();
+                    
+                }
                 Invoke(nameof(ResetAttack), shorttimebetweenAttacks);
             }
             else
@@ -290,6 +309,16 @@ public class Minotaur : MonoBehaviour
                 meleeAnim = 0;
                 SwingLeft.Play();
                 //attack melee 2
+
+                if (!Raged)
+                {
+                    audioManager.PlayMinotaurAttackDelay();
+                }
+                else
+                {
+                    audioManager.PlayMinotaurAttackRageDelay();
+
+                }
 
                 Invoke(nameof(ResetAttack), timeBetweenAttacks);
             }
