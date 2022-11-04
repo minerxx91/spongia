@@ -45,7 +45,7 @@ public class manager : MonoBehaviour
         public bool AttackReady = true;
         public float AttackCost = 5f;
 
-        public bool enlightened = true;
+        public bool enlightened = false;
 
         public float JumpSpeed = 1.5f;
         public float JumpTime = 0.8f;

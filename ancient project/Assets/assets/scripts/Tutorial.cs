@@ -21,17 +21,17 @@ public class Tutorial : MonoBehaviour
     public bool cube1 = false;
     public bool cube2 = false;
 
-    string[] Texts = new string[] {"Môeš sa hıbat ",
-                                    "Nepriatela si môeš oznaèi namierením naòho a kliknuím pravého tlaèítka na myši",
-                                    "Útoèi môeš kliknutím ¾avého tlaèítka na myši",
-                                    "Útoky nepriate¾ov môeš blokova ¾avım shiftom aby si zmenšil damage, ktorı dostaneš","",
-                                    "Medzeníkom a pohybom urobíš kotúl a môeš sa úplne vyhnú útoku nepriate¾a","",
-                                    "Dole vidíš ko¾ko máš ivota, energie a kedy môeš znova poui útok, blokavanie atï... \n\n"+
-                                    "Stlaè medzeník pre pokraèovanie",
-                                    "Keï urobíš viacero útokov hneï po sebe vznikne combo, na konci ktorého je kritickı zásah, ktorı dáva ve¾ké poškodenie\n\n"+
-                                    "Stlaè medzeník pre pokraèovanie",
-                                    "Dávaj si ale pozor lebo poèas útoèenia sa nemozeš hıba\n\n"+
-                                    "Stlaè medzeník pre pokraèovanie"};
+    string[] Texts = new string[] {"MÃ´Å¾eÅ¡ sa hÃ½baÅ¥ ",
+                                    "Nepriatela si mÃ´Å¾eÅ¡ oznaÄiÅ¥ namierenÃ­m naÅˆho a kliknutÃ­m pravÃ©ho tlaÄidtka myÅ¡i",
+                                    "ÃºtoÄiÅ¥ mÃ´Å¾eÅ¡ pomocou Ä¾avÃ©ho tlaÄitka myÅ¡i",
+                                    "Ãºtoky nepriateÄ¾ov mÃ´Å¾eÅ¡ blokovaÅ¥ Ä¾avÃ­m shiftom aby si zmenÅ¡il poÅ¡kodenie, ktorÃ© dostaneÅ¡","",
+                                    "MedzenÃ­kom a pohybom urobÃ­Å¡ kotÃºl a mÃ´Å¾eÅ¡ sa Ãºplne vyhnÃºÅ¥ Ãºtoku nepriateÄ¾a","",
+                                    "Dole mÃ´Å¾eÅ¡ vidieÅ¥ koÄ¾ko mÃ¡Å¡ Å¾ivota, energie a kedy mÃ´Å¾eÅ¡ znova pouÅ¾iÅ¥ Ãºtok, blokavanie atÄ... \n\n"+
+                                    "StlaÄ medzenÃ­k pre pokraÄovanie",
+                                    "KeÄ urobÃ­Å¡ viacero Ãºtokov hneÄ po sebe vznikne combo, na konci ktorÃ©ho je kritickÃ½ zÃ¡sah, ktorÃ½ dÃ¡va vÃ¤ÄÅ¡ie poÅ¡kodenie\n\n"+
+                                    "StlaÄ medzenÃ­k pre pokraÄovanie",
+                                    "DÃ¡vaj si ale pozor lebo poÄas ÃºtoÄenia sa nemozeÅ¡ hÃ½baÅ¥\n\n"+
+                                    "StlaÄ medzenÃ­k pre pokraÄovanie"};
 
 
 
@@ -43,7 +43,7 @@ public class Tutorial : MonoBehaviour
         Text = GameObject.Find("TutorialText").GetComponent<TextMeshProUGUI>();
         plane = GameObject.Find("TutorialPlane");
         Invoke(nameof(startFreeze), 1.5f);
-        Texts[0] = "Môeš sa hıbat " + controls.MoveUp + controls.MoveLeft + controls.MoveDown + controls.MoveRight;
+        Texts[0] = "MÃ´Å¾eÅ¡ sa hÃ½baÅ¥ " + controls.MoveUp + controls.MoveLeft + controls.MoveDown + controls.MoveRight;
     }
 
     void startFreeze()
