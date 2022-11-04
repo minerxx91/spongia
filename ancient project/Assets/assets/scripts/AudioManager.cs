@@ -25,6 +25,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] List<AudioClip> MinotauRandom = new List<AudioClip>();
     public AudioClip Dychanie;
     public AudioClip RageDychanie;
+    [SerializeField] AudioClip grow1;
+    [SerializeField] AudioClip grow2;
 
 
 
@@ -154,6 +156,10 @@ public class AudioManager : MonoBehaviour
     {
 
         Invoke(nameof(PlayMinotaurRandom), 0.5f);
+    }
+    public void PlayMinotaurGrow1()
+    {
+
     }
 
 

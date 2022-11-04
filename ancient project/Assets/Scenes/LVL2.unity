@@ -11316,6 +11316,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7995c5b24bb581d439a729d26efa6c1e, type: 3}
   Dychanie: {fileID: 8300000, guid: 0a4f6721886b06c438983c44c973d91d, type: 3}
   RageDychanie: {fileID: 8300000, guid: 87013407516953c4dafd27da382aac1d, type: 3}
+  grow1: {fileID: 8300000, guid: 026db5778ddd10f418dcc95478fe2dd9, type: 3}
+  grow2: {fileID: 8300000, guid: 9a884d76b58b8144ab85c13f1d049d32, type: 3}
   PoseidonMelee: {fileID: 8300000, guid: ac1638a698323604fbe6b316cb6a4d71, type: 3}
 --- !u!82 &845786513
 AudioSource:
