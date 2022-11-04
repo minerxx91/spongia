@@ -177,7 +177,7 @@ public class manager : MonoBehaviour
         if (Player.Health <= 0 && ! skapalUz)
         {
             print("LOL skapal si");
-            Invoke(nameof(toLobby), 7);
+            Invoke(nameof(toLobby), 5);
             skapalUz = true;
         }
         else if (GameObject.FindGameObjectsWithTag("Boss").Length != 0)

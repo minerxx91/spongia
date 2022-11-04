@@ -10,6 +10,7 @@ public class trident : MonoBehaviour
     Vector3 freezeRotation = Vector3.zero;
     manager managerVariables;
     bool gravityFreeze = false;
+    bool damageDone = false;    
     private void Start()
     {
         managerVariables = GameObject.Find("Manager").GetComponent<manager>();
@@ -70,29 +71,40 @@ public class trident : MonoBehaviour
         
         if(other.gameObject.layer == 8)
         {
+
             grounded = true;
             this.gameObject.name = "tridentPickUp";
             if (other.gameObject.name == "Poseidon")
             {
-                if (managerVariables.Poseidon.Health >= managerVariables.Player.Ability3Damage + managerVariables.Player.DamageIncrease)
+                if (!damageDone)
                 {
-                    managerVariables.Poseidon.Health -= managerVariables.Player.Ability3Damage + managerVariables.Player.DamageIncrease;
+                    damageDone = true;
+                    if (managerVariables.Poseidon.Health >= managerVariables.Player.Ability3Damage + managerVariables.Player.DamageIncrease)
+                    {
+                        managerVariables.Poseidon.Health -= managerVariables.Player.Ability3Damage + managerVariables.Player.DamageIncrease;
+                    }
+                    else
+                    {
+                        managerVariables.Poseidon.Health = 0;
+                    }
                 }
-                else
-                {
-                    managerVariables.Poseidon.Health = 0;
-                }
+                
             }
             if (other.gameObject.name == "Minotaur")
             {
-                if (managerVariables.Minotaur.Health >= managerVariables.Player.Ability3Damage + managerVariables.Player.DamageIncrease)
+                if (!damageDone)
                 {
-                    managerVariables.Minotaur.Health -= managerVariables.Player.Ability3Damage + managerVariables.Player.DamageIncrease;
+                    damageDone = true;
+                    if (managerVariables.Minotaur.Health >= managerVariables.Player.Ability3Damage + managerVariables.Player.DamageIncrease)
+                    {
+                        managerVariables.Minotaur.Health -= managerVariables.Player.Ability3Damage + managerVariables.Player.DamageIncrease;
+                    }
+                    else
+                    {
+                        managerVariables.Minotaur.Health = 0;
+                    }
                 }
-                else
-                {
-                    managerVariables.Minotaur.Health = 0;
-                }
+              
             }
         }
 

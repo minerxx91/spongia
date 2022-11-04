@@ -214,7 +214,7 @@ public class Player : MonoBehaviour
             float MoveX = 0;
             float MoveZ = 0;
             //Input.GetKeyDown(MoveUp)
-            print(controls.MoveUp);
+            //print(controls.MoveUp);
             if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Trident") && !anim.GetCurrentAnimatorStateInfo(0).IsName("Attack1") && !anim.GetCurrentAnimatorStateInfo(0).IsName("Attack2") && !anim.GetCurrentAnimatorStateInfo(0).IsName("Attack3"))
             {
                 if (Input.GetKey(controls.MoveUp) && Input.GetKey(controls.MoveRight))

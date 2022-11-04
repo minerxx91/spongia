@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.115382746, g: 0.061906964, b: 0.056716, a: 1}
+  m_IndirectSpecularColor: {r: 0.11540864, g: 0.06194076, b: 0.056754492, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -52354,7 +52354,7 @@ MonoBehaviour:
   playerInRangerAttackRange: 0
   playerInRangerAttackRange2: 0
   SwingRight: {fileID: 634127353}
-  SwingLeft: {fileID: 634127353}
+  SwingLeft: {fileID: 1825585937}
   telo: {fileID: 2100000, guid: 2992e5b234f519342bc01c53381d3d6e, type: 2}
   AttackMelee1: {fileID: 845282872}
 --- !u!136 &8957922643260632540
