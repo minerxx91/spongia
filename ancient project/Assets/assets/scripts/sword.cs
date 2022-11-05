@@ -16,7 +16,7 @@ public class sword : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "Boss")
         {
-            audioManager.PlayEnemyDamageIncome();
+            
             if (other.gameObject.name == "Poseidon")
             {
                 if (this.gameObject.name == "ability1")
