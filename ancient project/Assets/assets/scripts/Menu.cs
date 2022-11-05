@@ -12,6 +12,7 @@ public class Menu : MonoBehaviour
     [SerializeField] GameObject grafic;
     [SerializeField] GameObject zvuk;
     [SerializeField] GameObject ovladanie;
+
     private void Start()
     {
         backtoMenu();
@@ -24,7 +25,6 @@ public class Menu : MonoBehaviour
     {
         menu.SetActive(false);
         load.SetActive(true);
-
     }
 
     public void Options()
