@@ -21,6 +21,8 @@ public class Tutorial : MonoBehaviour
     public bool cube1 = false;
     public bool cube2 = false;
 
+    GameObject borderTutorial;
+
     string[] Texts = new string[] {"Môžeš sa hýbať ",
                                     "Nepriatela si môžeš označiť namierením naňho a kliknutím pravého tlačidtka myši",
                                     "útočiť môžeš pomocou ľavého tlačitka myši",
@@ -44,6 +46,7 @@ public class Tutorial : MonoBehaviour
         plane = GameObject.Find("TutorialPlane");
         Invoke(nameof(startFreeze), 1.5f);
         Texts[0] = "Môžeš sa hýbať " + controls.MoveUp + controls.MoveLeft + controls.MoveDown + controls.MoveRight;
+        borderTutorial = GameObject.Find("borderTutorial");
     }
 
     void startFreeze()
@@ -56,6 +59,10 @@ public class Tutorial : MonoBehaviour
 
     void Update()
     {
+        if (borderTutorial.activeSelf)
+        {
+            if(GameObject.Find("Enemy1") == null && GameObject.Find("Enemy2") == null && GameObject.Find("Enemy3") == null && GameObject.Find("Enemy4") == null && GameObject.Find("Enemy5") == null) borderTutorial.SetActive(false);
+        }
         if (showText)
         {
             Text.text = Texts[postup];
