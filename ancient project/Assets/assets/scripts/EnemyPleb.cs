@@ -48,7 +48,7 @@ public class EnemyPleb : MonoBehaviour
 
     void Update()
     {
-        if (DontAttack)
+        if (DontAttack && !DontAttack) //dogshit
         {
             if (agent.remainingDistance > 2)
             {

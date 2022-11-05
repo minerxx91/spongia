@@ -175,14 +175,58 @@ public class PlayerTutorial : MonoBehaviour
         //Input.GetKeyDown(MoveUp)
         if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack1") && !anim.GetCurrentAnimatorStateInfo(0).IsName("Attack2") && !anim.GetCurrentAnimatorStateInfo(0).IsName("Attack3"))
         {
+            if (Input.GetKey(controls.MoveUp) && Input.GetKey(controls.MoveRight))
+            {
+                MoveZ = 0.707f;
+                MoveX = 0.707f;
+            }
+
+            else if (Input.GetKey(controls.MoveDown) && Input.GetKey(controls.MoveRight))
+            {
+                MoveZ = -0.707f;
+                MoveX = 0.707f;
+            }
+
+            else if (Input.GetKey(controls.MoveDown) && Input.GetKey(controls.MoveLeft))
+            {
+                MoveZ = -0.707f;
+                MoveX = -0.707f;
+            }
+
+            else if (Input.GetKey(controls.MoveUp) && Input.GetKey(controls.MoveLeft))
+            {
+                MoveZ = 0.707f;
+                MoveX = -0.707f;
+            }
+            else
+            {
+                MoveZ = 0;
+                MoveX = 0;
+            }
+
+
             if (Input.GetKey(controls.MoveUp))
-            { MoveZ++; }
+            {
+                if (MoveZ == 0)
+                    MoveZ++;
+            }
             if (Input.GetKey(controls.MoveDown))
-            { MoveZ--; }
+            {
+                if (MoveZ == 0 || MoveZ == 1)
+                    MoveZ--;
+            }
             if (Input.GetKey(controls.MoveRight))
-            { MoveX++; }
+            {
+                if (MoveX == 0)
+                    MoveX++;
+            }
             if (Input.GetKey(controls.MoveLeft))
-            { MoveX--; }
+            {
+                if (MoveX == 0 || MoveX == 1)
+                    MoveX--;
+            }
+
+
         }
 
 
@@ -317,9 +361,9 @@ public class PlayerTutorial : MonoBehaviour
 
 
             // healtzh regen
-            if (managerVariables.Player.Health + managerVariables.Player.HealthRegen < managerVariables.Player.MaxHealth)
+            if (managerVariables.Player.Health + managerVariables.Player.HealthRegen * 100 * Time.deltaTime < managerVariables.Player.MaxHealth)
             {
-                managerVariables.Player.Health += managerVariables.Player.HealthRegen * Time.deltaTime;
+                managerVariables.Player.Health += managerVariables.Player.HealthRegen * 100 * Time.deltaTime;
             }
             else
             {
@@ -460,22 +504,7 @@ public class PlayerTutorial : MonoBehaviour
                 managerVariables.Player.Stamina = managerVariables.Player.MaxStamina;
             }
 
-            if (Input.GetKeyDown(controls.ability1))
-            {
-                if (Ability1Cooldown == managerVariables.Player.Ability1Cooldown)
-                {
-                    if (managerVariables.Player.Ability1StaminaCost <= managerVariables.Player.Stamina)
-                    {
-                        Invoke(nameof(ResetAbility1), .1f);
-                        ability1.SetActive(true);
-                        Ability1Cooldown = 0;
-                        managerVariables.Player.Stamina -= managerVariables.Player.Ability1StaminaCost;
-                    }
 
-                }
-
-
-            }
             /*
             postprocesing.profile.GetComponent<Vignette>().color = new ColorParameter(new Color(1, 0, 0, 1), true);
             */
