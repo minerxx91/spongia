@@ -120,6 +120,7 @@ public class Player : MonoBehaviour
         managerVariables.Player.Health = managerVariables.Player.MaxHealth;
         managerVariables.Player.Stamina = managerVariables.Player.MaxStamina;
 
+        managerVariables.skapalUz = false;
     }
 
 

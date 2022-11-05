@@ -7153,6 +7153,7 @@ MonoBehaviour:
   trident: {fileID: 6557507184881375946}
   Projectile: {fileID: 3382990444819746559, guid: 4a06c091bf01faf478a63fa82b0eaa7d, type: 3}
   JumpVelocity: {x: 0, y: 0, z: 0}
+  died: 0
 --- !u!1001 &5837930913940692588
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7160,9 +7161,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8123939002577046628}
     m_Modifications:
+    - target: {fileID: 8105191955922609232, guid: 93bb04da8b464f947aa9a3622e20a0ef, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8105191955922609233, guid: 93bb04da8b464f947aa9a3622e20a0ef, type: 3}
       propertyPath: m_Name
       value: LevelUp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8105191955922609233, guid: 93bb04da8b464f947aa9a3622e20a0ef, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8105191955922609238, guid: 93bb04da8b464f947aa9a3622e20a0ef, type: 3}
       propertyPath: m_RootOrder

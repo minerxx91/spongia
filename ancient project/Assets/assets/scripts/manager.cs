@@ -161,7 +161,7 @@ public class manager : MonoBehaviour
         SceneManager.LoadScene("Lobby");
 
     }
-    bool skapalUz = false;
+     public bool skapalUz = false;
 
     private void Update()
     {
