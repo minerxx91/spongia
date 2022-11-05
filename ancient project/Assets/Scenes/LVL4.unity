@@ -12817,6 +12817,7 @@ MonoBehaviour:
   playerInRangerAttackRange2: 0
   RangedAbility: {fileID: 6997197}
   RangedHitbox: {fileID: 2063997563}
+  Bident: {fileID: 8329077129761265743}
   projectile: {fileID: 0}
   AttackMelee1: {fileID: 0}
 --- !u!1 &1322839502
@@ -18123,7 +18124,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 189025716418692460, guid: c606b4c2e63f33045a4399caa0ff4459, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 189025716418692460, guid: c606b4c2e63f33045a4399caa0ff4459, type: 3}
       propertyPath: m_LocalScale.x

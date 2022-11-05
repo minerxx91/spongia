@@ -51,6 +51,7 @@ public class Hades : MonoBehaviour
     [SerializeField] ParticleSystem RangedAbility;
     [SerializeField] GameObject RangedHitbox;
 
+    [SerializeField] GameObject Bident;
     [SerializeField] GameObject projectile; 
 
 
@@ -204,7 +205,11 @@ public class Hades : MonoBehaviour
         {
             if (playerInRangerAttackRange)
             {
-                RangedAbility.Play();
+                if (!RangedAbility.isPlaying)
+                {
+                    RangedAbility.Play();
+                }
+                
                 print("ano");
                 if (timebetweenRangedAttackstick >= timebetweenRangedAttacks + RangedAttackTime)
                 {
