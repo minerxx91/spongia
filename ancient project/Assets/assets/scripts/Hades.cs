@@ -29,14 +29,10 @@ public class Hades : MonoBehaviour
     public float walkPointRange;
 
     //Attacking
-    public float timeBetweenAttacks, timebetweenRangedAttacks, shorttimebetweenAttacks, timeToRage;
+    public float timeBetweenAttacks, timebetweenRangedAttacks, shorttimebetweenAttacks;
+    float timebetweenRangedAttackstick;
     bool alreadyAttacked;
-    public float RageTime = 5;
-    float RagedTime = 0;
-    float timeToRageTick = 0;
-    bool Raged = false;
-    Vector3 Bigsize = new Vector3(0.25f, 0.25f, 0.25f);
-    Vector3 size = new Vector3(0.15f, 0.15f, 0.15f);
+
 
     //States
     float gravityIncrease = 0;
@@ -52,7 +48,7 @@ public class Hades : MonoBehaviour
     Light orangeLight;
     [SerializeField] ParticleSystem SwingRight;
     [SerializeField] ParticleSystem SwingLeft;
-
+    [SerializeField] GameObject projectile; 
 
 
     private bool Animating;
@@ -120,39 +116,12 @@ public class Hades : MonoBehaviour
 
     void Update()
     {
-        timeToRageTick += Time.deltaTime;
-        if (timeToRageTick >= timeToRage)
-        {
-            Raged = true;
-            /*GetComponent<AudioSource>().clip = GameObject.Find("AudioManager").GetComponent<AudioManager>().RageDychanie;
-            if (!GetComponent<AudioSource>().isPlaying)
-                GetComponent<AudioSource>().Play();*/
-            if (this.gameObject.transform.localScale == size)
-                //audioManager.PlayMinotaurGrow1();
-            if (this.gameObject.transform.localScale != Bigsize)
-                this.gameObject.transform.localScale += new Vector3(0.01f, 0.01f, 0.01f);
 
-            managerVariables.Hades.DamageIncrease = 15;
 
-            if (timeToRageTick > timeToRage + RageTime)
-            {
-                timeToRageTick = 0;
-                Raged = false;
+       
 
-            }
-        }
-        if (!Raged)
-        {
-            //GetComponent<AudioSource>().Stop();
-            if (this.gameObject.transform.localScale == Bigsize)
-                //audioManager.PlayMinotaurGrow2();
 
-            if (this.gameObject.transform.localScale != size)
-                this.gameObject.transform.localScale -= new Vector3(0.01f, 0.01f, 0.01f);
 
-            managerVariables.Hades.DamageIncrease = 0;
-
-        }
         randomSoundTick += Time.deltaTime;
         if (randomSoundTick >= randomSoundTime)
         {
@@ -226,6 +195,20 @@ public class Hades : MonoBehaviour
         {
             transform.position += transform.forward * 16 * Time.deltaTime;
         }
+
+        timebetweenRangedAttackstick += Time.deltaTime;
+        if (timebetweenRangedAttackstick >= timebetweenRangedAttacks)
+        {
+            if (playerInRangerAttackRange)
+            {
+                print("ano");
+
+            }
+                
+            timebetweenRangedAttackstick = 0;
+        }
+
+
 
         materialDelay += Time.deltaTime;
 
@@ -307,19 +290,11 @@ public class Hades : MonoBehaviour
             {
                 anim.SetTrigger("melee1");
                 meleeAnim = 1;
-                SwingRight.Play();
+                //SwingRight.Play();
                 //attack melee 1
 
 
-                if (!Raged)
-                {
-                    //audioManager.PlayMinotaurAttackDelay();
-                }
-                else
-                {
-                    //audioManager.PlayMinotaurAttackRageDelay();
-
-                }
+               
                 Invoke(nameof(ResetAttack), shorttimebetweenAttacks);
             }
             else
@@ -329,15 +304,7 @@ public class Hades : MonoBehaviour
                 SwingLeft.Play();
                 //attack melee 2
 
-                if (!Raged)
-                {
-                   // audioManager.PlayMinotaurAttackDelay();
-                }
-                else
-                {
-                    //audioManager.PlayMinotaurAttackRageDelay();
-
-                }
+                
 
                 Invoke(nameof(ResetAttack), timeBetweenAttacks);
             }
@@ -383,6 +350,7 @@ public class Hades : MonoBehaviour
     }
     void RangedAttacking()
     {
+        print("ranged");
         //transform.LookAt(Targetposition);
         //anim.SetBool("walk", true);
         if (!Charging)
