@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LVL5.unity
     guid: 1507ac8082dda7e4a88fda9e99e4409f
+  - enabled: 1
+    path: Assets/Scenes/dogshit.unity
+    guid: adf8c4b8b756625428cb28e237e786c5
   m_configObjects: {}

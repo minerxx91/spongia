@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     AudioManager audioManager;
     Volume postprocesing;
     ColorParameter vignetterColor;
-    
+
 
     LevelLoader lvlloader;
     GameObject helpCanvas;
@@ -107,6 +107,7 @@ public class Player : MonoBehaviour
 
 
         postprocesing = GameObject.Find("Postprocessing").GetComponent<Volume>();
+        //vignetterColor.value = new Color32(255, 0, 0, 0);
 
 
         // reset abilit
@@ -120,6 +121,8 @@ public class Player : MonoBehaviour
         managerVariables.Player.Health = managerVariables.Player.MaxHealth;
         managerVariables.Player.Stamina = managerVariables.Player.MaxStamina;
 
+        managerVariables.skapalUz = false;
+        managerVariables.Player.Jumping = false;
     }
 
 
@@ -320,6 +323,8 @@ public class Player : MonoBehaviour
                     anim.SetBool("left", false);
                     anim.SetBool("right", false);
                     anim.SetBool("back", false);
+                    audioManager.StopRun();
+
                 }
                 else
                 {
@@ -330,6 +335,7 @@ public class Player : MonoBehaviour
                         else if (Velocity[2] > 0) animationSelect("forward");
                         else if (Velocity[0] > 0) animationSelect("right");
                         else if (Velocity[0] < 0) animationSelect("left");
+                        audioManager.PlayRun();
 
 
                     }
@@ -339,6 +345,7 @@ public class Player : MonoBehaviour
                         else if (Velocity[2] > 0) animationSelect("forward");
                         else if (Velocity[0] > 0) animationSelect("right");
                         else if (Velocity[0] < 0) animationSelect("left");
+                        audioManager.PlayRun();
 
 
                     }
@@ -348,6 +355,7 @@ public class Player : MonoBehaviour
                         else if (Velocity[0] > 0) animationSelect("forward");
                         else if (Velocity[2] < 0) animationSelect("right");
                         else if (Velocity[2] > 0) animationSelect("left");
+                        audioManager.PlayRun();
 
 
                     }
@@ -357,6 +365,7 @@ public class Player : MonoBehaviour
                         else if (Velocity[2] < 0) animationSelect("forward");
                         else if (Velocity[0] < 0) animationSelect("right");
                         else if (Velocity[0] > 0) animationSelect("left");
+                        audioManager.PlayRun();
 
 
                     }
@@ -366,6 +375,7 @@ public class Player : MonoBehaviour
                         else if (Velocity[0] < 0) animationSelect("forward");
                         else if (Velocity[2] > 0) animationSelect("right");
                         else if (Velocity[2] < 0) animationSelect("left");
+                        audioManager.PlayRun();
 
 
                     }
@@ -587,6 +597,8 @@ public class Player : MonoBehaviour
             {
                 managerVariables.Player.Ability2timeToRageTick += Time.deltaTime;
                 telo.color = new Color32(150, 89, 69, 255);
+                if (this.gameObject.transform.localScale == managerVariables.Player.Ability2normalSize)
+                    audioManager.PlayMinotaurGrow1();
                 if (this.gameObject.transform.localScale != managerVariables.Player.Ability2growSize)
                     this.gameObject.transform.localScale += new Vector3(0.01f, 0.01f, 0.01f);
 
@@ -596,15 +608,17 @@ public class Player : MonoBehaviour
                     managerVariables.Player.Resistence = 0;
                     managerVariables.Player.Ability2timeToRageTick = 0;
                     managerVariables.Player.Ability2Raged = false;
-                    telo.color = new Color32(144, 128, 97, 255);
+                    telo.color = new Color32(176, 133, 92, 255);
 
                 }
             }
             else
             {
+                if (this.gameObject.transform.localScale == managerVariables.Player.Ability2growSize)
+                    audioManager.PlayMinotaurGrow2();
                 if (this.gameObject.transform.localScale != managerVariables.Player.Ability2normalSize)
                     this.gameObject.transform.localScale -= new Vector3(0.01f, 0.01f, 0.01f);
-                telo.color = new Color32(144, 128, 97, 255);
+                //telo.color = new Color32(176, 133, 92, 255);
             }
 
 
@@ -628,9 +642,11 @@ public class Player : MonoBehaviour
 
             }
 
-            /*
-            postprocesing.profile.GetComponent<Vignette>().color = new ColorParameter(new Color(1, 0, 0, 1), true);
-            */
+
+            //postprocesing.profile.GetComponent<Vignette>().color = vignetterColor;
+            
+
+
             if (managerVariables.Player.absorb)
             {
                 managerVariables.Player.absorb = false;
@@ -723,7 +739,15 @@ public class Player : MonoBehaviour
         }
         if (other.gameObject.name == "tridentPickUp")
         {
-            Ability3Cooldown = managerVariables.Player.Ability3Cooldown;
+            if (Ability3Cooldown + 0.5f * managerVariables.Player.Ability3Cooldown <= managerVariables.Player.Ability3Cooldown)
+            {
+                Ability3Cooldown += 0.5f * managerVariables.Player.Ability3Cooldown;
+            }
+            else
+            {
+                Ability3Cooldown = managerVariables.Player.Ability3Cooldown;
+
+            }
             Destroy(other.gameObject);
         }
 

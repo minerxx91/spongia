@@ -174,15 +174,15 @@ public class Poseidon : MonoBehaviour
                     if (playerInSightRange && !playerInMeleeAttackRange) Chasing();
                     if (playerInSightRange && (playerInMeleeAttackRange || playerInRangerAttackRange))
                     {
-                        if (playerInMeleeAttackRange)
+                        if (playerInMeleeAttackRange && !GameObject.Find("Player").GetComponent<Player>().died)
                         {
                             MeleeAttacking();
                         }
-                        else if (playerInMidAttackRange && !playerInMidAttackRange2)
+                        else if (playerInMidAttackRange && !playerInMidAttackRange2 && !GameObject.Find("Player").GetComponent<Player>().died)
                         {
                             MidAttacking();
                         }
-                        else if (playerInRangerAttackRange && !playerInRangerAttackRange2)
+                        else if (playerInRangerAttackRange && !playerInRangerAttackRange2 && !GameObject.Find("Player").GetComponent<Player>().died)
                         {
                             RangedAttacking();
                         }
@@ -194,10 +194,10 @@ public class Poseidon : MonoBehaviour
                 }
                 else
                 {
-                    if (!playerInSightRange && !playerInMeleeAttackRange) Patroling();
-                    if (playerInSightRange && !playerInMeleeAttackRange) Chasing();
-                    if (playerInRangerAttackRange && playerInSightRange) RangedAttacking();
-                    if (playerInMeleeAttackRange && playerInSightRange) MeleeAttacking();
+                    if (!playerInSightRange && !playerInMeleeAttackRange && !GameObject.Find("Player").GetComponent<Player>().died) Patroling();
+                    if (playerInSightRange && !playerInMeleeAttackRange && !GameObject.Find("Player").GetComponent<Player>().died) Chasing();
+                    if (playerInRangerAttackRange && playerInSightRange && !GameObject.Find("Player").GetComponent<Player>().died) RangedAttacking();
+                    if (playerInMeleeAttackRange && playerInSightRange && !GameObject.Find("Player").GetComponent<Player>().died) MeleeAttacking();
                 }
             }
 

@@ -146,9 +146,7 @@ public class Minotaur : MonoBehaviour
         }
         if (!Raged)
         {
-            GetComponent<AudioSource>().clip = GameObject.Find("AudioManager").GetComponent<AudioManager>().Dychanie ;
-            if (!GetComponent<AudioSource>().isPlaying)
-                GetComponent<AudioSource>().Play();
+            GetComponent<AudioSource>().Stop();
             if (this.gameObject.transform.localScale == Bigsize)
                 audioManager.PlayMinotaurGrow2();
 
@@ -206,15 +204,15 @@ public class Minotaur : MonoBehaviour
             if (this.gameObject.name == "Minotaur")
             {
                 if (!playerInSightRange && !playerInMeleeAttackRange) Patroling();
-                if (playerInSightRange && !playerInMeleeAttackRange) Chasing();
+                if (playerInSightRange && !playerInMeleeAttackRange && !GameObject.Find("Player").GetComponent<Player>().died) Chasing();
                 if (playerInSightRange && (playerInMeleeAttackRange || playerInRangerAttackRange))
                 {
-                    if (playerInMeleeAttackRange)
+                    if (playerInMeleeAttackRange && !GameObject.Find("Player").GetComponent<Player>().died)
                     {
                         MeleeAttacking();
                     }
 
-                    else if (!alreadyAttacked && !playerInRangerAttackRange)
+                    else if (!alreadyAttacked && !playerInRangerAttackRange && !GameObject.Find("Player").GetComponent<Player>().died)
                     {
                         RangedAttacking();
                     }
@@ -223,9 +221,9 @@ public class Minotaur : MonoBehaviour
             else
             {
                 if (!playerInSightRange && !playerInMeleeAttackRange) Patroling();
-                if (playerInSightRange && !playerInMeleeAttackRange) Chasing();
-                if (playerInRangerAttackRange && playerInSightRange) RangedAttacking();
-                if (playerInMeleeAttackRange && playerInSightRange) MeleeAttacking();
+                if (playerInSightRange && !playerInMeleeAttackRange && !GameObject.Find("Player").GetComponent<Player>().died) Chasing();
+                if (playerInRangerAttackRange && playerInSightRange && !GameObject.Find("Player").GetComponent<Player>().died) RangedAttacking();
+                if (playerInMeleeAttackRange && playerInSightRange && !GameObject.Find("Player").GetComponent<Player>().died) MeleeAttacking();
             }
         }
         else

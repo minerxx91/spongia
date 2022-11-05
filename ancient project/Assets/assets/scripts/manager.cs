@@ -33,7 +33,7 @@ public class manager : MonoBehaviour
         public float MaxStamina = 100;
         public float StaminaRegen = 10;
 
-        public float Damage = 20 / 2;//   / 2 lebo pri attacku sa to jebne 2 krat
+        public float Damage = 20 / 2;   
         public float DamageIncrease = 0;
         public float Resistence = 0;
         public float BetweenAttackCooldown = .6f;
@@ -74,10 +74,10 @@ public class manager : MonoBehaviour
         public float gravityIncrease = 0;
         public GameObject target;
 
-        public bool MeduzaUnlocked = false;
-        public bool MinotaurUnlocked = false;
-        public bool PoseidonUnlocked = false;
-        public bool ZeusUnlocked = false;
+        public bool MeduzaUnlocked = true;
+        public bool MinotaurUnlocked = true;
+        public bool PoseidonUnlocked = true;
+        public bool ZeusUnlocked = true;
 
 
 
@@ -86,9 +86,9 @@ public class manager : MonoBehaviour
         public Vector3 LVL1Spawn = new Vector3(13.2343512f, 0.070555687f, -125.339912f);
         public Vector3 LVL2Spawn = new Vector3(2.5999999f, 2, -20.1000004f);
         public Vector3 LVL3Spawn = new Vector3(265, 215, 140);
-        public Vector3 LVL4Spawn = new  Vector3(50, 5, 50);
+        public Vector3 LVL4Spawn = new  Vector3(212, 403, 180);
         public Vector3 LVL5Spawn = new Vector3(212, 403, 180);
-        public Vector3 LVL6Spawn = new Vector3(212, 403, 180);
+        public Vector3 LVL6Spawn = new Vector3(0,0,0);
 
         public bool absorb = false;
         public bool absorb2 = false;
@@ -111,8 +111,17 @@ public class manager : MonoBehaviour
         public float Damage = 15;
         public float DamageIncrease = 0;
     }
-
     public MinotaurStats Minotaur = new MinotaurStats();
+
+    public class HadesStats
+    {
+        public float Health = 250;
+        public float maxHealth = 250;
+        public float Damage = 15;
+        public float DamageIncrease = 0;
+    }
+
+    public HadesStats Hades = new HadesStats();
 
     private void Start()
     {
@@ -156,17 +165,18 @@ public class manager : MonoBehaviour
 
 
     }
-    void toLobby()
+    public void toLobby()
     {
         SceneManager.LoadScene("Lobby");
 
     }
-    bool skapalUz = false;
+     public bool skapalUz = false;
 
     private void Update()
     {
         if (Player.Health <= 0 && ! skapalUz)
         {
+            GameObject.Find("Player").GetComponent<Player>().died = true;
             print("LOL skapal si");
             Invoke(nameof(toLobby), 5);
             skapalUz = true;

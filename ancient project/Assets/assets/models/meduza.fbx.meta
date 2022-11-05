@@ -3,7 +3,12 @@ guid: e165bd744c9a68d4cab60234a88d0fce
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: MeduzaTexture
+    second: {fileID: 2800000, guid: ee69e5c7f2097654d96e2704f382ca83, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
