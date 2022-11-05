@@ -165,6 +165,9 @@ public class Minotaur : MonoBehaviour
             randomSoundTick = 0;
             randomSoundTime = Random.Range(3,7);
             audioManager.PlayMinotaurRandom();
+            int chrcanie = Random.Range(1, 8);
+            if (chrcanie == 1)
+                audioManager.PlayMinotaurChrcanie();
         }
 
 
