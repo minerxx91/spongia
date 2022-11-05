@@ -9,7 +9,7 @@ using Unity.VisualScripting;
 public class Scenario : MonoBehaviour
 {
 
-
+    AudioManager audioManager;
     manager managerVariables;
     public TextMeshProUGUI playerText;
 
@@ -71,6 +71,8 @@ public class Scenario : MonoBehaviour
     private void Start()
     {
         managerVariables = GameObject.Find("Manager").GetComponent<manager>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+
         clear();
 
         if (managerVariables.ScenarioOrder == 0)
@@ -148,7 +150,7 @@ public class Scenario : MonoBehaviour
     {
         clear();
         imageOther.GetComponent<Image>().sprite = King;
-
+        audioManager.PlayKingDialog();
         if (index <= Lvl1.Length - 1)
         {
             if (Lvl1Field[index] == 0)

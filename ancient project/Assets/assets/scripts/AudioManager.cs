@@ -13,12 +13,24 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip PlayerShield;
 
     [SerializeField] AudioClip PlayerRoll;
+    [SerializeField] AudioClip Ability1;
+
+
 
     [SerializeField] AudioClip PortalEnter;
 
     [SerializeField] AudioClip EnemyDamageIncome1;
     [SerializeField] AudioClip EnemyDamageIncome2;
     [SerializeField] AudioClip EnemyDamageIncome3;
+
+    [SerializeField] List<AudioClip> HadesDialogs = new List<AudioClip>();
+    [SerializeField] AudioClip HadesLaugh;
+    [SerializeField] List<AudioClip> KingDialogs = new List<AudioClip>();
+    [SerializeField] AudioClip KingLaugh;
+    [SerializeField] List<AudioClip> PlayerDialogs = new List<AudioClip>();
+
+
+    
 
     [SerializeField] List<AudioClip> MinotaurAttacks = new List<AudioClip>();
     [SerializeField] List<AudioClip> MinotaurRageAttacks = new List<AudioClip>();
@@ -29,6 +41,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip grow2;
     [SerializeField] AudioClip MinotaurHit;
     
+
 
 
 
@@ -167,7 +180,15 @@ public class AudioManager : MonoBehaviour
     {
         AS[0].PlayOneShot(grow2);
     }
+    public void PlayKingDialog()
+    {
+        AS[0].PlayOneShot(KingDialogs[Random.Range(1, KingDialogs.Count)]);
+    }
+    public void PlayAbility1()
+    {
+        AS[0].PlayOneShot(Ability1);
 
+    }
 
 
 }

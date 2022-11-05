@@ -552,6 +552,7 @@ public class Player : MonoBehaviour
                 {
                     if (managerVariables.Player.Ability1StaminaCost <= managerVariables.Player.Stamina)
                     {
+                        audioManager.PlayAbility1();
                         Invoke(nameof(ResetAbility1), .1f);
                         ability1.SetActive(true);
                         Ability1Cooldown = 0;
