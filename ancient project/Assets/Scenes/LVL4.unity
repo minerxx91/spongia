@@ -2599,7 +2599,11 @@ PrefabInstance:
     - target: {fileID: 7950941071210314356, guid: 12ae9d74d66012045ba2245278e1eabf, type: 3}
       propertyPath: m_RootOrder
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: 6
+=======
+      value: 7
+>>>>>>> parent of 64d3e12 (Revert "Merge branch 'main' of https://github.com/minerxx91/spongia")
 =======
       value: 7
 >>>>>>> parent of 64d3e12 (Revert "Merge branch 'main' of https://github.com/minerxx91/spongia")
@@ -3156,7 +3160,11 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
 <<<<<<< HEAD
+<<<<<<< HEAD
   - {fileID: 1295857409}
+=======
+  - {fileID: 9182754557069492151}
+>>>>>>> parent of 64d3e12 (Revert "Merge branch 'main' of https://github.com/minerxx91/spongia")
 =======
   - {fileID: 9182754557069492151}
 >>>>>>> parent of 64d3e12 (Revert "Merge branch 'main' of https://github.com/minerxx91/spongia")
@@ -8578,7 +8586,11 @@ PrefabInstance:
     - target: {fileID: 189025716418692460, guid: c606b4c2e63f33045a4399caa0ff4459, type: 3}
       propertyPath: m_RootOrder
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: 4
+=======
+      value: 3
+>>>>>>> parent of 64d3e12 (Revert "Merge branch 'main' of https://github.com/minerxx91/spongia")
 =======
       value: 3
 >>>>>>> parent of 64d3e12 (Revert "Merge branch 'main' of https://github.com/minerxx91/spongia")
@@ -8860,6 +8872,9 @@ Transform:
   m_RootOrder: 7
 =======
   m_RootOrder: 6
+<<<<<<< HEAD
+>>>>>>> parent of 64d3e12 (Revert "Merge branch 'main' of https://github.com/minerxx91/spongia")
+=======
 >>>>>>> parent of 64d3e12 (Revert "Merge branch 'main' of https://github.com/minerxx91/spongia")
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1634820639
