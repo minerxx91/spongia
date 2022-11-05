@@ -11333,7 +11333,7 @@ MonoBehaviour:
   MinotaurRandom:
   - {fileID: 8300000, guid: cedb5c348c71d9145befeab66d62ce3c, type: 3}
   - {fileID: 8300000, guid: f2d12676c09de104a8ec954142f0d76f, type: 3}
-  - {fileID: 8300000, guid: 58490b542edb2e641978f48619162450, type: 3}
+  MinotaurChrcanie: {fileID: 0}
   Dychanie: {fileID: 8300000, guid: 0a4f6721886b06c438983c44c973d91d, type: 3}
   RageDychanie: {fileID: 8300000, guid: 87013407516953c4dafd27da382aac1d, type: 3}
   grow1: {fileID: 8300000, guid: 026db5778ddd10f418dcc95478fe2dd9, type: 3}
