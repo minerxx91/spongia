@@ -11,6 +11,6 @@ public class VOID : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        managerVariables.Player.Health = 0;
+        managerVariables.toLobby();
     }
 }

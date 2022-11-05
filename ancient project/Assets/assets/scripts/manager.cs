@@ -86,7 +86,7 @@ public class manager : MonoBehaviour
         public Vector3 LVL1Spawn = new Vector3(13.2343512f, 0.070555687f, -125.339912f);
         public Vector3 LVL2Spawn = new Vector3(2.5999999f, 2, -20.1000004f);
         public Vector3 LVL3Spawn = new Vector3(265, 215, 140);
-        public Vector3 LVL4Spawn = new  Vector3(50, 5, 50);
+        public Vector3 LVL4Spawn = new  Vector3(212, 403, 180);
         public Vector3 LVL5Spawn = new Vector3(212, 403, 180);
         public Vector3 LVL6Spawn = new Vector3(212, 403, 180);
 
@@ -156,7 +156,7 @@ public class manager : MonoBehaviour
 
 
     }
-    void toLobby()
+    public void toLobby()
     {
         SceneManager.LoadScene("Lobby");
 
@@ -167,6 +167,7 @@ public class manager : MonoBehaviour
     {
         if (Player.Health <= 0 && ! skapalUz)
         {
+            GameObject.Find("Player").GetComponent<Player>().died = true;
             print("LOL skapal si");
             Invoke(nameof(toLobby), 5);
             skapalUz = true;
