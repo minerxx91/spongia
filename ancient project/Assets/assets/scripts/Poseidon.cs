@@ -22,6 +22,8 @@ public class Poseidon : MonoBehaviour
     AudioManager audioManager;
 
     Renderer rend;
+    float randomSoundTime = 5;
+    float randomSoundTick = 0;
 
     float materialDelay;
 
@@ -199,6 +201,14 @@ public class Poseidon : MonoBehaviour
                 }
             }
 
+            randomSoundTick += Time.deltaTime;
+            if (randomSoundTick >= randomSoundTime)
+            {
+                randomSoundTick = 0;
+                randomSoundTime = Random.Range(7, 15);
+                audioManager.PlayPoseidonRandom();
+
+            }
 
             materialDelay += Time.deltaTime;
 

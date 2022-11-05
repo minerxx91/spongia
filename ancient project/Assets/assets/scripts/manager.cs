@@ -67,7 +67,7 @@ public class manager : MonoBehaviour
 
         public float Ability3Cooldown = 10f;
         public float Ability3StaminaCost = 20;
-        public float Ability3Damage = 10; //treba zmenit na  40
+        public float Ability3Damage = 40; //treba zmenit na  40
         public bool Ability3trident = true;
 
 

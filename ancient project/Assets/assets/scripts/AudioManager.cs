@@ -19,9 +19,7 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] AudioClip PortalEnter;
 
-    [SerializeField] AudioClip EnemyDamageIncome1;
-    [SerializeField] AudioClip EnemyDamageIncome2;
-    [SerializeField] AudioClip EnemyDamageIncome3;
+ 
 
     [SerializeField] List<AudioClip> HadesDialogs = new List<AudioClip>();
     [SerializeField] AudioClip HadesLaugh;
@@ -41,7 +39,9 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip grow1;
     [SerializeField] AudioClip grow2;
     [SerializeField] AudioClip MinotaurHit;
-    
+
+    [SerializeField] List<AudioClip> PoseidonRandom = new List<AudioClip>();
+
 
 
 
@@ -78,9 +78,21 @@ public class AudioManager : MonoBehaviour
         }
         
     }
+    public void PlayLow()
+    {
+        if (!AS[2].isPlaying)
+        {
+            AS[2].Play();
+        }
+
+    }
     public void StopRun()
     {
         run.Stop();
+    }
+    public void StopLow()
+    {
+        AS[2].Stop();
     }
     public void PlayPlayerAttack()
     {
@@ -117,25 +129,7 @@ public class AudioManager : MonoBehaviour
 
 
     }
-    public void PlayEnemyDamageIncome()
-    {
-        int random = Random.Range(1, 3);
-        if (random == 1)
-        {
-            AS[0].PlayOneShot(EnemyDamageIncome1);
-        }
-        if (random == 2)
-        {
-            AS[0].PlayOneShot(EnemyDamageIncome2);
-        }
-        if (random == 3)
-        {
-            AS[0].PlayOneShot(EnemyDamageIncome3);
-        }
-        
 
-
-    }
     public void PlayPoseidonMelee()
     {
 
@@ -193,6 +187,10 @@ public class AudioManager : MonoBehaviour
     {
         AS[0].PlayOneShot(Ability1);
 
+    }
+    public void PlayPoseidonRandom()
+    {
+        AS[0].PlayOneShot(PoseidonRandom[Random.Range(0, PoseidonRandom.Count)]);
     }
 
 

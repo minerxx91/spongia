@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     AudioManager audioManager;
     Volume postprocesing;
     ColorParameter vignetterColor;
+    
 
     LevelLoader lvlloader;
     GameObject helpCanvas;
@@ -546,7 +547,7 @@ public class Player : MonoBehaviour
                 managerVariables.Player.Stamina = managerVariables.Player.MaxStamina;
             }
 
-            if (Input.GetKeyDown(controls.ability1))
+            if (Input.GetKeyDown(controls.ability1) && managerVariables.Player.MeduzaUnlocked)
             {
                 if (Ability1Cooldown == managerVariables.Player.Ability1Cooldown)
                 {
@@ -563,7 +564,7 @@ public class Player : MonoBehaviour
 
 
             }
-            if (Input.GetKeyDown(controls.ability2))
+            if (Input.GetKeyDown(controls.ability2) && managerVariables.Player.MinotaurUnlocked)
             {
                 if (Ability2Cooldown == managerVariables.Player.Ability2Cooldown)
                 {
@@ -607,7 +608,7 @@ public class Player : MonoBehaviour
             }
 
 
-            if (Input.GetKeyDown(controls.ability3))
+            if (Input.GetKeyDown(controls.ability3) && managerVariables.Player.PoseidonUnlocked)
             {
                 if (Ability3Cooldown == managerVariables.Player.Ability3Cooldown)
                 {
@@ -782,6 +783,16 @@ public class Player : MonoBehaviour
             anim.SetBool("left", false);
             anim.SetBool("right", false);
             anim.SetBool("back", false);
+        }
+
+
+        if (managerVariables.Player.Health <= managerVariables.Player.MaxHealth / 4)
+        {
+            audioManager.PlayLow();
+        }
+        else
+        {
+            audioManager.StopLow();
         }
     }
 
