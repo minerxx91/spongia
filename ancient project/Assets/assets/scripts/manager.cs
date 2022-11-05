@@ -111,8 +111,17 @@ public class manager : MonoBehaviour
         public float Damage = 15;
         public float DamageIncrease = 0;
     }
-
     public MinotaurStats Minotaur = new MinotaurStats();
+
+    public class HadesStats
+    {
+        public float Health = 250;
+        public float maxHealth = 250;
+        public float Damage = 15;
+        public float DamageIncrease = 0;
+    }
+
+    public HadesStats Hades = new HadesStats();
 
     private void Start()
     {
