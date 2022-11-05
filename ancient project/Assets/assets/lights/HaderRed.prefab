@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2393293016343659449}
   - component: {fileID: -6330052584245811628}
   m_Layer: 0
-  m_Name: orange
+  m_Name: HaderRed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,8 +44,8 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 1, g: 0.38855204, b: 0, a: 1}
-  m_Intensity: 1
+  m_Color: {r: 1, g: 0.0670706, b: 0, a: 1}
+  m_Intensity: 0.61
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208

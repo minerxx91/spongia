@@ -32,6 +32,8 @@ public class Hades : MonoBehaviour
     public float timeBetweenAttacks, timebetweenRangedAttacks, shorttimebetweenAttacks;
     float timebetweenRangedAttackstick;
     bool alreadyAttacked;
+    bool RangerAttack = false;
+    public float RangedAttackTime = 2.5f;
 
 
     //States
@@ -46,8 +48,9 @@ public class Hades : MonoBehaviour
     //Particles
     ParticleSystem selectAura;
     Light orangeLight;
-    [SerializeField] ParticleSystem SwingRight;
-    [SerializeField] ParticleSystem SwingLeft;
+    [SerializeField] ParticleSystem RangedAbility;
+    [SerializeField] GameObject RangedHitbox;
+
     [SerializeField] GameObject projectile; 
 
 
@@ -201,11 +204,15 @@ public class Hades : MonoBehaviour
         {
             if (playerInRangerAttackRange)
             {
+                RangedAbility.Play();
                 print("ano");
-
+                if (timebetweenRangedAttackstick >= timebetweenRangedAttacks + RangedAttackTime)
+                {
+                    timebetweenRangedAttackstick = 0;
+                    RangedAbility.Stop();
+                }
             }
                 
-            timebetweenRangedAttackstick = 0;
         }
 
 
@@ -301,7 +308,7 @@ public class Hades : MonoBehaviour
             {
                 anim.SetTrigger("melee2");
                 meleeAnim = 0;
-                SwingLeft.Play();
+                //SwingLeft.Play();
                 //attack melee 2
 
                 
@@ -320,7 +327,7 @@ public class Hades : MonoBehaviour
 
     void swingParticel()
     {
-        SwingRight.Play();
+        //SwingRight.Play();
         MidAttackLook = false;
         Animating = true;
     }
@@ -357,7 +364,7 @@ public class Hades : MonoBehaviour
         {
             managerVariables.Hades.DamageIncrease = 10;
 
-            Invoke(nameof(Charge), .5f);
+            //Invoke(nameof(Charge), .5f);
             //run attack
 
 
