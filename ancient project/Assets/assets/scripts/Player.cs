@@ -107,7 +107,7 @@ public class Player : MonoBehaviour
 
 
         postprocesing = GameObject.Find("Postprocessing").GetComponent<Volume>();
-        /*vignetterColor.value = new Color32(255, 0, 0, 0);*/
+        //vignetterColor.value = new Color32(255, 0, 0, 0);
 
 
         // reset abilit
