@@ -88,7 +88,7 @@ public class manager : MonoBehaviour
         public Vector3 LVL3Spawn = new Vector3(265, 215, 140);
         public Vector3 LVL4Spawn = new  Vector3(212, 403, 180);
         public Vector3 LVL5Spawn = new Vector3(212, 403, 180);
-        public Vector3 LVL6Spawn = new Vector3(212, 403, 180);
+        public Vector3 LVL6Spawn = new Vector3(0,0,0);
 
         public bool absorb = false;
         public bool absorb2 = false;

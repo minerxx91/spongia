@@ -4,6 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Tutorial : MonoBehaviour
@@ -23,7 +24,7 @@ public class Tutorial : MonoBehaviour
 
     GameObject borderTutorial;
 
-    string[] Texts = new string[] {"Môžeš sa hýbať ",
+    string[] Texts = new string[] {"Môžeš sa hýbať WASD",
                                     "Nepriatela si môžeš označiť namierením naňho a kliknutím pravého tlačidtka myši",
                                     "útočiť môžeš pomocou ľavého tlačitka myši",
                                     "útoky nepriateľov môžeš blokovať ľavím shiftom aby si zmenšil poškodenie, ktoré dostaneš","",
@@ -42,11 +43,15 @@ public class Tutorial : MonoBehaviour
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         managerVariables = GameObject.Find("Manager").GetComponent<manager>();
         controls = GameObject.Find("Manager").GetComponent<Controls>();
-        Text = GameObject.Find("TutorialText").GetComponent<TextMeshProUGUI>();
-        plane = GameObject.Find("TutorialPlane");
-        Invoke(nameof(startFreeze), 1.5f);
-        Texts[0] = "Môžeš sa hýbať " + controls.MoveUp + controls.MoveLeft + controls.MoveDown + controls.MoveRight;
-        borderTutorial = GameObject.Find("borderTutorial");
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            Text = GameObject.Find("TutorialText").GetComponent<TextMeshProUGUI>();
+            plane = GameObject.Find("TutorialPlane");
+            Invoke(nameof(startFreeze), 1.5f);
+            Texts[0] = "Môžeš sa hýbať " + controls.MoveUp + controls.MoveLeft + controls.MoveDown + controls.MoveRight;
+            borderTutorial = GameObject.Find("borderTutorial");
+        }
+            
     }
 
     void startFreeze()
@@ -59,141 +64,150 @@ public class Tutorial : MonoBehaviour
 
     void Update()
     {
-        if (borderTutorial.activeSelf)
+        if (SceneManager.GetActiveScene().buildIndex == 1)
         {
-            if(GameObject.Find("Enemy1") == null && GameObject.Find("Enemy2") == null && GameObject.Find("Enemy3") == null && GameObject.Find("Enemy4") == null && GameObject.Find("Enemy5") == null) borderTutorial.SetActive(false);
-        }
-        if (showText)
-        {
-            Text.text = Texts[postup];
-            plane.gameObject.SetActive(true);
-            audioManager.StopRun();
-        }
-        else
-        {
-            Text.text = "";
-            plane.gameObject.SetActive(false);
-        }
+            if (borderTutorial.activeSelf)
+            {
+                if (GameObject.Find("Enemy1") == null && GameObject.Find("Enemy2") == null && GameObject.Find("Enemy3") == null && GameObject.Find("Enemy4") == null && GameObject.Find("Enemy5") == null) borderTutorial.SetActive(false);
+            }
+            if (showText)
+            {
+                Text.text = Texts[postup];
+                plane.gameObject.SetActive(true);
+                audioManager.StopRun();
+            }
+            else
+            {
+                Text.text = "";
+                plane.gameObject.SetActive(false);
+            }
 
-        if (startFreezed)
-        {
-            if (postup == 0)
+            if (startFreezed)
             {
-                if (Input.GetKey(controls.MoveUp) || Input.GetKey(controls.MoveDown) || Input.GetKey(controls.MoveLeft) || Input.GetKey(controls.MoveRight))
+                if (postup == 0)
                 {
-                    postup++;
-                    showText = false;
-                    Time.timeScale = 1;
-                    print(postup);
+                    if (Input.GetKey(controls.MoveUp) || Input.GetKey(controls.MoveDown) || Input.GetKey(controls.MoveLeft) || Input.GetKey(controls.MoveRight))
+                    {
+                        postup++;
+                        showText = false;
+                        Time.timeScale = 1;
+                        print(postup);
+                    }
                 }
-            }
-            else if (postup == 1)
-            {
-                if (cube1)
+                else if (postup == 1)
                 {
-                    showText = true;
-                    
-                    print(cube1);
-                    Text.text = Texts[postup];
-                    plane.gameObject.SetActive(true);
-                    Time.timeScale = 0;
+                    if (cube1)
+                    {
+                        showText = true;
+
+                        print(cube1);
+                        Text.text = Texts[postup];
+                        plane.gameObject.SetActive(true);
+                        Time.timeScale = 0;
+                    }
+                    if (Input.GetKey(controls.LockTarget))
+                    {
+                        managerVariables.Player.target = GameObject.Find("Enemy1");
+                        postup++;
+                        showText = false;
+                        Time.timeScale = 1;
+                        print(postup);
+                    }
                 }
-                if (Input.GetKey(controls.LockTarget))
+                else if (postup == 2)
                 {
-                    managerVariables.Player.target = GameObject.Find("Enemy1");
-                    postup++;
-                    showText = false;
-                    Time.timeScale = 1;
-                    print(postup);
+                    if (showText == false)
+                    {
+                        managerVariables.Player.target = GameObject.Find("Enemy1");
+                        if (GameObject.Find("Enemy1").GetComponent<NavMeshAgent>().remainingDistance < 1.7f && GameObject.Find("Enemy1").GetComponent<NavMeshAgent>().remainingDistance != 0)
+                        {
+                            showText = true;
+                            Time.timeScale = 0;
+                        }
+                    }
+                    else if (Input.GetKey(controls.Attack))
+                    {
+                        postup++;
+                        showText = false;
+                        Time.timeScale = 1;
+                    }
+
                 }
-            }
-            else if (postup == 2)
-            {
-                if (showText == false)
+                else if (postup == 3)
                 {
-                    managerVariables.Player.target = GameObject.Find("Enemy1");
-                    if (GameObject.Find("Enemy1").GetComponent<NavMeshAgent>().remainingDistance < 1.7f && GameObject.Find("Enemy1").GetComponent<NavMeshAgent>().remainingDistance != 0)
+                    managerVariables.Player.target = GameObject.Find("Enemy2");
+                    if (GameObject.Find("Enemy2").GetComponent<NavMeshAgent>().remainingDistance < 1.7f && GameObject.Find("Enemy2").GetComponent<NavMeshAgent>().remainingDistance != 0)
                     {
                         showText = true;
                         Time.timeScale = 0;
                     }
+                    if (showText && Input.GetKey(controls.Block))
+                    {
+                        postup++;
+                        Invoke(nameof(DelayPostup), 1f);
+                        showText = false;
+                        Time.timeScale = 1;
+                    }
                 }
-                else if (Input.GetKey(controls.Attack))
+                else if (postup == 5)
                 {
-                    postup++;
-                    showText = false;
-                    Time.timeScale = 1;
+                    if (GameObject.Find("Enemy2").GetComponent<NavMeshAgent>().remainingDistance < 2)
+                    {
+                        managerVariables.Player.target = null;
+                        showText = true;
+                        Time.timeScale = 0;
+                    }
+                    if (showText && Input.GetKey(controls.Jump) && (Input.GetKey(controls.MoveUp) || Input.GetKey(controls.MoveDown) || Input.GetKey(controls.MoveLeft) || Input.GetKey(controls.MoveRight)))
+                    {
+                        postup++;
+                        Invoke(nameof(DelayPostup), 1f);
+                        showText = false;
+                        Time.timeScale = 1;
+                        GameObject.Find("Enemy2").GetComponent<EnemyPleb>().walkPoint = new Vector3(-47, 0.48f, -59);
+                        GameObject.Find("Enemy2").GetComponent<EnemyPleb>().DontAttack = true;
+                    }
                 }
-
-            }
-            else if (postup == 3)
-            {
-                managerVariables.Player.target = GameObject.Find("Enemy2");
-                if (GameObject.Find("Enemy2").GetComponent<NavMeshAgent>().remainingDistance < 1.7f && GameObject.Find("Enemy2").GetComponent<NavMeshAgent>().remainingDistance != 0)
+                else if (postup == 7 && cube2)
                 {
-                    showText = true;
                     Time.timeScale = 0;
-                }
-                if (showText && Input.GetKey(controls.Block))
-                {
-                    postup++;
-                    Invoke(nameof(DelayPostup), 1f);
-                    showText = false;
-                    Time.timeScale = 1;
-                }
-            }
-            else if (postup == 5)
-            {
-                if (GameObject.Find("Enemy2").GetComponent<NavMeshAgent>().remainingDistance < 2)
-                {
-                    managerVariables.Player.target = null;
                     showText = true;
+                    if (Input.GetKeyUp(KeyCode.Space))
+                    {
+                        postup++;
+                        //Time.timeScale = 1;
+                    }
+                }
+
+                else if (postup == 8)
+                {
                     Time.timeScale = 0;
+                    showText = true;
+                    if (Input.GetKeyUp(KeyCode.Space))
+                    {
+                        postup++;
+                        //Time.timeScale = 1;
+                    }
                 }
-                if (showText && Input.GetKey(controls.Jump) && (Input.GetKey(controls.MoveUp) || Input.GetKey(controls.MoveDown) || Input.GetKey(controls.MoveLeft) || Input.GetKey(controls.MoveRight)))
-                {
-                    postup++;
-                    Invoke(nameof(DelayPostup), 1f);
-                    showText = false;
-                    Time.timeScale = 1;
-                    GameObject.Find("Enemy2").GetComponent<EnemyPleb>().walkPoint = new Vector3(-47, 0.48f, -59);
-                    GameObject.Find("Enemy2").GetComponent<EnemyPleb>().DontAttack = true;
-                }
-            }
-            else if (postup == 7 && cube2)
-            {
-                Time.timeScale = 0;
-                showText = true;
-                if (Input.GetKeyUp(KeyCode.Space))
-                {
-                    postup++;
-                    //Time.timeScale = 1;
-                }
-            }
 
-            else if (postup == 8)
-            {
-                Time.timeScale = 0;
-                showText = true;
-                if (Input.GetKeyUp(KeyCode.Space))
+                else if (postup == 9)
                 {
-                    postup++;
-                    //Time.timeScale = 1;
-                }
-            }
-
-            else if (postup == 9)
-            {
-                Time.timeScale = 0;
-                showText = true;
-                if (Input.GetKeyUp(KeyCode.Space))
-                {
-                    postup++;
-                    showText = false;
-                    Time.timeScale = 1;
+                    Time.timeScale = 0;
+                    showText = true;
+                    if (Input.GetKeyUp(KeyCode.Space))
+                    {
+                        postup++;
+                        showText = false;
+                        Time.timeScale = 1;
+                    }
                 }
             }
         }
+        else
+        {
+            startFreezed = true;
+            showText = false;
+        }
+        
     }
 
     void DelayPostup()
