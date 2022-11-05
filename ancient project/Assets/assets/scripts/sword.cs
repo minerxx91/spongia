@@ -50,6 +50,26 @@ public class sword : MonoBehaviour
                     managerVariables.Minotaur.Health = 0;
                 }
             }
+            if (other.gameObject.name == "Hades")
+            {
+                if (this.gameObject.name == "ability1")
+                {
+                    other.GetComponent<Hades>().Stun = true;
+                }
+                else
+                {
+                    if (managerVariables.Hades.Health > managerVariables.Player.Damage + managerVariables.Player.DamageIncrease)
+                    {
+                        managerVariables.Hades.Health -= managerVariables.Player.Damage + managerVariables.Player.DamageIncrease;
+
+                    }
+                    else
+                    {
+                        managerVariables.Hades.Health = 0;
+                    }
+                }
+
+            }
             else if (other.gameObject.tag == "Enemy")
             {
                 if (other.gameObject.GetComponent<EnemyPleb>().Health > managerVariables.Player.Damage + managerVariables.Player.DamageIncrease)

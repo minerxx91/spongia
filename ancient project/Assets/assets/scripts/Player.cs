@@ -608,7 +608,7 @@ public class Player : MonoBehaviour
                     managerVariables.Player.Resistence = 0;
                     managerVariables.Player.Ability2timeToRageTick = 0;
                     managerVariables.Player.Ability2Raged = false;
-                    telo.color = new Color32(176, 133, 92, 255);
+                    telo.color = new Color32(200, 176, 154, 255);
 
                 }
             }
@@ -618,7 +618,7 @@ public class Player : MonoBehaviour
                     audioManager.PlayMinotaurGrow2();
                 if (this.gameObject.transform.localScale != managerVariables.Player.Ability2normalSize)
                     this.gameObject.transform.localScale -= new Vector3(0.01f, 0.01f, 0.01f);
-                //telo.color = new Color32(176, 133, 92, 255);
+                telo.color = new Color32(200, 176, 154, 255);
             }
 
 
