@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     AudioManager audioManager;
     Volume postprocesing;
     ColorParameter vignetterColor;
-    
+
 
     LevelLoader lvlloader;
     GameObject helpCanvas;
@@ -107,6 +107,7 @@ public class Player : MonoBehaviour
 
 
         postprocesing = GameObject.Find("Postprocessing").GetComponent<Volume>();
+        vignetterColor.value = new Color32(255, 0, 0, 0);
 
 
         // reset abilit
@@ -641,9 +642,11 @@ public class Player : MonoBehaviour
 
             }
 
-            /*
-            postprocesing.profile.GetComponent<Vignette>().color = new ColorParameter(new Color(1, 0, 0, 1), true);
-            */
+
+            //postprocesing.profile.GetComponent<Vignette>().color = vignetterColor;
+            
+
+
             if (managerVariables.Player.absorb)
             {
                 managerVariables.Player.absorb = false;

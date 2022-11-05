@@ -33,7 +33,7 @@ public class manager : MonoBehaviour
         public float MaxStamina = 100;
         public float StaminaRegen = 10;
 
-        public float Damage = 20 / 2;//   / 2 lebo pri attacku sa to jebne 2 krat
+        public float Damage = 20 / 2;   
         public float DamageIncrease = 0;
         public float Resistence = 0;
         public float BetweenAttackCooldown = .6f;
