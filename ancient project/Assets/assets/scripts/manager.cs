@@ -145,6 +145,7 @@ public class manager : MonoBehaviour
         DontDestroyOnLoad(postprocessing);
         DynamicGI.UpdateEnvironment();
         lvlloader = GameObject.Find("LevelLoader").GetComponent<LevelLoader>();
+
         this.GetComponent<Controls>().loadData();
 
     }
