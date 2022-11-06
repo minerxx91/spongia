@@ -27545,7 +27545,7 @@ MonoBehaviour:
   shield: {fileID: 4363468072218926850}
   helmet: {fileID: 5079685875317179243}
   helmet2: {fileID: 4126032719941680870}
-  belt: {fileID: 9199886861444378795}
+  belt: {fileID: 7274863805760425405}
   Fire: {fileID: 4157705495164883498}
   Ability1efect: {fileID: 4970380206390403521}
   trident: {fileID: 6557507184881375946}
@@ -27834,11 +27834,6 @@ PrefabInstance:
 --- !u!4 &6272678643939476868 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c3f96daac1599744bbb0cce5e209b07f, type: 3}
-  m_PrefabInstance: {fileID: 5802816116427088495}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &9199886861444378795 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -5824510187379060028, guid: c3f96daac1599744bbb0cce5e209b07f, type: 3}
   m_PrefabInstance: {fileID: 5802816116427088495}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5837930913940692588
