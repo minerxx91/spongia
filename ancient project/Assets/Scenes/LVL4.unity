@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 733657053}
-  m_IndirectSpecularColor: {r: 0.48396307, g: 0.57574326, b: 0.6802008, a: 1}
+  m_IndirectSpecularColor: {r: 0.48395744, g: 0.5757396, b: 0.68019843, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -461,6 +461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3edc54431dfd8b845b3e0a9a30205d97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
   smoothSpeed: 0.5
   offset: {x: 0, y: 4.84, z: -6.51}
   yOffset: 1.14
@@ -558,6 +559,15 @@ MonoBehaviour:
   ability2: 50
   ability3: 51
   ability4: 52
+  volume: 1
+  music: 1
+  soundEffects: 1
+  postProcessing: 1
+  effects: 1
+  motionBlur: 1
+  fov: 60
+  level: 1
+  difficulty: 1
   binds: 
   bind: {fileID: 0}
   error: {fileID: 0}
@@ -579,6 +589,7 @@ MonoBehaviour:
   GravityForce: 0.5
   ScenarioOrder: 0
   skapalUz: 0
+  paused: 1
 --- !u!4 &280459569
 Transform:
   m_ObjectHideFlags: 0
@@ -11384,7 +11395,7 @@ MonoBehaviour:
   RangedAbility: {fileID: 1642306019}
   RangedHitbox: {fileID: 1950919036}
   Bident: {fileID: 161029430}
-  AttackMelee1: {fileID: 0}
+  AttackMelee1: {fileID: 342932032}
   Stun: 0
   normalMaterial: {fileID: 2100000, guid: 4252b5f44fe01914a924e4097348b464, type: 2}
   stunMaterial: {fileID: 2100000, guid: e1cb81797082bc44c8f135c84c36eee6, type: 2}
@@ -11609,6 +11620,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3edc54431dfd8b845b3e0a9a30205d97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
   smoothSpeed: 0.5
   offset: {x: 0, y: 4.84, z: -6.51}
   yOffset: 1.14
