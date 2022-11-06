@@ -122,6 +122,7 @@ MonoBehaviour:
   Zeus: {fileID: 0}
   PlayerLvl1: {fileID: 0}
   PlayerLvl2: {fileID: 0}
+  Actions: 1
   subtitlesCanvas: {fileID: 4040500495425039491}
   UI: {fileID: 0}
   boss: {fileID: 0}
@@ -163,7 +164,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -700, y: 0}
+  m_AnchoredPosition: {x: -600, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6464222860678037258
@@ -319,7 +320,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 700, y: 0}
+  m_AnchoredPosition: {x: 600, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6000122505115186700
@@ -433,7 +434,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8377897304405453960, guid: befadeccc2fabac41913bf59be4f890e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 500
+      value: 625
       objectReference: {fileID: 0}
     - target: {fileID: 8377897304405453960, guid: befadeccc2fabac41913bf59be4f890e, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -539,7 +540,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3265658844488103964, guid: 02d58b49cca439c45848e98df5ff07c7, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -500
+      value: -625
       objectReference: {fileID: 0}
     - target: {fileID: 3265658844488103964, guid: 02d58b49cca439c45848e98df5ff07c7, type: 3}
       propertyPath: m_AnchoredPosition.y

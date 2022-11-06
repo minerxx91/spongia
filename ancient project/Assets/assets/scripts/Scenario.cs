@@ -57,7 +57,7 @@ public class Scenario : MonoBehaviour
         " zmietol s povrchu zemského ale potrebujem niekoho ako ty.", "Zeus:\n\nOčividne nie si len taký človek, si poloboh, s celkom veľkou mocou." +
         " Potrebujem niekoho ako ty, Poseidon a Hádes, moji braria sa proti mne obrátili. Chcú vládu nad svetom len pre seba a ty mi ich pomôžeš zastaviť.",
         "Hráč:\n\nAko asi to mám urobiť, obaja ma zabijú len škaredím pohľadom.", "Zeus:\n\nNie s týmto brnením, aj tak sú ale tvoje šance na úspech mizivé ale nemáme veľa času," +
-        " dostanem ťa k poseidonovy a zvyšok je na tebe.", "Zeus:\n\nNemárni čas slovami, budú čakať niekoho ako ty a budú sa ťa zabiť čo najskôr.", "Hráč:\n\nAle..." };
+        " dostanem ťa k poseidonovy a zvyšok je na tebe.", "Zeus:\n\nNemárni čas slovami, budú čakať niekoho ako ty a budú sa ťa snažiť zabiť čo najskôr.", "Hráč:\n\nAle..." };
     string[] Lvl3 = { "Zeus:\n\nZatiaľ si ma nesklamal, to sa ti musí nechať, ale táto úloha nebude taká ľahká. Hádesovi sa toto páčiť nebude, musíš sa ho zbaviť.",
         "Zeus:\n\nHľadal som ho v jeho časti sveta, podsvetí a nenašiel som nič, určite už obsadil Olymp, musíš sa ho zbaviť. Svet sa na teba spolieha." };
     string[] Lvl4 = { "Hádes:\n\nTakže si to dokázal, porazil si Zeusa, dúfal som že ho oslabíš ale toto som nečakal.",
@@ -168,6 +168,7 @@ public class Scenario : MonoBehaviour
             {
                 playerText.text = Lvl1[index];
                 image.SetActive(true);
+                audioManager.PlayPlayerDialog();
                 index++;
             }
             else
