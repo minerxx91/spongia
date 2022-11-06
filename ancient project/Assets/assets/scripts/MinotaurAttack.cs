@@ -23,9 +23,9 @@ public class MinotaurAttack : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            if (managerVariables.Player.Health > (managerVariables.Minotaur.Damage + managerVariables.Minotaur.DamageIncrease) * GameObject.Find("Manager").GetComponent<Controls>().difficulty)
+            if (managerVariables.Player.Health > (managerVariables.Minotaur.Damage + managerVariables.Minotaur.DamageIncrease))
             {
-                managerVariables.Player.Health -= (managerVariables.Minotaur.Damage + managerVariables.Minotaur.DamageIncrease)*(100- managerVariables.Player.Resistence) / 100 * GameObject.Find("Manager").GetComponent<Controls>().difficulty;
+                managerVariables.Player.Health -= (managerVariables.Minotaur.Damage + managerVariables.Minotaur.DamageIncrease)*(100- managerVariables.Player.Resistence) / 100;
                 if (managerVariables.Player.Resistence > 0)
                 {
                     audioManager.PlayPlayerShield();

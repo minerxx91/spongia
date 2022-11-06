@@ -25,9 +25,9 @@ public class manager : MonoBehaviour
     {
         public float Speed = 5;
 
-        public float MaxHealth = 1000;
-        public float Health = 1000;
-        public float HealthRegen = .5f;
+        public float MaxHealth = 100;
+        public float Health = 100;
+        public float HealthRegen = 2f;
 
         public float Stamina = 100;
         public float MaxStamina = 100;
@@ -53,7 +53,7 @@ public class manager : MonoBehaviour
         public float ShieldCooldown = 8;
         public float ShieldStaminaCost = 10;
 
-        public float Ability1Cooldown = 10f;
+        public float Ability1Cooldown = 20f;
         public float Ability1Duration = 5f;
         public float Ability1StaminaCost = 20;
 
@@ -65,7 +65,7 @@ public class manager : MonoBehaviour
         public bool Ability2Raged = false;
         public float Ability2timeToRageTick = 0;
 
-        public float Ability3Cooldown = 10f;
+        public float Ability3Cooldown = 15f;
         public float Ability3StaminaCost = 20;
         public float Ability3Damage = 40; //treba zmenit na  40
         public bool Ability3trident = true;
@@ -74,10 +74,10 @@ public class manager : MonoBehaviour
         public float gravityIncrease = 0;
         public GameObject target;
 
-        public bool MeduzaUnlocked = true;
-        public bool MinotaurUnlocked = true;
-        public bool PoseidonUnlocked = true;
-        public bool ZeusUnlocked = true;
+        public bool MeduzaUnlocked = false;
+        public bool MinotaurUnlocked = false;
+        public bool PoseidonUnlocked = false;
+        public bool ZeusUnlocked = false;
 
 
 

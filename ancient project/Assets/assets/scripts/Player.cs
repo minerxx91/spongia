@@ -136,6 +136,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        print(managerVariables.Player.Health);
         if(managerVariables.paused)
         {
             if (this.gameObject.scene.name != "Menu")
