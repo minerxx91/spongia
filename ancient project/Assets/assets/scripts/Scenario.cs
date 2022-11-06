@@ -150,7 +150,7 @@ public class Scenario : MonoBehaviour
     {
         clear();
         imageOther.GetComponent<Image>().sprite = King;
-        //audioManager.PlayKingDialog(0);
+
         if (index <= Lvl1.Length - 1)
         {
             if (Lvl1Field[index] == 0)
@@ -185,13 +185,14 @@ public class Scenario : MonoBehaviour
             {
                 playerText.text = Lvl2[index];
                 image.SetActive(true);
-                
+                audioManager.PlayPlayerDialog();
                 index++;
             }
             else
             {
                 othersText.text = Lvl2[index];
                 imageOther.SetActive(true);
+                audioManager.PlayKingDialog();
                 index++;
             }
         }
@@ -202,12 +203,14 @@ public class Scenario : MonoBehaviour
             {
                 playerText.text = Lvl2[index];
                 image.SetActive(true);
+                audioManager.PlayPlayerDialog();
                 index++;
             }
             else
             {
                 othersText.text = Lvl2[index];
                 imageOther.SetActive(true);
+                audioManager.PlayHadesDialog();
                 index++;
             }
         }
@@ -229,12 +232,14 @@ public class Scenario : MonoBehaviour
             {
                 playerText.text = Lvl3[index];
                 image.SetActive(true);
+                audioManager.PlayPlayerDialog();
                 index++;
             }
             else
             {
                 othersText.text = Lvl3[index];
                 imageOther.SetActive(true);
+                audioManager.PlayHadesDialog();
                 index++;
             }
         }
@@ -255,12 +260,14 @@ public class Scenario : MonoBehaviour
             {
                 playerText.text = Lvl4[index];
                 image.SetActive(true);
+                audioManager.PlayPlayerDialog();
                 index++;
             }
             else
             {
                 othersText.text = Lvl4[index];
                 imageOther.SetActive(true);
+                audioManager.PlayHadesDialog();
                 index++;
             }
         }
