@@ -8,6 +8,7 @@ public class manager : MonoBehaviour
    
 
     public static GameObject manager_d;
+    GameObject postprocessing;
 
     [SerializeField] GameObject playerPrefab;
 
@@ -18,8 +19,6 @@ public class manager : MonoBehaviour
     public float GravityForce = 1f;
 
     public int ScenarioOrder = 0;
-
-
 
     public class PlayerStats
     {
@@ -130,6 +129,7 @@ public class manager : MonoBehaviour
 
     private void Start()
     {
+        postprocessing = GameObject.Find("Postprocessing");
         if (manager_d != null)
         {
             Destroy(this.gameObject);
@@ -139,10 +139,11 @@ public class manager : MonoBehaviour
             manager_d = this.gameObject;
         }
         DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(postprocessing);
         DynamicGI.UpdateEnvironment();
         lvlloader = GameObject.Find("LevelLoader").GetComponent<LevelLoader>();
 
-        
+        this.GetComponent<Controls>().loadData();
     }
     public void DamagePlayer(float damage)
     {
@@ -214,7 +215,7 @@ public class manager : MonoBehaviour
                 }
             }
         }
-        
+        postprocessing.SetActive(this.GetComponent<Controls>().postProcessing);
     }
 
 
