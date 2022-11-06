@@ -209,6 +209,7 @@ public class manager : MonoBehaviour
     public void ToMenu()
     {
         SceneManager.LoadScene("Menu");
+        Time.timeScale = 1;
     }
 
     
