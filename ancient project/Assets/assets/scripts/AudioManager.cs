@@ -55,11 +55,8 @@ public class AudioManager : MonoBehaviour
     AudioSource[] AS;
     private void Start()
     {
-        AS = GetComponents<AudioSource>();
 
-        run = AS[1];
-        MusicList = AS[3];
-        print(AS[3]);
+
         if (Audiomanager_d != null)
         {
             Destroy(this.gameObject);
@@ -70,6 +67,14 @@ public class AudioManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
+
+
+        AS = GetComponents<AudioSource>();
+
+        run = AS[1];
+        MusicList = AS[3];
+        print(AS[3]);
+        
     }
     private void Update()
     {
