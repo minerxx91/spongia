@@ -12,6 +12,7 @@ public class manager : MonoBehaviour
 
 
     [SerializeField] GameObject playerPrefab;
+    [SerializeField] GameObject pauseCanvas;
 
     LevelLoader lvlloader;
 
@@ -132,6 +133,7 @@ public class manager : MonoBehaviour
 
     private void Start()
     {
+        pauseCanvas.SetActive(false);
         postprocessing = GameObject.Find("Postprocessing");
         if (manager_d != null)
         {
@@ -189,17 +191,24 @@ public class manager : MonoBehaviour
     private void PauseGame()
     {
 
-            Time.timeScale = 0;
-            paused = false;
+        Time.timeScale = 0;
+        paused = false;
+        pauseCanvas.SetActive(true);
         
     }
 
-    private void ResumeGame()
+    public void ResumeGame()
     {
 
-            Time.timeScale = 1;
-            paused = true;
+        Time.timeScale = 1;
+        paused = true;
+        pauseCanvas.SetActive(false);
         
+    }
+
+    public void ToMenu()
+    {
+        SceneManager.LoadScene("Menu");
     }
 
     
