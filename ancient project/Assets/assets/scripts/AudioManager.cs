@@ -59,6 +59,7 @@ public class AudioManager : MonoBehaviour
 
         run = AS[1];
         MusicList = AS[3];
+        print(AS[3]);
         if (Audiomanager_d != null)
         {
             Destroy(this.gameObject);
