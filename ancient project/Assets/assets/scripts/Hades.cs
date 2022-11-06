@@ -1,20 +1,16 @@
+using EZCameraShake;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
-using TMPro;
-using UnityEngine.UIElements;
-using Unity.VisualScripting;
-using UnityEngine.UIElements.Experimental;
-using EZCameraShake;
 
 public class Hades : MonoBehaviour
 {
+    private Animator anim;
     public NavMeshAgent agent;
     public float patrolingSpeed;
     public float chasingSpeed;
-
-    public Transform player;
 
     GameObject Manager;
     manager managerVariables;
@@ -35,38 +31,27 @@ public class Hades : MonoBehaviour
     bool RangerAttack = false;
     public float RangedAttackTime = 2.5f;
 
-
-    //States
-    float gravityIncrease = 0;
     public float sightRange, MeleeAttackRange, RangerAttackRange;
-    public bool playerInSightRange, playerInMeleeAttackRange, playerInRangerAttackRange, playerInRangerAttackRange2;
+    public bool playerInSightRange, playerInMeleeAttackRange, playerInRangerAttackRange;
 
 
-
-
-
-    //Particles
     ParticleSystem selectAura;
     Light orangeLight;
     [SerializeField] ParticleSystem RangedAbility;
     [SerializeField] GameObject RangedHitbox;
 
     [SerializeField] GameObject Bident;
-    [SerializeField] GameObject projectile; 
 
 
     private bool Animating;
-    private Animator anim;
     private Vector3 Targetposition;
 
     public GameObject AttackMelee1;
     //public GameObject AttackMelee2;
 
-    int meleeAnim = 0;
-    private bool MidAttackLook = false;
-    float abilityChasingTime = 0;
-    Vector3 runRotation;
-    private bool Charging;
+
+    Transform player;
+
     float randomSoundTime = 5;
     float randomSoundTick = 0;
     public bool Stun = false;
@@ -80,17 +65,16 @@ public class Hades : MonoBehaviour
     Shake CameraShake;
     CameraShaker CamShaker;
 
-    void Awake()
-    {
 
+    private void Awake()
+    {
         agent = GetComponent<NavMeshAgent>();
         rend = GetComponent<Renderer>();
 
         anim = GetComponent<Animator>();
-
-        //AttackMelee2.SetActive(false);
     }
-    private void Start()
+
+    void Start()
     {
         selectAura = transform.Find("Aura").GetComponent<ParticleSystem>();
         orangeLight = transform.Find("Orange").GetComponent<Light>();
@@ -105,30 +89,22 @@ public class Hades : MonoBehaviour
         CameraShake = MainCamera.GetComponent<Shake>();
         CamShaker = CameraShake.GetComponent<CameraShaker>();
 
+        managerVariables.Hades.Health = managerVariables.Hades.maxHealth;
     }
 
-    void DoAttackMelee1()
-    {
-        AttackMelee1.SetActive(true);
-        Invoke(nameof(ResetAttackMelee1), .1f);
-        CamShaker.ShakeOnce(2, 2, .1f, 1.3f);
-    }
-
-    void ResetAttackMelee1()
-    {
-        AttackMelee1.SetActive(false);
-    }
-
-
-
-
+   
+    
+    
 
     void Update()
     {
-
-
         if (!Stun)
         {
+            
+
+            ///////////////////////////////////
+            
+
             randomSoundTick += Time.deltaTime;
             if (randomSoundTick >= randomSoundTime)
             {
@@ -139,20 +115,7 @@ public class Hades : MonoBehaviour
 
                 //audioManager.PlayMinotaurChrcanie();
             }
-
-
-
-
-
-
-            if (abilityChasingTime < 0.5f)
-            {
-                abilityChasingTime += Time.deltaTime;
-                this.gameObject.transform.rotation = Quaternion.Euler(runRotation);
-
-            }
-
-
+       
 
             Targetposition = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
             if (!anim.GetCurrentAnimatorStateInfo(0).IsName("melee2"))
@@ -174,7 +137,7 @@ public class Hades : MonoBehaviour
 
             if (this.gameObject.name == "Hades")
             {
-                if (!playerInSightRange && !playerInMeleeAttackRange) Patroling();
+                if (!playerInSightRange && !playerInMeleeAttackRange) Chasing();
                 if (playerInSightRange && !playerInMeleeAttackRange && !GameObject.Find("Player").GetComponent<Player>().died) Chasing();
 
 
@@ -191,20 +154,11 @@ public class Hades : MonoBehaviour
             }
             else
             {
-                if (!playerInSightRange && !playerInMeleeAttackRange) Patroling();
+                if (!playerInSightRange && !playerInMeleeAttackRange) Chasing();
                 if (playerInSightRange && !playerInMeleeAttackRange && !GameObject.Find("Player").GetComponent<Player>().died) Chasing();
                 if (playerInRangerAttackRange && playerInSightRange && !GameObject.Find("Player").GetComponent<Player>().died) RangedAttacking();
                 if (playerInMeleeAttackRange && playerInSightRange && !GameObject.Find("Player").GetComponent<Player>().died) MeleeAttacking();
             }
-
-
-
-
-
-
-
-            materialDelay += Time.deltaTime;
-
 
             if (managerVariables.Player.target == this.gameObject)
             {
@@ -218,17 +172,7 @@ public class Hades : MonoBehaviour
                 orangeLight.gameObject.SetActive(false);
 
             }
-            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("walk")) agent.SetDestination(transform.position);
-
-            if (!gameObject.GetComponent<CharacterController>().isGrounded)
-            {
-                gravityIncrease += managerVariables.GravityForce * Time.deltaTime;
-
-            }
-            else
-            {
-                gravityIncrease = 0;
-            }
+            
         }
         else
         {
@@ -238,10 +182,8 @@ public class Hades : MonoBehaviour
             body.GetComponent<Renderer>().material = stunMaterial;
         }
 
-
-
-
     }
+
 
     void ResetStun()
     {
@@ -249,6 +191,7 @@ public class Hades : MonoBehaviour
         anim.speed = 1;
         body.GetComponent<Renderer>().material = normalMaterial;
     }
+
 
     private void Patroling()
     {
@@ -263,7 +206,6 @@ public class Hades : MonoBehaviour
 
 
     }
-
     private void SearchWalkPoint()
     {
         float randomZ = Random.Range(-walkPointRange, walkPointRange);
@@ -275,20 +217,17 @@ public class Hades : MonoBehaviour
 
     private void Chasing()
     {
-        
-        {
-            transform.LookAt(Targetposition);
-            anim.SetBool("walk", true);
-            agent.SetDestination(player.position);
-            agent.speed = chasingSpeed;
-        }
-        
+
+
+        transform.LookAt(Targetposition);
+        anim.SetBool("walk", true);
+        agent.SetDestination(player.position);
+        agent.speed = chasingSpeed;
 
 
 
 
     }
-
     private void MeleeAttacking()
     {
 
@@ -300,71 +239,30 @@ public class Hades : MonoBehaviour
         {
             alreadyAttacked = true;
             managerVariables.Hades.DamageIncrease = 0;
-            if (meleeAnim == 0)
+
             {
                 anim.SetTrigger("melee1");
-                meleeAnim = 1;
                 //SwingRight.Play();
                 //attack melee 1
 
 
-               
+
                 Invoke(nameof(ResetAttack), shorttimebetweenAttacks);
+
+
+
+
+
+                //Invoke(nameof(MeleeBlastParticel), 1f);
+               // Invoke(nameof(DoAttackMelee1), .72f);
             }
-            else
-            {
-                //anim.SetTrigger("melee2");
-                meleeAnim = 0;
-                //SwingLeft.Play();
-                //attack melee 2
-
-                
-
-                Invoke(nameof(ResetAttack), timeBetweenAttacks);
-            }
-
-
-
-            //Invoke(nameof(MeleeBlastParticel), 1f);
-            Invoke(nameof(DoAttackMelee1), .72f);
         }
-
-
-    }
-
-    void swingParticel()
-    {
-        //SwingRight.Play();
-        MidAttackLook = false;
-        Animating = true;
-    }
-
-
-
-    void EndCharge()
-    {
-        Charging = false;
-        anim.SetBool("charge", false);
-    }
-
-
-
-
-    void Charge()
-    {
-        anim.SetBool("charge", true);
-        Charging = true;
-        Invoke(nameof(EndCharge), 0.5f);
-        //runRotation = transform.rotation.eulerAngles;
-        //abilityChasingTime = 0;
-
-
 
 
     }
     void RangedAttacking()
     {
-        print("ranged");
+
         timebetweenRangedAttackstick += Time.deltaTime;
         if (timebetweenRangedAttackstick >= timebetweenRangedAttacks)
         {
@@ -377,8 +275,10 @@ public class Hades : MonoBehaviour
                 {
                     RangedAbility.Play();
                 }
-
-
+                agent.SetDestination(transform.position);
+                anim.SetBool("walk", false);
+               // anim.SetTrigger("range");
+                
                 print("ano");
                 if (timebetweenRangedAttackstick >= timebetweenRangedAttacks + RangedAttackTime)
                 {
@@ -390,12 +290,6 @@ public class Hades : MonoBehaviour
         }
     }
 
-    private void ResetAttack()
-    {
-        alreadyAttacked = false;
-    }
-
-
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
@@ -406,4 +300,10 @@ public class Hades : MonoBehaviour
 
         Gizmos.DrawWireSphere(transform.position, RangerAttackRange);
     }
+    private void ResetAttack()
+    {
+        alreadyAttacked = false;
+    }
+
+
 }

@@ -24,8 +24,8 @@ public class manager : MonoBehaviour
     {
         public float Speed = 5;
 
-        public float MaxHealth = 100000;
-        public float Health = 100000;
+        public float MaxHealth = 1000;
+        public float Health = 1000;
         public float HealthRegen = .5f;
 
         public float Stamina = 100;
@@ -41,7 +41,7 @@ public class manager : MonoBehaviour
         public bool AttackReady = true;
         public float AttackCost = 5f;
 
-        public bool enlightened = true;
+        public bool enlightened = false;
 
         public float JumpSpeed = 1.5f;
         public float JumpTime = 0.8f;
@@ -75,7 +75,7 @@ public class manager : MonoBehaviour
 
         public bool MeduzaUnlocked = true;
         public bool MinotaurUnlocked = true;
-        public bool PoseidonUnlocked = true;
+        public bool PoseidonUnlocked = false;
         public bool ZeusUnlocked = true;
 
 
@@ -114,9 +114,9 @@ public class manager : MonoBehaviour
 
     public class HadesStats
     {
-        public float Health = 250;
-        public float maxHealth = 250;
-        public float Damage = 15;
+        public float Health = 750;
+        public float maxHealth = 750;
+        public float Damage = 20;
         public float DamageIncrease = 0;
     }
 
@@ -212,6 +212,28 @@ public class manager : MonoBehaviour
                     Player.PoseidonUnlocked = true;
                     Invoke(nameof(toLobby), 5);
                     ScenarioOrder =  3;
+                }
+            }
+            if (GameObject.FindGameObjectsWithTag("Boss")[0].name == "Meduza")
+            {
+                if (Poseidon.Health == 0)
+                {
+                    print("endgame");
+                    Destroy(GameObject.FindGameObjectsWithTag("Boss")[0].gameObject);
+                    Player.PoseidonUnlocked = true;
+                    Invoke(nameof(toLobby), 5);
+                    ScenarioOrder = 1;
+                }
+            }
+            if (GameObject.FindGameObjectsWithTag("Boss")[0].name == "Zeus")
+            {
+                if (Poseidon.Health == 0)
+                {
+                    print("endgame");
+                    Destroy(GameObject.FindGameObjectsWithTag("Boss")[0].gameObject);
+                    Player.PoseidonUnlocked = true;
+                    Invoke(nameof(toLobby), 5);
+                    ScenarioOrder = 4;
                 }
             }
         }

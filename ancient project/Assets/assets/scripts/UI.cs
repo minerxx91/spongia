@@ -237,28 +237,46 @@ private void Update()
 
 
 
-
-
-        if (GameObject.FindGameObjectsWithTag("Boss").Length != 0)
+        if(!(this.gameObject.scene.name == "Lobby"))
         {
-            if (GameObject.FindGameObjectsWithTag("Boss")[0].gameObject.name == "Poseidon")
+
+            BossBar.SetActive(true);
+            BossName.gameObject.SetActive(true);
+
+            if (GameObject.FindGameObjectsWithTag("Boss").Length != 0)
             {
-                float bossHealth = managerVariables.Poseidon.Health;
-                float dielikBoss = 1800 / managerVariables.Poseidon.maxHealth;
-                BossBar.transform.localScale = new Vector2((bossHealth * dielikBoss) / 1800, BossBar.transform.localScale.y);
-                BossName.text = "Poseidon";
+                if (GameObject.FindGameObjectsWithTag("Boss")[0].gameObject.name == "Poseidon")
+                {
+                    float bossHealth = managerVariables.Poseidon.Health;
+                    float dielikBoss = 1800 / managerVariables.Poseidon.maxHealth;
+                    BossBar.transform.localScale = new Vector2((bossHealth * dielikBoss) / 1800, BossBar.transform.localScale.y);
+                    BossName.text = "Poseidon";
+                }
+                else if (GameObject.FindGameObjectsWithTag("Boss")[0].gameObject.name == "Minotaur")
+                {
+                    float bossHealth = managerVariables.Minotaur.Health;
+                    float dielikBoss = 900 / managerVariables.Minotaur.maxHealth;
+                    BossBar.transform.localScale = new Vector2((bossHealth * dielikBoss) / 900, BossBar.transform.localScale.y);
+                    BossName.text = "Minotaur";
+                }
+                else if (GameObject.FindGameObjectsWithTag("Boss")[0].gameObject.name == "Hades")
+                {
+                    float bossHealth = managerVariables.Hades.Health;
+                    float dielikBoss = 900 / managerVariables.Hades.maxHealth;
+                    BossBar.transform.localScale = new Vector2((bossHealth * dielikBoss) / 900, BossBar.transform.localScale.y);
+                    BossName.text = "Hades";
+                }
+
+
             }
-            else if (GameObject.FindGameObjectsWithTag("Boss")[0].gameObject.name == "Minotaur")
-            {
-                float bossHealth = managerVariables.Minotaur.Health;
-                float dielikBoss = 900 / managerVariables.Minotaur.maxHealth;
-                BossBar.transform.localScale = new Vector2((bossHealth * dielikBoss) / 900, BossBar.transform.localScale.y);
-                BossName.text = "Minotaur";
-            }
-
-
-
         }
+        else
+        {
+            BossBar.SetActive(false);
+            BossName.gameObject.SetActive(false);
+        }
+
+        
 
 
 

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-
+    public float GlobalVolume = 1;
+    public float MusicVolume = 1;
     public static GameObject Audiomanager_d;
 
     [SerializeField] AudioClip PlayerAttack1;
@@ -53,6 +54,8 @@ public class AudioManager : MonoBehaviour
     AudioSource MusicList;
 
     AudioSource[] AS;
+
+    
     private void Start()
     {
 
@@ -71,6 +74,9 @@ public class AudioManager : MonoBehaviour
 
         AS = GetComponents<AudioSource>();
 
+        
+
+
         run = AS[1];
         MusicList = AS[3];
         print(AS[3]);
@@ -84,7 +90,13 @@ public class AudioManager : MonoBehaviour
             {
                 PlayMusic(0);
             }
+
         }
+        for (int i = 0; i < AS.Length; i++)
+        {
+            AS[i].volume = GlobalVolume;
+        }
+        MusicList.volume *= MusicVolume;
     }
     public void PlayRun()
     {

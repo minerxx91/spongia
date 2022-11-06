@@ -53,6 +53,7 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject helmet2;
     [SerializeField] GameObject belt;
     [SerializeField] ParticleSystem Fire;
+    [SerializeField] ParticleSystem Ability1efect;
 
 
     [SerializeField] GameObject trident;
@@ -422,7 +423,7 @@ public class Player : MonoBehaviour
 
 
                 // healtzh regen
-                if (managerVariables.Player.Health + managerVariables.Player.HealthRegen < managerVariables.Player.MaxHealth)
+                if (managerVariables.Player.Health + managerVariables.Player.HealthRegen * Time.deltaTime < managerVariables.Player.MaxHealth)
                 {
                     managerVariables.Player.Health += managerVariables.Player.HealthRegen * Time.deltaTime;
                 }
@@ -556,7 +557,7 @@ public class Player : MonoBehaviour
 
                 if (!Input.GetKey(controls.Attack)) Mouse0Avaiable = true;
                 // stamina regen
-                if (managerVariables.Player.Stamina + managerVariables.Player.StaminaRegen < managerVariables.Player.MaxStamina)
+                if (managerVariables.Player.Stamina + managerVariables.Player.StaminaRegen * Time.deltaTime < managerVariables.Player.MaxStamina)
                 {
                     managerVariables.Player.Stamina += managerVariables.Player.StaminaRegen * Time.deltaTime;
                 }
@@ -571,6 +572,7 @@ public class Player : MonoBehaviour
                     {
                         if (managerVariables.Player.Ability1StaminaCost <= managerVariables.Player.Stamina)
                         {
+                            Ability1efect.Play();
                             audioManager.PlayAbility1();
                             Invoke(nameof(ResetAbility1), .1f);
                             ability1.SetActive(true);
