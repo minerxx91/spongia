@@ -115,9 +115,9 @@ public class manager : MonoBehaviour
 
     public class HadesStats
     {
-        public float Health = 250;
-        public float maxHealth = 250;
-        public float Damage = 15;
+        public float Health = 750;
+        public float maxHealth = 750;
+        public float Damage = 20;
         public float DamageIncrease = 0;
     }
 

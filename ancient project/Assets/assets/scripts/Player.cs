@@ -53,6 +53,7 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject helmet2;
     [SerializeField] GameObject belt;
     [SerializeField] ParticleSystem Fire;
+    [SerializeField] ParticleSystem Ability1efect;
 
 
     [SerializeField] GameObject trident;
@@ -571,6 +572,7 @@ public class Player : MonoBehaviour
                     {
                         if (managerVariables.Player.Ability1StaminaCost <= managerVariables.Player.Stamina)
                         {
+                            Ability1efect.Play();
                             audioManager.PlayAbility1();
                             Invoke(nameof(ResetAbility1), .1f);
                             ability1.SetActive(true);

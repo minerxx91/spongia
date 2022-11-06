@@ -100,6 +100,9 @@ public class Poseidon : MonoBehaviour
         MainCamera = GameObject.Find("Main Camera").gameObject;
         CameraShake = MainCamera.GetComponent<Shake>();
         CamShaker = CameraShake.GetComponent<CameraShaker>();
+
+        managerVariables.Poseidon.Health = managerVariables.Poseidon.maxHealth;
+
     }
 
     void DoAttackMelee1()

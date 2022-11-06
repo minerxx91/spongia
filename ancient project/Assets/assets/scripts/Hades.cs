@@ -105,6 +105,8 @@ public class Hades : MonoBehaviour
         CameraShake = MainCamera.GetComponent<Shake>();
         CamShaker = CameraShake.GetComponent<CameraShaker>();
 
+        managerVariables.Hades.Health = managerVariables.Hades.maxHealth;
+
     }
 
     void DoAttackMelee1()
@@ -275,14 +277,13 @@ public class Hades : MonoBehaviour
 
     private void Chasing()
     {
+
         
-        {
-            transform.LookAt(Targetposition);
-            anim.SetBool("walk", true);
-            agent.SetDestination(player.position);
-            agent.speed = chasingSpeed;
-        }
-        
+        transform.LookAt(Targetposition);
+        anim.SetBool("walk", true);
+        agent.SetDestination(player.position);
+        agent.speed = chasingSpeed;
+
 
 
 

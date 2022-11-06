@@ -102,6 +102,8 @@ public class Minotaur : MonoBehaviour
         CameraShake = MainCamera.GetComponent<Shake>();
         CamShaker = CameraShake.GetComponent<CameraShaker>();
 
+        managerVariables.Minotaur.Health = managerVariables.Minotaur.maxHealth;
+
     }
 
     void DoAttackMelee1()
