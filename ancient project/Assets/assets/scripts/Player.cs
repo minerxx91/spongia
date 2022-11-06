@@ -422,7 +422,7 @@ public class Player : MonoBehaviour
 
 
                 // healtzh regen
-                if (managerVariables.Player.Health + managerVariables.Player.HealthRegen < managerVariables.Player.MaxHealth)
+                if (managerVariables.Player.Health + managerVariables.Player.HealthRegen * Time.deltaTime < managerVariables.Player.MaxHealth)
                 {
                     managerVariables.Player.Health += managerVariables.Player.HealthRegen * Time.deltaTime;
                 }
@@ -556,7 +556,7 @@ public class Player : MonoBehaviour
 
                 if (!Input.GetKey(controls.Attack)) Mouse0Avaiable = true;
                 // stamina regen
-                if (managerVariables.Player.Stamina + managerVariables.Player.StaminaRegen < managerVariables.Player.MaxStamina)
+                if (managerVariables.Player.Stamina + managerVariables.Player.StaminaRegen * Time.deltaTime < managerVariables.Player.MaxStamina)
                 {
                     managerVariables.Player.Stamina += managerVariables.Player.StaminaRegen * Time.deltaTime;
                 }
