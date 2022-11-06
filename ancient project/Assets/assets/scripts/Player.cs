@@ -51,6 +51,7 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject shield;
     [SerializeField] GameObject helmet;
     [SerializeField] GameObject helmet2;
+    [SerializeField] GameObject belt;
     [SerializeField] ParticleSystem Fire;
 
 
@@ -686,6 +687,7 @@ public class Player : MonoBehaviour
                     sword2.SetActive(true);
                     sword.SetActive(false);
                     shield.GetComponent<Renderer>().material = ZlataZbroj;
+                    belt.GetComponent<Renderer>().material = ZlataZbroj;
                 }
                 else
                 {
@@ -694,6 +696,7 @@ public class Player : MonoBehaviour
                     sword2.SetActive(false);
                     sword.SetActive(true);
                     shield.GetComponent<Renderer>().material = OcelovaZbroj;
+                    belt.GetComponent<Renderer>().material = OcelovaZbroj;
                 }
 
 
