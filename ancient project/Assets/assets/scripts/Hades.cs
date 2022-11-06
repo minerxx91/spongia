@@ -283,7 +283,7 @@ public class Hades : MonoBehaviour
         anim.SetBool("walk", true);
         agent.SetDestination(player.position);
         agent.speed = chasingSpeed;
-
+        print(agent.destination);
 
 
 
