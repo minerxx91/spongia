@@ -8,6 +8,8 @@ public class manager : MonoBehaviour
    
 
     public static GameObject manager_d;
+    GameObject postprocessing;
+
 
     [SerializeField] GameObject playerPrefab;
 
@@ -19,14 +21,12 @@ public class manager : MonoBehaviour
 
     public int ScenarioOrder = 0;
 
-
-
     public class PlayerStats
     {
         public float Speed = 5;
 
-        public float MaxHealth = 100;
-        public float Health = 100;
+        public float MaxHealth = 1000;
+        public float Health = 1000;
         public float HealthRegen = .5f;
 
         public float Stamina = 100;
@@ -42,7 +42,7 @@ public class manager : MonoBehaviour
         public bool AttackReady = true;
         public float AttackCost = 5f;
 
-        public bool enlightened = false;
+        public bool enlightened = true;
 
         public float JumpSpeed = 1.5f;
         public float JumpTime = 0.8f;
@@ -76,7 +76,7 @@ public class manager : MonoBehaviour
 
         public bool MeduzaUnlocked = true;
         public bool MinotaurUnlocked = true;
-        public bool PoseidonUnlocked = false;
+        public bool PoseidonUnlocked = true;
         public bool ZeusUnlocked = true;
 
 
@@ -128,8 +128,11 @@ public class manager : MonoBehaviour
         Save.loadSystem();
     }
 
+
+
     private void Start()
     {
+        postprocessing = GameObject.Find("Postprocessing");
         if (manager_d != null)
         {
             Destroy(this.gameObject);
@@ -139,10 +142,11 @@ public class manager : MonoBehaviour
             manager_d = this.gameObject;
         }
         DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(postprocessing);
         DynamicGI.UpdateEnvironment();
         lvlloader = GameObject.Find("LevelLoader").GetComponent<LevelLoader>();
+        this.GetComponent<Controls>().loadData();
 
-        
     }
     public void DamagePlayer(float damage)
     {
@@ -179,8 +183,45 @@ public class manager : MonoBehaviour
      public bool skapalUz = false;
      bool MedusaUz = false;
 
+    public bool paused = true;
+
+    private void PauseGame()
+    {
+
+            Time.timeScale = 0;
+            paused = false;
+        
+    }
+
+    private void ResumeGame()
+    {
+
+            Time.timeScale = 1;
+            paused = true;
+        
+    }
+
+    
+
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (paused)
+            {
+                PauseGame();
+            }
+            else
+            {
+                ResumeGame();
+            }
+        }
+
+
+
+
+
+
         if (Player.Health <= 0 && ! skapalUz)
         {
             GameObject.Find("Player").GetComponent<Player>().died = true;
@@ -215,7 +256,30 @@ public class manager : MonoBehaviour
                     ScenarioOrder =  3;
                 }
             }
+            if (GameObject.FindGameObjectsWithTag("Boss")[0].name == "Meduza")
+            {
+                if (Poseidon.Health == 0)
+                {
+                    print("endgame");
+                    Destroy(GameObject.FindGameObjectsWithTag("Boss")[0].gameObject);
+                    Player.PoseidonUnlocked = true;
+                    Invoke(nameof(toLobby), 5);
+                    ScenarioOrder = 1;
+                }
+            }
+            if (GameObject.FindGameObjectsWithTag("Boss")[0].name == "Zeus")
+            {
+                if (Poseidon.Health == 0)
+                {
+                    print("endgame");
+                    Destroy(GameObject.FindGameObjectsWithTag("Boss")[0].gameObject);
+                    Player.PoseidonUnlocked = true;
+                    Invoke(nameof(toLobby), 5);
+                    ScenarioOrder = 4;
+                }
+            }
         }
+
         if (1 == 1)
         {
             if (SceneManager.GetActiveScene().buildIndex == 1 && !MedusaUz)
@@ -229,5 +293,9 @@ public class manager : MonoBehaviour
                 }
             }
         }
+
+        postprocessing.SetActive(this.GetComponent<Controls>().postProcessing);
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().MusicVolume = this.GetComponent<Controls>().volume;
+
     }
 }

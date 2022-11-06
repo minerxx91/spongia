@@ -26,9 +26,9 @@ public class PoseidonAttack : MonoBehaviour
             if (this.gameObject.name == "AttackMelee2" || gameObject.name == "AttackMelee1")
             {
                 print("melee");
-                if (managerVariables.Player.Health > managerVariables.Poseidon.Damage + managerVariables.Poseidon.DamageIncrease)
+                if (managerVariables.Player.Health > (managerVariables.Poseidon.Damage + managerVariables.Poseidon.DamageIncrease) * GameObject.Find("Manager").GetComponent<Controls>().difficulty)
                 {
-                    managerVariables.Player.Health -= (managerVariables.Poseidon.Damage + managerVariables.Poseidon.DamageIncrease) * (100 - managerVariables.Player.Resistence) / 100;
+                    managerVariables.Player.Health -= (managerVariables.Poseidon.Damage + managerVariables.Poseidon.DamageIncrease) * (100 - managerVariables.Player.Resistence) / 100 * GameObject.Find("Manager").GetComponent<Controls>().difficulty;
                     if (managerVariables.Player.Resistence > 0)
                     {
                         if (managerVariables.Player.ShieldStaminaCost <= managerVariables.Player.Stamina)
@@ -54,9 +54,9 @@ public class PoseidonAttack : MonoBehaviour
             if (this.gameObject.name == "EnemyTrident")
             {
                 print("trident");
-                if (managerVariables.Player.Health > managerVariables.Poseidon.Damage + managerVariables.Poseidon.DamageIncrease)
+                if (managerVariables.Player.Health > (managerVariables.Poseidon.Damage + managerVariables.Poseidon.DamageIncrease) * GameObject.Find("Manager").GetComponent<Controls>().difficulty)
                 {
-                    managerVariables.Player.Health -= (managerVariables.Poseidon.Damage + managerVariables.Poseidon.DamageIncrease) * (100 - managerVariables.Player.Resistence) / 100;
+                    managerVariables.Player.Health -= (managerVariables.Poseidon.Damage + managerVariables.Poseidon.DamageIncrease) * (100 - managerVariables.Player.Resistence) / 100 * GameObject.Find("Manager").GetComponent<Controls>().difficulty;
                     if (managerVariables.Player.Resistence > 0)
                     {
                         if (managerVariables.Player.ShieldStaminaCost <= managerVariables.Player.Stamina)

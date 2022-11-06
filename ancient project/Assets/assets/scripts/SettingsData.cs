@@ -24,6 +24,18 @@ public class SettingsData
     public KeyCode ability3;
     public KeyCode ability4;
 
+    public float volume;
+    public float music;
+    public bool soundEffects;
+
+    public bool postProcessing;
+    public bool effects;
+    public bool motionBlur;
+    public float fov;
+
+    public int level;
+    public float difficulty;
+
     public SettingsData(Controls controls)
     {
         MoveUp = controls.MoveUp;
@@ -43,5 +55,14 @@ public class SettingsData
         ability2 = controls.ability2;
         ability3 = controls.ability3;
         ability4 = controls.ability4;
-    }
+
+        volume = controls.volume;
+        music = controls.music;
+        soundEffects = controls.soundEffects;
+
+        postProcessing = controls.postProcessing;
+        effects = controls.effects;
+        motionBlur = controls.motionBlur;
+        fov = controls.fov;
+}
 }
