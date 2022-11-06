@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 733657053}
-  m_IndirectSpecularColor: {r: 0.48396307, g: 0.57574326, b: 0.6802008, a: 1}
+  m_IndirectSpecularColor: {r: 0.48395744, g: 0.5757396, b: 0.68019843, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -106,7 +106,7 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.5
+    agentRadius: 0.35
     agentHeight: 2
     agentSlope: 45
     agentClimb: 0.4
@@ -114,7 +114,7 @@ NavMeshSettings:
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.16666667
+    cellSize: 0.11666667
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -8769,6 +8769,7 @@ GameObject:
   - component: {fileID: 1303593788}
   - component: {fileID: 1303593786}
   - component: {fileID: 1303593792}
+  - component: {fileID: 1303593793}
   m_Layer: 8
   m_Name: Hades
   m_TagString: Boss
@@ -8876,7 +8877,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1303593784}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 218f13e878606ff42a46ef0e32782488, type: 3}
   m_Name: 
@@ -8892,7 +8893,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   walkPoint: {x: 216.59, y: 402.13315, z: 227.16}
-  walkPointRange: 2
+  walkPointRange: 10.22
   timeBetweenAttacks: 2
   timebetweenRangedAttacks: 10
   shorttimebetweenAttacks: 2
@@ -8913,6 +8914,34 @@ MonoBehaviour:
   normalMaterial: {fileID: 2100000, guid: ae21a33b8ea312443b4345553c3e664a, type: 2}
   stunMaterial: {fileID: 2100000, guid: e1cb81797082bc44c8f135c84c36eee6, type: 2}
   body: {fileID: 1071354090}
+--- !u!114 &1303593793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1303593784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d92540c4d7e86704d82cabe809f88883, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 0}
+  patrolingSpeed: 1
+  chasingSpeed: 2
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 128
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 64
+  sightRange: 0
+  MeleeAttackRange: 0
+  RangerAttackRange: 0
+  playerInSightRange: 0
+  playerInMeleeAttackRange: 0
+  playerInRangerAttackRange: 0
+  playerInRangerAttackRange2: 0
 --- !u!1 &1341549769
 GameObject:
   m_ObjectHideFlags: 0
