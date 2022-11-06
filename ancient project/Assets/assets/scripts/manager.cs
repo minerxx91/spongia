@@ -42,7 +42,7 @@ public class manager : MonoBehaviour
         public bool AttackReady = true;
         public float AttackCost = 5f;
 
-        public bool enlightened = true;
+        public bool enlightened = false;
 
         public float JumpSpeed = 1.5f;
         public float JumpTime = 0.8f;
@@ -76,7 +76,7 @@ public class manager : MonoBehaviour
 
         public bool MeduzaUnlocked = true;
         public bool MinotaurUnlocked = true;
-        public bool PoseidonUnlocked = true;
+        public bool PoseidonUnlocked = false;
         public bool ZeusUnlocked = true;
 
 
