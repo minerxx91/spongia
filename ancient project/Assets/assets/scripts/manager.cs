@@ -8,6 +8,7 @@ public class manager : MonoBehaviour
    
 
     public static GameObject manager_d;
+    GameObject postprocessing;
 
     [SerializeField] GameObject playerPrefab;
 
@@ -19,14 +20,12 @@ public class manager : MonoBehaviour
 
     public int ScenarioOrder = 0;
 
-
-
     public class PlayerStats
     {
         public float Speed = 5;
 
-        public float MaxHealth = 100;
-        public float Health = 100;
+        public float MaxHealth = 1000;
+        public float Health = 1000;
         public float HealthRegen = .5f;
 
         public float Stamina = 100;
@@ -130,6 +129,7 @@ public class manager : MonoBehaviour
 
     private void Start()
     {
+        postprocessing = GameObject.Find("Postprocessing");
         if (manager_d != null)
         {
             Destroy(this.gameObject);
@@ -139,10 +139,11 @@ public class manager : MonoBehaviour
             manager_d = this.gameObject;
         }
         DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(postprocessing);
         DynamicGI.UpdateEnvironment();
         lvlloader = GameObject.Find("LevelLoader").GetComponent<LevelLoader>();
 
-        
+        this.GetComponent<Controls>().loadData();
     }
     public void DamagePlayer(float damage)
     {
@@ -213,8 +214,30 @@ public class manager : MonoBehaviour
                     ScenarioOrder =  3;
                 }
             }
+            if (GameObject.FindGameObjectsWithTag("Boss")[0].name == "Meduza")
+            {
+                if (Poseidon.Health == 0)
+                {
+                    print("endgame");
+                    Destroy(GameObject.FindGameObjectsWithTag("Boss")[0].gameObject);
+                    Player.PoseidonUnlocked = true;
+                    Invoke(nameof(toLobby), 5);
+                    ScenarioOrder = 1;
+                }
+            }
+            if (GameObject.FindGameObjectsWithTag("Boss")[0].name == "Zeus")
+            {
+                if (Poseidon.Health == 0)
+                {
+                    print("endgame");
+                    Destroy(GameObject.FindGameObjectsWithTag("Boss")[0].gameObject);
+                    Player.PoseidonUnlocked = true;
+                    Invoke(nameof(toLobby), 5);
+                    ScenarioOrder = 4;
+                }
+            }
         }
-        
+        postprocessing.SetActive(this.GetComponent<Controls>().postProcessing);
     }
 
 

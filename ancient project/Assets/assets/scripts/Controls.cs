@@ -4,6 +4,7 @@ using System.Collections;
 using System;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class Controls : MonoBehaviour
@@ -27,12 +28,22 @@ public class Controls : MonoBehaviour
     public KeyCode ability3 = KeyCode.Alpha3;
     public KeyCode ability4 = KeyCode.Alpha4;
 
+    public float volume = 1f;
+    public bool music = true;
+    public bool soundEffects = true;
+
+    public bool postProcessing = true;
+    public bool effects = true;
+    public bool motionBlur = true;
+    public float fov = 60f;
+
     public List<KeyCode> binds = new List<KeyCode>(13);
     bool free = true;
     [SerializeField] GameObject bind;
     [SerializeField] GameObject error;
     GameObject button;
     [SerializeField] GameObject[] buttons;
+
     private void Awake()
     {
 
@@ -107,15 +118,107 @@ public class Controls : MonoBehaviour
         binds[1] = data.MoveDown;
         binds[2] = data.MoveLeft;
         binds[3] = data.MoveRight;
-        binds[5] = data.Block;
-        binds[6] = data.Attack;
-        binds[7] = data.LockTarget;
-        binds[8] = data.Jump;
+        binds[4] = data.Block;
+        binds[5] = data.Attack;
+        binds[6] = data.LockTarget;
+        binds[7] = data.Jump;
+        binds[8] = data.Interact;
         binds[9] = data.ability1;
         binds[10] = data.ability2;
         binds[11] = data.ability3;
         binds[12] = data.ability4;
+
+        volume = data.volume;
+        music = data.music;
+        soundEffects = data.soundEffects;
+
+        postProcessing = data.postProcessing;
+        effects = data.effects;
+        motionBlur = data.motionBlur;
+        fov = data.fov;
     }
+
+    public void refreshGraphics()
+    {
+        GameObject.Find("togglePostProcessing").GetComponent<Toggle>().isOn = postProcessing;
+        GameObject.Find("toggleEffects").GetComponent<Toggle>().isOn = effects;
+        GameObject.Find("toggleMotionBlur").GetComponent<Toggle>().isOn = motionBlur;
+        GameObject.Find("sliderFov").GetComponent<Slider>().value = fov;
+    }
+
+    public void togglePostProcessing()
+    {
+        bool toggler = GameObject.Find("togglePostProcessing").GetComponent<Toggle>().isOn;
+        if (toggler)
+        {
+            postProcessing = true;
+        }
+        else postProcessing = false;
+        //GameObject.Find("Postprocessing").SetActive(postProcessing);
+    }
+
+    public void toggleEffects()
+    {
+        bool toggler = GameObject.Find("toggleEffects").GetComponent<Toggle>().isOn;
+        if (toggler)
+        {
+            effects = true;
+        }
+        else effects = false;
+    }
+
+    public void toggleMotionBlur()
+    {
+        bool toggler = GameObject.Find("toggleMotionBlur").GetComponent<Toggle>().isOn;
+        if (toggler)
+        {
+            motionBlur = true;
+        }
+        else motionBlur = false;
+    }
+
+    public void setFov()
+    {
+        fov = GameObject.Find("sliderFov").GetComponent<Slider>().value;
+        GameObject.Find("Main Camera").GetComponent<Camera>().fieldOfView = fov;
+    }
+
+    public void refreshSound()
+    {
+        GameObject.Find("sliderVolume").GetComponent<Slider>().value = volume;
+        GameObject.Find("toggleMusic").GetComponent<Toggle>().isOn = music;
+        GameObject.Find("toggleSoundEffects").GetComponent<Toggle>().isOn = soundEffects;
+    }
+
+    public void setVolume()
+    {
+        print(EventSystem.current.currentSelectedGameObject.name);
+        volume = GameObject.Find("sliderVolume").GetComponent<Slider>().value;
+        print(volume);
+    }
+
+    public void toggleMusic()
+    {
+        bool toggler = GameObject.Find("toggleMusic").GetComponent<Toggle>().isOn;
+        if (toggler)
+        {
+            music = true;
+        }
+        else music = false;
+        print(music);
+    }
+
+    public void toggleSoundEffects()
+    {
+        bool toggler = GameObject.Find("toggleSoundEffects").GetComponent<Toggle>().isOn;
+        if (toggler)
+        {
+            soundEffects = true;
+        }
+        else soundEffects = false;
+        print(soundEffects);
+    }
+
     void bindscreenON()
     {
         bind.SetActive(true);

@@ -21,6 +21,12 @@ public class Scenario : MonoBehaviour
 
     public Sprite King;
 
+    public Sprite Zeus;
+
+    public Sprite PlayerLvl1;
+
+    public Sprite PlayerLvl2;
+
     [SerializeField]
     GameObject subtitlesCanvas;
 
@@ -41,28 +47,28 @@ public class Scenario : MonoBehaviour
 
     
   
-    string[] Lvl1 = { "Pravý hrdina, presne niekoho ako ty potrebujem.","???", "Keďže si preukázal silu a odvahu ako málokto, postaráš sa o problém " +
-        "ktorý ma trápi už roky.","???", "Zabiješ pre mňa Minotaura, ak to dokážeš získaš bohatstvo na celý život, ak nie zomrieš so cťou. " +
+    string[] Lvl1 = { "Kráľ Androgeos:\nPravý hrdina, presne niekoho ako ty potrebujem.","Hráč:\n???", "Kráľ Androgeos:\nKeďže si preukázal silu a odvahu ako málokto, postaráš sa o problém " +
+        "ktorý ma trápi už roky.","Hráč:\n???", "Kráľ Androgeos:\nZabiješ pre mňa Minotaura, ak to dokážeš získaš bohatstvo na celý život, ak nie zomrieš so cťou. " +
         "Odmietnuť samozrejme nemôžeš, hah." };
-    string[] Lvl2 = { "Dokázal si to. Myslel som že nevydržíš viac ako minútu, ale dokázal si to. Po zvyšok života bude o teba dobre postarané... " +
-        "Čo to? Ako to?", "To je tvoja zásluha?", "Áno, mocný Zeus, konal som na rozkaz svojho kráľa, prosím ušetri ma.", "Normálne by som ťa" +
-        " zmietol s povrchu zemského ale potrebujem niekoho ako ty.", "Očividne nie si len taký človek, si poloboh, s celkom veľkou mocou." +
+    string[] Lvl2 = { "Kráľ Androgeos:\n\nDokázal si to. Myslel som že nevydržíš viac ako minútu, ale dokázal si to. Po zvyšok života bude o teba dobre postarané... " +
+        "Čo to? Ako to?", "Zeus:\n\nTo je tvoja zásluha?", "Hráč:\n\nÁno, mocný Zeus, konal som na rozkaz svojho kráľa, prosím ušetri ma.", "Zeus:\n\nNormálne by som ťa" +
+        " zmietol s povrchu zemského ale potrebujem niekoho ako ty.", "Zeus:\n\nOčividne nie si len taký človek, si poloboh, s celkom veľkou mocou." +
         " Potrebujem niekoho ako ty, Poseidon a Hádes, moji braria sa proti mne obrátili. Chcú vládu nad svetom len pre seba a ty mi ich pomôžeš zastaviť.",
-        "Ako asi to mám urobiť, obaja ma zabijú len škaredím pohľadom.", "Nie s týmto, aj tak sú ale tvoje šance na úspech mizivé ale nemáme veľa času," +
-        " dostanem ťa k poseidonovy a zvyšok je na tebe.", "Nemárni čas slovami, budú čakať niekoho ako ty a budú sa ťa zabiť čo najskôr.", "Ale..." };
-    string[] Lvl3 = { "Zatiaľ si ma nesklamal, to sa ti musí nechať, ale táto úloha nebude taká ľahká. Hádesovi sa toto páčiť nebude, musíš sa ho zbaviť.",
-        " Hľadal som ho v jeho časti sveta, podsvetí a nenašiel som nič, určite už obsadil Olymp, musíš sa ho zbaviť. Svet sa na teba spolieha." };
-    string[] Lvl4 = { "Takže si to dokázal, porazil si Zeusa, dúfal som že ho oslabíš ale toto som nečakal.",
-        "Oklamal si ma? Kvôli tebe som zabil Poseidona a Zeusa.", "Ja sám by som to nedokázal, to musím uznať ale tvojich päť minút slávy sa práve skončilo." +
-        " Môj miláčik Kerberos sa o teba postará."};
-    string[] Lvl5 = { "Ako to? Čo si urobil s Kerberosom? Už si mal byť dávno mrtvy.", "Prišiel som pretože nemôžem nechať niekoho ako ty aby vládol" +
-        " celému svetu.", "Staviaš sa proti mne? Bez brnenie ktoré som ti dal nemáš proti mne šancu.", "Risknem to." };
+        "Hráč:\n\nAko asi to mám urobiť, obaja ma zabijú len škaredím pohľadom.", "Zeus:\n\nNie s týmto brnením, aj tak sú ale tvoje šance na úspech mizivé ale nemáme veľa času," +
+        " dostanem ťa k poseidonovy a zvyšok je na tebe.", "Zeus:\n\nNemárni čas slovami, budú čakať niekoho ako ty a budú sa ťa zabiť čo najskôr.", "Hráč:\n\nAle..." };
+    string[] Lvl3 = { "Zeus:\n\nZatiaľ si ma nesklamal, to sa ti musí nechať, ale táto úloha nebude taká ľahká. Hádesovi sa toto páčiť nebude, musíš sa ho zbaviť.",
+        "Zeus:\n\nHľadal som ho v jeho časti sveta, podsvetí a nenašiel som nič, určite už obsadil Olymp, musíš sa ho zbaviť. Svet sa na teba spolieha." };
+    string[] Lvl4 = { "Hádes:\n\nTakže si to dokázal, porazil si Zeusa, dúfal som že ho oslabíš ale toto som nečakal.",
+        "Hráč:\n\nOklamal si ma? Kvôli tebe som zabil Poseidona a Zeusa.", "Hádes:\n\nJa sám by som to nedokázal, to musím uznať ale tvojich päť minút slávy sa práve skončilo."
+        ,"Hráč:\n\nNemôžem nechať niekoho ako ty aby vládol celému svetu.", "Hádes:\n\nStaviaš sa proti mne? Bez brnenie ktoré som ti dal nemáš proti mne šancu.", 
+        "Hráč:\n\nRisknem to." };
+    string[] Lvl5 = {};
 
     int[] Lvl1Field = {1,0,1,0,1};
     int[] Lvl2Field = {1,1,0,1,1,0,1,1,0};
     int[] Lvl3Field = { 1,1};
-    int[] Lvl4Field = {1,0,1};
-    int[] Lvl5Field = {1, 0, 1, 0};
+    int[] Lvl4Field = {1,0,1, 0, 1, 0};
+    int[] Lvl5Field = {};
 
     int index = 0;
 
@@ -85,8 +91,8 @@ public class Scenario : MonoBehaviour
             Lvl3Scenario();
         else if (managerVariables.ScenarioOrder == 4)
             Lvl4Scenario();
-        else if (managerVariables.ScenarioOrder == 5)
-            Lvl5Scenario();
+        /*else if (managerVariables.ScenarioOrder == 5)
+            Lvl5Scenario();*/
         
     }
 
@@ -122,10 +128,10 @@ public class Scenario : MonoBehaviour
                 Lvl4Scenario();
             }
 
-            if (managerVariables.ScenarioOrder == 5 && sceneName == "Lobby")
+            /*if (managerVariables.ScenarioOrder == 5 && sceneName == "Lobby")
             {
                 Lvl5Scenario();
-            }
+            }*/
         }       
     }
 
@@ -150,6 +156,7 @@ public class Scenario : MonoBehaviour
     {
         clear();
         imageOther.GetComponent<Image>().sprite = King;
+        image.GetComponent<Image>().sprite = PlayerLvl1;
 
         if (index <= Lvl1.Length - 1)
         {
@@ -177,6 +184,7 @@ public class Scenario : MonoBehaviour
     private void Lvl2Scenario()
     {
         clear();
+        image.GetComponent<Image>().sprite = PlayerLvl1;
 
         if (index == 0)
         {
@@ -198,7 +206,7 @@ public class Scenario : MonoBehaviour
         }
         else if(index <= Lvl2.Length - 1)
             {
-            imageOther.GetComponent<Image>().sprite = Hades;
+            imageOther.GetComponent<Image>().sprite = Zeus;
             if (Lvl2Field[index] == 0)
             {
                 playerText.text = Lvl2[index];
@@ -225,6 +233,8 @@ public class Scenario : MonoBehaviour
     private void Lvl3Scenario()
     {
         clear();
+        image.GetComponent<Image>().sprite = PlayerLvl2;
+        imageOther.GetComponent<Image>().sprite = Zeus;
 
         if (index <= Lvl3.Length - 1)
         {
@@ -253,6 +263,9 @@ public class Scenario : MonoBehaviour
     private void Lvl4Scenario()
     {
         clear();
+        imageOther.GetComponent<Image>().sprite = Hades;
+        image.GetComponent<Image>().sprite = PlayerLvl2;
+
 
         if (index <= Lvl4.Length - 1)
         {
@@ -278,9 +291,11 @@ public class Scenario : MonoBehaviour
         }
     }
 
-    private void Lvl5Scenario()
+    /*private void Lvl5Scenario()
     {
         clear();
+        image.GetComponent<Image>().sprite = PlayerLvl2;
+        imageOther.GetComponent<Image>().sprite = Hades;
 
         if (index <= Lvl5.Length - 1)
         {
@@ -302,7 +317,7 @@ public class Scenario : MonoBehaviour
             panel.SetActive(false);
             //UI.SetActive(true);
         }
-    }
+    }*/
 
 
     private void clear()
