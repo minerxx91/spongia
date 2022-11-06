@@ -198,7 +198,7 @@ public class manager : MonoBehaviour
                     Destroy(GameObject.FindGameObjectsWithTag("Boss")[0].gameObject);
                     Player.MinotaurUnlocked = true;
                     Invoke(nameof(toLobby), 5);
-                    ScenarioOrder++;
+                    ScenarioOrder = 2;
 
                 }
             }
@@ -210,7 +210,7 @@ public class manager : MonoBehaviour
                     Destroy(GameObject.FindGameObjectsWithTag("Boss")[0].gameObject);
                     Player.PoseidonUnlocked = true;
                     Invoke(nameof(toLobby), 5);
-                    ScenarioOrder++;
+                    ScenarioOrder =  3;
                 }
             }
         }
