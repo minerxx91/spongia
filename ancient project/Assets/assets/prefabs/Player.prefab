@@ -12094,7 +12094,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b9a8f52a3ca17cf4eb5eebea7382d194, type: 2}
+  - {fileID: 2100000, guid: f91cdc240fa70a24fa3b4a135daf4c01, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12334,6 +12334,7 @@ MonoBehaviour:
   shield: {fileID: 4363468072218926850}
   helmet: {fileID: 5079685875317179243}
   helmet2: {fileID: 4126032719941680870}
+  belt: {fileID: 9199886861444378795}
   Fire: {fileID: 4157705495164883498}
   trident: {fileID: 6557507184881375946}
   Projectile: {fileID: 3382990444819746559, guid: 4a06c091bf01faf478a63fa82b0eaa7d, type: 3}
@@ -12489,11 +12490,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: armorskirt
       objectReference: {fileID: 0}
+    - target: {fileID: 8521902485874960664, guid: c3f96daac1599744bbb0cce5e209b07f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ec6e4382ff0ed9743a00ca612e50f4dc, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3f96daac1599744bbb0cce5e209b07f, type: 3}
 --- !u!4 &6272678643939476868 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c3f96daac1599744bbb0cce5e209b07f, type: 3}
+  m_PrefabInstance: {fileID: 5802816116427088495}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &9199886861444378795 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -5824510187379060028, guid: c3f96daac1599744bbb0cce5e209b07f, type: 3}
   m_PrefabInstance: {fileID: 5802816116427088495}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5837930913940692588
