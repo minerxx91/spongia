@@ -49,14 +49,14 @@ public class Controls : MonoBehaviour
         binds.Add(ability2);
         binds.Add(ability3);
         binds.Add(ability4);
-        bind.SetActive(true);
-        error.SetActive(true);
+        //bind.SetActive(true);
+        //error.SetActive(true);
     }
 
     private void Start()
     {
-        bind.SetActive(false);
-        error.SetActive(false);
+        //bind.SetActive(false);
+        //error.SetActive(false);
     }
 
     public void updateList()

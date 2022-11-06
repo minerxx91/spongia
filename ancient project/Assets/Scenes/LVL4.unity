@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 733657053}
-  m_IndirectSpecularColor: {r: 0.48396307, g: 0.57574326, b: 0.6802008, a: 1}
+  m_IndirectSpecularColor: {r: 0.48395744, g: 0.5757396, b: 0.68019843, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -704,6 +704,10 @@ MonoBehaviour:
   ability2: 50
   ability3: 51
   ability4: 52
+  binds: 
+  bind: {fileID: 0}
+  error: {fileID: 0}
+  buttons: []
 --- !u!114 &280459568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8222,8 +8226,8 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1303593784}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 0d932388f53ab6d4db52db1e8a4abe63, type: 3}
-  m_Controller: {fileID: 9100000, guid: 8e2155cfe152ea94da5c1f4b1521e41f, type: 2}
+  m_Avatar: {fileID: 9000000, guid: 16bd2380d4778de41a2208a5e811fdaf, type: 3}
+  m_Controller: {fileID: 9100000, guid: 6ad23fdc301cec44fb4afc1334ae1791, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -18563,7 +18567,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2292385111170973878, guid: c28e25713753cd346888e1859ff486fa, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c28e25713753cd346888e1859ff486fa, type: 3}
