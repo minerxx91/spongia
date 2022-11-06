@@ -35,9 +35,9 @@ public class Tutorial : MonoBehaviour
     float desiredTime = 1f;
 
     string[] Texts = new string[] {"Môžeš sa hýbať WASD",
-                                    "Nepriatela si môžeš označiť namierením naňho a kliknutím pravého tlačidtka myši",
-                                    "útočiť môžeš pomocou ľavého tlačitka myši",
-                                    "útoky nepriateľov môžeš blokovať ľavím shiftom aby si zmenšil poškodenie, ktoré dostaneš","",
+                                    "Nepriatela si môžeš označiť namierením naňho a kliknutím pravého tlačítka myši",
+                                    "Útočiť môžeš pomocou ľavého tlačitka myši",
+                                    "Útoky nepriateľov môžeš blokovať ľavím shiftom aby si zmenšil poškodenie, ktoré dostaneš","",
                                     "Medzeníkom a pohybom urobíš kotúl a môžeš sa úplne vyhnúť útoku nepriateľa","",
                                     "Dole môžeš vidieť koľko máš života, energie a kedy môžeš znova použiť útok, blokavanie atď... \n\n"+
                                     "Stlač medzeník pre pokračovanie",
@@ -45,7 +45,7 @@ public class Tutorial : MonoBehaviour
                                     "Stlač medzeník pre pokračovanie",
                                     "Dávaj si ale pozor lebo počas útočenia sa nemozeš hýbať\n\n"+
                                     "Stlač medzeník pre pokračovanie",
-                                    "Kys"};
+                                    "Niektoré schopnisti majú iba jeden smer tým, že nebudeš stáť ich území sa im vyhneš. Doraz Medúzu do chrbta."};
 
 
 
