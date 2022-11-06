@@ -24,6 +24,8 @@ public class Tutorial : MonoBehaviour
 
     GameObject borderTutorial;
 
+    float desiredTime = 1f;
+
     string[] Texts = new string[] {"Môžeš sa hýbať WASD",
                                     "Nepriatela si môžeš označiť namierením naňho a kliknutím pravého tlačidtka myši",
                                     "útočiť môžeš pomocou ľavého tlačitka myši",
@@ -64,6 +66,7 @@ public class Tutorial : MonoBehaviour
 
     void Update()
     {
+        Time.timeScale = Mathf.Lerp(Time.timeScale, desiredTime, Time.unscaledDeltaTime * 10f);
         if (SceneManager.GetActiveScene().buildIndex == 1)
         {
             if (borderTutorial.activeSelf)
@@ -90,7 +93,7 @@ public class Tutorial : MonoBehaviour
                     {
                         postup++;
                         showText = false;
-                        Time.timeScale = 1;
+                        desiredTime = 1;
                         print(postup);
                     }
                 }
@@ -103,14 +106,14 @@ public class Tutorial : MonoBehaviour
                         print(cube1);
                         Text.text = Texts[postup];
                         plane.gameObject.SetActive(true);
-                        Time.timeScale = 0;
+                        desiredTime = 0;
                     }
                     if (Input.GetKey(controls.LockTarget))
                     {
                         managerVariables.Player.target = GameObject.Find("Enemy1");
                         postup++;
                         showText = false;
-                        Time.timeScale = 1;
+                        desiredTime = 1;
                         print(postup);
                     }
                 }
@@ -122,14 +125,14 @@ public class Tutorial : MonoBehaviour
                         if (GameObject.Find("Enemy1").GetComponent<NavMeshAgent>().remainingDistance < 1.7f && GameObject.Find("Enemy1").GetComponent<NavMeshAgent>().remainingDistance != 0)
                         {
                             showText = true;
-                            Time.timeScale = 0;
+                            desiredTime = 0;
                         }
                     }
                     else if (Input.GetKey(controls.Attack))
                     {
                         postup++;
                         showText = false;
-                        Time.timeScale = 1;
+                        desiredTime = 1;
                     }
 
                 }
@@ -139,14 +142,14 @@ public class Tutorial : MonoBehaviour
                     if (GameObject.Find("Enemy2").GetComponent<NavMeshAgent>().remainingDistance < 1.7f && GameObject.Find("Enemy2").GetComponent<NavMeshAgent>().remainingDistance != 0)
                     {
                         showText = true;
-                        Time.timeScale = 0;
+                        desiredTime = 0;
                     }
                     if (showText && Input.GetKey(controls.Block))
                     {
                         postup++;
                         Invoke(nameof(DelayPostup), 1f);
                         showText = false;
-                        Time.timeScale = 1;
+                        desiredTime = 1;
                     }
                 }
                 else if (postup == 5)
@@ -155,21 +158,21 @@ public class Tutorial : MonoBehaviour
                     {
                         managerVariables.Player.target = null;
                         showText = true;
-                        Time.timeScale = 0;
+                        desiredTime = 0;
                     }
                     if (showText && Input.GetKey(controls.Jump) && (Input.GetKey(controls.MoveUp) || Input.GetKey(controls.MoveDown) || Input.GetKey(controls.MoveLeft) || Input.GetKey(controls.MoveRight)))
                     {
                         postup++;
                         Invoke(nameof(DelayPostup), 1f);
                         showText = false;
-                        Time.timeScale = 1;
+                        desiredTime = 1;
                         GameObject.Find("Enemy2").GetComponent<EnemyPleb>().walkPoint = new Vector3(-47, 0.48f, -59);
                         GameObject.Find("Enemy2").GetComponent<EnemyPleb>().DontAttack = true;
                     }
                 }
                 else if (postup == 7 && cube2)
                 {
-                    Time.timeScale = 0;
+                    desiredTime = 0;
                     showText = true;
                     if (Input.GetKeyUp(KeyCode.Space))
                     {
@@ -180,7 +183,7 @@ public class Tutorial : MonoBehaviour
 
                 else if (postup == 8)
                 {
-                    Time.timeScale = 0;
+                    desiredTime = 0;
                     showText = true;
                     if (Input.GetKeyUp(KeyCode.Space))
                     {
@@ -191,13 +194,13 @@ public class Tutorial : MonoBehaviour
 
                 else if (postup == 9)
                 {
-                    Time.timeScale = 0;
+                    desiredTime = 0;
                     showText = true;
                     if (Input.GetKeyUp(KeyCode.Space))
                     {
                         postup++;
                         showText = false;
-                        Time.timeScale = 1;
+                        desiredTime = 1;
                     }
                 }
             }

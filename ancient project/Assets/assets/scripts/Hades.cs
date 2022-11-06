@@ -176,7 +176,7 @@ public class Hades : MonoBehaviour
 
             if (this.gameObject.name == "Hades")
             {
-                if (!playerInSightRange && !playerInMeleeAttackRange) Patroling();
+                if (!playerInSightRange && !playerInMeleeAttackRange) Chasing();
                 if (playerInSightRange && !playerInMeleeAttackRange && !GameObject.Find("Player").GetComponent<Player>().died) Chasing();
 
 
@@ -193,7 +193,7 @@ public class Hades : MonoBehaviour
             }
             else
             {
-                if (!playerInSightRange && !playerInMeleeAttackRange) Patroling();
+                if (!playerInSightRange && !playerInMeleeAttackRange) Chasing();
                 if (playerInSightRange && !playerInMeleeAttackRange && !GameObject.Find("Player").GetComponent<Player>().died) Chasing();
                 if (playerInRangerAttackRange && playerInSightRange && !GameObject.Find("Player").GetComponent<Player>().died) RangedAttacking();
                 if (playerInMeleeAttackRange && playerInSightRange && !GameObject.Find("Player").GetComponent<Player>().died) MeleeAttacking();
