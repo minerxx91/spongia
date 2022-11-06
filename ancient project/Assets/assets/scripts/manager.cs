@@ -213,6 +213,28 @@ public class manager : MonoBehaviour
                     ScenarioOrder =  3;
                 }
             }
+            if (GameObject.FindGameObjectsWithTag("Boss")[0].name == "Meduza")
+            {
+                if (Poseidon.Health == 0)
+                {
+                    print("endgame");
+                    Destroy(GameObject.FindGameObjectsWithTag("Boss")[0].gameObject);
+                    Player.PoseidonUnlocked = true;
+                    Invoke(nameof(toLobby), 5);
+                    ScenarioOrder = 1;
+                }
+            }
+            if (GameObject.FindGameObjectsWithTag("Boss")[0].name == "Zeus")
+            {
+                if (Poseidon.Health == 0)
+                {
+                    print("endgame");
+                    Destroy(GameObject.FindGameObjectsWithTag("Boss")[0].gameObject);
+                    Player.PoseidonUnlocked = true;
+                    Invoke(nameof(toLobby), 5);
+                    ScenarioOrder = 4;
+                }
+            }
         }
         
     }

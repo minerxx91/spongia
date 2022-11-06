@@ -67,7 +67,7 @@ public class Scenario : MonoBehaviour
     int[] Lvl1Field = {1,0,1,0,1};
     int[] Lvl2Field = {1,1,0,1,1,0,1,1,0};
     int[] Lvl3Field = { 1,1};
-    int[] Lvl4Field = {1,0,1, 1, 0};
+    int[] Lvl4Field = {1,0,1, 0, 1, 0};
     int[] Lvl5Field = {};
 
     int index = 0;
