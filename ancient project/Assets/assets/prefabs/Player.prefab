@@ -27540,15 +27540,15 @@ MonoBehaviour:
   telo: {fileID: 2100000, guid: 555616d9e55fa3847804787ae1bea57e, type: 2}
   ZlataZbroj: {fileID: 2100000, guid: f91cdc240fa70a24fa3b4a135daf4c01, type: 2}
   OcelovaZbroj: {fileID: 2100000, guid: ec6e4382ff0ed9743a00ca612e50f4dc, type: 2}
-  sword: {fileID: 3939411389739732249}
-  sword2: {fileID: 5782313549203859348}
-  shield: {fileID: 4363468072218926850}
-  helmet: {fileID: 5079685875317179243}
-  helmet2: {fileID: 4126032719941680870}
+  sword: {fileID: 2387655939043361313}
+  sword2: {fileID: 7813164768190180667}
+  shield: {fileID: 4532950023374097345}
+  helmet: {fileID: 5881849995899419167}
+  helmet2: {fileID: 1178955806802239308}
   belt: {fileID: 7274863805760425405}
   Fire: {fileID: 4157705495164883498}
   Ability1efect: {fileID: 4970380206390403521}
-  trident: {fileID: 6557507184881375946}
+  trident: {fileID: 2250895209892708306}
   Projectile: {fileID: 3382990444819746559, guid: 4a06c091bf01faf478a63fa82b0eaa7d, type: 3}
   JumpVelocity: {x: 0, y: 0, z: 0}
   died: 0

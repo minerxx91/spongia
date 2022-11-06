@@ -64,7 +64,7 @@ public class Hades : MonoBehaviour
     GameObject MainCamera;
     Shake CameraShake;
     CameraShaker CamShaker;
-
+    bool RangeAnimOnce = false;
 
     private void Awake()
     {
@@ -268,8 +268,12 @@ public class Hades : MonoBehaviour
         {
             if (playerInRangerAttackRange)
             {
+                if (!RangeAnimOnce)
+                {
+                    anim.SetTrigger("range");
+                    RangeAnimOnce = true;
+                }
                 transform.LookAt(Targetposition);
-                anim.SetBool("walk", false);
                 agent.SetDestination(transform.position);
                 if (!RangedAbility.isPlaying)
                 {
@@ -277,13 +281,20 @@ public class Hades : MonoBehaviour
                 }
                 agent.SetDestination(transform.position);
                 anim.SetBool("walk", false);
-               // anim.SetTrigger("range");
+
+                print("beam");
+
+               if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Range"))
+                {
+                    anim.SetBool("walk", true);
+                }
                 
-                print("ano");
+                
                 if (timebetweenRangedAttackstick >= timebetweenRangedAttacks + RangedAttackTime)
                 {
                     timebetweenRangedAttackstick = 0;
                     RangedAbility.Stop();
+                    RangeAnimOnce = false;
                 }
             }
 
