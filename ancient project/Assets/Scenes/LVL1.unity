@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1302,7 +1302,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &453348917
 Transform:
   m_ObjectHideFlags: 0
@@ -5146,6 +5146,7 @@ MonoBehaviour:
   PlayerRoll: {fileID: 8300000, guid: b54628f162218944fa2927dd79ca6ae3, type: 3}
   Ability1: {fileID: 8300000, guid: e4130e9cc57663a419b468ddf4d65675, type: 3}
   PortalEnter: {fileID: 8300000, guid: c58e703a869c00c4d93778e81b6ed179, type: 3}
+  Music: []
   HadesDialogs:
   - {fileID: 8300000, guid: 34b78b4cef087dc4d82cba4496aea0b0, type: 3}
   - {fileID: 8300000, guid: 155ed7dee51767044bcb89380158c811, type: 3}
@@ -11849,6 +11850,10 @@ MonoBehaviour:
   ability2: 50
   ability3: 51
   ability4: 52
+  binds: 
+  bind: {fileID: 0}
+  error: {fileID: 0}
+  buttons: []
 --- !u!114 &1933577276
 MonoBehaviour:
   m_ObjectHideFlags: 0
