@@ -25,8 +25,8 @@ public class manager : MonoBehaviour
     {
         public float Speed = 5;
 
-        public float MaxHealth = 100;
-        public float Health = 100;
+        public float MaxHealth = 100000;
+        public float Health = 100000;
         public float HealthRegen = .5f;
 
         public float Stamina = 100;
@@ -133,10 +133,11 @@ public class manager : MonoBehaviour
         {
             manager_d = this.gameObject;
         }
-        
         DontDestroyOnLoad(gameObject);
         DynamicGI.UpdateEnvironment();
         lvlloader = GameObject.Find("LevelLoader").GetComponent<LevelLoader>();
+
+        
     }
     public void DamagePlayer(float damage)
     {

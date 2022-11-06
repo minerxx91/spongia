@@ -33,9 +33,9 @@ public class Controls : MonoBehaviour
     [SerializeField] GameObject error;
     GameObject button;
     [SerializeField] GameObject[] buttons;
-
     private void Awake()
     {
+
         binds.Add(MoveUp);
         binds.Add(MoveDown);
         binds.Add(MoveRight);
@@ -49,14 +49,22 @@ public class Controls : MonoBehaviour
         binds.Add(ability2);
         binds.Add(ability3);
         binds.Add(ability4);
-        bind.SetActive(true);
-        error.SetActive(true);
+        if (this.gameObject.scene.name == "Menu")
+        {
+            bind.SetActive(true);
+            error.SetActive(true);
+        }
+        
     }
 
     private void Start()
     {
-        bind.SetActive(false);
-        error.SetActive(false);
+        if (this.gameObject.scene.name == "Menu")
+        {
+            bind.SetActive(false);
+            error.SetActive(false);
+        }
+          
     }
 
     public void updateList()

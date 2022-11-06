@@ -10,7 +10,7 @@ public static class Save
     public static void saveSystem(Controls controls)
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/data.riù";
+        string path = Application.persistentDataPath + "/data.rit";
         FileStream stream = new FileStream(path, FileMode.Create);
 
         SettingsData data = new SettingsData(controls);
@@ -21,7 +21,7 @@ public static class Save
 
     public static SettingsData loadSystem()
     {
-        string path = Application.persistentDataPath + "/data.riù";
+        string path = Application.persistentDataPath + "/data.rit";
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();

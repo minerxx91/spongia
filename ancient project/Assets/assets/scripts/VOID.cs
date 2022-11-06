@@ -11,6 +11,7 @@ public class VOID : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        managerVariables.toLobby();
+        if(other.gameObject.name == "Player")
+            managerVariables.toLobby();
     }
 }

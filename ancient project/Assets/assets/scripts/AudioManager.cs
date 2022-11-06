@@ -19,7 +19,7 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] AudioClip PortalEnter;
 
- 
+    [SerializeField] List<AudioClip> Music = new List<AudioClip>();
 
     [SerializeField] List<AudioClip> HadesDialogs = new List<AudioClip>();
     [SerializeField] AudioClip HadesLaugh;
@@ -50,7 +50,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip PoseidonMelee;
 
     AudioSource run;
-
+    AudioSource MusicList;
 
     AudioSource[] AS;
     private void Start()
@@ -58,7 +58,7 @@ public class AudioManager : MonoBehaviour
         AS = GetComponents<AudioSource>();
 
         run = AS[1];
-
+        MusicList = AS[3];
         if (Audiomanager_d != null)
         {
             Destroy(this.gameObject);
@@ -69,7 +69,17 @@ public class AudioManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
-    }   
+    }
+    private void Update()
+    {
+        if(this.gameObject.scene.name == "Menu")
+        {
+            if (!MusicList.isPlaying)
+            {
+                PlayMusic(0);
+            }
+        }
+    }
     public void PlayRun()
     {
         if(!run.isPlaying)
@@ -192,6 +202,11 @@ public class AudioManager : MonoBehaviour
     {
         AS[0].PlayOneShot(PoseidonRandom[Random.Range(0, PoseidonRandom.Count)]);
     }
-
+    public void PlayMusic(int order)
+    {
+        MusicList.clip = Music[order];
+        print("pridany clip");
+        MusicList.Play();
+    }
 
 }
