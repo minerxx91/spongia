@@ -29,13 +29,16 @@ public class Controls : MonoBehaviour
     public KeyCode ability4 = KeyCode.Alpha4;
 
     public float volume = 1f;
-    public bool music = true;
+    public float music = 1f;
     public bool soundEffects = true;
 
     public bool postProcessing = true;
     public bool effects = true;
     public bool motionBlur = true;
     public float fov = 60f;
+
+    public int level = 1;
+    public float difficulty = 1f;
 
     public List<KeyCode> binds = new List<KeyCode>(13);
     bool free = true;
@@ -136,7 +139,10 @@ public class Controls : MonoBehaviour
         effects = data.effects;
         motionBlur = data.motionBlur;
         fov = data.fov;
-    }
+
+        level = data.level;
+        difficulty = data.difficulty;
+}
 
     public void refreshGraphics()
     {
@@ -154,7 +160,6 @@ public class Controls : MonoBehaviour
             postProcessing = true;
         }
         else postProcessing = false;
-        //GameObject.Find("Postprocessing").SetActive(postProcessing);
     }
 
     public void toggleEffects()
@@ -186,7 +191,7 @@ public class Controls : MonoBehaviour
     public void refreshSound()
     {
         GameObject.Find("sliderVolume").GetComponent<Slider>().value = volume;
-        GameObject.Find("toggleMusic").GetComponent<Toggle>().isOn = music;
+        GameObject.Find("sliderMusic").GetComponent<Slider>().value = music;
         GameObject.Find("toggleSoundEffects").GetComponent<Toggle>().isOn = soundEffects;
     }
 
@@ -194,18 +199,13 @@ public class Controls : MonoBehaviour
     {
         print(EventSystem.current.currentSelectedGameObject.name);
         volume = GameObject.Find("sliderVolume").GetComponent<Slider>().value;
-        print(volume);
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().GlobalVolume = volume;
     }
 
-    public void toggleMusic()
+    public void setMusic()
     {
-        bool toggler = GameObject.Find("toggleMusic").GetComponent<Toggle>().isOn;
-        if (toggler)
-        {
-            music = true;
-        }
-        else music = false;
-        print(music);
+        volume = GameObject.Find("sliderMusic").GetComponent<Slider>().value;
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().MusicVolume = volume;
     }
 
     public void toggleSoundEffects()

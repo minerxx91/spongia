@@ -84,6 +84,8 @@ public class AudioManager : MonoBehaviour
     }
     private void Update()
     {
+        GameObject.Find("Manager").GetComponent<Controls>().music = MusicVolume;
+
         if(this.gameObject.scene.name == "Menu")
         {
             if (!MusicList.isPlaying)

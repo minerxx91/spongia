@@ -238,6 +238,7 @@ public class manager : MonoBehaviour
             }
         }
         postprocessing.SetActive(this.GetComponent<Controls>().postProcessing);
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().MusicVolume = this.GetComponent<Controls>().volume;
     }
 
 

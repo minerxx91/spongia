@@ -25,13 +25,16 @@ public class SettingsData
     public KeyCode ability4;
 
     public float volume;
-    public bool music;
+    public float music;
     public bool soundEffects;
 
     public bool postProcessing;
     public bool effects;
     public bool motionBlur;
     public float fov;
+
+    public int level;
+    public float difficulty;
 
     public SettingsData(Controls controls)
     {
