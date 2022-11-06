@@ -150,7 +150,11 @@ public class Scenario : MonoBehaviour
     {
         clear();
         imageOther.GetComponent<Image>().sprite = King;
+<<<<<<< Updated upstream
         audioManager.PlayKingDialog(0);
+=======
+        
+>>>>>>> Stashed changes
         if (index <= Lvl1.Length - 1)
         {
             if (Lvl1Field[index] == 0)
@@ -163,6 +167,7 @@ public class Scenario : MonoBehaviour
             {
                 othersText.text = Lvl1[index];
                 imageOther.SetActive(true);
+                audioManager.PlayKingDialog();
                 index++;
             }
         }
@@ -184,6 +189,7 @@ public class Scenario : MonoBehaviour
             {
                 playerText.text = Lvl2[index];
                 image.SetActive(true);
+                
                 index++;
             }
             else
