@@ -193,6 +193,14 @@ public class AudioManager : MonoBehaviour
     {
         AS[0].PlayOneShot(KingDialogs[Random.Range(0, KingDialogs.Count)]);
     }
+    public void PlayPlayerDialog()
+    {
+        AS[0].PlayOneShot(PlayerDialogs[Random.Range(0, PlayerDialogs.Count)]);
+    }
+    public void PlayHadesDialog()
+    {
+        AS[0].PlayOneShot(HadesDialogs[Random.Range(0, HadesDialogs.Count)]);
+    }
     public void PlayAbility1()
     {
         AS[0].PlayOneShot(Ability1);
