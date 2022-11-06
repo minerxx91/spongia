@@ -34,6 +34,15 @@ public static class Save
         }
         else
         {
+            Controls controls = new Controls();
+            BinaryFormatter formatter = new BinaryFormatter();
+            path = Application.persistentDataPath + "/data.rit";
+            FileStream stream = new FileStream(path, FileMode.Create);
+
+            SettingsData data = new SettingsData(controls);
+
+            formatter.Serialize(stream, data);
+            stream.Close();
             return null;
         }
     }

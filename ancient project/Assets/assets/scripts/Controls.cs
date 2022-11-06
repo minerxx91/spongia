@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class Controls : MonoBehaviour
@@ -28,7 +29,6 @@ public class Controls : MonoBehaviour
 
     public List<KeyCode> binds = new List<KeyCode>(13);
     bool free = true;
-    Menu menu = new Menu();
     [SerializeField] GameObject bind;
     [SerializeField] GameObject error;
     GameObject button;
@@ -49,17 +49,16 @@ public class Controls : MonoBehaviour
         binds.Add(ability2);
         binds.Add(ability3);
         binds.Add(ability4);
-        if (this.gameObject.scene.name == "Menu")
+        if (SceneManager.GetActiveScene().name == "Menu")
         {
             bind.SetActive(true);
             error.SetActive(true);
         }
-        
     }
 
     private void Start()
     {
-        if (this.gameObject.scene.name == "Menu")
+        if (SceneManager.GetActiveScene().name == "Menu")
         {
             bind.SetActive(false);
             error.SetActive(false);

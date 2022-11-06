@@ -123,6 +123,11 @@ public class manager : MonoBehaviour
 
     public HadesStats Hades = new HadesStats();
 
+    private void Awake()
+    {
+        Save.loadSystem();
+    }
+
     private void Start()
     {
         if (manager_d != null)
