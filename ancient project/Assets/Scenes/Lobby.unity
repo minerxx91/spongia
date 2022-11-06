@@ -5976,7 +5976,9 @@ MonoBehaviour:
   levelIndex: 0
   GravityForce: 0.5
   ScenarioOrder: 0
+  ActionsOn: 0
   skapalUz: 0
+  paused: 1
 --- !u!4 &1261616644
 Transform:
   m_ObjectHideFlags: 0
@@ -7161,6 +7163,10 @@ PrefabInstance:
     - target: {fileID: 4040500495425039491, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040500495425039491, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
+      propertyPath: m_TagString
+      value: Scenario
       objectReference: {fileID: 0}
     - target: {fileID: 4040500495425039502, guid: 035c830ad15552d4596a4929808aa02f, type: 3}
       propertyPath: UI

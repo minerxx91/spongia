@@ -27,6 +27,8 @@ public class Scenario : MonoBehaviour
 
     public Sprite PlayerLvl2;
 
+    public bool Actions = true;
+
     [SerializeField]
     GameObject subtitlesCanvas;
 
@@ -137,6 +139,7 @@ public class Scenario : MonoBehaviour
 
     private void LobbyScenario()
     {
+        SetActions();
         if (index == 0)
         {
             panel.SetActive(true);
@@ -155,6 +158,7 @@ public class Scenario : MonoBehaviour
     private void Lvl1Scenario()
     {
         clear();
+        SetActions();
         imageOther.GetComponent<Image>().sprite = King;
         image.GetComponent<Image>().sprite = PlayerLvl1;
 
@@ -184,6 +188,7 @@ public class Scenario : MonoBehaviour
     private void Lvl2Scenario()
     {
         clear();
+        SetActions();
         image.GetComponent<Image>().sprite = PlayerLvl1;
 
         if (index == 0)
@@ -233,6 +238,7 @@ public class Scenario : MonoBehaviour
     private void Lvl3Scenario()
     {
         clear();
+        SetActions();
         image.GetComponent<Image>().sprite = PlayerLvl2;
         imageOther.GetComponent<Image>().sprite = Zeus;
 
@@ -263,6 +269,7 @@ public class Scenario : MonoBehaviour
     private void Lvl4Scenario()
     {
         clear();
+        SetActions();
         imageOther.GetComponent<Image>().sprite = Hades;
         image.GetComponent<Image>().sprite = PlayerLvl2;
 
@@ -329,6 +336,15 @@ public class Scenario : MonoBehaviour
         imageOther.SetActive(false);
         //UI.SetActive(false);
     }
+
+    private void SetActions()
+    {
+        Actions = false;
+    }
+
+
+
+
 
 
 

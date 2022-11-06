@@ -10,6 +10,7 @@ public class manager : MonoBehaviour
     public static GameObject manager_d;
     GameObject postprocessing;
 
+
     [SerializeField] GameObject playerPrefab;
 
     LevelLoader lvlloader;
@@ -127,6 +128,8 @@ public class manager : MonoBehaviour
         Save.loadSystem();
     }
 
+
+
     private void Start()
     {
         postprocessing = GameObject.Find("Postprocessing");
@@ -143,7 +146,13 @@ public class manager : MonoBehaviour
         DynamicGI.UpdateEnvironment();
         lvlloader = GameObject.Find("LevelLoader").GetComponent<LevelLoader>();
 
+<<<<<<< Updated upstream
         this.GetComponent<Controls>().loadData();
+=======
+
+
+
+>>>>>>> Stashed changes
     }
     public void DamagePlayer(float damage)
     {
@@ -179,8 +188,45 @@ public class manager : MonoBehaviour
     }
      public bool skapalUz = false;
 
+    public bool paused = true;
+
+    private void PauseGame()
+    {
+
+            Time.timeScale = 0;
+            paused = false;
+        
+    }
+
+    private void ResumeGame()
+    {
+
+            Time.timeScale = 1;
+            paused = true;
+        
+    }
+
+    
+
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (paused)
+            {
+                PauseGame();
+            }
+            else
+            {
+                ResumeGame();
+            }
+        }
+
+
+
+
+
+
         if (Player.Health <= 0 && ! skapalUz)
         {
             GameObject.Find("Player").GetComponent<Player>().died = true;
