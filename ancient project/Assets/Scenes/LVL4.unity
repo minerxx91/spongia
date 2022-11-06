@@ -219,7 +219,7 @@ Transform:
   m_Children:
   - {fileID: 295478872}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &71516375 stripped
 GameObject:
@@ -257,7 +257,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6113572755105726768, guid: ec9e63eecbd503d48911aee6251a42b3, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 6113572755105726768, guid: ec9e63eecbd503d48911aee6251a42b3, type: 3}
       propertyPath: m_AnchorMax.x
@@ -478,7 +478,7 @@ Transform:
   m_Children:
   - {fileID: 1029088358}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &161029430
 GameObject:
@@ -592,7 +592,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &295478871
 GameObject:
@@ -804,7 +804,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 303776336}
   serializedVersion: 8
-  lengthInSec: 2.5
+  lengthInSec: 5
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -10683,7 +10683,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &635099681
 PrefabInstance:
@@ -10821,7 +10821,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &733657052
 GameObject:
@@ -10916,7 +10916,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!114 &733657055
 MonoBehaviour:
@@ -11340,7 +11340,6 @@ GameObject:
   - component: {fileID: 995367946}
   - component: {fileID: 995367945}
   - component: {fileID: 995367944}
-  - component: {fileID: 995367943}
   - component: {fileID: 995367942}
   m_Layer: 8
   m_Name: Hades
@@ -11370,55 +11369,24 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
-  sightRange: 0
-  MeleeAttackRange: 0
-  RangerAttackRange: 0
-  playerInSightRange: 0
-  playerInMeleeAttackRange: 0
-  playerInRangerAttackRange: 0
-  playerInRangerAttackRange2: 0
---- !u!114 &995367943
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 995367941}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 218f13e878606ff42a46ef0e32782488, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 995367944}
-  patrolingSpeed: 1
-  chasingSpeed: 2
-  player: {fileID: 0}
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 128
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 64
-  walkPoint: {x: 216.59, y: 402.13315, z: 227.16}
-  walkPointRange: 10.22
-  timeBetweenAttacks: 2
-  timebetweenRangedAttacks: 10
+  walkPoint: {x: 0, y: 0, z: 0}
+  walkPointRange: 2
+  timeBetweenAttacks: 3
+  timebetweenRangedAttacks: 7
   shorttimebetweenAttacks: 2
-  RangedAttackTime: 2.5
-  sightRange: 25
-  MeleeAttackRange: 3
+  RangedAttackTime: 5
+  sightRange: 20
+  MeleeAttackRange: 2
   RangerAttackRange: 15
   playerInSightRange: 0
   playerInMeleeAttackRange: 0
   playerInRangerAttackRange: 0
-  playerInRangerAttackRange2: 0
   RangedAbility: {fileID: 1642306019}
   RangedHitbox: {fileID: 1950919036}
   Bident: {fileID: 161029430}
-  projectile: {fileID: 0}
   AttackMelee1: {fileID: 0}
   Stun: 0
-  normalMaterial: {fileID: 2100000, guid: ae21a33b8ea312443b4345553c3e664a, type: 2}
+  normalMaterial: {fileID: 2100000, guid: 4252b5f44fe01914a924e4097348b464, type: 2}
   stunMaterial: {fileID: 2100000, guid: e1cb81797082bc44c8f135c84c36eee6, type: 2}
   body: {fileID: 635099682}
 --- !u!195 &995367944
@@ -11512,7 +11480,7 @@ Transform:
   - {fileID: 342932033}
   - {fileID: 873588676}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &1029088357
 GameObject:
@@ -11937,7 +11905,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7950941071210314356, guid: 12ae9d74d66012045ba2245278e1eabf, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7950941071210314356, guid: 12ae9d74d66012045ba2245278e1eabf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12363,7 +12331,7 @@ Transform:
   m_Children:
   - {fileID: 1285557078}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1610482748 stripped
 Transform:
@@ -12478,7 +12446,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1639642985
 PrefabInstance:
@@ -12676,7 +12644,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1642306016}
   serializedVersion: 8
-  lengthInSec: 2.5
+  lengthInSec: 5
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -17903,7 +17871,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2115621760 stripped
 GameObject:
@@ -17971,5 +17939,36 @@ Transform:
   - {fileID: 1610482748}
   - {fileID: 413261793}
   m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &8226983879949150282
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8748188316405052144}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 217.48494, y: 402.00208, z: 234.35065}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8748188316405052144
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8226983879949150282}
+  m_Layer: 0
+  m_Name: dressed_meduza
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
