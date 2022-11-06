@@ -60,14 +60,16 @@ public class PlayerTutorial : MonoBehaviour
 
     Poseidon enemyNavMesh = new Poseidon();
 
+    public NavMeshAgent playerNav;
+
     // Start is called before the first frame update
     void Start()
     {
         CHC = GetComponent<CharacterController>();
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         mousePosition3D = mainCamera.GetComponent<MousePosition3D>();
-
-
+        playerNav = this.GetComponent<NavMeshAgent>();
+        //playerNav.gameObject.SetActive(false);
         //Manager GameObject
         Manager = GameObject.Find("Manager");
         controls = Manager.GetComponent<Controls>();
@@ -234,7 +236,7 @@ public class PlayerTutorial : MonoBehaviour
         PlayerSpeed = managerVariables.Player.Speed * Time.deltaTime;
 
         //tutorial freeze -------------------------------------------------------------------------------------------------------------------------------//
-        if (!tutorial.showText && tutorial.startFreezed)
+        if (!tutorial.showText && tutorial.startFreezed && !(tutorial.cube3 && !tutorial.cube4))
         {
             if (!managerVariables.Player.Jumping && !Input.GetKey(controls.Block) || managerVariables.Player.ShieldCooldown != ShieldCooldown)
             {
@@ -519,6 +521,14 @@ public class PlayerTutorial : MonoBehaviour
                 managerVariables.Player.absorb2 = false;
                 anim.SetTrigger("absorb2");
             }
+            playerNav.enabled = false;
+        }
+        else if (tutorial.cube3 && !tutorial.cube4)
+        {
+            anim.SetBool("isRunning", true);
+            playerNav.enabled = true;
+            playerNav.gameObject.SetActive(true);
+            playerNav.SetDestination(tutorial.medusaPoint);
         }
     }
 

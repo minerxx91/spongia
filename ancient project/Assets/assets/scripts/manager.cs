@@ -177,6 +177,7 @@ public class manager : MonoBehaviour
 
     }
      public bool skapalUz = false;
+     bool MedusaUz = false;
 
     private void Update()
     {
@@ -187,6 +188,7 @@ public class manager : MonoBehaviour
             Invoke(nameof(toLobby), 5);
             skapalUz = true;
         }
+
         else if (GameObject.FindGameObjectsWithTag("Boss").Length != 0)
         {
             
@@ -214,9 +216,18 @@ public class manager : MonoBehaviour
                 }
             }
         }
-        
+        if (1 == 1)
+        {
+            if (SceneManager.GetActiveScene().buildIndex == 1 && !MedusaUz)
+            {
+                if (GameObject.Find("Tutorial").GetComponent<Tutorial>().medusaDead == true)
+                {
+                    Player.MeduzaUnlocked = true;
+                    Invoke(nameof(toLobby), 5);
+                    ScenarioOrder = 1;
+                    MedusaUz = true;
+                }
+            }
+        }
     }
-
-
-
 }

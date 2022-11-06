@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
 
 public class Tutorial : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class Tutorial : MonoBehaviour
     GameObject plane;
     Controls controls;
     AudioManager audioManager;
+    public Animator anim;
+    [SerializeField] ParticleSystem MedusaAbility;
+    bool MedusaAbilityPlayer = false;
 
     public int postup = 0;
     public bool showText = true;
@@ -21,6 +25,10 @@ public class Tutorial : MonoBehaviour
 
     public bool cube1 = false;
     public bool cube2 = false;
+    public bool cube3 = false;
+    public bool cube4 = false;
+    public Vector3 medusaPoint = new Vector3(46.4205208f, 0.885676503f, -40.9568901f);
+    public bool medusaDead = false;
 
     GameObject borderTutorial;
 
@@ -36,7 +44,8 @@ public class Tutorial : MonoBehaviour
                                     "Keď urobíš viacero útokov hneď po sebe vznikne combo, na konci ktorého je kritický zásah, ktorý dáva väčšie poškodenie\n\n"+
                                     "Stlač medzeník pre pokračovanie",
                                     "Dávaj si ale pozor lebo počas útočenia sa nemozeš hýbať\n\n"+
-                                    "Stlač medzeník pre pokračovanie"};
+                                    "Stlač medzeník pre pokračovanie",
+                                    "Kys"};
 
 
 
@@ -53,7 +62,7 @@ public class Tutorial : MonoBehaviour
             Texts[0] = "Môžeš sa hýbať " + controls.MoveUp + controls.MoveLeft + controls.MoveDown + controls.MoveRight;
             borderTutorial = GameObject.Find("borderTutorial");
         }
-            
+        medusaDead = false;
     }
 
     void startFreeze()
@@ -203,6 +212,36 @@ public class Tutorial : MonoBehaviour
                         desiredTime = 1;
                     }
                 }
+                else if (postup == 10)
+                {
+                    print(10);
+                    if (showText == false)
+                    {
+                        if (cube3 && !MedusaAbilityPlayer)
+                        {
+                            GameObject.Find("Proste Camera").GetComponent<cameraFollow>().target = GameObject.Find("Medusa").GetComponent<Transform>();
+                            print("c3");
+                            managerVariables.Player.target = GameObject.Find("Medusa");
+                            MedusaAbility.Play();
+                            MedusaAbilityPlayer = true;
+                        }
+
+                        if (cube4)
+                        {
+                            GameObject.Find("Proste Camera").GetComponent<cameraFollow>().target = GameObject.Find("Player").GetComponent<Transform>();
+                            print("c4");
+                            showText = true;
+                            desiredTime = 0;
+                        }
+                    }
+                    else if (Input.GetKey(controls.Attack))
+                    {
+                        postup++;
+                        showText = false;
+                        desiredTime = 1;
+                        Invoke(nameof(medusaDied), .6f);
+                    }
+                }
             }
         }
         else
@@ -210,7 +249,13 @@ public class Tutorial : MonoBehaviour
             startFreezed = true;
             showText = false;
         }
-        
+
+    }
+
+    void medusaDied()
+    {
+        anim.SetTrigger("died");
+        medusaDead = true;
     }
 
     void DelayPostup()

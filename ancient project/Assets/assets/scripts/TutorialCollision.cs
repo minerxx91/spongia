@@ -31,6 +31,17 @@ public class TutorialCollision : MonoBehaviour
                 tutorial.cube2 = true;
                 print("tu c2");
             }
+            if (this.gameObject.name == "cube3")
+            {
+                tutorial.cube3 = true;
+                print("tu c3");
+            }
+            if (this.gameObject.name == "cube4")
+            {
+                tutorial.cube4 = true;
+                tutorial.cube3 = true;
+                print("tu c4");
+            }
         }
     }
 }
