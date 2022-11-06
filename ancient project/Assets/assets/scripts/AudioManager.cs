@@ -205,7 +205,6 @@ public class AudioManager : MonoBehaviour
     public void PlayMusic(int order)
     {
         MusicList.clip = Music[order];
-        print("pridany clip");
         MusicList.Play();
     }
 

@@ -52,6 +52,7 @@ public class Minotaur : MonoBehaviour
     Light orangeLight;
     [SerializeField] ParticleSystem SwingRight;
     [SerializeField] ParticleSystem SwingLeft;
+    [SerializeField] ParticleSystem Fire;
 
     //materials
     [SerializeField] Material telo;
@@ -134,11 +135,17 @@ public class Minotaur : MonoBehaviour
             if (this.gameObject.transform.localScale != Bigsize)
                 this.gameObject.transform.localScale += new Vector3(0.01f, 0.01f, 0.01f);
 
+            if (!Fire.isPlaying)
+            {
+                Fire.Play();
+            }
+
             managerVariables.Minotaur.DamageIncrease = 15;
 
             if (timeToRageTick > timeToRage + RageTime)
             {
                 timeToRageTick = 0;
+                Fire.Stop();
                 Raged = false;
                 telo.color = new Color32(115, 89, 69, 255);
 

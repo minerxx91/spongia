@@ -51,6 +51,7 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject shield;
     [SerializeField] GameObject helmet;
     [SerializeField] GameObject helmet2;
+    [SerializeField] ParticleSystem Fire;
 
 
     [SerializeField] GameObject trident;
@@ -607,6 +608,10 @@ public class Player : MonoBehaviour
                         audioManager.PlayMinotaurGrow1();
                     if (this.gameObject.transform.localScale != managerVariables.Player.Ability2growSize)
                         this.gameObject.transform.localScale += new Vector3(0.01f, 0.01f, 0.01f);
+                    if (!Fire.isPlaying)
+                    {
+                        Fire.Play();
+                    }
 
                     if (managerVariables.Player.Ability2timeToRageTick > managerVariables.Player.Ability2Duration)
                     {
@@ -622,6 +627,7 @@ public class Player : MonoBehaviour
                 {
                     if (this.gameObject.transform.localScale == managerVariables.Player.Ability2growSize)
                         audioManager.PlayMinotaurGrow2();
+                    Fire.Stop();
                     if (this.gameObject.transform.localScale != managerVariables.Player.Ability2normalSize)
                         this.gameObject.transform.localScale -= new Vector3(0.01f, 0.01f, 0.01f);
                     telo.color = new Color32(200, 176, 154, 255);
