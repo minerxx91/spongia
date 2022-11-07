@@ -44,6 +44,9 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] List<AudioClip> PoseidonRandom = new List<AudioClip>();
 
+    [SerializeField] List<AudioClip> HadesRandom = new List<AudioClip>();
+
+
 
 
 
@@ -244,6 +247,9 @@ public class AudioManager : MonoBehaviour
     {
         AS[0].PlayOneShot(tridentTrow);
     }
-
+    public void PlayHadesRandom()
+    {
+        AS[0].PlayOneShot(HadesRandom[Random.Range(0, HadesRandom.Count)]);
+    }
 
 }

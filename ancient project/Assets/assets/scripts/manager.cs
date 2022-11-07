@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 
 public class manager : MonoBehaviour
@@ -145,7 +146,6 @@ public class manager : MonoBehaviour
             manager_d = this.gameObject;
         }
         DontDestroyOnLoad(gameObject);
-        DontDestroyOnLoad(postprocessing);
         DynamicGI.UpdateEnvironment();
         lvlloader = GameObject.Find("LevelLoader").GetComponent<LevelLoader>();
 
@@ -274,13 +274,13 @@ public class manager : MonoBehaviour
                     ScenarioOrder = 1;
                 }
             }
-            if (GameObject.FindGameObjectsWithTag("Boss")[0].name == "Zeus")
+            if (GameObject.FindGameObjectsWithTag("Boss")[0].name == "Hades")
             {
-                if (Poseidon.Health == 0)
+                if (Hades.Health == 0)
                 {
                     print("endgame");
                     Destroy(GameObject.FindGameObjectsWithTag("Boss")[0].gameObject);
-                    Player.PoseidonUnlocked = true;
+                    Player.ZeusUnlocked = true;
                     Invoke(nameof(toLobby), 5);
                     ScenarioOrder = 4;
                 }
@@ -301,8 +301,13 @@ public class manager : MonoBehaviour
             }
         }
 
-        postprocessing.SetActive(this.GetComponent<Controls>().postProcessing);
-        GameObject.Find("AudioManager").GetComponent<AudioManager>().MusicVolume = this.GetComponent<Controls>().volume;
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            
+            GameObject.Find("Proste Camera").transform.Find("Main Camera").GetComponent<UniversalAdditionalCameraData>().renderPostProcessing = this.gameObject.GetComponent<Controls>().postProcessing;
+            GameObject.Find("AudioManager").GetComponent<AudioManager>().MusicVolume = this.GetComponent<Controls>().volume;
+        }
+        
 
     }
 }
