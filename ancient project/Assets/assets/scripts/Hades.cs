@@ -83,7 +83,8 @@ public class Hades : MonoBehaviour
         managerVariables = Manager.GetComponent<manager>();
         player = GameObject.Find("Player").transform;
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
-
+        AttackMelee1.gameObject.SetActive(false);
+        RangedHitbox.gameObject.SetActive(false);
 
         MainCamera = GameObject.Find("Main Camera").gameObject;
         CameraShake = MainCamera.GetComponent<Shake>();

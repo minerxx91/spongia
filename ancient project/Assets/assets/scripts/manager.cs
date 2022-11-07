@@ -12,6 +12,7 @@ public class manager : MonoBehaviour
 
 
     [SerializeField] GameObject playerPrefab;
+    [SerializeField] GameObject pauseCanvas;
 
     LevelLoader lvlloader;
 
@@ -53,7 +54,7 @@ public class manager : MonoBehaviour
         public float ShieldCooldown = 8;
         public float ShieldStaminaCost = 10;
 
-        public float Ability1Cooldown = 10f;
+        public float Ability1Cooldown = 20f;
         public float Ability1Duration = 5f;
         public float Ability1StaminaCost = 20;
 
@@ -65,7 +66,7 @@ public class manager : MonoBehaviour
         public bool Ability2Raged = false;
         public float Ability2timeToRageTick = 0;
 
-        public float Ability3Cooldown = 10f;
+        public float Ability3Cooldown = 15f;
         public float Ability3StaminaCost = 20;
         public float Ability3Damage = 40; //treba zmenit na  40
         public bool Ability3trident = true;
@@ -74,10 +75,10 @@ public class manager : MonoBehaviour
         public float gravityIncrease = 0;
         public GameObject target;
 
-        public bool MeduzaUnlocked = true;
-        public bool MinotaurUnlocked = true;
-        public bool PoseidonUnlocked = true;
-        public bool ZeusUnlocked = true;
+        public bool MeduzaUnlocked = false;
+        public bool MinotaurUnlocked = false;
+        public bool PoseidonUnlocked = false;
+        public bool ZeusUnlocked = false;
 
 
 
@@ -133,6 +134,7 @@ public class manager : MonoBehaviour
 
     private void Start()
     {
+        pauseCanvas.SetActive(false);
         postprocessing = GameObject.Find("Postprocessing");
         if (manager_d != null)
         {
@@ -146,6 +148,7 @@ public class manager : MonoBehaviour
         DontDestroyOnLoad(postprocessing);
         DynamicGI.UpdateEnvironment();
         lvlloader = GameObject.Find("LevelLoader").GetComponent<LevelLoader>();
+
         this.GetComponent<Controls>().loadData();
 
     }
@@ -189,24 +192,33 @@ public class manager : MonoBehaviour
     private void PauseGame()
     {
 
-            Time.timeScale = 0;
-            paused = false;
+        Time.timeScale = 0;
+        paused = false;
+        pauseCanvas.SetActive(true);
         
     }
 
-    private void ResumeGame()
+    public void ResumeGame()
     {
 
-            Time.timeScale = 1;
-            paused = true;
+        Time.timeScale = 1;
+        paused = true;
+        pauseCanvas.SetActive(false);
         
+    }
+
+    public void ToMenu()
+    {
+        SceneManager.LoadScene("Menu");
+        Time.timeScale = 1;
     }
 
     
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        
+        /*if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (paused)
             {
@@ -216,7 +228,7 @@ public class manager : MonoBehaviour
             {
                 ResumeGame();
             }
-        }
+        }*/
 
 
 
