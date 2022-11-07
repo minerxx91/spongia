@@ -191,18 +191,18 @@ public class manager : MonoBehaviour
     private void PauseGame()
     {
 
-        Time.timeScale = 0;
-        paused = false;
-        pauseCanvas.SetActive(true);
+
+        paused = true;
+
         
     }
 
     public void ResumeGame()
     {
 
-        Time.timeScale = 1;
-        paused = true;
-        pauseCanvas.SetActive(false);
+
+        paused = false;
+
         
     }
 
@@ -216,18 +216,7 @@ public class manager : MonoBehaviour
 
     private void Update()
     {
-        
-        /*if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (paused)
-            {
-                PauseGame();
-            }
-            else
-            {
-                ResumeGame();
-            }
-        }*/
+
 
 
 
@@ -268,7 +257,7 @@ public class manager : MonoBehaviour
                     ScenarioOrder =  3;
                 }
             }
-            if (GameObject.FindGameObjectsWithTag("Boss")[0].name == "Meduza")
+            if (GameObject.FindGameObjectsWithTag("Boss")[0].name == "Medusa")
             {
                 if (Poseidon.Health == 0)
                 {
