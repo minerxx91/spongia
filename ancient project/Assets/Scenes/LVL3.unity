@@ -1725,6 +1725,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7950941071210314358, guid: 12ae9d74d66012045ba2245278e1eabf, type: 3}
+      propertyPath: Zkamenenie
+      value: 
+      objectReference: {fileID: 8300000, guid: 5efb44fa96a1501419250a167a9104cb, type: 3}
+    - target: {fileID: 7950941071210314358, guid: 12ae9d74d66012045ba2245278e1eabf, type: 3}
+      propertyPath: tridentTrow
+      value: 
+      objectReference: {fileID: 8300000, guid: 200369f0d647afb41894197c8f2b0aa6, type: 3}
+    - target: {fileID: 7950941071210314358, guid: 12ae9d74d66012045ba2245278e1eabf, type: 3}
       propertyPath: Music.Array.size
       value: 1
       objectReference: {fileID: 0}
