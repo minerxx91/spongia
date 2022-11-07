@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 733657053}
-  m_IndirectSpecularColor: {r: 0.14156927, g: 0.03416945, b: 0.032260053, a: 1}
+  m_IndirectSpecularColor: {r: 0.14153616, g: 0.03415259, b: 0.032205038, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -348,6 +348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3edc54431dfd8b845b3e0a9a30205d97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
   smoothSpeed: 0.5
   offset: {x: 0, y: 4.84, z: -6.51}
   yOffset: 1.14
@@ -402,6 +403,87 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!1001 &228122061
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3196702161526774606, guid: 782273a49d4365144ad1bce815c00ee5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1304015612}
+    - target: {fileID: 3196702161526774606, guid: 782273a49d4365144ad1bce815c00ee5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 3196702161526774606, guid: 782273a49d4365144ad1bce815c00ee5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PauseManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3196702162039017034, guid: 782273a49d4365144ad1bce815c00ee5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1304015612}
+    - target: {fileID: 3196702162039017034, guid: 782273a49d4365144ad1bce815c00ee5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ResumeGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 3196702162039017034, guid: 782273a49d4365144ad1bce815c00ee5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PauseManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3196702162063985310, guid: 782273a49d4365144ad1bce815c00ee5, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3196702162063985310, guid: 782273a49d4365144ad1bce815c00ee5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1077.1995
+      objectReference: {fileID: 0}
+    - target: {fileID: 3196702162063985310, guid: 782273a49d4365144ad1bce815c00ee5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 411.86554
+      objectReference: {fileID: 0}
+    - target: {fileID: 3196702162063985310, guid: 782273a49d4365144ad1bce815c00ee5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -17.053312
+      objectReference: {fileID: 0}
+    - target: {fileID: 3196702162063985310, guid: 782273a49d4365144ad1bce815c00ee5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3196702162063985310, guid: 782273a49d4365144ad1bce815c00ee5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3196702162063985310, guid: 782273a49d4365144ad1bce815c00ee5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3196702162063985310, guid: 782273a49d4365144ad1bce815c00ee5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3196702162063985310, guid: 782273a49d4365144ad1bce815c00ee5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3196702162063985310, guid: 782273a49d4365144ad1bce815c00ee5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3196702162063985310, guid: 782273a49d4365144ad1bce815c00ee5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3196702162063985376, guid: 782273a49d4365144ad1bce815c00ee5, type: 3}
+      propertyPath: m_Name
+      value: PauseEmpty
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 782273a49d4365144ad1bce815c00ee5, type: 3}
 --- !u!1 &280459566
 GameObject:
   m_ObjectHideFlags: 0
@@ -445,6 +527,15 @@ MonoBehaviour:
   ability2: 50
   ability3: 51
   ability4: 52
+  volume: 1
+  music: 1
+  soundEffects: 1
+  postProcessing: 1
+  effects: 1
+  motionBlur: 1
+  fov: 60
+  level: 1
+  difficulty: 1
   binds: 
   bind: {fileID: 0}
   error: {fileID: 0}
@@ -462,10 +553,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 3884727775698485952, guid: f891d6219b852944db4eb482522e51ac, type: 3}
+  pauseCanvas: {fileID: 0}
   levelIndex: 0
   GravityForce: 0.5
   ScenarioOrder: 0
   skapalUz: 0
+  paused: 1
 --- !u!4 &280459569
 Transform:
   m_ObjectHideFlags: 0
@@ -1038,6 +1131,17 @@ Terrain:
   m_GroupingID: 0
   m_RenderingLayerMask: 1
   m_AllowAutoConnect: 1
+--- !u!114 &1304015612 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3196702162063985377, guid: 782273a49d4365144ad1bce815c00ee5, type: 3}
+  m_PrefabInstance: {fileID: 228122061}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae54e028f74946043ad54e28a50750a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1358403956
 GameObject:
   m_ObjectHideFlags: 0
@@ -1329,6 +1433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3edc54431dfd8b845b3e0a9a30205d97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
   smoothSpeed: 0.5
   offset: {x: 0, y: 4.84, z: -6.51}
   yOffset: 1.14

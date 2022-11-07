@@ -216,7 +216,8 @@ public class manager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        
+        /*if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (paused)
             {
@@ -226,7 +227,7 @@ public class manager : MonoBehaviour
             {
                 ResumeGame();
             }
-        }
+        }*/
 
 
 
