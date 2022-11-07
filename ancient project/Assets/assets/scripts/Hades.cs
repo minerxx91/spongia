@@ -111,10 +111,8 @@ public class Hades : MonoBehaviour
             {
                 randomSoundTick = 0;
                 randomSoundTime = Random.Range(3, 7);
-                //audioManager.PlayMinotaurRandom();
-                int chrcanie = Random.Range(1, 8);
+                audioManager.PlayHadesRandom();
 
-                //audioManager.PlayMinotaurChrcanie();
             }
        
 
