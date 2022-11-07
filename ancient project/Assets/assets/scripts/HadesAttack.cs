@@ -62,7 +62,6 @@ public class HadesAttack : MonoBehaviour
 
                 if (managerVariables.Player.Resistence > 0)
                 {
-                    audioManager.PlayPlayerShield();
                     managerVariables.Player.absorb2 = true;
                     if (managerVariables.Player.Health > (10 * Time.deltaTime))
                     {
