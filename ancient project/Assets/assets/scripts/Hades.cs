@@ -282,7 +282,6 @@ public class Hades : MonoBehaviour
                 agent.SetDestination(transform.position);
                 anim.SetBool("walk", false);
 
-                print("beam");
 
                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Range"))
                 {

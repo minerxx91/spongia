@@ -22,6 +22,7 @@ public class sword : MonoBehaviour
                 if (this.gameObject.name == "ability1")
                 {
                     other.GetComponent<Poseidon>().Stun = true;
+                    audioManager.PlayZkamenenie();
                 }
                 else
                 {
@@ -39,22 +40,34 @@ public class sword : MonoBehaviour
             }
             else if (other.gameObject.name == "Minotaur")
             {
-                audioManager.PlayMinotaurHit();
-                if (managerVariables.Minotaur.Health > managerVariables.Player.Damage + managerVariables.Player.DamageIncrease)
+                if (this.gameObject.name == "ability1")
                 {
-                    managerVariables.Minotaur.Health -= managerVariables.Player.Damage + managerVariables.Player.DamageIncrease;
-
+                    other.GetComponent<Minotaur>().Stun = true;
+                    audioManager.PlayZkamenenie();
+                    managerVariables.Minotaur.Health = 0;
                 }
                 else
                 {
-                    managerVariables.Minotaur.Health = 0;
+                    audioManager.PlayMinotaurHit();
+                    if (managerVariables.Minotaur.Health > managerVariables.Player.Damage + managerVariables.Player.DamageIncrease)
+                    {
+                        managerVariables.Minotaur.Health -= managerVariables.Player.Damage + managerVariables.Player.DamageIncrease;
+
+                    }
+                    else
+                    {
+                        managerVariables.Minotaur.Health = 0;
+                    }
                 }
+               
+                
             }
             if (other.gameObject.name == "Hades")
             {
                 if (this.gameObject.name == "ability1")
                 {
                     other.GetComponent<Hades>().Stun = true;
+                    audioManager.PlayZkamenenie();
                 }
                 else
                 {

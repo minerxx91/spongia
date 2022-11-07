@@ -5204,6 +5204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3edc54431dfd8b845b3e0a9a30205d97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
   smoothSpeed: 0.5
   offset: {x: 0, y: 4.84, z: -6.51}
   yOffset: 1.14
@@ -10133,6 +10134,11 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &826321296 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6113572755664437581, guid: ec9e63eecbd503d48911aee6251a42b3, type: 3}
+  m_PrefabInstance: {fileID: 1929744624}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &845282872
 GameObject:
   m_ObjectHideFlags: 0
@@ -15509,6 +15515,15 @@ MonoBehaviour:
   ability2: 50
   ability3: 51
   ability4: 52
+  volume: 1
+  music: 1
+  soundEffects: 1
+  postProcessing: 1
+  effects: 1
+  motionBlur: 1
+  fov: 60
+  level: 1
+  difficulty: 1
   binds: 
   bind: {fileID: 0}
   error: {fileID: 0}
@@ -15530,6 +15545,7 @@ MonoBehaviour:
   GravityForce: 0.5
   ScenarioOrder: 0
   skapalUz: 0
+  paused: 1
 --- !u!4 &992522450
 Transform:
   m_ObjectHideFlags: 0
@@ -40749,6 +40765,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3edc54431dfd8b845b3e0a9a30205d97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
   smoothSpeed: 0.5
   offset: {x: 0, y: 4, z: -6.51}
   yOffset: 1.14
@@ -44105,11 +44122,15 @@ MonoBehaviour:
   playerInMeleeAttackRange: 0
   playerInRangerAttackRange: 0
   playerInRangerAttackRange2: 0
+  stunMaterial: {fileID: 2100000, guid: e1cb81797082bc44c8f135c84c36eee6, type: 2}
+  telog: {fileID: 4435612861954855407}
   SwingRight: {fileID: 634127353}
   SwingLeft: {fileID: 1825585937}
   Fire: {fileID: 621952131}
+  HelpCanvas: {fileID: 826321296}
   telo: {fileID: 2100000, guid: 2992e5b234f519342bc01c53381d3d6e, type: 2}
   AttackMelee1: {fileID: 845282872}
+  Stun: 0
 --- !u!136 &8957922643260632540
 CapsuleCollider:
   m_ObjectHideFlags: 0

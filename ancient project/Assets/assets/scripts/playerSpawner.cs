@@ -12,7 +12,7 @@ public class playerSpawner : MonoBehaviour
 
         switch (this.gameObject.scene.buildIndex)
             {
-                case 0:
+                case 6:
                     Instantiate(player, managerVariables.Player.LobbySpawn, Quaternion.identity).transform.name = "Player";
 
                 return;
@@ -31,9 +31,7 @@ public class playerSpawner : MonoBehaviour
                 case 5:
                     Instantiate(player, managerVariables.Player.LVL5Spawn, Quaternion.identity).transform.name = "Player";
                 return;
-                case 6:
-                    Instantiate(player, managerVariables.Player.LVL6Spawn, Quaternion.identity).transform.name = "Player";
-                return;
+
         }
     }
 }

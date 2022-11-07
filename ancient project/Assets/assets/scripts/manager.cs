@@ -25,13 +25,13 @@ public class manager : MonoBehaviour
     {
         public float Speed = 5;
 
-        public float MaxHealth = 1000;
-        public float Health = 1000;
-        public float HealthRegen = .5f;
+        public float MaxHealth = 100;
+        public float Health = 100;
+        public float HealthRegen = 2f;
 
         public float Stamina = 100;
         public float MaxStamina = 100;
-        public float StaminaRegen = 10;
+        public float StaminaRegen = 5;
 
         public float Damage = 20 / 2;   
         public float DamageIncrease = 0;
@@ -110,6 +110,7 @@ public class manager : MonoBehaviour
         public float maxHealth = 250;
         public float Damage = 15;
         public float DamageIncrease = 0;
+        public bool died = false;
     }
     public MinotaurStats Minotaur = new MinotaurStats();
 
@@ -237,11 +238,16 @@ public class manager : MonoBehaviour
             {
                 if (Minotaur.Health == 0)
                 {
-                    print("endgame");
-                    Destroy(GameObject.FindGameObjectsWithTag("Boss")[0].gameObject);
-                    Player.MinotaurUnlocked = true;
-                    Invoke(nameof(toLobby), 5);
-                    ScenarioOrder = 2;
+                    if (!Minotaur.died)
+                    {
+                        print("endgame");
+                        Player.MinotaurUnlocked = true;
+                        Player.enlightened = true; 
+                        Invoke(nameof(toLobby), 5);
+                        ScenarioOrder = 2;
+                        Minotaur.died = true;
+                    }
+                    
 
                 }
             }

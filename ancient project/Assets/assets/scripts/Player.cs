@@ -648,7 +648,7 @@ public class Player : MonoBehaviour
                                 managerVariables.Player.Ability3trident = false;
                                 anim.SetTrigger("trident");
                                 Invoke(nameof(throwTrident), .5f);
-
+                                audioManager.PlayTridentTrow();
 
                                 Ability3Cooldown = 0;
                                 managerVariables.Player.Stamina -= managerVariables.Player.Ability3StaminaCost;
