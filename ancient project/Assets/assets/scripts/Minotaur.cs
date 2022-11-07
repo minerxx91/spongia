@@ -43,7 +43,8 @@ public class Minotaur : MonoBehaviour
     public float sightRange, MeleeAttackRange, RangerAttackRange;
     public bool playerInSightRange, playerInMeleeAttackRange, playerInRangerAttackRange, playerInRangerAttackRange2;
 
-
+    [SerializeField] Material stunMaterial;
+    [SerializeField] GameObject telog;
 
 
 
@@ -53,9 +54,11 @@ public class Minotaur : MonoBehaviour
     [SerializeField] ParticleSystem SwingRight;
     [SerializeField] ParticleSystem SwingLeft;
     [SerializeField] ParticleSystem Fire;
+    [SerializeField] GameObject HelpCanvas;
 
     //materials
     [SerializeField] Material telo;
+    
 
     private bool Animating;
     private Animator anim;
@@ -72,6 +75,7 @@ public class Minotaur : MonoBehaviour
     float randomSoundTime = 5;
     float randomSoundTick = 0;
 
+    public bool Stun;
 
     GameObject MainCamera;
     Shake CameraShake;
@@ -124,150 +128,172 @@ public class Minotaur : MonoBehaviour
 
     void Update()
     {
-        timeToRageTick += Time.deltaTime;
-        if (timeToRageTick >= timeToRage)
+
+        if (!Stun)
         {
-            Raged = true;
-            GetComponent<AudioSource>().clip = GameObject.Find("AudioManager").GetComponent<AudioManager>().RageDychanie;
-            if (!GetComponent<AudioSource>().isPlaying)
-                GetComponent<AudioSource>().Play();
-            telo.color = new Color32(150, 89, 69, 255);
-            if (this.gameObject.transform.localScale == size)
-                audioManager.PlayMinotaurGrow1();
-            if (this.gameObject.transform.localScale != Bigsize)
-                this.gameObject.transform.localScale += new Vector3(0.01f, 0.01f, 0.01f);
-
-            if (!Fire.isPlaying)
+            if (managerVariables.Minotaur.Health <= 50)
             {
-                Fire.Play();
+                managerVariables.Player.MeduzaUnlocked = true;
+                HelpCanvas.SetActive(true);
+                HelpCanvas.GetComponent<TextMeshProUGUI>().text = "Zmačkni \"" + GameObject.Find("Manager").GetComponent<Controls>().ability1 + "\" pre použitie chopnosti Medúzy!";
             }
-
-            managerVariables.Minotaur.DamageIncrease = 15;
-
-            if (timeToRageTick > timeToRage + RageTime)
+            timeToRageTick += Time.deltaTime;
+            if (timeToRageTick >= timeToRage)
             {
-                timeToRageTick = 0;
-                Fire.Stop();
-                Raged = false;
+                Raged = true;
+                GetComponent<AudioSource>().clip = GameObject.Find("AudioManager").GetComponent<AudioManager>().RageDychanie;
+                if (!GetComponent<AudioSource>().isPlaying)
+                    GetComponent<AudioSource>().Play();
+                telo.color = new Color32(150, 89, 69, 255);
+                if (this.gameObject.transform.localScale == size)
+                    audioManager.PlayMinotaurGrow1();
+                if (this.gameObject.transform.localScale != Bigsize)
+                    this.gameObject.transform.localScale += new Vector3(0.01f, 0.01f, 0.01f);
+
+                if (!Fire.isPlaying)
+                {
+                    Fire.Play();
+                }
+
+                managerVariables.Minotaur.DamageIncrease = 15;
+
+                if (timeToRageTick > timeToRage + RageTime)
+                {
+                    timeToRageTick = 0;
+                    Fire.Stop();
+                    Raged = false;
+                    telo.color = new Color32(115, 89, 69, 255);
+
+                }
+            }
+            if (!Raged)
+            {
+                GetComponent<AudioSource>().Stop();
+                if (this.gameObject.transform.localScale == Bigsize)
+                    audioManager.PlayMinotaurGrow2();
+
+                if (this.gameObject.transform.localScale != size)
+                    this.gameObject.transform.localScale -= new Vector3(0.01f, 0.01f, 0.01f);
                 telo.color = new Color32(115, 89, 69, 255);
 
-            }
-        }
-        if (!Raged)
-        {
-            GetComponent<AudioSource>().Stop();
-            if (this.gameObject.transform.localScale == Bigsize)
-                audioManager.PlayMinotaurGrow2();
-
-            if (this.gameObject.transform.localScale != size)
-                this.gameObject.transform.localScale -= new Vector3(0.01f, 0.01f, 0.01f);
-            telo.color = new Color32(115, 89, 69, 255);
-
-            managerVariables.Minotaur.DamageIncrease = 0;
-
-        }
-        randomSoundTick += Time.deltaTime;
-        if(randomSoundTick >= randomSoundTime)
-        {
-            randomSoundTick = 0;
-            randomSoundTime = Random.Range(3,7);
-            audioManager.PlayMinotaurRandom();
-            int chrcanie = Random.Range(1, 8);
-            if (chrcanie == 1)
-                audioManager.PlayMinotaurChrcanie();
-        }
-
-
-
-
-
-
-        if (abilityChasingTime < 0.5f)
-        {
-            abilityChasingTime += Time.deltaTime;
-            this.gameObject.transform.rotation = Quaternion.Euler(runRotation);
-
-        }
-
-
-
-        Targetposition = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
-        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("melee2"))
-        {
-            if (Animating)
-            {
-
-
-                transform.position += transform.forward * 10;
+                managerVariables.Minotaur.DamageIncrease = 0;
 
             }
-            Animating = false;
-        }
-
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-        playerInMeleeAttackRange = Physics.CheckSphere(transform.position, MeleeAttackRange, whatIsPlayer);
-        playerInRangerAttackRange = Physics.CheckSphere(transform.position, RangerAttackRange, whatIsPlayer);
-        transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.eulerAngles.y, 0));
-        if (!Charging)
-        {
-            if (this.gameObject.name == "Minotaur")
+            randomSoundTick += Time.deltaTime;
+            if (randomSoundTick >= randomSoundTime)
             {
-                if (!playerInSightRange && !playerInMeleeAttackRange) Patroling();
-                if (playerInSightRange && !playerInMeleeAttackRange && !GameObject.Find("Player").GetComponent<Player>().died) Chasing();
-                if (playerInSightRange && (playerInMeleeAttackRange || playerInRangerAttackRange))
+                randomSoundTick = 0;
+                randomSoundTime = Random.Range(3, 7);
+                audioManager.PlayMinotaurRandom();
+                int chrcanie = Random.Range(1, 8);
+                if (chrcanie == 1)
+                    audioManager.PlayMinotaurChrcanie();
+            }
+
+
+
+
+
+
+            if (abilityChasingTime < 0.5f)
+            {
+                abilityChasingTime += Time.deltaTime;
+                this.gameObject.transform.rotation = Quaternion.Euler(runRotation);
+
+            }
+
+
+
+            Targetposition = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
+            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("melee2"))
+            {
+                if (Animating)
                 {
-                    if (playerInMeleeAttackRange && !GameObject.Find("Player").GetComponent<Player>().died)
-                    {
-                        MeleeAttacking();
-                    }
 
-                    else if (!alreadyAttacked && !playerInRangerAttackRange && !GameObject.Find("Player").GetComponent<Player>().died)
+
+                    transform.position += transform.forward * 10;
+
+                }
+                Animating = false;
+            }
+
+            playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+            playerInMeleeAttackRange = Physics.CheckSphere(transform.position, MeleeAttackRange, whatIsPlayer);
+            playerInRangerAttackRange = Physics.CheckSphere(transform.position, RangerAttackRange, whatIsPlayer);
+            transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.eulerAngles.y, 0));
+            if (!Charging)
+            {
+                if (this.gameObject.name == "Minotaur")
+                {
+                    if (!playerInSightRange && !playerInMeleeAttackRange) Patroling();
+                    if (playerInSightRange && !playerInMeleeAttackRange && !GameObject.Find("Player").GetComponent<Player>().died) Chasing();
+                    if (playerInSightRange && (playerInMeleeAttackRange || playerInRangerAttackRange))
                     {
-                        RangedAttacking();
+                        if (playerInMeleeAttackRange && !GameObject.Find("Player").GetComponent<Player>().died)
+                        {
+                            MeleeAttacking();
+                        }
+
+                        else if (!alreadyAttacked && !playerInRangerAttackRange && !GameObject.Find("Player").GetComponent<Player>().died)
+                        {
+                            RangedAttacking();
+                        }
                     }
+                }
+                else
+                {
+                    if (!playerInSightRange && !playerInMeleeAttackRange) Patroling();
+                    if (playerInSightRange && !playerInMeleeAttackRange && !GameObject.Find("Player").GetComponent<Player>().died) Chasing();
+                    if (playerInRangerAttackRange && playerInSightRange && !GameObject.Find("Player").GetComponent<Player>().died) RangedAttacking();
+                    if (playerInMeleeAttackRange && playerInSightRange && !GameObject.Find("Player").GetComponent<Player>().died) MeleeAttacking();
                 }
             }
             else
             {
-                if (!playerInSightRange && !playerInMeleeAttackRange) Patroling();
-                if (playerInSightRange && !playerInMeleeAttackRange && !GameObject.Find("Player").GetComponent<Player>().died) Chasing();
-                if (playerInRangerAttackRange && playerInSightRange && !GameObject.Find("Player").GetComponent<Player>().died) RangedAttacking();
-                if (playerInMeleeAttackRange && playerInSightRange && !GameObject.Find("Player").GetComponent<Player>().died) MeleeAttacking();
+                transform.position += transform.forward * 16 * Time.deltaTime;
+            }
+
+            materialDelay += Time.deltaTime;
+
+
+            if (managerVariables.Player.target == this.gameObject)
+            {
+                selectAura.Play();
+                orangeLight.gameObject.SetActive(true);
+
+            }
+            else
+            {
+                selectAura.Stop();
+                orangeLight.gameObject.SetActive(false);
+
+            }
+            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("walk")) agent.SetDestination(transform.position);
+
+            if (!gameObject.GetComponent<CharacterController>().isGrounded)
+            {
+                gravityIncrease += managerVariables.GravityForce * Time.deltaTime;
+
+            }
+            else
+            {
+                gravityIncrease = 0;
             }
         }
         else
         {
-            transform.position += transform.forward * 16 * Time.deltaTime;
+            Invoke(nameof(ResetStun), 8f);
+            agent.SetDestination(transform.position);
+            anim.speed = 0;
+            telog.GetComponent<Renderer>().material = stunMaterial;
         }
 
-        materialDelay += Time.deltaTime;
-
-
-        if (managerVariables.Player.target == this.gameObject)
-        {
-            selectAura.Play();
-            orangeLight.gameObject.SetActive(true);
-
-        }
-        else
-        {
-            selectAura.Stop();
-            orangeLight.gameObject.SetActive(false);
-
-        }
-        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("walk")) agent.SetDestination(transform.position);
-
-        if (!gameObject.GetComponent<CharacterController>().isGrounded)
-        {
-            gravityIncrease += managerVariables.GravityForce * Time.deltaTime;
-
-        }
-        else
-        {
-            gravityIncrease = 0;
-        }
     }
-
+    void ResetStun()
+    {
+        Stun = false;
+        anim.speed = 1;
+    }
 
 
     private void Patroling()

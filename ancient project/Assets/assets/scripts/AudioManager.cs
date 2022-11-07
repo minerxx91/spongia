@@ -15,8 +15,9 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] AudioClip PlayerRoll;
     [SerializeField] AudioClip Ability1;
+    [SerializeField] AudioClip tridentTrow;
 
-
+    [SerializeField] AudioClip Zkamenenie;
 
     [SerializeField] AudioClip PortalEnter;
 
@@ -235,5 +236,14 @@ public class AudioManager : MonoBehaviour
         MusicList.clip = Music[order];
         MusicList.Play();
     }
+    public void PlayZkamenenie()
+    {
+        AS[0].PlayOneShot(Zkamenenie);
+    }
+    public void PlayTridentTrow()
+    {
+        AS[0].PlayOneShot(tridentTrow);
+    }
+
 
 }

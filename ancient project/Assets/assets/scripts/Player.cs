@@ -489,6 +489,14 @@ public class Player : MonoBehaviour
                     }
 
                     comboTimer -= Time.deltaTime;
+
+                    print(!anim.GetCurrentAnimatorStateInfo(0).IsName("Trident"));
+                    print(Input.GetKey(controls.Attack));
+                    print(managerVariables.Player.AttackReady);
+                    print(Mouse0Avaiable);
+                    print(!Input.GetKey(controls.Block));
+                    print(managerVariables.Player.Stamina >= managerVariables.Player.AttackCost);
+                    print("-----------");
                     if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Trident") && Input.GetKey(controls.Attack) && managerVariables.Player.AttackReady && Mouse0Avaiable && !Input.GetKey(controls.Block) && managerVariables.Player.Stamina >= managerVariables.Player.AttackCost)
                     {
                         managerVariables.Player.Stamina -= managerVariables.Player.AttackCost;
@@ -649,7 +657,7 @@ public class Player : MonoBehaviour
                                 managerVariables.Player.Ability3trident = false;
                                 anim.SetTrigger("trident");
                                 Invoke(nameof(throwTrident), .5f);
-
+                                audioManager.PlayTridentTrow();
 
                                 Ability3Cooldown = 0;
                                 managerVariables.Player.Stamina -= managerVariables.Player.Ability3StaminaCost;

@@ -11976,9 +11976,17 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7950941071210314358, guid: 12ae9d74d66012045ba2245278e1eabf, type: 3}
+      propertyPath: Zkamenenie
+      value: 
+      objectReference: {fileID: 8300000, guid: 5efb44fa96a1501419250a167a9104cb, type: 3}
+    - target: {fileID: 7950941071210314358, guid: 12ae9d74d66012045ba2245278e1eabf, type: 3}
       propertyPath: MusicVolume
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 7950941071210314358, guid: 12ae9d74d66012045ba2245278e1eabf, type: 3}
+      propertyPath: tridentTrow
+      value: 
+      objectReference: {fileID: 8300000, guid: 200369f0d647afb41894197c8f2b0aa6, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12ae9d74d66012045ba2245278e1eabf, type: 3}
 --- !u!1 &1285557077
@@ -17868,7 +17876,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1950919036}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

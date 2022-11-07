@@ -56,13 +56,13 @@ public class HadesAttack : MonoBehaviour
     {
         if(this.gameObject.name == "Beamhitbox")
         {
+
             if (other.gameObject.name == "Player")
             {
+
                 if (managerVariables.Player.Resistence > 0)
                 {
-                    audioManager.PlayPlayerShield();
                     managerVariables.Player.absorb2 = true;
-
                     if (managerVariables.Player.Health > (10 * Time.deltaTime))
                     {
                         managerVariables.Player.Health -= 10 * Time.deltaTime;
@@ -74,7 +74,15 @@ public class HadesAttack : MonoBehaviour
                 }
                 else
                 {
-                     managerVariables.Player.absorb = true;
+                    if (managerVariables.Player.Health > (10 * Time.deltaTime))
+                    {
+                        managerVariables.Player.Health -= 10 * Time.deltaTime;
+                    }
+                    else
+                    {
+                        managerVariables.Player.Health = 0;
+                    }
+                    managerVariables.Player.absorb = true;
 
                 }
 

@@ -364,6 +364,8 @@ public class Poseidon : MonoBehaviour
     {
         Instantiate(projectile, trident.transform.position, Quaternion.Euler(new Vector3(90, transform.rotation.eulerAngles.y, 0))).name = "EnemyTrident";
         Invoke(nameof(ResetAttack), timeBetweenAttacks - .5f);
+        audioManager.PlayTridentTrow();
+
     }
     void RangedAttacking()
     {
