@@ -135,35 +135,25 @@ public class Hades : MonoBehaviour
             playerInRangerAttackRange = Physics.CheckSphere(transform.position, RangerAttackRange, whatIsPlayer);
             transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.eulerAngles.y, 0));
 
-            if (this.gameObject.name == "Hades")
+            
+            if (!playerInSightRange && !playerInMeleeAttackRange) Chasing();
+            if (playerInSightRange && !playerInMeleeAttackRange && !GameObject.Find("Player").GetComponent<Player>().died) Chasing();
+
+
+            if (playerInMeleeAttackRange && !GameObject.Find("Player").GetComponent<Player>().died)
             {
-                if (!playerInSightRange && !playerInMeleeAttackRange) Chasing();
-                if (playerInSightRange && !playerInMeleeAttackRange && !GameObject.Find("Player").GetComponent<Player>().died) Chasing();
-
-
-                if (playerInMeleeAttackRange && !GameObject.Find("Player").GetComponent<Player>().died)
-                {
-                    MeleeAttacking1();
-                }
-
-                else if (playerInRangerAttackRange && !GameObject.Find("Player").GetComponent<Player>().died)
-                {
-                    RangedAttacking();
-                }
-
+                int r = Random.Range(0, 2);
+                if (r == 0) MeleeAttacking1();
+                else MeleeAttacking2();
             }
-            else
+
+            else if (playerInRangerAttackRange && !GameObject.Find("Player").GetComponent<Player>().died)
             {
-                if (!playerInSightRange && !playerInMeleeAttackRange) Chasing();
-                if (playerInSightRange && !playerInMeleeAttackRange && !GameObject.Find("Player").GetComponent<Player>().died) Chasing();
-                if (playerInRangerAttackRange && playerInSightRange && !GameObject.Find("Player").GetComponent<Player>().died) RangedAttacking();
-                if (playerInMeleeAttackRange && playerInSightRange && !GameObject.Find("Player").GetComponent<Player>().died) {
-                    int r = Random.Range(0, 2);
-                    if(r == 1) MeleeAttacking1();
-                    else MeleeAttacking2();
-
-                }
+                RangedAttacking();
             }
+
+            
+            
 
             if (managerVariables.Player.target == this.gameObject)
             {
@@ -252,7 +242,7 @@ public class Hades : MonoBehaviour
 
                 Invoke(nameof(ResetAttack), timeBetweenAttacks);
                 //Invoke(nameof(MeleeBlastParticel), 1f);
-                Invoke(nameof(DoAttackMelee1), .72f);
+                Invoke(nameof(DoAttackMelee1), .6f);
             }
         }
     }
@@ -276,7 +266,7 @@ public class Hades : MonoBehaviour
 
                 Invoke(nameof(ResetAttack), timeBetweenAttacks);
                 //Invoke(nameof(MeleeBlastParticel), 1f);
-                Invoke(nameof(DoAttackMelee2), .72f);
+                Invoke(nameof(DoAttackMelee2), 1.2f);
             }
         }
     }
@@ -342,7 +332,7 @@ public class Hades : MonoBehaviour
 
     void ResetAttackMelee2()
     {
-        AttackMelee1.SetActive(false);
+        AttackMelee2.SetActive(false);
     }
     private void OnDrawGizmosSelected()
     {

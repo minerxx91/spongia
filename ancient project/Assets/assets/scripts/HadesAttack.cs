@@ -20,7 +20,7 @@ public class HadesAttack : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            if( this.gameObject.name == "melee1")
+            if( this.gameObject.name == "AttackMelee1")
             {
                 if (managerVariables.Player.Health > managerVariables.Hades.Damage + managerVariables.Hades.DamageIncrease)
                 {
@@ -43,7 +43,30 @@ public class HadesAttack : MonoBehaviour
                     GameObject.Find("Player").GetComponent<Player>().died = true;
                 }
             }
-            
+            else if (this.gameObject.name == "AttackMelee2")
+            {
+                if (managerVariables.Player.Health > managerVariables.Hades.Damage + managerVariables.Hades.DamageIncrease)
+                {
+                    managerVariables.Player.Health -= (managerVariables.Hades.Damage + managerVariables.Hades.DamageIncrease) * (100 - managerVariables.Player.Resistence) / 100;
+                    if (managerVariables.Player.Resistence > 0)
+                    {
+                        audioManager.PlayPlayerShield();
+                        if (GameObject.Find("Player").GetComponent<PlayerTutorial>() == null) Invoke(nameof(ShieldDown), .3f);
+                        else ShieldDownTutorial();
+                        if (GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerTutorial>() == null) Invoke(nameof(ShieldDown), .3f);
+                        else Invoke(nameof(ShieldDownTutorial), .3f);
+                        managerVariables.Player.absorb2 = true;
+                    }
+                    else managerVariables.Player.absorb = true;
+                }
+                else
+                {
+                    //managerVariables.Player.absorb = true;
+                    managerVariables.Player.Health = 0;
+                    GameObject.Find("Player").GetComponent<Player>().died = true;
+                }
+            }
+
             /*if ( managerVariables.Player.AttackInProcess)
             {
                 
