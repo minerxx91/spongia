@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
     public float Ability2Cooldown = 0;
     public float Ability3Cooldown = 0;
 
+    float lastAttackTime = 0f;
     float attackprocess = 0;
     private int combo = 0;
     private float comboTimer = 0;
@@ -136,6 +137,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        
         print(managerVariables.Player.Health);
         if(managerVariables.paused)
         {
@@ -289,7 +291,18 @@ public class Player : MonoBehaviour
 
 
                     }
-
+                    if (managerVariables.Player.AttackReady)
+                    {
+                        lastAttackTime = 0f;
+                    }
+                    else
+                    {
+                        lastAttackTime += Time.deltaTime;
+                        if (lastAttackTime >= managerVariables.Player.AttackCooldown) 
+                        {
+                            managerVariables.Player.AttackReady = true;
+                        }
+                    }
 
                     PlayerSpeed = managerVariables.Player.Speed * Time.deltaTime;
 
@@ -487,6 +500,14 @@ public class Player : MonoBehaviour
                         anim.SetBool("block", false);
                         managerVariables.Player.Resistence = 0;
                     }
+                    
+                    print("-----------");
+                    print(!anim.GetCurrentAnimatorStateInfo(0).IsName("Trident"));
+                    print(Input.GetKey(controls.Attack));
+                    print(managerVariables.Player.AttackReady);
+                    print(Mouse0Avaiable);
+                    print(!Input.GetKey(controls.Block));
+                    print(managerVariables.Player.Stamina >= managerVariables.Player.AttackCost);
 
                     comboTimer -= Time.deltaTime;
                     if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Trident") && Input.GetKey(controls.Attack) && managerVariables.Player.AttackReady && Mouse0Avaiable && !Input.GetKey(controls.Block) && managerVariables.Player.Stamina >= managerVariables.Player.AttackCost)
