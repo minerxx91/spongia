@@ -47,7 +47,7 @@ public class Hades : MonoBehaviour
     private Vector3 Targetposition;
 
     public GameObject AttackMelee1;
-    //public GameObject AttackMelee2;
+    public GameObject AttackMelee2;
 
 
     Transform player;
@@ -84,6 +84,7 @@ public class Hades : MonoBehaviour
         player = GameObject.Find("Player").transform;
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         AttackMelee1.gameObject.SetActive(false);
+        AttackMelee2.gameObject.SetActive(false);
         RangedHitbox.gameObject.SetActive(false);
 
         MainCamera = GameObject.Find("Main Camera").gameObject;
@@ -142,7 +143,7 @@ public class Hades : MonoBehaviour
 
                 if (playerInMeleeAttackRange && !GameObject.Find("Player").GetComponent<Player>().died)
                 {
-                    MeleeAttacking();
+                    MeleeAttacking1();
                 }
 
                 else if (playerInRangerAttackRange && !GameObject.Find("Player").GetComponent<Player>().died)
@@ -156,7 +157,12 @@ public class Hades : MonoBehaviour
                 if (!playerInSightRange && !playerInMeleeAttackRange) Chasing();
                 if (playerInSightRange && !playerInMeleeAttackRange && !GameObject.Find("Player").GetComponent<Player>().died) Chasing();
                 if (playerInRangerAttackRange && playerInSightRange && !GameObject.Find("Player").GetComponent<Player>().died) RangedAttacking();
-                if (playerInMeleeAttackRange && playerInSightRange && !GameObject.Find("Player").GetComponent<Player>().died) MeleeAttacking();
+                if (playerInMeleeAttackRange && playerInSightRange && !GameObject.Find("Player").GetComponent<Player>().died) {
+                    int r = Random.Range(0, 2);
+                    if(r == 1) MeleeAttacking1();
+                    else MeleeAttacking2();
+
+                }
             }
 
             if (managerVariables.Player.target == this.gameObject)
@@ -227,7 +233,7 @@ public class Hades : MonoBehaviour
 
 
     }
-    private void MeleeAttacking()
+    private void MeleeAttacking1()
     {
 
         transform.LookAt(Targetposition);
@@ -240,25 +246,41 @@ public class Hades : MonoBehaviour
             managerVariables.Hades.DamageIncrease = 0;
 
             {
-                anim.SetTrigger("melee1");
+                anim.SetTrigger("attack1");
                 //SwingRight.Play();
                 //attack melee 1
 
-
-
-                Invoke(nameof(ResetAttack), shorttimebetweenAttacks);
-
-
-
-
-
+                Invoke(nameof(ResetAttack), timeBetweenAttacks);
                 //Invoke(nameof(MeleeBlastParticel), 1f);
-               // Invoke(nameof(DoAttackMelee1), .72f);
+                Invoke(nameof(DoAttackMelee1), .72f);
             }
         }
-
-
     }
+
+    private void MeleeAttacking2()
+    {
+
+        transform.LookAt(Targetposition);
+        anim.SetBool("walk", false);
+        agent.SetDestination(transform.position);
+
+        if (!alreadyAttacked)
+        {
+            alreadyAttacked = true;
+            managerVariables.Hades.DamageIncrease = 0;
+
+            {
+                anim.SetTrigger("attack3");
+                //SwingRight.Play();
+                //attack melee 1
+
+                Invoke(nameof(ResetAttack), timeBetweenAttacks);
+                //Invoke(nameof(MeleeBlastParticel), 1f);
+                Invoke(nameof(DoAttackMelee2), .72f);
+            }
+        }
+    }
+
     void RangedAttacking()
     {
 
@@ -299,6 +321,29 @@ public class Hades : MonoBehaviour
         }
     }
 
+    void DoAttackMelee1()
+    {
+        AttackMelee1.SetActive(true);
+        Invoke(nameof(ResetAttackMelee1), .1f);
+        CamShaker.ShakeOnce(2, 2, .1f, 1.3f);
+    }
+
+    void ResetAttackMelee1()
+    {
+        AttackMelee1.SetActive(false);
+    }
+
+    void DoAttackMelee2()
+    {
+        AttackMelee2.SetActive(true);
+        Invoke(nameof(ResetAttackMelee2), .1f);
+        CamShaker.ShakeOnce(2, 2, .1f, 1.3f);
+    }
+
+    void ResetAttackMelee2()
+    {
+        AttackMelee1.SetActive(false);
+    }
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
