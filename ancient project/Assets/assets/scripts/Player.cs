@@ -138,7 +138,6 @@ public class Player : MonoBehaviour
     void Update()
     {
         
-        print(managerVariables.Player.Health);
         if(managerVariables.paused)
         {
             if (this.gameObject.scene.name != "Menu")
@@ -501,23 +500,11 @@ public class Player : MonoBehaviour
                         managerVariables.Player.Resistence = 0;
                     }
                     
-                    print("-----------");
-                    print(!anim.GetCurrentAnimatorStateInfo(0).IsName("Trident"));
-                    print(Input.GetKey(controls.Attack));
-                    print(managerVariables.Player.AttackReady);
-                    print(Mouse0Avaiable);
-                    print(!Input.GetKey(controls.Block));
-                    print(managerVariables.Player.Stamina >= managerVariables.Player.AttackCost);
+              
 
                     comboTimer -= Time.deltaTime;
 
-                    print(!anim.GetCurrentAnimatorStateInfo(0).IsName("Trident"));
-                    print(Input.GetKey(controls.Attack));
-                    print(managerVariables.Player.AttackReady);
-                    print(Mouse0Avaiable);
-                    print(!Input.GetKey(controls.Block));
-                    print(managerVariables.Player.Stamina >= managerVariables.Player.AttackCost);
-                    print("-----------");
+                
                     if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Trident") && Input.GetKey(controls.Attack) && managerVariables.Player.AttackReady && Mouse0Avaiable && !Input.GetKey(controls.Block) && managerVariables.Player.Stamina >= managerVariables.Player.AttackCost)
                     {
                         managerVariables.Player.Stamina -= managerVariables.Player.AttackCost;
@@ -760,25 +747,7 @@ public class Player : MonoBehaviour
         managerVariables.Player.Jumping = false;
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        for (int i = 1; i < 6; i++)
-        {
-            if (other.gameObject.name == "Portal" + i)
-            {
-
-
-                if (Input.GetKey(controls.Interact))
-                {
-                    audioManager.PlayPortalEnter();
-                    managerVariables.levelIndex = i;
-                    lvlloader.SwitchScene();
-                }
-            }
-        }
-
-
-    }
+   
     private void OnTriggerEnter(Collider other)
     {
         for (int i = 1; i < 6; i++)

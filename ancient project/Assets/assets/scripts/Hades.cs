@@ -41,6 +41,7 @@ public class Hades : MonoBehaviour
     [SerializeField] GameObject RangedHitbox;
 
     [SerializeField] GameObject Bident;
+    [SerializeField] ParticleSystem Attack1particle;
 
 
     private bool Animating;

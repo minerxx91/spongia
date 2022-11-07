@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Boss
   - Scenario
+  - Portal
   layers:
   - Default
   - TransparentFX

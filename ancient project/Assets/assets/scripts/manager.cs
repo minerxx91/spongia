@@ -23,12 +23,13 @@ public class manager : MonoBehaviour
 
     public int ScenarioOrder = 0;
 
+    public int ButtonAvaiable = 1;
     public class PlayerStats
     {
         public float Speed = 5;
 
-        public float MaxHealth = 100;
-        public float Health = 100;
+        public float MaxHealth = 1000;
+        public float Health = 1000;
         public float HealthRegen = 2f;
 
         public float Stamina = 100;
@@ -222,7 +223,6 @@ public class manager : MonoBehaviour
 
 
 
-
         if (Player.Health <= 0 && ! skapalUz)
         {
             GameObject.Find("Player").GetComponent<Player>().died = true;
@@ -230,7 +230,7 @@ public class manager : MonoBehaviour
             Invoke(nameof(toLobby), 5);
             skapalUz = true;
         }
-
+        
         else if (GameObject.FindGameObjectsWithTag("Boss").Length != 0)
         {
             
@@ -243,6 +243,7 @@ public class manager : MonoBehaviour
                     Player.MinotaurUnlocked = true;
                     Invoke(nameof(toLobby), 5);
                     ScenarioOrder = 2;
+                    ButtonAvaiable = 2;
 
                 }
             }
@@ -255,6 +256,8 @@ public class manager : MonoBehaviour
                     Player.PoseidonUnlocked = true;
                     Invoke(nameof(toLobby), 5);
                     ScenarioOrder =  3;
+                    ButtonAvaiable = 3;
+
                 }
             }
             if (GameObject.FindGameObjectsWithTag("Boss")[0].name == "Medusa")
@@ -277,6 +280,8 @@ public class manager : MonoBehaviour
                     Player.ZeusUnlocked = true;
                     Invoke(nameof(toLobby), 5);
                     ScenarioOrder = 4;
+                    ButtonAvaiable = 4;
+
                 }
             }
         }
