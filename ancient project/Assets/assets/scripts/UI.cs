@@ -266,6 +266,13 @@ private void Update()
                     BossBar.transform.localScale = new Vector2((bossHealth * dielikBoss) / 900, BossBar.transform.localScale.y);
                     BossName.text = "Hades";
                 }
+                else if (GameObject.FindGameObjectsWithTag("Boss")[0].gameObject.name == "Hades2")
+                {
+                    float bossHealth = managerVariables.Hades2.Health;
+                    float dielikBoss = 900 / managerVariables.Hades2.maxHealth;
+                    BossBar.transform.localScale = new Vector2((bossHealth * dielikBoss) / 900, BossBar.transform.localScale.y);
+                    BossName.text = "Hades";
+                }
 
 
             }

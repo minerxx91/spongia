@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
@@ -28,8 +29,8 @@ public class manager : MonoBehaviour
     {
         public float Speed = 5;
 
-        public float MaxHealth = 1000;
-        public float Health = 1000;
+        public float MaxHealth = 100;
+        public float Health = 100;
         public float HealthRegen = 2f;
 
         public float Stamina = 100;
@@ -45,7 +46,7 @@ public class manager : MonoBehaviour
         public bool AttackReady = true;
         public float AttackCost = 5f;
 
-        public bool enlightened = true;
+        public bool enlightened = false;
 
         public float JumpSpeed = 1.5f;
         public float JumpTime = 0.8f;
@@ -113,18 +114,31 @@ public class manager : MonoBehaviour
         public float maxHealth = 250;
         public float Damage = 15;
         public float DamageIncrease = 0;
+        public bool died  = false;
     }
     public MinotaurStats Minotaur = new MinotaurStats();
 
     public class HadesStats
     {
-        public float Health = 750;
-        public float maxHealth = 750;
+        public float Health = 500;
+        public float maxHealth = 500;
         public float Damage = 20;
-        public float DamageIncrease = 0;
+        public float DamageIncrease = 0f;
+        public bool died = false;
     }
 
     public HadesStats Hades = new HadesStats();
+
+    public class Hades2Stats
+    {
+        public float Health = 750;
+        public float maxHealth = 750;
+        public float Damage = 40;
+        public float DamageIncrease = 0f;
+        public bool died = false;
+    }
+
+    public Hades2Stats Hades2 = new Hades2Stats();
 
     private void Awake()
     {
@@ -184,7 +198,12 @@ public class manager : MonoBehaviour
         SceneManager.LoadScene("Lobby");
 
     }
-     public bool skapalUz = false;
+    public void toMenu()
+    {
+        SceneManager.LoadScene("Menu");
+
+    }
+    public bool skapalUz = false;
      bool MedusaUz = false;
 
     public bool paused = true;
@@ -238,12 +257,18 @@ public class manager : MonoBehaviour
             {
                 if (Minotaur.Health == 0)
                 {
-                    print("endgame");
-                    Destroy(GameObject.FindGameObjectsWithTag("Boss")[0].gameObject);
-                    Player.MinotaurUnlocked = true;
-                    Invoke(nameof(toLobby), 5);
-                    ScenarioOrder = 2;
-                    ButtonAvaiable = 2;
+                    if (!Minotaur.died)
+                    {
+                        print("endgame");
+                        //Destroy(GameObject.FindGameObjectsWithTag("Boss")[0].gameObject);
+                        Player.MinotaurUnlocked = true;
+                        Invoke(nameof(toLobby), 5);
+                        ScenarioOrder = 2;
+                        ButtonAvaiable = 2;
+                        Player.enlightened = true;
+                        Minotaur.died = true;
+                    }
+                    
 
                 }
             }
@@ -266,7 +291,6 @@ public class manager : MonoBehaviour
                 {
                     print("endgame");
                     Destroy(GameObject.FindGameObjectsWithTag("Boss")[0].gameObject);
-                    Player.PoseidonUnlocked = true;
                     Invoke(nameof(toLobby), 5);
                     ScenarioOrder = 1;
                 }
@@ -275,12 +299,41 @@ public class manager : MonoBehaviour
             {
                 if (Hades.Health == 0)
                 {
-                    print("endgame");
-                    Destroy(GameObject.FindGameObjectsWithTag("Boss")[0].gameObject);
-                    Player.ZeusUnlocked = true;
-                    Invoke(nameof(toLobby), 5);
-                    ScenarioOrder = 4;
-                    ButtonAvaiable = 4;
+                    if (!Hades.died)
+                    {
+                        print("endgame");
+                        // Destroy(GameObject.FindGameObjectsWithTag("Boss")[0].gameObject);
+
+                        Player.ZeusUnlocked = true;
+                        Invoke(nameof(toLobby), 5);
+                        ScenarioOrder = 4;
+                        ButtonAvaiable = 4;
+                        Hades.died = true;
+                        Player.enlightened = false;
+                    }
+                    
+
+                }
+            }
+            if (GameObject.FindGameObjectsWithTag("Boss")[0].name == "Hades2")
+            {
+                if (Hades2.Health == 0)
+                {
+                    if (!Hades2.died)
+                    {
+                        print("endgame");
+                        // Destroy(GameObject.FindGameObjectsWithTag("Boss")[0].gameObject);
+
+                        Player.ZeusUnlocked = true;
+                        Invoke(nameof(ToMenu), 5);
+                        Destroy(GameObject.FindGameObjectsWithTag("Boss")[0].gameObject);
+                        GameObject.Find("UI").transform.Find("Help").GetComponent<TextMeshProUGUI>().text = "Výhra!";
+                        GameObject.Find("UI").transform.Find("Help").gameObject.SetActive(true);
+                        ScenarioOrder = 5;
+                        ButtonAvaiable = 4;
+                        Hades2.died = true;
+                    }
+
 
                 }
             }
@@ -292,7 +345,7 @@ public class manager : MonoBehaviour
             {
                 if (GameObject.Find("Tutorial").GetComponent<Tutorial>().medusaDead == true)
                 {
-                    Player.MeduzaUnlocked = true;
+
                     Invoke(nameof(toLobby), 5);
                     ScenarioOrder = 1;
                     MedusaUz = true;

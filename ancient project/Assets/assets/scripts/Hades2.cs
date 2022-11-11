@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Hades : MonoBehaviour
+public class Hades2 : MonoBehaviour
 {
     private Animator anim;
     private Animator anim2;
@@ -102,24 +102,19 @@ public class Hades : MonoBehaviour
         hades = GameObject.Find("hades");
     }
 
-   
-    
-    
+
+
+
 
     void Update()
     {
-        if(managerVariables.Hades.Health <= 0)
-        {
-            Zeus.SetActive(true);
-            hades.SetActive(false);
-            //anim2.SetTrigger("died");
-        }
+        print(managerVariables.Hades2.Health);
         if (!Stun)
         {
-            
+
 
             ///////////////////////////////////
-            
+
 
             randomSoundTick += Time.deltaTime;
             if (randomSoundTick >= randomSoundTime)
@@ -129,7 +124,7 @@ public class Hades : MonoBehaviour
                 audioManager.PlayHadesRandom();
 
             }
-       
+
 
             Targetposition = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
             if (!anim.GetCurrentAnimatorStateInfo(0).IsName("melee2"))
@@ -149,7 +144,7 @@ public class Hades : MonoBehaviour
             playerInRangerAttackRange = Physics.CheckSphere(transform.position, RangerAttackRange, whatIsPlayer);
             transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.eulerAngles.y, 0));
 
-            
+
             if (!playerInSightRange && !playerInMeleeAttackRange) Chasing();
             if (playerInSightRange && !playerInMeleeAttackRange && !GameObject.Find("Player").GetComponent<Player>().died) Chasing();
 
@@ -166,8 +161,8 @@ public class Hades : MonoBehaviour
                 RangedAttacking();
             }
 
-            
-            
+
+
 
             if (managerVariables.Player.target == this.gameObject)
             {
@@ -181,7 +176,7 @@ public class Hades : MonoBehaviour
                 orangeLight.gameObject.SetActive(false);
 
             }
-            
+
         }
         else
         {
@@ -308,12 +303,12 @@ public class Hades : MonoBehaviour
                 anim.SetBool("walk", false);
 
 
-               if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Range"))
+                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Range"))
                 {
                     anim.SetBool("walk", true);
                 }
-                
-                
+
+
                 if (timebetweenRangedAttackstick >= timebetweenRangedAttacks + RangedAttackTime)
                 {
                     timebetweenRangedAttackstick = 0;

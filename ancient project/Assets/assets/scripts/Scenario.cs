@@ -299,33 +299,8 @@ public class Scenario : MonoBehaviour
         }
     }
 
-    /*private void Lvl5Scenario()
-    {
-        clear();
-        image.GetComponent<Image>().sprite = PlayerLvl2;
-        imageOther.GetComponent<Image>().sprite = Hades;
+    
 
-        if (index <= Lvl5.Length - 1)
-        {
-            if (Lvl5Field[index] == 0)
-            {
-                playerText.text = Lvl5[index];
-                image.SetActive(true);
-                index++;
-            }
-            else
-            {
-                othersText.text = Lvl5[index];
-                imageOther.SetActive(true);
-                index++;
-            }
-        }
-        else
-        {
-            panel.SetActive(false);
-            //UI.SetActive(true);
-        }
-    }*/
 
 
     private void clear()
@@ -344,16 +319,4 @@ public class Scenario : MonoBehaviour
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-    
 }

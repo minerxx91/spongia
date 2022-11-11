@@ -106,6 +106,38 @@ public class trident : MonoBehaviour
                 }
               
             }
+            if (other.gameObject.name == "Hades")
+            {
+                if (!damageDone)
+                {
+                    damageDone = true;
+                    if (managerVariables.Hades.Health >= managerVariables.Player.Ability3Damage + managerVariables.Player.DamageIncrease)
+                    {
+                        managerVariables.Hades.Health -= managerVariables.Player.Ability3Damage + managerVariables.Player.DamageIncrease;
+                    }
+                    else
+                    {
+                        managerVariables.Hades.Health = 0;
+                    }
+                }
+
+            }
+            if (other.gameObject.name == "Hades2")
+            {
+                if (!damageDone)
+                {
+                    damageDone = true;
+                    if (managerVariables.Hades2.Health >= managerVariables.Player.Ability3Damage + managerVariables.Player.DamageIncrease)
+                    {
+                        managerVariables.Hades2.Health -= managerVariables.Player.Ability3Damage + managerVariables.Player.DamageIncrease;
+                    }
+                    else
+                    {
+                        managerVariables.Hades2.Health = 0;
+                    }
+                }
+
+            }
         }
 
     }

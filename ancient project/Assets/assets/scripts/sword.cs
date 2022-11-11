@@ -83,6 +83,27 @@ public class sword : MonoBehaviour
                 }
 
             }
+            if (other.gameObject.name == "Hades2")
+            {
+                if (this.gameObject.name == "ability1")
+                {
+                    other.GetComponent<Hades>().Stun = true;
+                    audioManager.PlayZkamenenie();
+                }
+                else
+                {
+                    if (managerVariables.Hades2.Health > managerVariables.Player.Damage + managerVariables.Player.DamageIncrease)
+                    {
+                        managerVariables.Hades2.Health -= managerVariables.Player.Damage + managerVariables.Player.DamageIncrease;
+
+                    }
+                    else
+                    {
+                        managerVariables.Hades2.Health = 0;
+                    }
+                }
+
+            }
             else if (other.gameObject.tag == "Enemy")
             {
                 if (other.gameObject.GetComponent<EnemyPleb>().Health > managerVariables.Player.Damage + managerVariables.Player.DamageIncrease)

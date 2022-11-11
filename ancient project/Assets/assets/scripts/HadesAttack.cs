@@ -45,7 +45,7 @@ public class HadesAttack : MonoBehaviour
             }
             else if (this.gameObject.name == "AttackMelee2")
             {
-                if (managerVariables.Player.Health > managerVariables.Hades.Damage + managerVariables.Hades.DamageIncrease)
+                if (managerVariables.Player.Health > (managerVariables.Hades.Damage))
                 {
                     managerVariables.Player.Health -= (managerVariables.Hades.Damage + managerVariables.Hades.DamageIncrease) * (100 - managerVariables.Player.Resistence) / 100;
                     if (managerVariables.Player.Resistence > 0)
